@@ -112,6 +112,15 @@ public class Methods {
             glacio_orbit
     );
 
+    public static Set<ResourceKey<Level>> planetoidWorlds = Set.of(
+            mercury,
+            venus,
+            overworld,
+            moon,
+            mars,
+            glacio
+    );
+
     public static void entityWorldTeleporter(Entity entity, ResourceKey<Level> planet, double high) {
         if (entity.canChangeDimensions()) {
 
@@ -212,6 +221,10 @@ public class Methods {
 
     public static boolean isOrbitWorld(Level world) {
         return orbitWorlds.contains(world.dimension());
+    }
+
+    public static boolean isPlanetoidWorld(Level world) {
+        return planetoidWorlds.contains(world.dimension());
     }
 
     public static boolean isWorld(Level world, ResourceKey<Level> loc) {
@@ -322,7 +335,7 @@ public class Methods {
             return;
         }
 
-        if (Config.ENTITY_OXYGEN_SYSTEM.get() && Methods.isSpaceWorldWithoutOxygen(level) && tagCheck(entity, TagsRegistry.OXYGEN_TAG)) {
+        if (Config.ENTITY_OXYGEN_SYSTEM.get() && Methods.isSpaceWorldWithoutOxygen(level) && tagCheck(entity, TagsRegistry.OXYGEN_TAG) || Config.ENTITY_OXYGEN_SYSTEM.get() && Methods.isPlanetoidWorld(level) && entity.blockPosition().getY() >= 590 && tagCheck(entity, TagsRegistry.OXYGEN_TAG)) {
 
             if (!entity.hasEffect(EffectsRegistry.OXYGEN_EFFECT.get())) {
 
@@ -524,7 +537,7 @@ public class Methods {
     }
 
 	public static void extractArmorOxygenUsingTimer(ItemStack itemstack, Player player) {
-		if (!player.getAbilities().instabuild && !player.isSpectator() && Methods.spaceSuitCheckBoth(player) && !player.hasEffect(EffectsRegistry.OXYGEN_EFFECT.get()) && Config.PLAYER_OXYGEN_SYSTEM.get() && (Methods.isSpaceWorldWithoutOxygen(player.level) || player.isEyeInFluid(FluidTags.WATER))) {
+		if (!player.getAbilities().instabuild && !player.isSpectator() && Methods.spaceSuitCheckBoth(player) && !player.hasEffect(EffectsRegistry.OXYGEN_EFFECT.get()) && Config.PLAYER_OXYGEN_SYSTEM.get() && (Methods.isSpaceWorldWithoutOxygen(player.level) || (Methods.isPlanetoidWorld(player.level) && player.blockPosition().getY() >= 590) || player.isEyeInFluid(FluidTags.WATER))) {
 			IOxygenStorage oxygenStorage = OxygenUtil.getItemStackOxygenStorage(itemstack);
 
             CompoundTag persistentData = player.getPersistentData();
