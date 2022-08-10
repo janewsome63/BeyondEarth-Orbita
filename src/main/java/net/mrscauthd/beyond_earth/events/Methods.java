@@ -51,65 +51,46 @@ import java.util.function.Function;
 public class Methods {
 
     public static final ResourceKey<Level> moon = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondEarthMod.MODID, "moon"));
-    public static final ResourceKey<Level> moon_orbit = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondEarthMod.MODID, "moon_orbit"));
     public static final ResourceKey<Level> mars = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondEarthMod.MODID, "mars"));
-    public static final ResourceKey<Level> mars_orbit = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondEarthMod.MODID, "mars_orbit"));
     public static final ResourceKey<Level> mercury = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondEarthMod.MODID, "mercury"));
-    public static final ResourceKey<Level> mercury_orbit = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondEarthMod.MODID, "mercury_orbit"));
     public static final ResourceKey<Level> venus = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondEarthMod.MODID, "venus"));
-    public static final ResourceKey<Level> venus_orbit = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondEarthMod.MODID, "venus_orbit"));
     public static final ResourceKey<Level> glacio = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondEarthMod.MODID, "glacio"));
-    public static final ResourceKey<Level> glacio_orbit = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondEarthMod.MODID, "glacio_orbit"));
     public static final ResourceKey<Level> overworld = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation("overworld"));
-    public static final ResourceKey<Level> earth_orbit = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondEarthMod.MODID,"earth_orbit"));
+    public static final ResourceKey<Level> orbit = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondEarthMod.MODID,"orbit"));
+
+    public static final ResourceKey<Level> asteroid_belt = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondEarthMod.MODID,"asteroid_belt"));
 
     public static final ResourceLocation space_station = new ResourceLocation(BeyondEarthMod.MODID, "space_station");
 
     public static Set<ResourceKey<Level>> worldsWithoutRain = Set.of(
             moon,
-            moon_orbit,
-            mars_orbit,
             mercury,
-            mercury_orbit,
-            venus_orbit,
-            glacio_orbit,
-            earth_orbit
+            orbit,
+            asteroid_belt
     );
 
     public static Set<ResourceKey<Level>> spaceWorldsWithoutOxygen = Set.of(
             moon,
-            moon_orbit,
             mars,
-            mars_orbit,
             mercury,
-            mercury_orbit,
             venus,
-            venus_orbit,
-            glacio_orbit,
-            earth_orbit
+            orbit,
+            asteroid_belt
     );
 
     public static Set<ResourceKey<Level>> spaceWorlds = Set.of(
             moon,
-            moon_orbit,
             mars,
-            mars_orbit,
             mercury,
-            mercury_orbit,
             venus,
-            venus_orbit,
             glacio,
-            glacio_orbit,
-            earth_orbit
+            orbit,
+            asteroid_belt
     );
 
-    public static Set<ResourceKey<Level>> orbitWorlds = Set.of(
-            earth_orbit,
-            moon_orbit,
-            mars_orbit,
-            mercury_orbit,
-            venus_orbit,
-            glacio_orbit
+    public static Set<ResourceKey<Level>> noGravWorlds = Set.of(
+            orbit,
+            asteroid_belt
     );
 
     public static Set<ResourceKey<Level>> planetoidWorlds = Set.of(
@@ -219,8 +200,8 @@ public class Methods {
         return spaceWorldsWithoutOxygen.contains(world.dimension());
     }
 
-    public static boolean isOrbitWorld(Level world) {
-        return orbitWorlds.contains(world.dimension());
+    public static boolean isNoGravWorld(Level world) {
+        return noGravWorlds.contains(world.dimension());
     }
 
     public static boolean isPlanetoidWorld(Level world) {
@@ -503,36 +484,16 @@ public class Methods {
     }
 
     public static void landerTeleportOrbit(Player player, Level world) {
-        if (Methods.isWorld(world, Methods.earth_orbit)) {
+        if (Methods.isWorld(world, Methods.orbit)) {
             Methods.landerTeleport(player, Methods.overworld);
-        } else if (Methods.isWorld(world, Methods.moon_orbit)) {
-            Methods.landerTeleport(player, Methods.moon);
-        } else if (Methods.isWorld(world, Methods.mars_orbit)) {
-            Methods.landerTeleport(player, Methods.mars);
-        } else if (Methods.isWorld(world, Methods.glacio_orbit)) {
-            Methods.landerTeleport(player, Methods.glacio);
-        } else if (Methods.isWorld(world, Methods.mercury_orbit)) {
-            Methods.landerTeleport(player, Methods.mercury);
-        } else if (Methods.isWorld(world, Methods.venus_orbit)) {
-            Methods.landerTeleport(player, Methods.venus);
         }
     }
 
     public static void entityFallToPlanet(Level world, Entity entity) {
         ResourceKey<Level> world2 = world.dimension();
 
-        if (world2 == Methods.earth_orbit) {
+        if (world2 == Methods.orbit) {
             Methods.entityWorldTeleporter(entity, Methods.overworld, 700);
-        } else if (world2 == Methods.moon_orbit) {
-            Methods.entityWorldTeleporter(entity, Methods.moon, 700);
-        } else if (world2 == Methods.mars_orbit) {
-            Methods.entityWorldTeleporter(entity, Methods.mars, 700);
-        } else if (world2 == Methods.mercury_orbit) {
-            Methods.entityWorldTeleporter(entity, Methods.mercury, 700);
-        } else if (world2 == Methods.venus_orbit) {
-            Methods.entityWorldTeleporter(entity, Methods.venus, 700);
-        } else if (world2 == Methods.glacio_orbit) {
-            Methods.entityWorldTeleporter(entity, Methods.glacio, 700);
         }
     }
 

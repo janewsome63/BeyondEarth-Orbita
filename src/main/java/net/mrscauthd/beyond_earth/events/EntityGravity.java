@@ -15,7 +15,7 @@ public class EntityGravity {
     public static final float MARS_GRAVITY = 0.04F;
     public static final float MERCURY_GRAVITY = 0.03F;
     public static final float GLACIO_GRAVITY = 0.04F;
-    public static final float ORBIT_GRAVITY = 0.02F;
+    public static final float SPACE_GRAVITY = 0.02F;
 
     public static void gravity(LivingEntity entity, Level level) {
         if (Methods.isWorld(level, Methods.moon)) {
@@ -30,8 +30,8 @@ public class EntityGravity {
         else if (Methods.isWorld(level, Methods.glacio)) {
             gravitySystem(entity, GLACIO_GRAVITY);
         }
-        else if (Methods.isOrbitWorld(level)) {
-            gravitySystem(entity, ORBIT_GRAVITY);
+        else if (Methods.isNoGravWorld(level)) {
+            gravitySystem(entity, SPACE_GRAVITY);
         }
     }
 

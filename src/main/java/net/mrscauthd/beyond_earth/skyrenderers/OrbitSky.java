@@ -34,14 +34,17 @@ import net.mrscauthd.beyond_earth.BeyondEarthMod;
 import net.mrscauthd.beyond_earth.skyrenderers.helper.StarHelper;
 
 @Mod.EventBusSubscriber(modid = BeyondEarthMod.MODID, bus = Bus.MOD, value = Dist.CLIENT)
-public class MercuryOrbitSky {
+public class OrbitSky {
 
-    private static final ResourceLocation DIM_RENDER_INFO = new ResourceLocation(BeyondEarthMod.MODID, "mercury_orbit");
+    private static final ResourceLocation DIM_RENDER_INFO = new ResourceLocation(BeyondEarthMod.MODID, "orbit");
 
     @Nullable
     public static VertexBuffer starBuffer;
-    private static final ResourceLocation MERCURY_TEXTURE = new ResourceLocation(BeyondEarthMod.MODID, "textures/sky/mercury.png");
+    private static final ResourceLocation EARTH_TEXTURE = new ResourceLocation(BeyondEarthMod.MODID, "textures/sky/earth.png");
     private static final ResourceLocation SUN_TEXTURE = new ResourceLocation(BeyondEarthMod.MODID, "textures/sky/no_a_sun.png");
+
+    private static final ResourceLocation MOON_PHASES_1_TEXTURE = new ResourceLocation(BeyondEarthMod.MODID, "textures/sky/moon_phases_1.png");
+    private static final ResourceLocation MOON_PHASES_2_TEXTURE = new ResourceLocation(BeyondEarthMod.MODID, "textures/sky/moon_phases_2.png");
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void clientSetup(FMLClientSetupEvent event) {
@@ -146,13 +149,47 @@ public class MercuryOrbitSky {
                             bufferbuilder.end();
                             BufferUploader.end(bufferbuilder);
 
+                            f12 = 20.0F;
 
-                            /** MERCURY ROT */
+                            /** MOON */
+                            int k = minecraft.level.getMoonPhase();
+                            int l = k % 4;
+                            int i1 = k / 4 % 2;
+                            float f13 = (float) (l + 0) / 4.0F;
+                            float f14 = (float) (i1 + 0) / 2.0F;
+                            float f15 = (float) (l + 1) / 4.0F;
+                            float f16 = (float) (i1 + 1) / 2.0F;
+
+                            /** MOON PHASE 2 */
+                            RenderSystem.setShaderTexture(0, MOON_PHASES_2_TEXTURE);
+                            bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
+                            bufferbuilder.vertex(matrix4f1, -f12, -100.0F, f12).uv(f15, f16).endVertex();
+                            bufferbuilder.vertex(matrix4f1, f12, -100.0F, f12).uv(f13, f16).endVertex();
+                            bufferbuilder.vertex(matrix4f1, f12, -100.0F, -f12).uv(f13, f14).endVertex();
+                            bufferbuilder.vertex(matrix4f1, -f12, -100.0F, -f12).uv(f15, f14).endVertex();
+                            bufferbuilder.end();
+                            BufferUploader.end(bufferbuilder);
+
+                            /** MOON PHASE 1 */
+                            RenderSystem.disableBlend();
+
+                            RenderSystem.setShaderTexture(0, MOON_PHASES_1_TEXTURE);
+                            bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
+                            bufferbuilder.vertex(matrix4f1, -f12, -100.0F, f12).uv(f15, f16).endVertex();
+                            bufferbuilder.vertex(matrix4f1, f12, -100.0F, f12).uv(f13, f16).endVertex();
+                            bufferbuilder.vertex(matrix4f1, f12, -100.0F, -f12).uv(f13, f14).endVertex();
+                            bufferbuilder.vertex(matrix4f1, -f12, -100.0F, -f12).uv(f15, f14).endVertex();
+                            bufferbuilder.end();
+                            BufferUploader.end(bufferbuilder);
+
+                            RenderSystem.enableBlend();
+
+                            /** EARTH ROT */
                             p_181410_.mulPose(Vector3f.YP.rotationDegrees(0.0F));
                             p_181410_.mulPose(Vector3f.XP.rotationDegrees(0.0F));
                             matrix4f1 = p_181410_.last().pose();
 
-                            /** MERCURY */
+                            /** EARTH */
                             RenderSystem.disableBlend();
 
                             float var20 = -3000.0F + (float) Minecraft.getInstance().player.getY() * 6F;
@@ -160,7 +197,7 @@ public class MercuryOrbitSky {
                             float scale = 100 * (0.2F - var20 / 10000.0F);
                             scale = Math.max(scale, 4.0F);
 
-                            RenderSystem.setShaderTexture(0, MERCURY_TEXTURE);
+                            RenderSystem.setShaderTexture(0, EARTH_TEXTURE);
                             bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
                             bufferbuilder.vertex(matrix4f1, -scale, -100.0F, scale).uv(0.0F, 0.0F).endVertex();
                             bufferbuilder.vertex(matrix4f1, scale, -100.0F, scale).uv(1.0F, 0.0F).endVertex();
@@ -195,4 +232,3 @@ public class MercuryOrbitSky {
         });
     }
 }
-

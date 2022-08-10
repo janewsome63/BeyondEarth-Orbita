@@ -1,5 +1,5 @@
 {
-  "type": "beyond_earth:venus_orbit",
+  "type": "beyond_earth:orbit",
   "forge:use_server_seed": true,
   "generator": {
     "type": "beyond_earth:planet_noise",

@@ -1,14 +1,14 @@
 modLoader="javafml"
 loaderVersion="[${loader_version},)"
-license="All Rights Reserved unless otherwise explicitly stated"
+license="LGPL-3.0 license"
 
 [[mods]]
 modId="beyond_earth"
 version="${mod_version}"
 displayName="Beyond Earth (Orbita Edit)"
-displayURL="https://www.curseforge.com/minecraft/mc-mods/beyond-earth"
+displayURL="https://github.com/janewsome63/BeyondEarth-Orbita"
 logoFile="logo.png"
-authors="MrScautHD"
+authors="MrScautHD, rennautogirl63"
 description='''Fly to Other Planets and Beyond!'''
 
 [[dependencies.beyond_earth]]

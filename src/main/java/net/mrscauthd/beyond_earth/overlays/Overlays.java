@@ -271,7 +271,7 @@ public class Overlays {
             else if (Methods.isWorld(level, Methods.glacio)) {
                 planet = GLACIO_PLANET_BAR_TEXTURE;
             }
-            else if (Methods.isOrbitWorld(level)) {
+            else if (Methods.isNoGravWorld(level)) {
                 planet = ORBIT_PLANET_BAR_TEXTURE;
             }
             else {

@@ -176,7 +176,7 @@ public class Events {
             event.setDistance(event.getDistance() - 5.0F);
         } else if (Methods.isWorld(level, Methods.mercury)) {
             event.setDistance(event.getDistance() - 5.5F);
-        } else if (Methods.isOrbitWorld(level)) {
+        } else if (Methods.isNoGravWorld(level)) {
             event.setDistance(event.getDistance() - 8.5F);
         }
     }

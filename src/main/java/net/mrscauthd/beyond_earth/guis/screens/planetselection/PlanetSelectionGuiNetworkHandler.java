@@ -64,77 +64,20 @@ public class PlanetSelectionGuiNetworkHandler extends PlanetSelectionGuiNetworkH
                 /** (SUN CATEGORY) TELEPORT ORBIT BUTTONS */
                 case 5:
                     message.defaultOptions(player);
-                    Methods.teleportButton(player, Methods.earth_orbit, false);
-                    break;
-
-                case 6:
-                    message.defaultOptions(player);
-                    Methods.teleportButton(player, Methods.moon_orbit, false);
-                    break;
-
-                case 7:
-                    message.defaultOptions(player);
-                    Methods.teleportButton(player, Methods.mars_orbit, false);
-                    break;
-
-                case 8:
-                    message.defaultOptions(player);
-                    Methods.teleportButton(player, Methods.mercury_orbit, false);
-                    break;
-
-                case 9:
-                    message.defaultOptions(player);
-                    Methods.teleportButton(player, Methods.venus_orbit, false);
+                    Methods.teleportButton(player, Methods.orbit, false);
                     break;
 
                 /** (SUN CATEGORY) TELEPORT ORBIT AND CREATE A SPACE STATION BUTTON */
-                case 10:
+                case 6:
                     message.defaultOptions(player);
                     message.deleteItems(player);
-                    Methods.teleportButton(player, Methods.earth_orbit, true);
-                    break;
-
-                case 11:
-                    message.defaultOptions(player);
-                    message.deleteItems(player);
-                    Methods.teleportButton(player, Methods.moon_orbit, true);
-                    break;
-
-                case 12:
-                    message.defaultOptions(player);
-                    message.deleteItems(player);
-                    Methods.teleportButton(player, Methods.mars_orbit, true);
-                    break;
-
-                case 13:
-                    message.defaultOptions(player);
-                    message.deleteItems(player);
-                    Methods.teleportButton(player, Methods.mercury_orbit, true);
-                    break;
-
-                case 14:
-                    message.defaultOptions(player);
-                    message.deleteItems(player);
-                    Methods.teleportButton(player, Methods.venus_orbit, true);
+                    Methods.teleportButton(player, Methods.orbit, true);
                     break;
 
                 /** (PROXIMA CENTAURI) TELEPORT BUTTONS */
-                case 15:
+                case 7:
                     message.defaultOptions(player);
                     Methods.teleportButton(player, Methods.glacio, false);
-                    break;
-
-                /** (PROXIMA CENTAURI) TELEPORT ORBIT BUTTONS */
-                case 16:
-                    message.defaultOptions(player);
-                    Methods.teleportButton(player, Methods.glacio_orbit, false);
-                    break;
-
-                /** (PROXIMA CENTAURI) TELEPORT ORBIT AND CREATE A SPACE STATION BUTTON */
-                case 17:
-                    message.defaultOptions(player);
-                    message.deleteItems(player);
-                    Methods.teleportButton(player, Methods.glacio_orbit, true);
                     break;
             }
         });
