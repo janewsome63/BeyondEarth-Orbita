@@ -1,5 +1,5 @@
 # Info #
-Page for making small changes to the Beyond Earth mod so it fits in better with the vision of the Orbita server's modpack. This will likely not stay up to date with the source repo and will not be updated every version, you should download it from the official repo unless these changes appeal to you. This page is not affiliated with the Beyond Earth team in any way, but many thanks to them for making this great mod.
+Page for making small changes to the Beyond Earth mod so it fits in better with the vision of the Orbita server's modpack. This will not stay up to date with the source repo and will not be updated every version, you should download it from the official repo unless these changes appeal to you. This page is not affiliated with the Beyond Earth team in any way, but many thanks to them for making this great mod.
 
 <a href="https://orbita.renovamenia.com">OrbitaMC</a>
 
