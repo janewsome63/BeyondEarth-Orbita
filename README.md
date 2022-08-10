@@ -4,7 +4,7 @@ Page for making small changes to the Beyond Earth mod so it fits in better with 
 <a href="https://orbita.renovamenia.com">OrbitaMC</a>
 
 # Planned Changes #
-✕ = Not implemented, ✓ = Implemented
+✕ = Not implemented, ✓ = Implemented, P = Partially Implemented
 * Entities on Venus and Mercury only burn if they are exposed to the sky. [✓]
 * Water is placable on Venus and Mercury if it is not exposed to the sky. [✕]
 * Space stations will not be created if there is already a block at the creation point. [✕]
@@ -13,7 +13,7 @@ Page for making small changes to the Beyond Earth mod so it fits in better with 
 * Entities in orbit and the asteroid belt will have no gravity and players will be able to move around freely in a slowed creative flight, except when their feet are directly above or beside blocks (this is to simulate a "mag-boot" effect). [✕]
 * Players falling from orbit enter at Y700 instead of Y450. [✓]
 * Players who move above Y700 in the overworld will be moved to orbit. All other dimensions will disallow players from going higher than this. [✕]
-* Players who are above Y590 will be in "low orbit", and have all the effects of being in orbit such as lack of gravity and oxygen. [✕]
+* Players who are above Y590 will be in "low orbit", and have all the effects of being in orbit such as lack of gravity and oxygen. [P]
 * Players between Y levels 590 and 320 will have the Slow Falling effect to simulate a gradual de-orbiting. [✕]
 * Entity (when standing on blocks) and item gravity are significantly reduced in orbit dimensions. [✕]
 
