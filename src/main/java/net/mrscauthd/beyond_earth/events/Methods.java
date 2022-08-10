@@ -278,7 +278,9 @@ public class Methods {
             return;
         }
 
-        entity.setSecondsOnFire(10);
+        if (entity.level.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (int) Math.floor(entity.getX()), (int) Math.floor(entity.getZ())) <= Math.floor(entity.getY()) + 1) {
+            entity.setSecondsOnFire(10);
+        }
     }
 
     /** If a entity should not get Damage add it to the Tag "venus_rain" */
@@ -507,17 +509,17 @@ public class Methods {
         ResourceKey<Level> world2 = world.dimension();
 
         if (world2 == Methods.earth_orbit) {
-            Methods.entityWorldTeleporter(entity, Methods.overworld, 450);
+            Methods.entityWorldTeleporter(entity, Methods.overworld, 700);
         } else if (world2 == Methods.moon_orbit) {
-            Methods.entityWorldTeleporter(entity, Methods.moon, 450);
+            Methods.entityWorldTeleporter(entity, Methods.moon, 700);
         } else if (world2 == Methods.mars_orbit) {
-            Methods.entityWorldTeleporter(entity, Methods.mars, 450);
+            Methods.entityWorldTeleporter(entity, Methods.mars, 700);
         } else if (world2 == Methods.mercury_orbit) {
-            Methods.entityWorldTeleporter(entity, Methods.mercury, 450);
+            Methods.entityWorldTeleporter(entity, Methods.mercury, 700);
         } else if (world2 == Methods.venus_orbit) {
-            Methods.entityWorldTeleporter(entity, Methods.venus, 450);
+            Methods.entityWorldTeleporter(entity, Methods.venus, 700);
         } else if (world2 == Methods.glacio_orbit) {
-            Methods.entityWorldTeleporter(entity, Methods.glacio, 450);
+            Methods.entityWorldTeleporter(entity, Methods.glacio, 700);
         }
     }
 

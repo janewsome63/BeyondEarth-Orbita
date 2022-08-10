@@ -5,7 +5,7 @@ license="All Rights Reserved unless otherwise explicitly stated"
 [[mods]]
 modId="beyond_earth"
 version="${mod_version}"
-displayName="Beyond Earth"
+displayName="Beyond Earth (Orbita Edit)"
 displayURL="https://www.curseforge.com/minecraft/mc-mods/beyond-earth"
 logoFile="logo.png"
 authors="MrScautHD"
