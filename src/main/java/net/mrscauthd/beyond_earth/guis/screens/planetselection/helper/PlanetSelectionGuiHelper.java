@@ -39,9 +39,9 @@ public class PlanetSelectionGuiHelper {
     }
 
     /** USE IT FOR TELEPORT BUTTONS */
-    public static ImageButtonPlacer addHandlerButton(PlanetSelectionGuiWindow screen, int x, int row, int width, int height, boolean condition, boolean holdKeyMessage, SimpleChannel simpleChannel, PlanetSelectionGuiNetworkHandlerHelper handler, ImageButtonPlacer.Types type, List<String> list, ResourceLocation buttonTexture, ResourceLocation hoverButtonTexture, Component title) {
+    public static ImageButtonPlacer addHandlerButton(PlanetSelectionGuiWindow screen, int x, int row, int width, int height, boolean condition, boolean holdKeyMessage, boolean tier, SimpleChannel simpleChannel, PlanetSelectionGuiNetworkHandlerHelper handler, ImageButtonPlacer.Types type, List<String> list, ResourceLocation buttonTexture, ResourceLocation hoverButtonTexture, Component title) {
         ImageButtonPlacer button = screen.addButton(x, 0, row, width, height, condition, type, list, buttonTexture, hoverButtonTexture, title, (onPress) -> {
-            if (condition) {
+            if (condition && tier) {
                 callPacketHandler(simpleChannel, handler);
 
                 if (holdKeyMessage) {

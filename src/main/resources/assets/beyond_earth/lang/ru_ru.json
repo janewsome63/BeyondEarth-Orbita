@@ -210,6 +210,7 @@
   "biome.beyond_earth.mars_ice_spikes": "Марсианские ледяные пики",
   "biome.beyond_earth.glacio": "Глизе",
   "biome.beyond_earth.glacio_ice_spikes": "Глизеанские ледяные пики",
+  "biome.beyond_earth.asteroid_belt": "Пояс астероидов",
 
   "advancements.workbench_advancement.title": "Верстак НАСА",
   "advancements.workbench_advancement.descr": "§bСоорудите верстак НАСА",
@@ -229,8 +230,8 @@
   "key.categories.beyond_earth": "Beyond Earth",
   "key.beyond_earth.rocket_start": "Запуск ракеты",
 
-  "death.attack.oxygen": "%1$s больше нечем дышать",
-  "death.attack.venus.acid": "%1$s растворился в кислоте",
+  "death.attack.oxygen": "%1$s закончился кислород",
+  "death.attack.venus.acid": "%1$s растаял",
 
   "entity.beyond_earth.alien.farmer": "Фермер",
   "entity.beyond_earth.alien.fisherman": "Рыбак",
@@ -290,7 +291,7 @@
   "gui.beyond_earth.planet_selection.catalog": "КАТАЛОГ",
   "gui.beyond_earth.planet_selection.category": "Категория",
   "gui.beyond_earth.planet_selection.type": "Тип",
-  "gui.beyond_earth.planet_selection.provided": "Требуется",
+  "gui.beyond_earth.planet_selection.rocket": "Обязательный",
   "gui.beyond_earth.planet_selection.gravity": "Гравитация",
   "gui.beyond_earth.planet_selection.oxygen": "Кислород",
   "gui.beyond_earth.planet_selection.oxygen.true": "истина",
@@ -313,6 +314,8 @@
   "gui.beyond_earth.planet_selection.solar_system_proxima_centauri": "Проксима Цент.",
   "gui.beyond_earth.planet_selection.proxima_centauri": "Проксима Центавра",
   "gui.beyond_earth.planet_selection.glacio": "Глизе",
+  "gui.beyond_earth.planet_selection.asteroid_belt": "Астероидный пояс",
+  "gui.beyond_earth.planet_selection.asteroid_field": "Поле астероидов",
 
 
   "jei.tooltip.beyond_earth.oil": "Нефть можно найти в океане",

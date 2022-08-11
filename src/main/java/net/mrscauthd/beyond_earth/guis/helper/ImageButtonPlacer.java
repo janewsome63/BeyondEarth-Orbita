@@ -161,8 +161,7 @@ public class ImageButtonPlacer extends Button {
 
             String condition = this.rocketCondition ? "a" : "c";
 
-            list.add(new TextComponent("\u00A79" + PlanetSelectionGuiWindow.CATEGORY_TEXT.getString() + ": \u00A7" + condition + this.list.get(0)));
-            list.add(new TextComponent("\u00A79" + PlanetSelectionGuiWindow.PROVIDED_TEXT.getString() + ": \u00A7b" + this.list.get(1)));
+            /** list.add(new TextComponent("\u00A79" + PlanetSelectionGuiWindow.CATEGORY_TEXT.getString() + ": \u00A7" + condition + this.list.get(0)));*/
 
             screen.renderComponentTooltip(poseStack, list, mouseX, mouseY);
         }
@@ -179,6 +178,7 @@ public class ImageButtonPlacer extends Button {
             list.add(new TextComponent("\u00A79" + PlanetSelectionGuiWindow.GRAVITY_TEXT.getString() + ": \u00A73" + this.list.get(1)));
             list.add(new TextComponent("\u00A79" + PlanetSelectionGuiWindow.OXYGEN_TEXT.getString() + ": \u00A7" + this.list.get(2)));
             list.add(new TextComponent("\u00A79" + PlanetSelectionGuiWindow.TEMPERATURE_TEXT.getString() + ": \u00A7" + this.list.get(3)));
+            list.add(new TextComponent("\u00A79" + PlanetSelectionGuiWindow.ROCKET_TEXT.getString() + ": \u00A7b" + this.list.get(4)));
 
             screen.renderComponentTooltip(poseStack, list, mouseX, mouseY);
         }
@@ -197,7 +197,7 @@ public class ImageButtonPlacer extends Button {
                 boolean check = screen.getSpaceStationItemCheck(ingredientStack);
                 Component component = Arrays.stream(ingredientStack.getIngredient().getItems()).findFirst().map(ItemStack::getHoverName).orElse(TextComponent.EMPTY);
 
-                list.add(new TextComponent("\u00A78[\u00A76" + ingredientStack.getCount() + "\u00A78]" + (check ? "\u00A7a" : "\u00A7c") + " " + component.getString() + (ingredientStack.getCount() > 1 ? "'s" : "")));
+                list.add(new TextComponent("\u00A78[\u00A76" + ingredientStack.getCount() + "\u00A78]" + (check ? "\u00A7a" : "\u00A7c") + " " + component.getString() + (ingredientStack.getCount() > 1 ? "" : "")));
             }
 
             list.add(new TextComponent("\u00A7c----------------"));
@@ -205,6 +205,7 @@ public class ImageButtonPlacer extends Button {
             list.add(new TextComponent("\u00A79" + PlanetSelectionGuiWindow.GRAVITY_TEXT.getString() + ": \u00A73" + this.list.get(1)));
             list.add(new TextComponent("\u00A79" + PlanetSelectionGuiWindow.OXYGEN_TEXT.getString() + ": \u00A7" + this.list.get(2)));
             list.add(new TextComponent("\u00A79" + PlanetSelectionGuiWindow.TEMPERATURE_TEXT.getString() + ": \u00A7" + this.list.get(3)));
+            list.add(new TextComponent("\u00A79" + PlanetSelectionGuiWindow.ROCKET_TEXT.getString() + ": \u00A7b" + this.list.get(4)));
 
             screen.renderComponentTooltip(poseStack, list, mouseX, mouseY);
         }

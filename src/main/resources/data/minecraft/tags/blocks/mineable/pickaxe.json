@@ -105,6 +105,8 @@
     "beyond_earth:glacio_stone_brick_slab",
     "beyond_earth:glacio_stone_brick_stairs",
     "beyond_earth:glacio_stone",
-    "beyond_earth:permafrost"
+    "beyond_earth:permafrost",
+
+    "beyond_earth:asteroid_stone"
   ]
 }

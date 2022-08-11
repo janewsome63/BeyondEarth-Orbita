@@ -10,7 +10,7 @@
       "ore_veins_enabled": true,
       "legacy_random_source": false,
       "default_block": {
-        "Name": "minecraft:deepslate"
+        "Name": "beyond_earth:asteroid_stone"
       },
       "default_fluid": {
         "Name": "minecraft:air"
@@ -198,13 +198,13 @@
       "surface_rule": {
         "type": "minecraft:block",
         "result_state": {
-          "Name": "minecraft:deepslate"
+          "Name": "beyond_earth:asteroid_stone"
         }
       }
     },
     "biome_source": {
       "type": "minecraft:fixed",
-      "biome": "beyond_earth:asteroid_belt"
+      "biome": "beyond_earth:asteroid_field"
     }
   }
 }

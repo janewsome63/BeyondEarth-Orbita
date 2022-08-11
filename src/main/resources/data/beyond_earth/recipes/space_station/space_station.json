@@ -3,7 +3,19 @@
 	"ingredients": [
 		{
 			"ingredient": {
-				"tag": "forge:ingots/desh"
+				"item": "beyond_earth:moon_stone"
+			},
+			"count": 142
+		},
+		{
+			"ingredient": {
+				"tag": "forge:sand"
+			},
+			"count": 16
+		},
+		{
+			"ingredient": {
+				"item": "minecraft:iron_ingot"
 			},
 			"count": 6
 		},
@@ -11,7 +23,7 @@
 			"ingredient": {
 				"tag": "forge:ingots/steel"
 			},
-			"count": 16
+			"count": 8
 		},
 		{
 			"ingredient": {
@@ -21,9 +33,15 @@
 		},
 		{
 			"ingredient": {
-				"tag": "forge:plates/desh"
+				"item": "minecraft:lapis_lazuli"
 			},
-			"count": 4
+			"count": 8
+		},
+		{
+			"ingredient": {
+				"item": "minecraft:white_dye"
+			},
+			"count": 5
 		}
 	]
 }

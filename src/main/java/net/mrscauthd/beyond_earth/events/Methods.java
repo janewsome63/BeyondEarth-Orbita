@@ -430,7 +430,7 @@ public class Methods {
     }
 
     public static void createSpaceStation(Player player, ServerLevel serverWorld) {
-        BlockPos pos = new BlockPos(player.getX() - 15.5, 100, player.getZ() - 15.5);
+        BlockPos pos = new BlockPos(player.getX() - 3.5, 160, player.getZ() - 3.5);
         serverWorld.getStructureManager().getOrCreate(space_station).placeInWorld(serverWorld, pos, pos, new StructurePlaceSettings(), serverWorld.random, 2);
     }
 

@@ -61,21 +61,26 @@ public class PlanetSelectionGuiNetworkHandler extends PlanetSelectionGuiNetworkH
                     Methods.teleportButton(player, Methods.venus, false);
                     break;
 
-                /** (SUN CATEGORY) TELEPORT ORBIT BUTTONS */
                 case 5:
+                    message.defaultOptions(player);
+                    Methods.teleportButton(player, Methods.asteroid_belt, false);
+                    break;
+
+                /** (SUN CATEGORY) TELEPORT ORBIT BUTTONS */
+                case 6:
                     message.defaultOptions(player);
                     Methods.teleportButton(player, Methods.orbit, false);
                     break;
 
                 /** (SUN CATEGORY) TELEPORT ORBIT AND CREATE A SPACE STATION BUTTON */
-                case 6:
+                case 7:
                     message.defaultOptions(player);
                     message.deleteItems(player);
                     Methods.teleportButton(player, Methods.orbit, true);
                     break;
 
                 /** (PROXIMA CENTAURI) TELEPORT BUTTONS */
-                case 7:
+                case 8:
                     message.defaultOptions(player);
                     Methods.teleportButton(player, Methods.glacio, false);
                     break;

@@ -208,6 +208,7 @@
   "biome.beyond_earth.mars_ice_spikes": "Mars Eis Stacheln",
   "biome.beyond_earth.glacio": "Glacio",
   "biome.beyond_earth.glacio_ice_spikes": "Glacio Eis Stacheln",
+  "biome.beyond_earth.asteroid_belt": "Asteroidengürtel",
 
   "advancements.workbench_advancement.title": "NASA Werkbank",
   "advancements.workbench_advancement.descr": "§bHat eine NASA Werkbank gebaut",
@@ -227,8 +228,8 @@
   "key.categories.beyond_earth": "Beyond Earth",
   "key.beyond_earth.rocket_start": "Rakete Starten",
 
-  "death.attack.oxygen": "%1$s hat\u0027t keine Luft mehr bekommen",
-  "death.attack.venus.acid": "%1$s war eine Opfergabe für die Säure",
+  "death.attack.oxygen": "%1$s ging der Sauerstoff aus",
+  "death.attack.venus.acid": "%1$s geschmolzen",
 
   "entity.beyond_earth.alien.farmer": "Farmer",
   "entity.beyond_earth.alien.fisherman": "Fischer",
@@ -288,7 +289,7 @@
   "gui.beyond_earth.planet_selection.catalog": "Katalog",
   "gui.beyond_earth.planet_selection.category": "Kategorie",
   "gui.beyond_earth.planet_selection.type": "Typ",
-  "gui.beyond_earth.planet_selection.provided": "Benötigt",
+  "gui.beyond_earth.planet_selection.rocket": "Erforderlich",
   "gui.beyond_earth.planet_selection.gravity": "Anziehungskraft",
   "gui.beyond_earth.planet_selection.oxygen": "Sauerstoff",
   "gui.beyond_earth.planet_selection.oxygen.true": "ja",
@@ -311,6 +312,8 @@
   "gui.beyond_earth.planet_selection.solar_system_proxima_centauri": "Proxima Cent.",
   "gui.beyond_earth.planet_selection.proxima_centauri": "Proxima Centauri",
   "gui.beyond_earth.planet_selection.glacio": "Glacio",
+  "gui.beyond_earth.planet_selection.asteroid_belt": "Asteroidengürtel",
+  "gui.beyond_earth.planet_selection.asteroid_field": "Asteroidenfeld",
 
 
   "jei.tooltip.beyond_earth.oil": "Du kannst Öl im Ozean finden",
