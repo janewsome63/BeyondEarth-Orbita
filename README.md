@@ -8,11 +8,11 @@ This page is not affiliated with the Beyond Earth team, and we thank them for ma
 # Planned Changes #
 ✕ = Not implemented, ✓ = Implemented, P = Partially Implemented
 * Entities on Venus and Mercury only burn if they are exposed to the sky. [✓]
-* Water is placable on Venus and Mercury if it is not exposed to the sky. [✕]
+* Water is placeable on Venus and Mercury if it is not exposed to the sky. [✕]
 * Space stations will generate at Y160 instead of Y100, and not be created if there is already a block at the creation point. [P]
 * Smaller space station structure and updated recipe. [✓]
 * Removal of all orbit dimensions besides "earth_orbit" which is renamed to "orbit". [✓]
-* Addition of asteroid belt, functions as a mining dimension. Includes new stone type and corresponding ores. [P]
+* Addition of asteroid belt, asteroids are made of deepslate and can contain most ores. [✓]
 * Entities in orbit and the asteroid belt will have no gravity and players will be able to move around freely in a slowed creative flight, except when their feet are directly above or beside blocks (this is to simulate a "mag-boot" effect). [✕]
 * Players falling from orbit enter at Y700 instead of Y450. [✓]
 * Players who move above Y700 in the overworld will be moved to orbit. All other dimensions will disallow players from going higher than this. [✕]

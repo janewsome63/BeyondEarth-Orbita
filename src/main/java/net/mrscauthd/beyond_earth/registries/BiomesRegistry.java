@@ -28,5 +28,5 @@ public class BiomesRegistry {
     public static final ResourceLocation ORBIT = new ResourceLocation(BeyondEarthMod.MODID, "orbit");
 
     /** ASTEROID BELT */
-    public static final ResourceLocation ASTEROID_BELT = new ResourceLocation(BeyondEarthMod.MODID, "asteroid_belt");
+    public static final ResourceLocation ASTEROID_FIELD = new ResourceLocation(BeyondEarthMod.MODID, "asteroid_field");
 }

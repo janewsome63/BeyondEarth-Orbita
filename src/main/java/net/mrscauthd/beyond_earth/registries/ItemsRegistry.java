@@ -209,9 +209,6 @@ public class ItemsRegistry {
     public static final RegistryObject<BlockItem> GLACIO_STONE_BRICK_SLAB_ITEM = ITEMS.register("glacio_stone_brick_slab", () -> new BlockItem(BlocksRegistry.GLACIO_STONE_BRICK_SLAB.get(), new Item.Properties().tab(ItemGroups.tab_blocks)));
     public static final RegistryObject<BlockItem> GLACIO_STONE_BRICK_STAIRS_ITEM = ITEMS.register("glacio_stone_brick_stairs", () -> new BlockItem(BlocksRegistry.GLACIO_STONE_BRICK_STAIRS.get(), new Item.Properties().tab(ItemGroups.tab_blocks)));
 
-    // ASTEROID BLOCK ITEMS
-    public static final RegistryObject<BlockItem> ASTEROID_STONE_ITEM = ITEMS.register("asteroid_stone", () -> new BlockItem(BlocksRegistry.ASTEROID_STONE.get(), new Item.Properties().tab(ItemGroups.tab_blocks)));
-
     // SAND BLOCK ITEMS
     public static final RegistryObject<BlockItem> MOON_SAND_ITEM = ITEMS.register("moon_sand", () -> new BlockItem(BlocksRegistry.MOON_SAND.get(), new Item.Properties().tab(ItemGroups.tab_blocks)));
     public static final RegistryObject<BlockItem> MARS_SAND_ITEM = ITEMS.register("mars_sand", () -> new BlockItem(BlocksRegistry.MARS_SAND.get(), new Item.Properties().tab(ItemGroups.tab_blocks)));

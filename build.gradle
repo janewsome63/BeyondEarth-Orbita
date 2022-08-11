@@ -72,6 +72,12 @@ minecraft {
     }
 }
 
+repositories {
+    maven {
+        url "https://maven.tterrag.com/"
+    }
+}
+
 dependencies {
     minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
 
@@ -101,6 +107,13 @@ dependencies {
     compileOnly fg.deobf("mekanism:Mekanism:${mc_version}-${mekanism_version}:additions")
     compileOnly fg.deobf("mekanism:Mekanism:${mc_version}-${mekanism_version}:generators")
     compileOnly fg.deobf("mekanism:Mekanism:${mc_version}-${mekanism_version}:tools")
+	
+	// Create
+	
+    implementation fg.deobf("com.simibubi.create:Create:mc${create_version}")
+    implementation fg.deobf("com.jozufozu.flywheel:Flywheel-Forge:${flywheel_version}")
+
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
 
 mixin {
