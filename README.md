@@ -14,6 +14,7 @@ This page is not affiliated with the Beyond Earth team, and we thank them for ma
 * Removal of all orbit dimensions besides "earth_orbit" which is renamed to "orbit". [✓]
 * Addition of asteroid belt, asteroids are made of deepslate and can contain all overworld ores except coal. [✓]
 * Players falling from orbit enter at Y700 instead of Y450. [✓]
+* Entities above Y590 will take oxygen damage if not wearing a suit. [✓]
 * Item gravity significantly reduced in orbit dimensions. [P]
 
 # Original Credits #
