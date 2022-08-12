@@ -281,6 +281,7 @@
 
   "message.beyond_earth.no_fuel": "§cНЕТ ТОПЛИВА! §7Заправьте ракету §cтопливом§7. (§6Красться и ПКМ§7)",
   "message.beyond_earth.hold_space": "§7Жми §cпробел!",
+  "message.beyond_earth.station_obstructed": "§7Место заблокировано! Прерванное создание космической станции.",
   "message.beyond_earth.speed": "%s скорость",
   
 

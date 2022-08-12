@@ -98,4 +98,10 @@ public class ClientMethods {
 
         player.displayClientMessage(new TranslatableComponent("message." + BeyondEarthMod.MODID + ".hold_key").append(" ").append(mc.options.keyJump.getKey().getDisplayName()), false);
     }
+    public static void spaceStationObstructed() {
+        Minecraft mc = Minecraft.getInstance();
+        Player player = mc.player;
+
+        player.displayClientMessage(new TranslatableComponent("message." + BeyondEarthMod.MODID + ".station_obstructed"), false);
+    }
 }

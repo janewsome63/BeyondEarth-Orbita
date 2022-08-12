@@ -1,12 +1,22 @@
 package net.mrscauthd.beyond_earth.guis.screens.planetselection;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.network.NetworkEvent;
+import net.mrscauthd.beyond_earth.BeyondEarthMod;
+import net.mrscauthd.beyond_earth.events.ClientMethods;
 import net.mrscauthd.beyond_earth.events.Methods;
 import net.mrscauthd.beyond_earth.guis.screens.planetselection.helper.PlanetSelectionGuiNetworkHandlerHelper;
 
 import java.util.function.Supplier;
+
+import static net.mrscauthd.beyond_earth.events.Methods.orbit;
 
 public class PlanetSelectionGuiNetworkHandler extends PlanetSelectionGuiNetworkHandlerHelper {
     public int integer;
@@ -69,14 +79,29 @@ public class PlanetSelectionGuiNetworkHandler extends PlanetSelectionGuiNetworkH
                 /** (SUN CATEGORY) TELEPORT ORBIT BUTTONS */
                 case 6:
                     message.defaultOptions(player);
-                    Methods.teleportButton(player, Methods.orbit, false);
+                    Methods.teleportButton(player, orbit, false);
                     break;
 
                 /** (SUN CATEGORY) TELEPORT ORBIT AND CREATE A SPACE STATION BUTTON */
                 case 7:
                     message.defaultOptions(player);
-                    message.deleteItems(player);
-                    Methods.teleportButton(player, Methods.orbit, true);
+                    boolean obstructed = false;
+                    ServerLevel level = player.getServer().getLevel(orbit);
+                    test: for (int y = 175; y >= 155; y--) {
+                        BlockPos b = new BlockPos(player.getX(), y, player.getZ());
+                        if (!level.getBlockState(b).isAir()) {
+                            obstructed = true;
+                            BeyondEarthMod.LOGGER.error("Found at: " + b);
+                            break test;
+                        }
+                    }
+                    if (!obstructed) {
+                        message.deleteItems(player);
+                        Methods.teleportButton(player, orbit, true);
+                    } else {
+                        ClientMethods.spaceStationObstructed();
+                        Methods.teleportButton(player, orbit, false);
+                    }
                     break;
 
                 /** (PROXIMA CENTAURI) TELEPORT BUTTONS */

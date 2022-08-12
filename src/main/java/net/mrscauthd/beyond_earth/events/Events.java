@@ -110,7 +110,7 @@ public class Events {
         if (event.phase == TickEvent.Phase.END) {
             Level level = event.world;
 
-            if (Methods.worldsWithoutRain.contains(level.dimension())) {
+            if (Methods.noAtmoWorlds.contains(level.dimension())) {
                 level.thunderLevel = 0;
                 level.rainLevel = 0;
             } else if (Methods.isWorld(level, Methods.venus)) {

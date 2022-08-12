@@ -279,6 +279,7 @@
 
   "message.beyond_earth.no_fuel": "§c연료 부족! §7로켓에 §c연료§7를 채우세요. (§6웅크리기 + 로켓에 오른쪽 버튼§7)",
   "message.beyond_earth.hold_space": "§c스페이스§7를 꾹 누르세요!",
+  "message.beyond_earth.station_obstructed": "§7위치가 막혔어요! 우주 정거장 생성을 중단했습니다.",
   "message.beyond_earth.speed": "속도 : %s",
   
 

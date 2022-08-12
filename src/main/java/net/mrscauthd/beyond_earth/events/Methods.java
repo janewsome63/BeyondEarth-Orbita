@@ -62,7 +62,7 @@ public class Methods {
 
     public static final ResourceLocation space_station = new ResourceLocation(BeyondEarthMod.MODID, "space_station");
 
-    public static Set<ResourceKey<Level>> worldsWithoutRain = Set.of(
+    public static Set<ResourceKey<Level>> noAtmoWorlds = Set.of(
             moon,
             mercury,
             orbit,
@@ -102,6 +102,11 @@ public class Methods {
             glacio
     );
 
+    public static Set<ResourceKey<Level>> hotWorlds = Set.of(
+            mercury,
+            venus
+    );
+
     public static void entityWorldTeleporter(Entity entity, ResourceKey<Level> planet, double high) {
         if (entity.canChangeDimensions()) {
 
@@ -112,7 +117,7 @@ public class Methods {
             ServerLevel nextLevel = entity.getServer().getLevel(planet);
 
             if (nextLevel == null) {
-                BeyondEarthMod.LOGGER.error(planet.getRegistryName() + " not existing!");
+                BeyondEarthMod.LOGGER.error(planet.getRegistryName() + " does not exist!");
                 return;
             }
 
@@ -120,7 +125,26 @@ public class Methods {
 
                 @Override
                 public PortalInfo getPortalInfo(Entity entity, ServerLevel destWorld, Function<ServerLevel, PortalInfo> defaultPortalInfo) {
-                    Vec3 pos = new Vec3(entity.position().x, high, entity.position().z);
+                    double x = entity.getX();
+                    double z = entity.getZ();
+
+                    boolean surface = false;
+
+                    if (planet == Methods.asteroid_belt) {
+                        while (surface == false) {
+                            x -= 1;
+                            z -= 1;
+                            for (int y = 384; y >= -64; y--) {
+                                BlockPos b = new BlockPos(x, y, z);
+                                if (!destWorld.getBlockState(b).isAir()) {
+                                    BeyondEarthMod.LOGGER.error("Found at: " + b);
+                                    surface = true;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    Vec3 pos = new Vec3(x, high, z);
 
                     return new PortalInfo(pos, Vec3.ZERO, entity.getYRot(), entity.getXRot());
                 }

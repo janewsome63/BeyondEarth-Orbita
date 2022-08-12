@@ -33,15 +33,15 @@
 		},
 		{
 			"ingredient": {
-				"item": "minecraft:lapis_lazuli"
+				"tag": "forge:plates/desh"
 			},
-			"count": 8
+			"count": 12
 		},
 		{
 			"ingredient": {
-				"item": "minecraft:white_dye"
+				"item": "minecraft:lapis_lazuli"
 			},
-			"count": 5
+			"count": 8
 		}
 	]
 }
