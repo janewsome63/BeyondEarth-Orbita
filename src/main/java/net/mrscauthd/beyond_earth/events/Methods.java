@@ -559,4 +559,11 @@ public class Methods {
             player.displayClientMessage(new TranslatableComponent("message." + BeyondEarthMod.MODID + ".no_fuel"), false);
         }
     }
+
+    public static void elytraCancel(Player player) {
+        if (player.isFallFlying()){
+            player.stopFallFlying();
+            player.setDeltaMovement(player.getDeltaMovement().x, player.getDeltaMovement().y - 0.1, player.getDeltaMovement().z);
+        }
+    }
 }

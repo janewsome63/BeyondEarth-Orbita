@@ -52,6 +52,9 @@ public class Events {
             if (player instanceof ServerPlayer) {
                 Methods.disableFlyAntiCheat((ServerPlayer) player, player.getPersistentData().getBoolean(BeyondEarthMod.MODID + ":planet_selection_gui_open"));
             }
+            if (Methods.noAtmoWorlds.contains(player.level.dimension())) {
+                Methods.elytraCancel(player);
+            }
         }
     }
 

@@ -31,10 +31,10 @@ public class EntityGravity {
     public static final float MARS_GRAVITY = 0.030F;
     public static final float MARS_DRAG = 0.99F;
     public static final float GLACIO_GRAVITY = 0.043F;
-    public static final float GLACIO_DRAG = 0.980F;
+    public static final float GLACIO_DRAG = 0.98F;
 
     /** "Mag boot" strength */
-    public static final float SPACE_GRAVITY = 0.060F;
+    public static final float SPACE_GRAVITY = 0.08F;
     public static final float SPACE_DRAG = 1.00F;
 
     public static void gravity(LivingEntity entity, Level level) {
