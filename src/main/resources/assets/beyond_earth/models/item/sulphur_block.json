@@ -1,5 +1,5 @@
 {
-  "parent": "beyond_earth:block/venus_coal_ore",
+  "parent": "beyond_earth:block/sulphur_block",
   "display": {
     "thirdperson": {
       "rotation": [

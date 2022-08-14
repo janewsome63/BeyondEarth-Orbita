@@ -43,6 +43,8 @@
   "item.beyond_earth.raw_desh_block": "Raw Desh Block",
   "item.beyond_earth.raw_ostrum_block": "Raw Ostrum Block",
   "item.beyond_earth.ice_shard": "Ice Shard",
+  "item.beyond_earth.sulphur_dust": "Sulphur Dust",
+  "item.beyond_earth.carbon_chunk": "Carbon Chunk",
 
   "item.beyond_earth.rocket_t1": "Tier 1 Rocket",
   "item.beyond_earth.rocket_t2": "Tier 2 Rocket",
@@ -132,7 +134,8 @@
   "block.beyond_earth.flag_orange": "Orange Flag",
   "block.beyond_earth.steel_block": "Block of Steel",
   "block.beyond_earth.ostrum_block": "Block of Ostrum",
-  "block.beyond_earth.venus_coal_ore": "Venus Coal Ore",
+  "block.beyond_earth.venus_sulphur_ore": "Venus Sulphur Ore",
+  "block.beyond_earth.sulphur_block": "Sulphur Block",
   "block.beyond_earth.flag_lime": "Lime Flag",
   "block.beyond_earth.moon_cheese_ore": "Moon Cheese Ore",
   "block.beyond_earth.moon_desh_ore": "Moon Desh Ore",
@@ -142,6 +145,7 @@
   "block.beyond_earth.moon_ice_shard_ore": "Moon Ice Shard Ore",
   "block.beyond_earth.mars_ice_shard_ore": "Mars Ice Shard Ore",
   "block.beyond_earth.glacio_ice_shard_ore": "Glacio Ice Shard Ore",
+  "block.beyond_earth.carbon": "Carbon",
 
   "block.beyond_earth.moon_stone_brick_slab": "Moon Stone Brick Slab",
   "block.beyond_earth.moon_stone_bricks": "Moon Stone Bricks",

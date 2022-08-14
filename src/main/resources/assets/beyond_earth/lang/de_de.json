@@ -54,6 +54,8 @@
   "item.beyond_earth.raw_ostrum_block": "Roher Ostrum Block",
   "item.beyond_earth.rocket_t4": "Stufe 4 Rakete",
   "item.beyond_earth.ice_shard": "Eisscholle",
+  "item.beyond_earth.sulphur_dust": "Schwefel Staub",
+  "item.beyond_earth.carbon_chunk": "Kohlenstoffbrocken",
 
   "item.beyond_earth.calorite_ingot": "Calorite Barren",
   "item.beyond_earth.compressed_calorite": "Komprimiertes Calorite",
@@ -123,7 +125,8 @@
   "block.beyond_earth.flag_orange": "Orange Flagge",
   "block.beyond_earth.steel_block": "Stahl Block",
   "block.beyond_earth.ostrum_block": "Ostrum Block",
-  "block.beyond_earth.venus_coal_ore": "Venus Kohle Erz",
+  "block.beyond_earth.venus_sulphur_ore": "Venus Schwefel Erz",
+  "block.beyond_earth.sulphur_block": "Schwefelblock",
   "block.beyond_earth.flag_lime": "Hellgrüne Flagge",
   "block.beyond_earth.moon_cheese_ore": "Mond Käse Erz",
   "block.beyond_earth.moon_desh_ore": "Mond Desh Erz",
@@ -133,6 +136,7 @@
   "block.beyond_earth.moon_ice_shard_ore": "Mond Eis Shard Erz",
   "block.beyond_earth.mars_ice_shard_ore": "Mars Eis Shard Erz",
   "block.beyond_earth.glacio_ice_shard_ore": "Glacio Eis Shard Erz",
+  "block.beyond_earth.carbon": "Kohlenstoff",
 
   "block.beyond_earth.moon_stone_brick_slab": "Mond Steinziegel Stufe",
   "block.beyond_earth.moon_stone_bricks": "Mond Steinziegel",

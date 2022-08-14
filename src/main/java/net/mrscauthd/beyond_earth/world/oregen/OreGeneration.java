@@ -89,8 +89,8 @@ public class OreGeneration {
     public static final RuleTest VENUS_MATCH = new TagMatchTest(VENUS_ORE_REPLACEABLES);
 
     // VENUS_COAL_ORE
-    public static final RegistryObject<ConfiguredFeature<?,?>> VENUS_COAL_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("venus_coal_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(VENUS_MATCH, BlocksRegistry.VENUS_COAL_ORE.get().defaultBlockState(), 17)));
-    public static final RegistryObject<PlacedFeature> VENUS_COAL_ORE = FeatureRegistry.PLACED_FEATURES.register("venus_coal_ore", () -> new PlacedFeature(VENUS_COAL_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(20, HeightRangePlacement.triangle(VerticalAnchor.absolute(-80), VerticalAnchor.absolute(192)))));
+    public static final RegistryObject<ConfiguredFeature<?,?>> VENUS_SULPHUR_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("venus_coal_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(VENUS_MATCH, BlocksRegistry.VENUS_SULPHUR_ORE.get().defaultBlockState(), 17)));
+    public static final RegistryObject<PlacedFeature> VENUS_SULPHUR_ORE = FeatureRegistry.PLACED_FEATURES.register("venus_coal_ore", () -> new PlacedFeature(VENUS_SULPHUR_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(20, HeightRangePlacement.triangle(VerticalAnchor.absolute(-80), VerticalAnchor.absolute(192)))));
 
     // VENUS_GOLD_ORE
     public static final RegistryObject<ConfiguredFeature<?,?>> VENUS_GOLD_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("venus_gold_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(VENUS_MATCH, BlocksRegistry.VENUS_GOLD_ORE.get().defaultBlockState(), 10)));
@@ -163,7 +163,8 @@ public class OreGeneration {
     public static final RegistryObject<PlacedFeature> ASTEROID_DEEPSLATE_EMERALD_ORE = FeatureRegistry.PLACED_FEATURES.register("asteroid_deepslate_emerald_ore", () -> new PlacedFeature(ASTEROID_DEEPSLATE_EMERALD_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(8, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(384)))));
     public static final RegistryObject<ConfiguredFeature<?,?>> ASTEROID_DEEPSLATE_ZINC_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("asteroid_deepslate_zinc_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, AllBlocks.DEEPSLATE_ZINC_ORE.getDefaultState(), 12)));
     public static final RegistryObject<PlacedFeature> ASTEROID_DEEPSLATE_ZINC_ORE = FeatureRegistry.PLACED_FEATURES.register("asteroid_deepslate_zinc_ore", () -> new PlacedFeature(ASTEROID_DEEPSLATE_ZINC_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(14, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(384)))));
-
+    public static final RegistryObject<ConfiguredFeature<?,?>> ASTEROID_CARBON_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("carbon", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, BlocksRegistry.CARBON.get().defaultBlockState(), 20)));
+    public static final RegistryObject<PlacedFeature> ASTEROID_CARBON = FeatureRegistry.PLACED_FEATURES.register("carbon", () -> new PlacedFeature(ASTEROID_CARBON_CONFIGURED.getHolder().get(), commonOrePlacement(32, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(384)))));
 
     @SubscribeEvent
     public static void biomesLoading(BiomeLoadingEvent event) {
@@ -189,7 +190,7 @@ public class OreGeneration {
         }
 
         if (biome.equals(BiomesRegistry.VENUS_DESERT) || biome.equals(BiomesRegistry.INFERNAL_VENUS_BARRENS)) {
-            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(VENUS_COAL_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(VENUS_SULPHUR_ORE.getHolder().get());
             event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(VENUS_GOLD_ORE.getHolder().get());
             event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(VENUS_DIAMOND_ORE.getHolder().get());
             event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(VENUS_CALORITE_ORE.getHolder().get());
@@ -215,6 +216,7 @@ public class OreGeneration {
             event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(ASTEROID_DEEPSLATE_REDSTONE_ORE.getHolder().get());
             event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(ASTEROID_DEEPSLATE_DIAMOND_ORE.getHolder().get());
             event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(ASTEROID_DEEPSLATE_EMERALD_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(ASTEROID_CARBON.getHolder().get());
             if (ModList.get().isLoaded("create")) {
                 event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(ASTEROID_DEEPSLATE_ZINC_ORE.getHolder().get());
             }

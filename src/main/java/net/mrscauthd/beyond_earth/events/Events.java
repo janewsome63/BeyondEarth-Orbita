@@ -52,7 +52,7 @@ public class Events {
             if (player instanceof ServerPlayer) {
                 Methods.disableFlyAntiCheat((ServerPlayer) player, player.getPersistentData().getBoolean(BeyondEarthMod.MODID + ":planet_selection_gui_open"));
             }
-            if (Methods.noAtmoWorlds.contains(player.level.dimension())) {
+            if (Methods.noAtmoWorlds.contains(player.level.dimension()) || player.getY() >= 590 && Methods.planetoidWorlds.contains(player.level.dimension())) {
                 Methods.elytraCancel(player);
             }
         }
@@ -94,17 +94,17 @@ public class Events {
 
     @SubscribeEvent
     public static void entityTick(EntityTickEvent event) {
-        Entity entity = event.getEntity();
-        Level level = entity.level;
+        Entity entity = event.getEntity(); Level level = entity.level; double y = entity.getY();
 
-        /** ORBIT TELEPORT SYSTEM */
-        if (entity.getY() < 1 && !(entity.getVehicle() instanceof LanderEntity)) {
-
+        /** ORBITTELEPORT SYSTEM */
+        if (y < 0 && entity.level.dimension() == Methods.orbit && !(entity.getVehicle() instanceof LanderEntity)) {
             if ((entity instanceof LanderEntity) && entity.isVehicle()) {
                 return;
             }
-
             Methods.entityFallToPlanet(level, entity);
+        }
+        else if (y > 700 && Methods.planetoidWorlds.contains(entity.level.dimension())) {
+            Methods.entityExitAtmosphere(level, entity);
         }
     }
 

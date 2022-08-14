@@ -55,6 +55,8 @@
   "item.beyond_earth.raw_ostrum_block": "Блок рудного острия",
   "item.beyond_earth.rocket_t4": "Ракета 4 уровня",
   "item.beyond_earth.ice_shard": "Осколок льда",
+  "item.beyond_earth.sulphur_dust": "Серная пыль",
+  "item.beyond_earth.carbon_chunk": "Углеродный кусок",
 
   "item.beyond_earth.calorite_ingot": "Слиток калорита",
   "item.beyond_earth.compressed_calorite": "Пресованный калорит",
@@ -124,7 +126,8 @@
   "block.beyond_earth.flag_orange": "Оранжевый флаг",
   "block.beyond_earth.steel_block": "Стальной блок",
   "block.beyond_earth.ostrum_block": "Блок острия",
-  "block.beyond_earth.venus_coal_ore": "Венерианская угольная руда",
+  "block.beyond_earth.venus_sulphur_ore": "Венерианская серная руда",
+  "block.beyond_earth.sulphur_block": "Блок серы",
   "block.beyond_earth.flag_lime": "Лаймовый флаг",
   "block.beyond_earth.moon_cheese_ore": "Лунная сырная руда",
   "block.beyond_earth.moon_desh_ore": "Лунная деш-руда",
@@ -134,6 +137,7 @@
   "block.beyond_earth.moon_ice_shard_ore": "Лунная ледяная руда",
   "block.beyond_earth.mars_ice_shard_ore": "Марсианская ледяная руда",
   "block.beyond_earth.glacio_ice_shard_ore": "Глизеанская ледяная руда",
+  "block.beyond_earth.carbon": "Углерод",
 
   "block.beyond_earth.moon_stone_brick_slab": "Плита из лунного кирпича",
   "block.beyond_earth.moon_stone_bricks": "Лунные кирпичи",

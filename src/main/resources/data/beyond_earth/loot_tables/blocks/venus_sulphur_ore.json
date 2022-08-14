@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "beyond_earth:venus_coal_ore",
+          "name": "beyond_earth:venus_sulphur_ore",
           "weight": 1,
           "conditions": [
             {
@@ -47,7 +47,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:coal",
+          "name": "beyond_earth:sulphur_dust",
           "weight": 1,
           "conditions": [
             {

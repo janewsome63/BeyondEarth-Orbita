@@ -110,6 +110,7 @@ public class ItemsRegistry {
     public static final RegistryObject<Item> DESH_INGOT = ITEMS.register("desh_ingot", () -> new Item(new Item.Properties().tab(ItemGroups.tab_materials)));
     public static final RegistryObject<Item> OSTRUM_INGOT = ITEMS.register("ostrum_ingot", () -> new Item(new Item.Properties().tab(ItemGroups.tab_materials)));
     public static final RegistryObject<Item> CALORITE_INGOT = ITEMS.register("calorite_ingot", () -> new Item(new Item.Properties().tab(ItemGroups.tab_materials)));
+    public static final RegistryObject<Item> SULPHUR_DUST = ITEMS.register("sulphur_dust", () -> new Item(new Item.Properties().tab(ItemGroups.tab_materials)));
 
     public static final RegistryObject<Item> ICE_SHARD = ITEMS.register("ice_shard", () -> new Item(new Item.Properties().tab(ItemGroups.tab_materials)));
 
@@ -133,6 +134,7 @@ public class ItemsRegistry {
     public static final RegistryObject<Item> RAW_DESH = ITEMS.register("raw_desh", () -> new Item(new Item.Properties().tab(ItemGroups.tab_materials)));
     public static final RegistryObject<Item> RAW_OSTRUM = ITEMS.register("raw_ostrum", () -> new Item(new Item.Properties().tab(ItemGroups.tab_materials)));
     public static final RegistryObject<Item> RAW_CALORITE = ITEMS.register("raw_calorite", () -> new Item(new Item.Properties().tab(ItemGroups.tab_materials)));
+    public static final RegistryObject<Item> CARBON_CHUNK = ITEMS.register("carbon_chunk", () -> new Item(new Item.Properties().tab(ItemGroups.tab_materials)));
 
     /** BLOCK ITEMS */
 
@@ -165,6 +167,7 @@ public class ItemsRegistry {
     public static final RegistryObject<BlockItem> INFERNAL_SPIRE_BLOCK_ITEM = ITEMS.register("infernal_spire_block", () -> new BlockItem(BlocksRegistry.INFERNAL_SPIRE_BLOCK.get(), new Item.Properties().tab(ItemGroups.tab_blocks)));
     public static final RegistryObject<BlockItem> IRON_MARK_BLOCK_ITEM = ITEMS.register("iron_mark_block", () -> new BlockItem(BlocksRegistry.IRON_MARK_BLOCK.get(), new Item.Properties().tab(ItemGroups.tab_blocks)));
     public static final RegistryObject<BlockItem> SKY_STONE_ITEM = ITEMS.register("sky_stone", () -> new BlockItem(BlocksRegistry.SKY_STONE.get(), new Item.Properties().tab(ItemGroups.tab_blocks)));
+    public static final RegistryObject<BlockItem> SULPHUR_BLOCK_ITEM = ITEMS.register("sulphur_block", () -> new BlockItem(BlocksRegistry.SULPHUR_BLOCK.get(), new Item.Properties().tab(ItemGroups.tab_blocks)));
 
     // MOON BLOCK ITEMS
     public static final RegistryObject<BlockItem> MOON_STONE_ITEM = ITEMS.register("moon_stone", () -> new BlockItem(BlocksRegistry.MOON_STONE.get(), new Item.Properties().tab(ItemGroups.tab_blocks)));
@@ -224,7 +227,7 @@ public class ItemsRegistry {
     public static final RegistryObject<BlockItem> MARS_OSTRUM_ORE_ITEM = ITEMS.register("mars_ostrum_ore", () -> new BlockItem(BlocksRegistry.MARS_OSTRUM_ORE.get(), new Item.Properties().tab(ItemGroups.tab_blocks)));
     public static final RegistryObject<BlockItem> MARS_ICE_SHARD_ORE_ITEM = ITEMS.register("mars_ice_shard_ore", () -> new BlockItem(BlocksRegistry.MARS_ICE_SHARD_ORE.get(), new Item.Properties().tab(ItemGroups.tab_blocks)));
     public static final RegistryObject<BlockItem> MERCURY_IRON_ORE_ITEM = ITEMS.register("mercury_iron_ore", () -> new BlockItem(BlocksRegistry.MERCURY_IRON_ORE.get(), new Item.Properties().tab(ItemGroups.tab_blocks)));
-    public static final RegistryObject<BlockItem> VENUS_COAL_ORE_ITEM = ITEMS.register("venus_coal_ore", () -> new BlockItem(BlocksRegistry.VENUS_COAL_ORE.get(), new Item.Properties().tab(ItemGroups.tab_blocks)));
+    public static final RegistryObject<BlockItem> VENUS_SULPHUR_ORE_ITEM = ITEMS.register("venus_sulphur_ore", () -> new BlockItem(BlocksRegistry.VENUS_SULPHUR_ORE.get(), new Item.Properties().tab(ItemGroups.tab_blocks)));
     public static final RegistryObject<BlockItem> VENUS_GOLD_ORE_ITEM = ITEMS.register("venus_gold_ore", () -> new BlockItem(BlocksRegistry.VENUS_GOLD_ORE.get(), new Item.Properties().tab(ItemGroups.tab_blocks)));
     public static final RegistryObject<BlockItem> VENUS_DIAMOND_ORE_ITEM = ITEMS.register("venus_diamond_ore", () -> new BlockItem(BlocksRegistry.VENUS_DIAMOND_ORE.get(), new Item.Properties().tab(ItemGroups.tab_blocks)));
     public static final RegistryObject<BlockItem> VENUS_CALORITE_ORE_ITEM = ITEMS.register("venus_calorite_ore", () -> new BlockItem(BlocksRegistry.VENUS_CALORITE_ORE.get(), new Item.Properties().tab(ItemGroups.tab_blocks)));
@@ -233,6 +236,7 @@ public class ItemsRegistry {
     public static final RegistryObject<BlockItem> GLACIO_COPPER_ORE_ITEM = ITEMS.register("glacio_copper_ore", () -> new BlockItem(BlocksRegistry.GLACIO_COPPER_ORE.get(), new Item.Properties().tab(ItemGroups.tab_blocks)));
     public static final RegistryObject<BlockItem> GLACIO_IRON_ORE_ITEM = ITEMS.register("glacio_iron_ore", () -> new BlockItem(BlocksRegistry.GLACIO_IRON_ORE.get(), new Item.Properties().tab(ItemGroups.tab_blocks)));
     public static final RegistryObject<BlockItem> GLACIO_LAPIS_ORE_ITEM = ITEMS.register("glacio_lapis_ore", () -> new BlockItem(BlocksRegistry.GLACIO_LAPIS_ORE.get(), new Item.Properties().tab(ItemGroups.tab_blocks)));
+    public static final RegistryObject<BlockItem> CARBON_ITEM = ITEMS.register("carbon", () -> new BlockItem(BlocksRegistry.CARBON.get(), new Item.Properties().tab(ItemGroups.tab_blocks)));
 
     /** BUCKET ITEMS */
     // FUEL BUCKET

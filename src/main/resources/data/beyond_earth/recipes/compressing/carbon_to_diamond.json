@@ -1,0 +1,12 @@
+{
+	"type": "beyond_earth:compressor",
+	"input": {
+		"item": "beyond_earth:carbon_chunk",
+		"count": 4
+	},
+	"output": {
+		"item": "minecraft:diamond",
+		"count": 1
+	},
+	"cookTime": 200
+}

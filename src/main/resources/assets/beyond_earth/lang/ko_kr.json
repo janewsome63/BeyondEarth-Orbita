@@ -54,6 +54,8 @@
   "item.beyond_earth.raw_ostrum_block": "오스트룸 원석 블록",
   "item.beyond_earth.rocket_t4": "4 티어 로켓",
   "item.beyond_earth.ice_shard": "얼음 조각",
+  "item.beyond_earth.sulphur_dust": "유황 먼지",
+  "item.beyond_earth.carbon_chunk": "탄소 덩어리",
 
   "item.beyond_earth.calorite_ingot": "칼로라이트 주괴",
   "item.beyond_earth.compressed_calorite": "압축 칼로라이트",
@@ -123,7 +125,8 @@
   "block.beyond_earth.flag_orange": "주황색 깃발",
   "block.beyond_earth.steel_block": "강철 블록",
   "block.beyond_earth.ostrum_block": "오스트룸 블록",
-  "block.beyond_earth.venus_coal_ore": "금성 석탄 광석",
+  "block.beyond_earth.venus_sulphur_ore": "금성 유황 광석",
+  "block.beyond_earth.sulphur_block": "유황 블록",
   "block.beyond_earth.flag_lime": "연두색 깃발",
   "block.beyond_earth.moon_cheese_ore": "달 치즈 광석",
   "block.beyond_earth.moon_desh_ore": "달 데쉬 광석",
@@ -133,6 +136,7 @@
   "block.beyond_earth.moon_ice_shard_ore": "달 얼음 조각 광석",
   "block.beyond_earth.mars_ice_shard_ore": "화성 얼음 조각 광석",
   "block.beyond_earth.glacio_ice_shard_ore": "글라시오 얼음 조각 광석",
+  "block.beyond_earth.carbon": "탄소",
 
   "block.beyond_earth.moon_stone_brick_slab": "달 석재 벽돌 반 블록",
   "block.beyond_earth.moon_stone_bricks": "달 석재 벽돌",

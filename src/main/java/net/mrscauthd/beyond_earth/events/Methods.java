@@ -49,15 +49,14 @@ import java.util.Set;
 import java.util.function.Function;
 
 public class Methods {
-
-    public static final ResourceKey<Level> moon = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondEarthMod.MODID, "moon"));
-    public static final ResourceKey<Level> mars = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondEarthMod.MODID, "mars"));
     public static final ResourceKey<Level> mercury = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondEarthMod.MODID, "mercury"));
     public static final ResourceKey<Level> venus = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondEarthMod.MODID, "venus"));
-    public static final ResourceKey<Level> glacio = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondEarthMod.MODID, "glacio"));
     public static final ResourceKey<Level> overworld = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation("overworld"));
     public static final ResourceKey<Level> orbit = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondEarthMod.MODID,"orbit"));
-
+    public static final ResourceKey<Level> moon = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondEarthMod.MODID, "moon"));
+    public static final ResourceKey<Level> mars = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondEarthMod.MODID, "mars"));
+    public static final ResourceKey<Level> pluto = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondEarthMod.MODID,"pluto"));
+    public static final ResourceKey<Level> glacio = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondEarthMod.MODID, "glacio"));
     public static final ResourceKey<Level> asteroid_belt = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondEarthMod.MODID,"asteroid_belt"));
 
     public static final ResourceLocation space_station = new ResourceLocation(BeyondEarthMod.MODID, "space_station");
@@ -66,7 +65,8 @@ public class Methods {
             moon,
             mercury,
             orbit,
-            asteroid_belt
+            asteroid_belt,
+            pluto
     );
 
     public static Set<ResourceKey<Level>> spaceWorldsWithoutOxygen = Set.of(
@@ -75,7 +75,8 @@ public class Methods {
             mercury,
             venus,
             orbit,
-            asteroid_belt
+            asteroid_belt,
+            pluto
     );
 
     public static Set<ResourceKey<Level>> spaceWorlds = Set.of(
@@ -85,7 +86,8 @@ public class Methods {
             venus,
             glacio,
             orbit,
-            asteroid_belt
+            asteroid_belt,
+            pluto
     );
 
     public static Set<ResourceKey<Level>> noGravWorlds = Set.of(
@@ -99,7 +101,8 @@ public class Methods {
             overworld,
             moon,
             mars,
-            glacio
+            glacio,
+            pluto
     );
 
     public static Set<ResourceKey<Level>> hotWorlds = Set.of(
@@ -125,19 +128,13 @@ public class Methods {
 
                 @Override
                 public PortalInfo getPortalInfo(Entity entity, ServerLevel destWorld, Function<ServerLevel, PortalInfo> defaultPortalInfo) {
-                    double x = entity.getX();
-                    double z = entity.getZ();
-
-                    boolean surface = false;
-
+                    double x = entity.getX(); double z = entity.getZ(); boolean surface = false;
                     if (planet == Methods.asteroid_belt) {
                         while (surface == false) {
-                            x -= 1;
-                            z -= 1;
+                            x -= 1; z -= 1;
                             for (int y = 384; y >= -64; y--) {
                                 BlockPos b = new BlockPos(x, y, z);
                                 if (!destWorld.getBlockState(b).isAir()) {
-                                    BeyondEarthMod.LOGGER.error("Found at: " + b);
                                     surface = true;
                                     break;
                                 }
@@ -145,7 +142,6 @@ public class Methods {
                         }
                     }
                     Vec3 pos = new Vec3(x, high, z);
-
                     return new PortalInfo(pos, Vec3.ZERO, entity.getYRot(), entity.getXRot());
                 }
 
@@ -395,7 +391,7 @@ public class Methods {
                 lander.remove(Entity.RemovalReason.DISCARDED);
             }
 
-            Methods.entityWorldTeleporter(player, newPlanet, 700);
+            Methods.entityWorldTeleporter(player, newPlanet, 699);
 
             Level newWorld = player.level;
 
@@ -419,12 +415,12 @@ public class Methods {
         Level level = player.level;
 
         if (!Methods.isWorld(level, planet)) {
-            Methods.entityWorldTeleporter(player, planet, 700);
+            Methods.entityWorldTeleporter(player, planet, 699);
         } else {
-            player.setPos(player.getX(), 700, player.getZ());
+            player.setPos(player.getX(), 699, player.getZ());
 
             if (player instanceof ServerPlayer) {
-                ((ServerPlayer) player).connection.teleport(player.getX(), 700, player.getZ(), player.getYRot(), player.getXRot());
+                ((ServerPlayer) player).connection.teleport(player.getX(), 699, player.getZ(), player.getYRot(), player.getXRot());
             }
         }
 
@@ -517,7 +513,21 @@ public class Methods {
         ResourceKey<Level> world2 = world.dimension();
 
         if (world2 == Methods.orbit) {
-            Methods.entityWorldTeleporter(entity, Methods.overworld, 700);
+            Methods.entityWorldTeleporter(entity, Methods.overworld, 699);
+        }
+    }
+
+    public static void entityExitAtmosphere(Level world, Entity entity) { ResourceKey<Level> world2 = world.dimension();
+        double xv = entity.getDeltaMovement().x; double yv = entity.getDeltaMovement().y; double zv = entity.getDeltaMovement().z;
+        if (world2 == Methods.overworld) {
+            Methods.entityWorldTeleporter(entity, Methods.orbit, 1);
+        } else {
+            if (entity instanceof ItemEntity) {
+                entity.setDeltaMovement(xv, 0, zv);
+            }
+            else {
+                entity.setDeltaMovement(xv, -0.5, zv);
+            }
         }
     }
 
