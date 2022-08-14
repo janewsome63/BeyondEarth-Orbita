@@ -1,5 +1,5 @@
 # Info #
-Fork of Beyond Earth made for the <a href="https://orbita.renovamenia.com">Orbita</a> modpack.
+Fork of Beyond Earth modified for the <a href="https://orbita.renovamenia.com">Orbita</a> modpack.
 
 This page is not affiliated with the Beyond Earth team, but we thank them for making this mod.
 
@@ -12,7 +12,7 @@ This page is not affiliated with the Beyond Earth team, but we thank them for ma
 * Smaller space station structure and updated recipe. [✓]
 * Removal of all orbit dimensions besides "earth_orbit" which is renamed to "orbit". [✓]
 * Addition of asteroid belt, asteroids are made of deepslate and can contain most ores (zinc will generate here if Create is installed). [✓]
-* Pluto dimension with corresponding blocks, removal of Glacio (undecided), integration for visiting select other mods' dimensions via rocket. [✕] 
+* Integration for visiting select other mods' dimensions via rocket. [✕] 
 * Gravity rework, some planetoid gravities changed, weightlessness in 0G dimensions is simulated (with a mag-boot-like effect if an entity is standing on or beside a block) [✓]
 * Entities falling from orbit enter at Y700 instead of Y450. [✓]
 * Entities who move above Y700 in the overworld will be moved to orbit. All other planetoid dimensions will disallow players from going higher than this. [✓]

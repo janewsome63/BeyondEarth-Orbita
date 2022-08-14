@@ -1,16 +1,16 @@
 {
   "replace": false,
   "values": [
-    "beyond_earth:moon_stone_brick_stairs",
+    "beyond_orbita:moon_stone_brick_stairs",
 
-    "beyond_earth:mars_stone_brick_stairs",
+    "beyond_orbita:mars_stone_brick_stairs",
 
-    "beyond_earth:mercury_stone_brick_stairs",
+    "beyond_orbita:mercury_stone_brick_stairs",
 
-    "beyond_earth:venus_sandstone_brick_stairs",
+    "beyond_orbita:venus_sandstone_brick_stairs",
 
-    "beyond_earth:venus_stone_brick_stairs",
+    "beyond_orbita:venus_stone_brick_stairs",
 
-    "beyond_earth:glacio_stone_brick_stairs"
+    "beyond_orbita:glacio_stone_brick_stairs"
   ]
 }

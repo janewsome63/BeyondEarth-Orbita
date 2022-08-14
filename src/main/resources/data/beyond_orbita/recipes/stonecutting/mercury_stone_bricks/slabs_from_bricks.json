@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "beyond_orbita:mercury_stone_bricks"
+  },
+  "result": "beyond_orbita:mercury_stone_brick_slab",
+  "count": 2
+}

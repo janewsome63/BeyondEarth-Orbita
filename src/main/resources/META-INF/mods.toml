@@ -3,22 +3,22 @@ loaderVersion="[${loader_version},)"
 license="LGPL-3.0 license"
 
 [[mods]]
-modId="beyond_earth"
+modId="beyond_orbita"
 version="${mod_version}"
-displayName="Beyond Earth (Orbita Edit)"
-displayURL="https://github.com/janewsome63/BeyondEarth-Orbita"
+displayName="Beyond Orbita"
+displayURL="https://github.com/janewsome63/Beyond-Orbita"
 logoFile="logo.png"
 authors="MrScautHD, rennautogirl63"
-description='''Fly to Other Planets and Beyond!'''
+description='''Fork of Beyond Orbita modified for the Orbita modpack. Licensed under LGPL-3.0. Please visit the linked repo for changes from and links to the original source.'''
 
-[[dependencies.beyond_earth]]
+[[dependencies.beyond_orbita]]
     modId="minecraft"
     mandatory=true
     versionRange="[${mc_version}]"
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.beyond_earth]]
+[[dependencies.beyond_orbita]]
     modId="forge"
     mandatory=true
     versionRange="[${forge_version},]"

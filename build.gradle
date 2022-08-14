@@ -32,8 +32,8 @@ apply plugin: "eclipse"
 apply plugin: "org.spongepowered.mixin"
 
 version = "${mc_version}-${mod_version}"
-group = "net.mrscauthd.beyond_earth"
-archivesBaseName = "Beyond-Earth"
+group = "net.rennautogirl63.beyond_orbita"
+archivesBaseName = "Beyond-Orbita"
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
@@ -47,7 +47,7 @@ minecraft {
 
             property "forge.logging.markers", "REGISTRIES"
             property "forge.logging.console.level", "debug"
-            arg "-mixin.config=beyond_earth.mixin.json"
+            arg "-mixin.config=beyond_orbita.mixin.json"
 
             mods {
                 examplemod {
@@ -61,7 +61,7 @@ minecraft {
 
             property "forge.logging.markers", "REGISTRIES"
             property "forge.logging.console.level", "debug"
-            arg "-mixin.config=beyond_earth.mixin.json"
+            arg "-mixin.config=beyond_orbita.mixin.json"
 
             mods {
                 examplemod {
@@ -117,7 +117,7 @@ dependencies {
 }
 
 mixin {
-    add sourceSets.main, "beyond_earth.mixin-refmap.json"
+    add sourceSets.main, "beyond_orbita.mixin-refmap.json"
 }
 
 jar.finalizedBy("reobfJar")
@@ -150,14 +150,14 @@ processResources {
 jar {
     manifest {
         attributes([
-                "Specification-Title": "beyond_earth",
-                "Specification-Vendor": "MrScautHD",
+                "Specification-Title": "beyond_orbita",
+                "Specification-Vendor": "rennautogirl63",
                 "Specification-Version": "1",
                 "Implementation-Title": project.name,
                 "Implementation-Version": "${version}",
-                "Implementation-Vendor" :"MrScautHD",
+                "Implementation-Vendor" :"rennautogirl63",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                "MixinConfigs" : "beyond_earth.mixin.json"
+                "MixinConfigs" : "beyond_orbita.mixin.json"
         ])
     }
 }

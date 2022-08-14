@@ -1,0 +1,13 @@
+{
+	"replace": false,
+	"values": [
+		{
+			"id": "beyond_orbita:molten_ostrum",
+			"required": false
+		},
+		{
+			"id": "beyond_orbita:flowing_molten_ostrum",
+			"required": false
+		}
+	]
+}

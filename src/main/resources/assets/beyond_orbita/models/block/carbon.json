@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "beyond_orbita:blocks/carbon",
+    "up": "beyond_orbita:blocks/carbon",
+    "north": "beyond_orbita:blocks/carbon",
+    "east": "beyond_orbita:blocks/carbon",
+    "south": "beyond_orbita:blocks/carbon",
+    "west": "beyond_orbita:blocks/carbon",
+    "particle": "beyond_orbita:blocks/carbon"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "beyond_orbita:blocks/mars_ore_diamond",
+    "up": "beyond_orbita:blocks/mars_ore_diamond",
+    "north": "beyond_orbita:blocks/mars_ore_diamond",
+    "east": "beyond_orbita:blocks/mars_ore_diamond",
+    "south": "beyond_orbita:blocks/mars_ore_diamond",
+    "west": "beyond_orbita:blocks/mars_ore_diamond",
+    "particle": "beyond_orbita:blocks/mars_ore_diamond"
+  }
+}

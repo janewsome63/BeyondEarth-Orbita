@@ -1,0 +1,11 @@
+{
+   "type":"beyond_orbita:fuel_refinery",
+   "input":{
+      "tag":"beyond_orbita:oil",
+      "amount":2
+   },
+   "output":{
+      "name":"beyond_orbita:fuel",
+      "amount":2
+   }
+}

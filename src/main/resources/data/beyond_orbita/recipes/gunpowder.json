@@ -1,0 +1,20 @@
+{
+  "group": "beyond_orbita",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "*#",
+    "#*"
+  ],
+  "key": {
+    "*": {
+      "item": "minecraft:charcoal"
+    },
+    "#": {
+      "tag": "forge:dusts/sulphur"
+    }
+  },
+  "result": {
+    "item": "minecraft:gunpowder",
+    "count": 1
+  }
+}

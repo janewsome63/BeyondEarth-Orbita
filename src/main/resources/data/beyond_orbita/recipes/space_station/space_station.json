@@ -1,0 +1,47 @@
+{
+	"type": "beyond_orbita:space_station",
+	"ingredients": [
+		{
+			"ingredient": {
+				"item": "beyond_orbita:moon_stone"
+			},
+			"count": 142
+		},
+		{
+			"ingredient": {
+				"tag": "forge:sand"
+			},
+			"count": 16
+		},
+		{
+			"ingredient": {
+				"item": "minecraft:iron_ingot"
+			},
+			"count": 6
+		},
+		{
+			"ingredient": {
+				"tag": "forge:ingots/steel"
+			},
+			"count": 8
+		},
+		{
+			"ingredient": {
+				"tag": "forge:plates/iron"
+			},
+			"count": 12
+		},
+		{
+			"ingredient": {
+				"tag": "forge:plates/desh"
+			},
+			"count": 12
+		},
+		{
+			"ingredient": {
+				"item": "minecraft:lapis_lazuli"
+			},
+			"count": 8
+		}
+	]
+}

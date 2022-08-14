@@ -1,0 +1,8 @@
+{
+  "parent": "beyond_orbita:custom/launch_pad",
+  "textures": {
+    "all": "beyond_orbita:blocks/launch_pad",
+    "particle": "beyond_orbita:blocks/launch_pad",
+    "1": "beyond_orbita:blocks/launch_pad"
+  }
+}

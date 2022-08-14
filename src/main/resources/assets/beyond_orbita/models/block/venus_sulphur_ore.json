@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "beyond_orbita:blocks/venus_sulphur_ore",
+    "up": "beyond_orbita:blocks/venus_sulphur_ore",
+    "north": "beyond_orbita:blocks/venus_sulphur_ore",
+    "east": "beyond_orbita:blocks/venus_sulphur_ore",
+    "south": "beyond_orbita:blocks/venus_sulphur_ore",
+    "west": "beyond_orbita:blocks/venus_sulphur_ore",
+    "particle": "beyond_orbita:blocks/venus_sulphur_ore"
+  }
+}

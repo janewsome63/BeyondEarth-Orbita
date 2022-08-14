@@ -1,0 +1,13 @@
+{
+  "parent": "beyond_orbita:custom/nasa_workbench",
+  "textures": {
+    "all": "beyond_orbita:blocks/workbench_nasa_top_2",
+    "particle": "beyond_orbita:blocks/workbench_nasa_top_2",
+    "1": "beyond_orbita:blocks/workbench_nasa_top",
+    "2": "beyond_orbita:blocks/workbench_nasa_top_2",
+    "3": "beyond_orbita:blocks/nasa_workbench_main",
+    "4": "beyond_orbita:blocks/workbench_nasa_side",
+    "5": "beyond_orbita:blocks/workbench_nasa_holder",
+    "missing": "beyond_orbita:blocks/workbench_nasa_top"
+  }
+}

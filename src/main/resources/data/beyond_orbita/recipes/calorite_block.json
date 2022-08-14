@@ -1,0 +1,21 @@
+{
+  "group": "beyond_orbita",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#*#",
+    "###"
+  ],
+  "key": {
+    "*": {
+      "item": "beyond_orbita:calorite_ingot"
+    },
+    "#": {
+      "tag": "forge:ingots/calorite"
+    }
+  },
+  "result": {
+    "item": "beyond_orbita:calorite_block",
+    "count": 1
+  }
+}

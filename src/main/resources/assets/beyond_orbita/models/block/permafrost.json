@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "beyond_orbita:blocks/permafrost",
+    "up": "beyond_orbita:blocks/permafrost",
+    "north": "beyond_orbita:blocks/permafrost",
+    "east": "beyond_orbita:blocks/permafrost",
+    "south": "beyond_orbita:blocks/permafrost",
+    "west": "beyond_orbita:blocks/permafrost",
+    "particle": "beyond_orbita:blocks/permafrost"
+  }
+}

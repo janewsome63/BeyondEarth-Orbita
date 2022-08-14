@@ -1,0 +1,9 @@
+{
+  "parent": "beyond_orbita:custom/template_torch",
+  "textures": {
+    "all": "beyond_orbita:blocks/coal_torch",
+    "particle": "beyond_orbita:blocks/coal_torch",
+    "2": "beyond_orbita:blocks/coal_torch",
+    "missing": "beyond_orbita:blocks/coal_torch"
+  }
+}

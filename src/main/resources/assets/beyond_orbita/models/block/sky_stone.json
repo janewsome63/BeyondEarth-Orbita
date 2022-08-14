@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "beyond_orbita:blocks/sky_stone",
+    "up": "beyond_orbita:blocks/sky_stone",
+    "north": "beyond_orbita:blocks/sky_stone",
+    "east": "beyond_orbita:blocks/sky_stone",
+    "south": "beyond_orbita:blocks/sky_stone",
+    "west": "beyond_orbita:blocks/sky_stone",
+    "particle": "beyond_orbita:blocks/sky_stone"
+  }
+}

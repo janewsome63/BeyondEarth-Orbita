@@ -1,0 +1,10 @@
+{
+  "rocket_fly": {
+    "sounds": [
+      {
+        "name": "beyond_orbita:rocket_fly",
+        "stream": false
+      }
+    ]
+  }
+}

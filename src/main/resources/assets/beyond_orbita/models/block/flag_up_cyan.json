@@ -1,0 +1,9 @@
+{
+  "parent": "beyond_orbita:custom/flage_up",
+  "textures": {
+    "all": "beyond_orbita:blocks/flag_cyan",
+    "particle": "beyond_orbita:blocks/flag_cyan",
+    "0": "beyond_orbita:blocks/flag_cyan",
+    "missing": "beyond_orbita:blocks/flag_cyan"
+  }
+}

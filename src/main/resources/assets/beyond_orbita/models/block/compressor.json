@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "beyond_orbita:blocks/machineback",
+    "up": "beyond_orbita:blocks/machineback",
+    "north": "beyond_orbita:blocks/compressorfront_inactive",
+    "east": "beyond_orbita:blocks/machineside",
+    "south": "beyond_orbita:blocks/machineside",
+    "west": "beyond_orbita:blocks/machineside",
+    "particle": "beyond_orbita:blocks/machineback"
+  }
+}

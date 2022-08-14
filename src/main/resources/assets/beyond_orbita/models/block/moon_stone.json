@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "beyond_orbita:blocks/moon_stone",
+    "up": "beyond_orbita:blocks/moon_stone",
+    "north": "beyond_orbita:blocks/moon_stone",
+    "east": "beyond_orbita:blocks/moon_stone",
+    "south": "beyond_orbita:blocks/moon_stone",
+    "west": "beyond_orbita:blocks/moon_stone",
+    "particle": "beyond_orbita:blocks/moon_stone"
+  }
+}
