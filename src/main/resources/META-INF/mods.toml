@@ -9,7 +9,7 @@ displayName="Beyond Orbita"
 displayURL="https://github.com/janewsome63/Beyond-Orbita/blob/1.18.2/src/main/resources/SOURCES.md"
 logoFile="logo.png"
 authors="rennautogirl63"
-description='''Fork of Beyond Earth modified for the Orbita modpack. Licensed under LGPL-3.0. Please visit the link above or read the SOURCES.md file inside the .jar for credits and changes from the original.'''
+description='''Fork of Beyond Earth modified for the Orbita modpack. Please visit the link above or read the SOURCES.md file inside the .jar for credits and changes from the original.'''
 
 [[dependencies.beyond_orbita]]
     modId="minecraft"
@@ -22,5 +22,19 @@ description='''Fork of Beyond Earth modified for the Orbita modpack. Licensed un
     modId="forge"
     mandatory=true
     versionRange="[${forge_version},]"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.beyond_orbita]]
+    modId="create"
+    mandatory=true
+    versionRange="[0.5.0c,]"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.beyond_orbita]]
+    modId="simpleplanes"
+    mandatory=true
+    versionRange="[1.18.2-4.14.1,]"
     ordering="NONE"
     side="BOTH"

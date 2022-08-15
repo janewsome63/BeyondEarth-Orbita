@@ -76,6 +76,12 @@ repositories {
     maven {
         url "https://maven.tterrag.com/"
     }
+	maven {
+		url "https://cursemaven.com"
+		content {
+			includeGroup "curse.maven"
+		}
+	}
 }
 
 dependencies {
@@ -114,6 +120,14 @@ dependencies {
     implementation fg.deobf("com.jozufozu.flywheel:Flywheel-Forge:${flywheel_version}")
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+	
+	// Simple Planes
+	
+	implementation fg.deobf('curse.maven:simple-planes-388908:3873334')
+	
+	// Cold Sweat
+	
+	implementation fg.deobf('curse.maven:cold-sweat-506194:3894501')
 }
 
 mixin {

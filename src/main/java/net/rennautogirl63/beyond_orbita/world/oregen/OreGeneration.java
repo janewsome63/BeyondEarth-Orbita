@@ -144,7 +144,7 @@ public class OreGeneration {
     public static final RegistryObject<ConfiguredFeature<?,?>> GLACIO_DEEPSLATE_LAPIS_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("glacio_deepslate_lapis_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, Blocks.DEEPSLATE_LAPIS_ORE.defaultBlockState(), 9)));
     public static final RegistryObject<PlacedFeature> GLACIO_DEEPSLATE_LAPIS_ORE = FeatureRegistry.PLACED_FEATURES.register("glacio_deepslate_lapis_ore", () -> new PlacedFeature(GLACIO_DEEPSLATE_LAPIS_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(2, HeightRangePlacement.triangle(VerticalAnchor.absolute(-80), VerticalAnchor.absolute(10)))));
 
-    // ASTEROID_DEEPSLATE_COPPER_ORE
+    /** Asteroid Ores */
     public static final RegistryObject<ConfiguredFeature<?,?>> ASTEROID_DEEPSLATE_COPPER_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("asteroid_deepslate_copper_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, Blocks.DEEPSLATE_COPPER_ORE.defaultBlockState(), 12)));
     public static final RegistryObject<PlacedFeature> ASTEROID_DEEPSLATE_COPPER_ORE = FeatureRegistry.PLACED_FEATURES.register("asteroid_deepslate_copper_ore", () -> new PlacedFeature(ASTEROID_DEEPSLATE_COPPER_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(14, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(384)))));
     public static final RegistryObject<ConfiguredFeature<?,?>> ASTEROID_DEEPSLATE_IRON_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("asteroid_deepslate_iron_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, Blocks.DEEPSLATE_IRON_ORE.defaultBlockState(), 9)));
@@ -215,9 +215,7 @@ public class OreGeneration {
             event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(ASTEROID_DEEPSLATE_DIAMOND_ORE.getHolder().get());
             event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(ASTEROID_DEEPSLATE_EMERALD_ORE.getHolder().get());
             event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(ASTEROID_CARBON.getHolder().get());
-            if (ModList.get().isLoaded("create")) {
-                event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(ASTEROID_DEEPSLATE_ZINC_ORE.getHolder().get());
-            }
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(ASTEROID_DEEPSLATE_ZINC_ORE.getHolder().get());
         }
     }
 

@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import net.rennautogirl63.beyond_orbita.compats.create.CreateCompat;
 import net.rennautogirl63.beyond_orbita.compats.mekanism.MekanismCompat;
+import net.rennautogirl63.beyond_orbita.compats.simpleplanes.SimplePlanesCompat;
 import net.rennautogirl63.beyond_orbita.compats.theoneprobe.TOPCompat;
 import net.rennautogirl63.beyond_orbita.compats.tinkers.TinkersCompat;
 import net.rennautogirl63.beyond_orbita.compats.waila.WailaCompat;
@@ -18,6 +20,8 @@ public class CompatibleManager {
 	public static final TOPCompat TOP;
 	public static final WailaCompat WAILA;
 	public static final MekanismCompat MEKANISM;
+	public static final CreateCompat CREATE;
+	public static final SimplePlanesCompat SIMPLEPLANES;
 
 	static {
 		List<CompatibleMod> mods = new ArrayList<>();
@@ -26,6 +30,8 @@ public class CompatibleManager {
 		mods.add(TOP = new TOPCompat());
 		mods.add(WAILA = new WailaCompat());
 		mods.add(MEKANISM = new MekanismCompat());
+		mods.add(CREATE = new CreateCompat());
+		mods.add(SIMPLEPLANES = new SimplePlanesCompat());
 
 		for (CompatibleMod mod : mods) {
 			mod.tryLoad();

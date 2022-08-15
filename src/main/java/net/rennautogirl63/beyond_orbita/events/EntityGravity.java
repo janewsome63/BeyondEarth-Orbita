@@ -22,22 +22,22 @@ public class EntityGravity {
      * Mars = 0.379
      * Pluto = 0.063
      * Glacio = 0.533
-     * Overworld gravity for entities is 0.8
+     * Overworld gravity for planes is 0.08
      */
     public static final float MERCURY_GRAVITY = 0.03016F;
-    public static final float MERCURY_DRAG= 0.995F;
+    public static final float MERCURY_DRAG= 1.0F;
     public static final float VENUS_GRAVITY = 0.07232F;
     public static final float VENUS_DRAG = 0.96F;
     public static final float EARTH_GRAVITY = 0.080F;
-    public static final float EARTH_DRAG = 1.00F;
-    public static final float SPACE_GRAVITY = 0.08F;
-    public static final float SPACE_DRAG = 0.995F;
+    public static final float EARTH_DRAG = 0.98F;
+    public static final float SPACE_GRAVITY = 0.0267F;
+    public static final float SPACE_DRAG = 1.0F;
     public static final float MOON_GRAVITY = 0.0132F;
-    public static final float MOON_DRAG = 0.995F;
+    public static final float MOON_DRAG = 1.0F;
     public static final float MARS_GRAVITY = 0.03032F;
-    public static final float MARS_DRAG = 0.99F;
+    public static final float MARS_DRAG = 0.98F;
     public static final float PLUTO_GRAVITY = 0.00504F;
-    public static final float PLUTO_DRAG = 0.99F;
+    public static final float PLUTO_DRAG = 0.98F;
     public static final float GLACIO_GRAVITY = 0.04264F;
     public static final float GLACIO_DRAG = 0.98F;
 
@@ -84,7 +84,7 @@ public class EntityGravity {
         if (Methods.noGravWorlds.contains(entity.level.dimension()) || y >= 590 && Methods.planetoidWorlds.contains(entity.level.dimension())) {
             Level level = entity.getLevel();
             Block[] blocks = {Blocks.AIR, Blocks.VOID_AIR, Blocks.CAVE_AIR};
-            if (Arrays.asList(blocks).contains((level.getBlockState(new BlockPos(x - 1, y - 0.5, z - 1))).getBlock())
+            /** if (Arrays.asList(blocks).contains((level.getBlockState(new BlockPos(x - 1, y - 0.5, z - 1))).getBlock())
                     && Arrays.asList(blocks).contains((level.getBlockState(new BlockPos(x, y - 0.5, z - 1))).getBlock())
                     && Arrays.asList(blocks).contains((level.getBlockState(new BlockPos(x + 1, y - 0.5, z - 1))).getBlock())
                     && Arrays.asList(blocks).contains((level.getBlockState(new BlockPos(x + 1, y - 0.5, z))).getBlock())
@@ -92,7 +92,10 @@ public class EntityGravity {
                     && Arrays.asList(blocks).contains((level.getBlockState(new BlockPos(x, y - 0.5, z + 1))).getBlock())
                     && Arrays.asList(blocks).contains((level.getBlockState(new BlockPos(x - 1, y - 0.5, z + 1))).getBlock())
                     && Arrays.asList(blocks).contains((level.getBlockState(new BlockPos(x - 1, y - 0.5, z))).getBlock())
-                    && Arrays.asList(blocks).contains((level.getBlockState(new BlockPos(x, y - 0.5, z))).getBlock())) {
+                    && Arrays.asList(blocks).contains((level.getBlockState(new BlockPos(x, y - 0.5, z))).getBlock())) { */
+            if (!entity.isOnGround() && Arrays.asList(blocks).contains((level.getBlockState(new BlockPos(x, y - 0.5, z))).getBlock())
+                    && Arrays.asList(blocks).contains((level.getBlockState(new BlockPos(x, y - 1.5, z))).getBlock())
+                    && Arrays.asList(blocks).contains((level.getBlockState(new BlockPos(x, y - 2.5, z))).getBlock())) {
                 if (!entity.isNoGravity()) {
                     entity.setNoGravity(true);
                 }
@@ -110,12 +113,13 @@ public class EntityGravity {
                     entity.setNoGravity(false);
                 }
                 if (entity instanceof Player player) {
-                    if (player.getAbilities().flying && !player.isCreative()) {
+                    if (player.getAbilities().flying) {
                         player.getAbilities().flying = (false);
                         player.onUpdateAbilities();
                     }
                 }
                 entity.setDeltaMovement((xv / 0.98) * drag, ((yv / 0.98) + 0.08 - gravity) * drag, (zv / 0.98) * drag);
+                entity.resetFallDistance();
             }
         }
         else {
@@ -123,13 +127,13 @@ public class EntityGravity {
                 entity.setNoGravity(false);
             }
             if (entity instanceof Player player) {
-                if (player.getAbilities().flying && !player.isCreative()) {
+                if (player.getAbilities().flying) {
                     player.getAbilities().flying = (false);
                     player.onUpdateAbilities();
                 }
             }
             if (y > 320 && y < 590) {
-                gravity = gravity / 2;
+                gravity = gravity / 4;
             }
             if (!entity.isFallFlying()) {
                 entity.setDeltaMovement((xv / 0.98) * drag, ((yv / 0.98) + 0.08 - gravity) * drag, (zv / 0.98) * drag);
@@ -152,7 +156,7 @@ public class EntityGravity {
 
     /** PLAYER GRAVITY CHECK */
     private static boolean getPlayerEntityCondition(Player player) {
-        return getLivingEntityCondition(player) && !player.isSpectator();
+        return getLivingEntityCondition(player) && !player.isSpectator() && !player.isCreative();
     }
 
     /** LIVING ENTITY GRAVITY CHECK */
@@ -162,6 +166,6 @@ public class EntityGravity {
 
     /** ENTITY GRAVITY CHECK */
     private static boolean getEntityCondition(Entity entity) {
-        return !entity.isInWater() && !entity.isInLava() && !Methods.isVehicle(entity);
+        return !entity.isInWater() && !entity.isInLava();
     }
 }

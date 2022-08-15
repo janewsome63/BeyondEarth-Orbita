@@ -7,10 +7,12 @@ import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.client.resources.sounds.TickableSoundInstance;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.alchemy.Potion;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.client.event.RenderArmEvent;
@@ -19,12 +21,14 @@ import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.rennautogirl63.beyond_orbita.BeyondOrbitaMod;
+import net.rennautogirl63.beyond_orbita.effects.OxygenEffect;
 import net.rennautogirl63.beyond_orbita.entities.IRocketEntity;
 import net.rennautogirl63.beyond_orbita.entities.LanderEntity;
 import net.rennautogirl63.beyond_orbita.events.forge.RenderHandItemEvent;
 import net.rennautogirl63.beyond_orbita.events.forge.RenderViewEvent;
 import net.rennautogirl63.beyond_orbita.events.forge.SetupLivingBipedAnimEvent;
 import net.rennautogirl63.beyond_orbita.items.VehicleItem;
+import net.rennautogirl63.beyond_orbita.registries.EffectsRegistry;
 
 @Mod.EventBusSubscriber(modid = BeyondOrbitaMod.MODID, value = Dist.CLIENT)
 public class ClientEvents {
@@ -37,11 +41,13 @@ public class ClientEvents {
 
         if (Minecraft.getInstance().player != null && Minecraft.getInstance().player.level != null && ClientMethods.checkSound(event.getSound().getSource()) && Methods.isSpaceWorldWithoutOxygen(Minecraft.getInstance().player.level)) {
 
-            if (!(event.getSound() instanceof TickableSoundInstance)) {
-                event.setSound(new SpaceSoundSystem(event.getSound()));
+            if (!(Minecraft.getInstance().player.hasEffect(EffectsRegistry.OXYGEN_EFFECT.get()))) {
+                if (!(event.getSound() instanceof TickableSoundInstance)) {
+                    event.setSound(new SpaceSoundSystem(event.getSound()));
 
-            } else if (event.getSound() instanceof TickableSoundInstance) {
-                event.setSound(new TickableSpaceSoundSystem((TickableSoundInstance) event.getSound()));
+                } else if (event.getSound() instanceof TickableSoundInstance) {
+                    event.setSound(new TickableSpaceSoundSystem((TickableSoundInstance) event.getSound()));
+                }
             }
         }
     }

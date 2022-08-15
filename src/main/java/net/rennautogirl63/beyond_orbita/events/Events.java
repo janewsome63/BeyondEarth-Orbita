@@ -17,14 +17,16 @@ import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.rennautogirl63.beyond_orbita.BeyondOrbitaMod;
+import net.rennautogirl63.beyond_orbita.compats.coldsweat.ColdSweatModifiers;
+import net.rennautogirl63.beyond_orbita.compats.simpleplanes.SimplePlanesGravity;
 import net.rennautogirl63.beyond_orbita.entities.LanderEntity;
+import net.rennautogirl63.beyond_orbita.entities.VehicleEntity;
 import net.rennautogirl63.beyond_orbita.events.forge.EntityTickEvent;
 import net.rennautogirl63.beyond_orbita.events.forge.ItemEntityTickEndEvent;
 import net.rennautogirl63.beyond_orbita.events.forge.LivingEntityTickEndEvent;
 
 @Mod.EventBusSubscriber(modid = BeyondOrbitaMod.MODID)
 public class Events {
-
     @SubscribeEvent
     public static void playerTick(TickEvent.PlayerTickEvent event) {
         if (event.phase == TickEvent.Phase.END) {
@@ -52,6 +54,9 @@ public class Events {
             if (Methods.noAtmoWorlds.contains(player.level.dimension()) || player.getY() >= 590 && Methods.planetoidWorlds.contains(player.level.dimension())) {
                 Methods.elytraCancel(player);
             }
+
+            /** Cold Sweat Temperature Modifiers */
+            ColdSweatModifiers.spaceSuits(event, player);
         }
     }
 
@@ -102,6 +107,16 @@ public class Events {
         }
         else if (y > 700 && Methods.planetoidWorlds.contains(entity.level.dimension())) {
             Methods.entityExitAtmosphere(level, entity);
+        }
+
+        /** Simple Planes Gravity */
+        if (("" + entity.getType().getRegistryName()).contains("simpleplanes")) {
+            SimplePlanesGravity.gravity(entity, level);
+        }
+
+        /** Other Entity Gravity */
+        if (!(entity instanceof LivingEntity) && !(entity instanceof ItemEntity) && !(entity instanceof VehicleEntity)) {
+            OtherGravity.gravity(entity, level);
         }
     }
 

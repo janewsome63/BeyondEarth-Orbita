@@ -14,22 +14,22 @@ public class ItemGravity {
      * Mars = 0.379
      * Pluto = 0.063
      * Glacio = 0.533
-     * Overworld gravity for items is 0.4
+     * Overworld gravity for items is 0.04
      */
     public static final float MERCURY_GRAVITY = 0.01508F;
-    public static final float MERCURY_DRAG = 0.995F;
+    public static final float MERCURY_DRAG = 0.98F;
     public static final float VENUS_GRAVITY = 0.03616F;
-    public static final float VENUS_DRAG = 0.96F;
+    public static final float VENUS_DRAG = 0.98F;
     public static final float EARTH_GRAVITY = 0.046F;
     public static final float EARTH_DRAG = 0.98F;
     public static final float SPACE_GRAVITY = 0.000F;
     public static final float SPACE_DRAG = 0.98F;
     public static final float MOON_GRAVITY = 0.0066F;
-    public static final float MOON_DRAG = 0.995F;
+    public static final float MOON_DRAG = 0.98F;
     public static final float MARS_GRAVITY = 0.01516F;
-    public static final float MARS_DRAG = 0.99F;
+    public static final float MARS_DRAG = 0.98F;
     public static final float PLUTO_GRAVITY = 0.00252F;
-    public static final float PLUTO_DRAG = 0.99F;
+    public static final float PLUTO_DRAG = 0.98F;
     public static final float GLACIO_GRAVITY = 0.02132F;
     public static final float GLACIO_DRAG = 0.98F;
 
@@ -81,7 +81,7 @@ public class ItemGravity {
         }
         else {
             if (y > 320 && y < 590) {
-                gravity = gravity / 3;
+                gravity = gravity / 4;
             }
             if (entity.isNoGravity()) {
                 entity.setNoGravity(false);

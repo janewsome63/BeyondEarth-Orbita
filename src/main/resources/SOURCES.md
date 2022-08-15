@@ -6,14 +6,23 @@
 * Smaller space station structure and updated recipe.
 * Removal of all orbit dimensions besides "earth_orbit" which is renamed to "orbit".
 * Addition of asteroid belt, asteroids are made of deepslate and can contain most ores (zinc will generate here if Create is installed).
-* Integration for visiting select other mods' dimensions via rocket.
-* Gravity rework, some planetoid gravities changed, weightlessness in 0G dimensions is simulated (with a mag-boot-like effect if an entity is standing on or beside a block)
+* Integration for visiting select other mods' dimensions via rocket. [X]
+* Gravity rework, some planetoid gravities changed, weightlessness in 0G dimensions is simulated.
 * Entities falling from orbit enter at Y700 instead of Y450.
 * Entities who move above Y700 in the overworld will be moved to orbit. All other planetoid dimensions will disallow players from going higher than this.
 * Entities who are above Y590 in planetoid dimensions will be in "low orbit", and have all the effects of being in orbit such as lack of gravity and oxygen.
 * Entities between Y levels 590 and 320 in planetoid dimensions will have lessened gravity to simulate gradually de-orbiting.
 * Elytra will not work in dimensions without an atmosphere.
 * New items and blocks; Sulphur ore, dust and block (spawns on Venus, used to make gunpowder), carbon block and chunk (spawns in asteroids, compressed into diamonds).
+* Consolidated creative tabs.
+* Change rocket tier requirements.
+* Add temperature modifiers for ColdSweat while wearing space suits.
+* Added gravity adjustments for vehicles from Simple Planes.
+* Removed jet suit.
+* Make the netherite space suit not completely fireproof. [X]
+* Add gravity effects to most other entities (still need to do minecarts).
+* Make sound not be muffled when player has oxygen bubble effect.
+* Refactored packages.
 
 # Source Credits #
 [Repo](https://github.com/MrScautHD/Beyond-Earth) | [Modrinth](https://modrinth.com/mod/beyond-earth) | [Curseforge](https://www.curseforge.com/minecraft/mc-mods/beyond-earth)
