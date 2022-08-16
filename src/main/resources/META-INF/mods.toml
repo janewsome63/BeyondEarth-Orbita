@@ -38,3 +38,10 @@ description='''Fork of Beyond Earth modified for the Orbita modpack. Please visi
     versionRange="[1.18.2-4.14.1,]"
     ordering="NONE"
     side="BOTH"
+
+[[dependencies.beyond_orbita]]
+modId="cold_sweat"
+mandatory=true
+versionRange="[2.1.10-b05c,]"
+ordering="NONE"
+side="BOTH"

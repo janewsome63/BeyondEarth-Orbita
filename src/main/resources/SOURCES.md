@@ -13,7 +13,6 @@
 * Entities who are above Y590 in planetoid dimensions will be in "low orbit", and have all the effects of being in orbit such as lack of gravity and oxygen.
 * Entities between Y levels 590 and 320 in planetoid dimensions will have lessened gravity to simulate gradually de-orbiting.
 * Elytra will not work in dimensions without an atmosphere.
-* New items and blocks; Sulphur ore, dust and block (spawns on Venus, used to make gunpowder), carbon block and chunk (spawns in asteroids, compressed into diamonds).
 * Consolidated creative tabs.
 * Change rocket tier requirements.
 * Add temperature modifiers for ColdSweat while wearing space suits.
@@ -23,6 +22,12 @@
 * Add gravity effects to most other entities (still need to do minecarts).
 * Make sound not be muffled when player has oxygen bubble effect.
 * Refactored packages.
+* Add respawn command. [X]
+* Redesign Glacio into Pluto. [X]
+* Modify the loot tables of hostile mobs. [X]
+* Change world gen on planets to have normal stone and deepslate below the crust, and ores that make sense generate in them. Each dimension has a unique ore.
+* Change desh, ostrum and calorite into stainless steel, aluminum and titanium. Add chromium to make stainless steel.
+* Add carbon, nitrogen ice, potassium and sulphur and world generation for each.
 
 # Source Credits #
 [Repo](https://github.com/MrScautHD/Beyond-Earth) | [Modrinth](https://modrinth.com/mod/beyond-earth) | [Curseforge](https://www.curseforge.com/minecraft/mc-mods/beyond-earth)

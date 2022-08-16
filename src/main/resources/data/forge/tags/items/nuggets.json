@@ -1,9 +1,10 @@
 {
   "replace": false,
   "values": [
-    "#forge:nuggets/desh",
-    "#forge:nuggets/ostrum",
-    "#forge:nuggets/calorite",
-    "#forge:nuggets/steel"
+    "#forge:ingots/steel",
+    "#forge:ingots/chromium",
+    "#forge:ingots/aluminum",
+    "#forge:ingots/titanium",
+    "#forge:ingots/stainless_steel"
   ]
 }

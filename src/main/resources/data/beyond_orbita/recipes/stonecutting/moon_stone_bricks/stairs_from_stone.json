@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "beyond_orbita:moon_stone"
-  },
-  "result": "beyond_orbita:moon_stone_brick_stairs",
-  "count": 1
-}

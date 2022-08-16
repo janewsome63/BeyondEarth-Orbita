@@ -45,11 +45,5 @@
       "minecraft:canyon"
     ]
   },
-  "features": [
-    [
-      "minecraft:large_dripstone",
-      "minecraft:dripstone_cluster",
-      "minecraft:pointed_dripstone"
-    ]
-  ]
+  "features": []
 }

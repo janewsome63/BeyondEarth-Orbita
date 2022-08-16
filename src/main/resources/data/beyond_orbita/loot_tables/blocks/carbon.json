@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "beyond_orbita:carbon_chunk"
+          "name": "beyond_orbita:raw_carbon"
         }
       ],
       "conditions": [

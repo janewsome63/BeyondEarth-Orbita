@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import net.rennautogirl63.beyond_orbita.compats.coldsweat.ColdSweatCompat;
 import net.rennautogirl63.beyond_orbita.compats.create.CreateCompat;
 import net.rennautogirl63.beyond_orbita.compats.mekanism.MekanismCompat;
 import net.rennautogirl63.beyond_orbita.compats.simpleplanes.SimplePlanesCompat;
@@ -22,6 +23,7 @@ public class CompatibleManager {
 	public static final MekanismCompat MEKANISM;
 	public static final CreateCompat CREATE;
 	public static final SimplePlanesCompat SIMPLEPLANES;
+	public static final ColdSweatCompat COLD_SWEAT;
 
 	static {
 		List<CompatibleMod> mods = new ArrayList<>();
@@ -32,6 +34,7 @@ public class CompatibleManager {
 		mods.add(MEKANISM = new MekanismCompat());
 		mods.add(CREATE = new CreateCompat());
 		mods.add(SIMPLEPLANES = new SimplePlanesCompat());
+		mods.add(COLD_SWEAT = new ColdSweatCompat());
 
 		for (CompatibleMod mod : mods) {
 			mod.tryLoad();

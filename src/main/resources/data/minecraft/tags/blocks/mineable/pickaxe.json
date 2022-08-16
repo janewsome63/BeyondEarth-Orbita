@@ -38,9 +38,10 @@
     "beyond_orbita:moon_stone",
     "beyond_orbita:venus_sandstone",
     "beyond_orbita:venus_stone",
+    "beyond_orbita:stone",
+    "beyond_orbita:deepslate",
     "beyond_orbita:infernal_spire_block",
     "beyond_orbita:sulphur_block",
-    "beyond_orbita:carbon",
 
     "beyond_orbita:moon_stone_bricks",
     "beyond_orbita:moon_stone_brick_slab",
@@ -67,18 +68,6 @@
     "beyond_orbita:venus_stone_brick_stairs",
     "beyond_orbita:cracked_venus_stone_bricks",
 
-    "beyond_orbita:moon_cheese_ore",
-    "beyond_orbita:moon_desh_ore",
-    "beyond_orbita:moon_iron_ore",
-    "beyond_orbita:mars_iron_ore",
-    "beyond_orbita:mars_diamond_ore",
-    "beyond_orbita:mars_ostrum_ore",
-    "beyond_orbita:mercury_iron_ore",
-    "beyond_orbita:venus_sulphur_ore",
-    "beyond_orbita:venus_diamond_ore",
-    "beyond_orbita:venus_gold_ore",
-    "beyond_orbita:venus_calorite_ore",
-
     "beyond_orbita:flag",
     "beyond_orbita:flag_blue",
     "beyond_orbita:flag_brown",
@@ -93,20 +82,22 @@
     "beyond_orbita:flag_purple",
     "beyond_orbita:flag_red",
     "beyond_orbita:flag_yellow",
-    
-    "beyond_orbita:moon_ice_shard_ore",
-    "beyond_orbita:mars_ice_shard_ore",
-    "beyond_orbita:glacio_ice_shard_ore",
-	
-    "beyond_orbita:glacio_coal_ore",
-    "beyond_orbita:glacio_copper_ore",
-    "beyond_orbita:glacio_iron_ore",
-    "beyond_orbita:glacio_lapis_ore",
+
     "beyond_orbita:glacio_stone_bricks",
     "beyond_orbita:cracked_glacio_stone_bricks",
     "beyond_orbita:glacio_stone_brick_slab",
     "beyond_orbita:glacio_stone_brick_stairs",
     "beyond_orbita:glacio_stone",
-    "beyond_orbita:permafrost"
+    "beyond_orbita:permafrost",
+
+    "beyond_orbita:carbon",
+    "beyond_orbita:sulphur_ore",
+    "beyond_orbita:chromite_ore",
+    "beyond_orbita:deepslate_chromite_ore",
+    "beyond_orbita:bauxite_ore",
+    "beyond_orbita:deepslate_bauxite_ore",
+    "beyond_orbita:deepslate_titanium_ore",
+    "beyond_orbita:potassium_ore",
+    "beyond_orbita:nitrogen_ice"
   ]
 }

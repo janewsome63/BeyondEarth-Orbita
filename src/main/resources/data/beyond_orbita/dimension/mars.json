@@ -305,6 +305,52 @@
           {
             "type": "minecraft:condition",
             "if_true": {
+              "type": "minecraft:vertical_gradient",
+              "random_name": "beyond_orbita:deepslate",
+              "true_at_and_below": {
+                "absolute": 0
+              },
+              "false_at_and_above": {
+                "absolute": 8
+              }
+            },
+            "then_run": {
+              "type": "minecraft:block",
+              "result_state": {
+                "Name": "beyond_orbita:deepslate",
+                "Properties": {
+                  "axis": "y"
+                }
+              }
+            }
+          },
+
+          {
+            "type": "minecraft:condition",
+            "if_true": {
+              "type": "minecraft:vertical_gradient",
+              "random_name": "beyond_orbita:stone",
+              "true_at_and_below": {
+                "absolute": 72
+              },
+              "false_at_and_above": {
+                "absolute": 80
+              }
+            },
+            "then_run": {
+              "type": "minecraft:block",
+              "result_state": {
+                "Name": "beyond_orbita:stone",
+                "Properties": {
+                  "axis": "y"
+                }
+              }
+            }
+          },
+
+          {
+            "type": "minecraft:condition",
+            "if_true": {
               "type": "minecraft:biome",
               "biome_is": [
                 "beyond_orbita:mars_desert",

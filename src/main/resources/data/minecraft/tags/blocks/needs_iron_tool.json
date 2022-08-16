@@ -16,10 +16,12 @@
     "beyond_orbita:rocket_launch_pad",
 
     "beyond_orbita:moon_desh_ore",
-    "beyond_orbita:mars_diamond_ore",
     "beyond_orbita:mars_ostrum_ore",
-    "beyond_orbita:venus_diamond_ore",
-    "beyond_orbita:venus_gold_ore",
-    "beyond_orbita:venus_calorite_ore"
+    "beyond_orbita:venus_calorite_ore",
+    "beyond_orbita:chromite_ore",
+    "beyond_orbita:deepslate_chromite_ore",
+    "beyond_orbita:bauxite_ore",
+    "beyond_orbita:deepslate_bauxite_ore",
+    "beyond_orbita:deepslate_titanium_ore"
   ]
 }

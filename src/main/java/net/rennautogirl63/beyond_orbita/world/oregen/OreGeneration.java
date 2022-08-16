@@ -29,193 +29,329 @@ import java.util.List;
 
 @Mod.EventBusSubscriber(modid = BeyondOrbitaMod.MODID)
 public class OreGeneration {
+    /** Non-specific */
+    // Stone
+    public static final TagKey<Block> STONE_ORE_REPLACEABLES = TagKey.create(Registry.BLOCK_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "stone_ore_replaceables"));
+    public static final RuleTest STONE_MATCH = new TagMatchTest(STONE_ORE_REPLACEABLES);
+    
+            // Copper
+    public static final RegistryObject<ConfiguredFeature<?,?>> COPPER_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("copper_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(STONE_MATCH, Blocks.COPPER_ORE.defaultBlockState(), 10)));
+    public static final RegistryObject<PlacedFeature> COPPER_ORE = FeatureRegistry.PLACED_FEATURES.register("copper_ore", () -> new PlacedFeature(COPPER_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(16, HeightRangePlacement.triangle(VerticalAnchor.absolute(0), VerticalAnchor.absolute(112)))));
+    
+            // Iron
+    public static final RegistryObject<ConfiguredFeature<?,?>> IRON_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("iron_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(STONE_MATCH, Blocks.IRON_ORE.defaultBlockState(), 9)));
+    public static final RegistryObject<PlacedFeature> IRON_ORE = FeatureRegistry.PLACED_FEATURES.register("iron_ore", () -> new PlacedFeature(IRON_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(90, HeightRangePlacement.triangle(VerticalAnchor.absolute(80), VerticalAnchor.absolute(384)))));
+    public static final RegistryObject<ConfiguredFeature<?,?>> LOW_IRON_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("low_iron_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(STONE_MATCH, Blocks.IRON_ORE.defaultBlockState(), 9, 0.5F)));
+    public static final RegistryObject<PlacedFeature> LOW_IRON_ORE = FeatureRegistry.PLACED_FEATURES.register("low_iron_ore", () -> new PlacedFeature(LOW_IRON_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(10, HeightRangePlacement.triangle(VerticalAnchor.absolute(0), VerticalAnchor.absolute(56)))));
+    public static final RegistryObject<ConfiguredFeature<?,?>> LOWEST_IRON_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("lowest_iron_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(STONE_MATCH, Blocks.IRON_ORE.defaultBlockState(), 4)));
+    public static final RegistryObject<PlacedFeature> LOWEST_IRON_ORE = FeatureRegistry.PLACED_FEATURES.register("lowest_iron_ore", () -> new PlacedFeature(LOWEST_IRON_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(10, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(72)))));
+    
+            // Gold
+    public static final RegistryObject<ConfiguredFeature<?,?>> GOLD_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("gold_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(STONE_MATCH, Blocks.GOLD_ORE.defaultBlockState(), 9, 0.5F)));
+    public static final RegistryObject<PlacedFeature> GOLD_ORE = FeatureRegistry.PLACED_FEATURES.register("gold_ore", () -> new PlacedFeature(GOLD_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(4, HeightRangePlacement.triangle(VerticalAnchor.absolute(0), VerticalAnchor.absolute(32)))));
+            
+            // Redstone
+    public static final RegistryObject<ConfiguredFeature<?,?>> REDSTONE_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("redstone_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(STONE_MATCH, Blocks.REDSTONE_ORE.defaultBlockState(), 4)));
+    public static final RegistryObject<PlacedFeature> REDSTONE_ORE = FeatureRegistry.PLACED_FEATURES.register("redstone_ore", () -> new PlacedFeature(REDSTONE_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(8, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(15)))));
+    
+            // Diamond
+    public static final RegistryObject<ConfiguredFeature<?,?>> DIAMOND_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("diamond_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(STONE_MATCH, Blocks.DIAMOND_ORE.defaultBlockState(), 4, 0.5F)));
+    public static final RegistryObject<PlacedFeature> DIAMOND_ORE = FeatureRegistry.PLACED_FEATURES.register("diamond_ore", () -> new PlacedFeature(DIAMOND_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(7, HeightRangePlacement.triangle(VerticalAnchor.absolute(0), VerticalAnchor.absolute(16)))));
+    public static final RegistryObject<ConfiguredFeature<?,?>> RARE_DIAMOND_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("rare_diamond_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(STONE_MATCH, Blocks.DIAMOND_ORE.defaultBlockState(), 8, 1.0F)));
+    public static final RegistryObject<PlacedFeature> RARE_DIAMOND_ORE = FeatureRegistry.PLACED_FEATURES.register("rare_diamond_ore", () -> new PlacedFeature(RARE_DIAMOND_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(4, HeightRangePlacement.triangle(VerticalAnchor.absolute(0), VerticalAnchor.absolute(16)))));
+    public static final RegistryObject<ConfiguredFeature<?,?>> RAREST_DIAMOND_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("rarest_diamond_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(STONE_MATCH, Blocks.DIAMOND_ORE.defaultBlockState(), 12, 0.7F)));
+    public static final RegistryObject<PlacedFeature> RAREST_DIAMOND_ORE = FeatureRegistry.PLACED_FEATURES.register("rarest_diamond_ore", () -> new PlacedFeature(RAREST_DIAMOND_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(1/9, HeightRangePlacement.triangle(VerticalAnchor.absolute(0), VerticalAnchor.absolute(16)))));
 
-    /** MOON ORES: */
-    public static final TagKey<Block> MOON_ORE_REPLACEABLES = TagKey.create(Registry.BLOCK_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "moon_ore_replaceables"));
-    public static final RuleTest MOON_MATCH = new TagMatchTest(MOON_ORE_REPLACEABLES);
+            // Zinc
+    public static final RegistryObject<ConfiguredFeature<?,?>> ZINC_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("zinc_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(STONE_MATCH, AllBlocks.ZINC_ORE.getDefaultState(), 12)));
+    public static final RegistryObject<PlacedFeature> ZINC_ORE = FeatureRegistry.PLACED_FEATURES.register("zinc_ore", () -> new PlacedFeature(ZINC_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(8, HeightRangePlacement.triangle(VerticalAnchor.absolute(0), VerticalAnchor.absolute(70)))));
 
-    // MOON_CHEESE_ORE
-    public static final RegistryObject<ConfiguredFeature<?,?>> MOON_CHEESE_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("moon_cheese_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(MOON_MATCH, BlocksRegistry.MOON_CHEESE_ORE.get().defaultBlockState(), 10)));
-    public static final RegistryObject<PlacedFeature> MOON_CHEESE_ORE = FeatureRegistry.PLACED_FEATURES.register("moon_cheese_ore", () -> new PlacedFeature(MOON_CHEESE_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(20, HeightRangePlacement.triangle(VerticalAnchor.absolute(-80), VerticalAnchor.absolute(192)))));
+    // Deepslate
+    public static final TagKey<Block> DEEPSLATE_ORE_REPLACEABLES = TagKey.create(Registry.BLOCK_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "deepslate_ore_replaceables"));
+    public static final RuleTest DEEPSLATE_MATCH = new TagMatchTest(DEEPSLATE_ORE_REPLACEABLES);
+    
+            // Copper
+    public static final RegistryObject<ConfiguredFeature<?,?>> DEEPSLATE_COPPER_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("deepslate_copper_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(DEEPSLATE_MATCH, Blocks.DEEPSLATE_COPPER_ORE.defaultBlockState(), 10)));
+    public static final RegistryObject<PlacedFeature> DEEPSLATE_COPPER_ORE = FeatureRegistry.PLACED_FEATURES.register("deepslate_copper_ore", () -> new PlacedFeature(DEEPSLATE_COPPER_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(16, HeightRangePlacement.triangle(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(0)))));
+     
+            // Iron
+    public static final RegistryObject<ConfiguredFeature<?,?>> LOW_DEEPSLATE_IRON_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("low_deepslate_iron_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(DEEPSLATE_MATCH, Blocks.DEEPSLATE_IRON_ORE.defaultBlockState(), 9)));
+    public static final RegistryObject<PlacedFeature> LOW_DEEPSLATE_IRON_ORE = FeatureRegistry.PLACED_FEATURES.register("low_deepslate_iron_ore", () -> new PlacedFeature(LOW_DEEPSLATE_IRON_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(10, HeightRangePlacement.triangle(VerticalAnchor.absolute(-24), VerticalAnchor.absolute(0)))));
+    public static final RegistryObject<ConfiguredFeature<?,?>> LOWEST_DEEPSLATE_IRON_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("lowest_deepslate_iron_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(DEEPSLATE_MATCH, Blocks.DEEPSLATE_IRON_ORE.defaultBlockState(), 4)));
+    public static final RegistryObject<PlacedFeature> LOWEST_DEEPSLATE_IRON_ORE = FeatureRegistry.PLACED_FEATURES.register("lowest_deepslate_iron_ore", () -> new PlacedFeature(LOWEST_DEEPSLATE_IRON_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(10, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(0)))));
+    
+            // Gold
+    public static final RegistryObject<ConfiguredFeature<?,?>> DEEPSLATE_GOLD_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("deepslate_gold_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(STONE_MATCH, Blocks.DEEPSLATE_GOLD_ORE.defaultBlockState(), 9, 0.5F)));
+    public static final RegistryObject<PlacedFeature> DEEPSLATE_GOLD_ORE = FeatureRegistry.PLACED_FEATURES.register("deepslate_gold_ore", () -> new PlacedFeature(DEEPSLATE_GOLD_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(1/2, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(-48)))));
 
-    // MOON_SOUL_SOIL
-    public static final RegistryObject<ConfiguredFeature<?,?>> MOON_SOUL_SOIL_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("moon_soul_soil", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(MOON_MATCH, Blocks.SOUL_SOIL.defaultBlockState(), 60)));
-    public static final RegistryObject<PlacedFeature> MOON_SOUL_SOIL = FeatureRegistry.PLACED_FEATURES.register("moon_soul_soil", () -> new PlacedFeature(MOON_SOUL_SOIL_CONFIGURED.getHolder().get(), commonOrePlacement(20, HeightRangePlacement.triangle(VerticalAnchor.absolute(0), VerticalAnchor.absolute(100)))));
+            // Redstone
+    public static final RegistryObject<ConfiguredFeature<?,?>> DEEPSLATE_REDSTONE_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("deepslate_redstone_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(DEEPSLATE_MATCH, Blocks.DEEPSLATE_REDSTONE_ORE.defaultBlockState(), 4)));
+    public static final RegistryObject<PlacedFeature> DEEPSLATE_REDSTONE_ORE = FeatureRegistry.PLACED_FEATURES.register("deepslate_redstone_ore", () -> new PlacedFeature(DEEPSLATE_REDSTONE_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(8, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(0)))));
+    public static final RegistryObject<ConfiguredFeature<?,?>> LOW_DEEPSLATE_REDSTONE_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("low_deepslate_redstone_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(DEEPSLATE_MATCH, Blocks.DEEPSLATE_REDSTONE_ORE.defaultBlockState(), 8)));
+    public static final RegistryObject<PlacedFeature> LOW_DEEPSLATE_REDSTONE_ORE = FeatureRegistry.PLACED_FEATURES.register("low_deepslate_redstone_ore", () -> new PlacedFeature(LOW_DEEPSLATE_REDSTONE_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(8, HeightRangePlacement.triangle(VerticalAnchor.absolute(-96), VerticalAnchor.absolute(-32)))));
 
-    // MOON_ICE_SHARD_ORE
-    public static final RegistryObject<ConfiguredFeature<?,?>> MOON_ICE_SHARD_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("moon_ice_shard_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(MOON_MATCH, BlocksRegistry.MOON_ICE_SHARD_ORE.get().defaultBlockState(), 10)));
-    public static final RegistryObject<PlacedFeature> MOON_ICE_SHARD_ORE = FeatureRegistry.PLACED_FEATURES.register("moon_ice_shard_ore", () -> new PlacedFeature(MOON_ICE_SHARD_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(8, HeightRangePlacement.triangle(VerticalAnchor.absolute(-32), VerticalAnchor.absolute(32)))));
+            // Diamond
+    public static final RegistryObject<ConfiguredFeature<?,?>> DEEPSLATE_DIAMOND_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("deepslate_diamond_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(DEEPSLATE_MATCH, Blocks.DEEPSLATE_DIAMOND_ORE.defaultBlockState(), 4, 0.5F)));
+    public static final RegistryObject<PlacedFeature> DEEPSLATE_DIAMOND_ORE = FeatureRegistry.PLACED_FEATURES.register("deepslate_diamond_ore", () -> new PlacedFeature(DEEPSLATE_DIAMOND_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(7, HeightRangePlacement.triangle(VerticalAnchor.absolute(-144), VerticalAnchor.absolute(0)))));
+    public static final RegistryObject<ConfiguredFeature<?,?>> RARE_DEEPSLATE_DIAMOND_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("rare_deepslate_diamond_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(DEEPSLATE_MATCH, Blocks.DEEPSLATE_DIAMOND_ORE.defaultBlockState(), 8, 1.0F)));
+    public static final RegistryObject<PlacedFeature> RARE_DEEPSLATE_DIAMOND_ORE = FeatureRegistry.PLACED_FEATURES.register("rare_deepslate_diamond_ore", () -> new PlacedFeature(RARE_DEEPSLATE_DIAMOND_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(4, HeightRangePlacement.triangle(VerticalAnchor.absolute(-144), VerticalAnchor.absolute(0)))));
+    public static final RegistryObject<ConfiguredFeature<?,?>> RAREST_DEEPSLATE_DIAMOND_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("rarest_deepslate_diamond_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(DEEPSLATE_MATCH, Blocks.DEEPSLATE_DIAMOND_ORE.defaultBlockState(), 12, 0.7F)));
+    public static final RegistryObject<PlacedFeature> RAREST_DEEPSLATE_DIAMOND_ORE = FeatureRegistry.PLACED_FEATURES.register("rarest_deepslate_diamond_ore", () -> new PlacedFeature(RAREST_DEEPSLATE_DIAMOND_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(1/9, HeightRangePlacement.triangle(VerticalAnchor.absolute(-144), VerticalAnchor.absolute(0)))));
 
-    // MOON_IRON_ORE
-    public static final RegistryObject<ConfiguredFeature<?,?>> MOON_IRON_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("moon_iron_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(MOON_MATCH, BlocksRegistry.MOON_IRON_ORE.get().defaultBlockState(), 11)));
-    public static final RegistryObject<PlacedFeature> MOON_IRON_ORE = FeatureRegistry.PLACED_FEATURES.register("moon_iron_ore", () -> new PlacedFeature(MOON_IRON_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(10, HeightRangePlacement.triangle(VerticalAnchor.absolute(-24), VerticalAnchor.absolute(56)))));
+            // Zinc
+    public static final RegistryObject<ConfiguredFeature<?,?>> DEEPSLATE_ZINC_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("deepslate_zinc_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(DEEPSLATE_MATCH, AllBlocks.DEEPSLATE_ZINC_ORE.getDefaultState(), 12)));
+    public static final RegistryObject<PlacedFeature> DEEPSLATE_ZINC_ORE = FeatureRegistry.PLACED_FEATURES.register("deepslate_zinc_ore", () -> new PlacedFeature(DEEPSLATE_ZINC_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(8, HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(0)))));
 
-    // MOON_IRON_ORE
-    public static final RegistryObject<ConfiguredFeature<?,?>> MOON_DESH_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("moon_desh_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(MOON_MATCH, BlocksRegistry.MOON_DESH_ORE.get().defaultBlockState(), 9)));
-    public static final RegistryObject<PlacedFeature> MOON_DESH_ORE = FeatureRegistry.PLACED_FEATURES.register("moon_desh_ore", () -> new PlacedFeature(MOON_DESH_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(7, HeightRangePlacement.triangle(VerticalAnchor.absolute(-80), VerticalAnchor.absolute(80)))));
-
-    /** MARS ORES: */
-    public static final TagKey<Block> MARS_ORE_REPLACEABLES = TagKey.create(Registry.BLOCK_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "mars_ore_replaceables"));
-    public static final RuleTest MARS_MATCH = new TagMatchTest(MARS_ORE_REPLACEABLES);
-
-    // MARS_ICE_SHARD_ORE
-    public static final RegistryObject<ConfiguredFeature<?,?>> MARS_ICE_SHARD_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("mars_ice_shard_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(MARS_MATCH, BlocksRegistry.MARS_ICE_SHARD_ORE.get().defaultBlockState(), 10)));
-    public static final RegistryObject<PlacedFeature> MARS_ICE_SHARD_ORE = FeatureRegistry.PLACED_FEATURES.register("mars_ice_shard_ore", () -> new PlacedFeature(MARS_ICE_SHARD_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(8, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-32), VerticalAnchor.aboveBottom(32)))));
-
-    // MARS_IRON_ORE_ORE
-    public static final RegistryObject<ConfiguredFeature<?,?>> MARS_IRON_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("mars_iron_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(MARS_MATCH, BlocksRegistry.MARS_IRON_ORE.get().defaultBlockState(), 11)));
-    public static final RegistryObject<PlacedFeature> MARS_IRON_ORE = FeatureRegistry.PLACED_FEATURES.register("mars_iron_ore", () -> new PlacedFeature(MARS_IRON_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(10, HeightRangePlacement.triangle(VerticalAnchor.absolute(-24), VerticalAnchor.absolute(56)))));
-
-    // MARS_DIAMOND_ORE
-    public static final RegistryObject<ConfiguredFeature<?,?>> MARS_DIAMOND_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("mars_diamond_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(MARS_MATCH, BlocksRegistry.MARS_DIAMOND_ORE.get().defaultBlockState(), 7)));
-    public static final RegistryObject<PlacedFeature> MARS_DIAMOND_ORE = FeatureRegistry.PLACED_FEATURES.register("mars_diamond_ore", () -> new PlacedFeature(MARS_DIAMOND_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(7, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80)))));
-
-    // MARS_OSTRUM_ORE
-    public static final RegistryObject<ConfiguredFeature<?,?>> MARS_OSTRUM_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("mars_ostrum_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(MARS_MATCH, BlocksRegistry.MARS_OSTRUM_ORE.get().defaultBlockState(), 8)));
-    public static final RegistryObject<PlacedFeature> MARS_OSTRUM_ORE = FeatureRegistry.PLACED_FEATURES.register("mars_ostrum_ore", () -> new PlacedFeature(MARS_OSTRUM_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(6, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80)))));
-
-    /** MERCURY ORES: */
+    /** Mercury Specific: */
+    // Mercury Stone
     public static final TagKey<Block> MERCURY_ORE_REPLACEABLES = TagKey.create(Registry.BLOCK_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "mercury_ore_replaceables"));
     public static final RuleTest MERCURY_MATCH = new TagMatchTest(MERCURY_ORE_REPLACEABLES);
 
-    // MERCURY_IRON_ORE
-    public static final RegistryObject<ConfiguredFeature<?,?>> MERCURY_IRON_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("mercury_iron_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(MERCURY_MATCH, BlocksRegistry.MERCURY_IRON_ORE.get().defaultBlockState(), 8)));
-    public static final RegistryObject<PlacedFeature> MERCURY_IRON_ORE = FeatureRegistry.PLACED_FEATURES.register("mercury_iron_ore", () -> new PlacedFeature(MERCURY_IRON_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(20, HeightRangePlacement.triangle(VerticalAnchor.absolute(-80), VerticalAnchor.absolute(192)))));
+    // Stone
+            // Potassium
+    public static final RegistryObject<ConfiguredFeature<?,?>> POTASSIUM_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("potassium_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(STONE_MATCH, BlocksRegistry.POTASSIUM_ORE.get().defaultBlockState(), 17)));
+    public static final RegistryObject<PlacedFeature> POTASSIUM_ORE = FeatureRegistry.PLACED_FEATURES.register("potassium_ore", () -> new PlacedFeature(POTASSIUM_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(20, HeightRangePlacement.triangle(VerticalAnchor.absolute(0), VerticalAnchor.absolute(192)))));
 
-    /** VENUS ORES: */
+    /** Venus Specific: */
+    // Venus Stone
     public static final TagKey<Block> VENUS_ORE_REPLACEABLES = TagKey.create(Registry.BLOCK_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "venus_ore_replaceables"));
     public static final RuleTest VENUS_MATCH = new TagMatchTest(VENUS_ORE_REPLACEABLES);
 
-    // VENUS_COAL_ORE
-    public static final RegistryObject<ConfiguredFeature<?,?>> VENUS_SULPHUR_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("venus_coal_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(VENUS_MATCH, BlocksRegistry.VENUS_SULPHUR_ORE.get().defaultBlockState(), 17)));
-    public static final RegistryObject<PlacedFeature> VENUS_SULPHUR_ORE = FeatureRegistry.PLACED_FEATURES.register("venus_coal_ore", () -> new PlacedFeature(VENUS_SULPHUR_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(20, HeightRangePlacement.triangle(VerticalAnchor.absolute(-80), VerticalAnchor.absolute(192)))));
+    // Stone
+            // Sulphur
+    public static final RegistryObject<ConfiguredFeature<?,?>> SULPHUR_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("sulphur_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(STONE_MATCH, BlocksRegistry.SULPHUR_ORE.get().defaultBlockState(), 17)));
+    public static final RegistryObject<PlacedFeature> SULPHUR_ORE = FeatureRegistry.PLACED_FEATURES.register("sulphur_ore", () -> new PlacedFeature(SULPHUR_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(20, HeightRangePlacement.triangle(VerticalAnchor.absolute(0), VerticalAnchor.absolute(192)))));
 
-    // VENUS_GOLD_ORE
-    public static final RegistryObject<ConfiguredFeature<?,?>> VENUS_GOLD_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("venus_gold_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(VENUS_MATCH, BlocksRegistry.VENUS_GOLD_ORE.get().defaultBlockState(), 10)));
-    public static final RegistryObject<PlacedFeature> VENUS_GOLD_ORE = FeatureRegistry.PLACED_FEATURES.register("venus_gold_ore", () -> new PlacedFeature(VENUS_GOLD_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(4, HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(32)))));
+    /** Moon Specific: */
+    // Moon Stone
+    public static final TagKey<Block> MOON_ORE_REPLACEABLES = TagKey.create(Registry.BLOCK_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "moon_ore_replaceables"));
+    public static final RuleTest MOON_MATCH = new TagMatchTest(MOON_ORE_REPLACEABLES);
 
-    // VENUS_DIAMOND_ORE
-    public static final RegistryObject<ConfiguredFeature<?,?>> VENUS_DIAMOND_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("venus_diamond_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(VENUS_MATCH, BlocksRegistry.VENUS_DIAMOND_ORE.get().defaultBlockState(), 9)));
-    public static final RegistryObject<PlacedFeature> VENUS_DIAMOND_ORE = FeatureRegistry.PLACED_FEATURES.register("venus_diamond_ore", () -> new PlacedFeature(VENUS_DIAMOND_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(7, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80)))));
+    // Stone
+            // Chromium
+    public static final RegistryObject<ConfiguredFeature<?,?>> CHROMITE_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("chromite_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(STONE_MATCH, BlocksRegistry.CHROMITE_ORE.get().defaultBlockState(), 9, 0.5F)));
+    public static final RegistryObject<PlacedFeature> CHROMITE_ORE = FeatureRegistry.PLACED_FEATURES.register("chromite_ore", () -> new PlacedFeature(CHROMITE_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(8, HeightRangePlacement.triangle(VerticalAnchor.absolute(0), VerticalAnchor.absolute(32)))));
 
-    // VENUS_DIAMOND_ORE
-    public static final RegistryObject<ConfiguredFeature<?,?>> VENUS_CALORITE_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("venus_calorite_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(VENUS_MATCH, BlocksRegistry.VENUS_CALORITE_ORE.get().defaultBlockState(), 8)));
-    public static final RegistryObject<PlacedFeature> VENUS_CALORITE_ORE = FeatureRegistry.PLACED_FEATURES.register("venus_calorite_ore", () -> new PlacedFeature(VENUS_CALORITE_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(6, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80)))));
+    // Deepslate
+            // Chromium
+    public static final RegistryObject<ConfiguredFeature<?,?>> DEEPSLATE_CHROMITE_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("deepslate_chromite_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(DEEPSLATE_MATCH, BlocksRegistry.DEEPSLATE_CHROMITE_ORE.get().defaultBlockState(), 9, 0.5F)));
+    public static final RegistryObject<PlacedFeature> DEEPSLATE_CHROMITE_ORE = FeatureRegistry.PLACED_FEATURES.register("deepslate_chromite_ore", () -> new PlacedFeature(DEEPSLATE_CHROMITE_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(8, HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(0)))));
 
-    /** GLACIO ORES: */
+    // Other
+            // Soul Sand
+    public static final RegistryObject<ConfiguredFeature<?,?>> MOON_SOUL_SOIL_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("moon_soul_soil", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(MOON_MATCH, Blocks.SOUL_SOIL.defaultBlockState(), 60)));
+    public static final RegistryObject<PlacedFeature> MOON_SOUL_SOIL = FeatureRegistry.PLACED_FEATURES.register("moon_soul_soil", () -> new PlacedFeature(MOON_SOUL_SOIL_CONFIGURED.getHolder().get(), commonOrePlacement(20, HeightRangePlacement.triangle(VerticalAnchor.absolute(0), VerticalAnchor.absolute(100)))));
+
+    /** Mars Specific: */
+    // Mars Stone
+    public static final TagKey<Block> MARS_ORE_REPLACEABLES = TagKey.create(Registry.BLOCK_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "mars_ore_replaceables"));
+    public static final RuleTest MARS_MATCH = new TagMatchTest(MARS_ORE_REPLACEABLES);
+
+    // Stone
+            // Aluminum
+    public static final RegistryObject<ConfiguredFeature<?,?>> BAUXITE_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("aluminum_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(STONE_MATCH, BlocksRegistry.BAUXITE_ORE.get().defaultBlockState(), 9, 0.5F)));
+    public static final RegistryObject<PlacedFeature> BAUXITE_ORE = FeatureRegistry.PLACED_FEATURES.register("bauxite_ore", () -> new PlacedFeature(BAUXITE_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(8, HeightRangePlacement.triangle(VerticalAnchor.absolute(0), VerticalAnchor.absolute(32)))));
+
+    // Deepslate
+            // Aluminum
+    public static final RegistryObject<ConfiguredFeature<?,?>> DEEPSLATE_BAUXITE_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("deepslate_aluminum_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(DEEPSLATE_MATCH, BlocksRegistry.DEEPSLATE_BAUXITE_ORE.get().defaultBlockState(), 9, 0.5F)));
+    public static final RegistryObject<PlacedFeature> DEEPSLATE_BAUXITE_ORE = FeatureRegistry.PLACED_FEATURES.register("deepslate_bauxite_ore", () -> new PlacedFeature(DEEPSLATE_BAUXITE_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(8, HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(0)))));
+
+    /** Glacio Specific: */
+    // Glacio Stone
     public static final TagKey<Block> GLACIO_ORE_REPLACEABLES = TagKey.create(Registry.BLOCK_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "glacio_ore_replaceables"));
     public static final RuleTest GLACIO_MATCH = new TagMatchTest(GLACIO_ORE_REPLACEABLES);
 
-    // GLACIO_ICE_SHARD_ORE
-    public static final RegistryObject<ConfiguredFeature<?,?>> GLACIO_ICE_SHARD_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("glacio_ice_shard_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(GLACIO_MATCH, BlocksRegistry.GLACIO_ICE_SHARD_ORE.get().defaultBlockState(), 10)));
-    public static final RegistryObject<PlacedFeature> GLACIO_ICE_SHARD_ORE = FeatureRegistry.PLACED_FEATURES.register("glacio_ice_shard_ore", () -> new PlacedFeature(GLACIO_ICE_SHARD_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(8, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-32), VerticalAnchor.aboveBottom(32)))));
+    // Other
+            // Nitrogen Ice
+    public static final RegistryObject<ConfiguredFeature<?,?>> NITROGEN_ICE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("nitrogen_ice", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(GLACIO_MATCH, BlocksRegistry.NITROGEN_ICE.get().defaultBlockState(), 60)));
+    public static final RegistryObject<PlacedFeature> NITROGEN_ICE_ORE = FeatureRegistry.PLACED_FEATURES.register("nitrogen_ice", () -> new PlacedFeature(NITROGEN_ICE_CONFIGURED.getHolder().get(), commonOrePlacement(20, HeightRangePlacement.triangle(VerticalAnchor.absolute(0), VerticalAnchor.absolute(100)))));
 
-    // GLACIO_COAL_ORE
-    public static final RegistryObject<ConfiguredFeature<?,?>> GLACIO_COAL_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("glacio_coal_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(GLACIO_MATCH, BlocksRegistry.GLACIO_COAL_ORE.get().defaultBlockState(), 17)));
-    public static final RegistryObject<PlacedFeature> GLACIO_COAL_ORE = FeatureRegistry.PLACED_FEATURES.register("glacio_coal_ore", () -> new PlacedFeature(GLACIO_COAL_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(20, HeightRangePlacement.triangle(VerticalAnchor.absolute(-80), VerticalAnchor.absolute(192)))));
 
-    // GLACIO_COPPER_ORE
-    public static final RegistryObject<ConfiguredFeature<?,?>> GLACIO_COPPER_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("glacio_copper_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(GLACIO_MATCH, BlocksRegistry.GLACIO_COPPER_ORE.get().defaultBlockState(), 17)));
-    public static final RegistryObject<PlacedFeature> GLACIO_COPPER_ORE = FeatureRegistry.PLACED_FEATURES.register("glacio_copper_ore", () -> new PlacedFeature(GLACIO_COPPER_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(16, HeightRangePlacement.triangle(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(16)))));
+    /** Asteroid Specific */
+    // Deepslate
+            // Copper
+    public static final RegistryObject<ConfiguredFeature<?,?>> ASTEROID_DEEPSLATE_COPPER_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("asteroid_deepslate_copper_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(DEEPSLATE_MATCH, Blocks.DEEPSLATE_COPPER_ORE.defaultBlockState(), 10)));
+    public static final RegistryObject<PlacedFeature> ASTEROID_DEEPSLATE_COPPER_ORE = FeatureRegistry.PLACED_FEATURES.register("asteroid_deepslate_copper_ore", () -> new PlacedFeature(ASTEROID_DEEPSLATE_COPPER_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(16, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(384)))));
 
-    // GLACIO_IRON_ORE
-    public static final RegistryObject<ConfiguredFeature<?,?>> GLACIO_IRON_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("glacio_iron_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(GLACIO_MATCH, BlocksRegistry.GLACIO_IRON_ORE.get().defaultBlockState(), 12)));
-    public static final RegistryObject<PlacedFeature> GLACIO_IRON_ORE = FeatureRegistry.PLACED_FEATURES.register("glacio_iron_ore", () -> new PlacedFeature(GLACIO_IRON_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(10, HeightRangePlacement.triangle(VerticalAnchor.absolute(-24), VerticalAnchor.absolute(56)))));
+            // Iron
+    public static final RegistryObject<ConfiguredFeature<?,?>> ASTEROID_DEEPSLATE_IRON_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("asteroid_deepslate_iron_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(DEEPSLATE_MATCH, Blocks.DEEPSLATE_IRON_ORE.defaultBlockState(), 9)));
+    public static final RegistryObject<PlacedFeature> ASTEROID_DEEPSLATE_IRON_ORE = FeatureRegistry.PLACED_FEATURES.register("asteroid_deepslate_iron_ore", () -> new PlacedFeature(ASTEROID_DEEPSLATE_IRON_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(90, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(384)))));
 
-    // GLACIO_LAPIS_ORE
-    public static final RegistryObject<ConfiguredFeature<?,?>> GLACIO_LAPIS_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("glacio_lapis_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(GLACIO_MATCH, BlocksRegistry.GLACIO_LAPIS_ORE.get().defaultBlockState(), 9)));
-    public static final RegistryObject<PlacedFeature> GLACIO_LAPIS_ORE = FeatureRegistry.PLACED_FEATURES.register("glacio_lapis_ore", () -> new PlacedFeature(GLACIO_LAPIS_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(2, HeightRangePlacement.triangle(VerticalAnchor.absolute(-32), VerticalAnchor.absolute(32)))));
+            // Gold
+    public static final RegistryObject<ConfiguredFeature<?,?>> ASTEROID_DEEPSLATE_GOLD_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("asteroid_deepslate_gold_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(DEEPSLATE_MATCH, Blocks.DEEPSLATE_GOLD_ORE.defaultBlockState(), 9)));
+    public static final RegistryObject<PlacedFeature> ASTEROID_DEEPSLATE_GOLD_ORE = FeatureRegistry.PLACED_FEATURES.register("asteroid_deepslate_gold_ore", () -> new PlacedFeature(ASTEROID_DEEPSLATE_GOLD_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(50, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(384)))));
 
-    /** GLACIO DEEPSLATE ORES */
+            // Redstone
+    public static final RegistryObject<ConfiguredFeature<?,?>> ASTEROID_DEEPSLATE_REDSTONE_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("asteroid_deepslate_redstone_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(DEEPSLATE_MATCH, Blocks.DEEPSLATE_REDSTONE_ORE.defaultBlockState(), 8)));
+    public static final RegistryObject<PlacedFeature> ASTEROID_DEEPSLATE_REDSTONE_ORE = FeatureRegistry.PLACED_FEATURES.register("asteroid_deepslate_redstone_ore", () -> new PlacedFeature(ASTEROID_DEEPSLATE_REDSTONE_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(8, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(384)))));
 
-    // GLACIO_DEEPSLATE_COAL_ORE
-    public static final RegistryObject<ConfiguredFeature<?,?>> GLACIO_DEEPSLATE_COAL_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("glacio_deepslate_coal_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, Blocks.DEEPSLATE_COAL_ORE.defaultBlockState(), 17)));
-    public static final RegistryObject<PlacedFeature> GLACIO_DEEPSLATE_COAL_ORE = FeatureRegistry.PLACED_FEATURES.register("glacio_deepslate_coal_ore", () -> new PlacedFeature(GLACIO_DEEPSLATE_COAL_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(20, HeightRangePlacement.triangle(VerticalAnchor.absolute(-80), VerticalAnchor.absolute(192)))));
+            // Diamond
+    public static final RegistryObject<ConfiguredFeature<?,?>> ASTEROID_DEEPSLATE_DIAMOND_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("asteroid_deepslate_diamond_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(DEEPSLATE_MATCH, Blocks.DEEPSLATE_DIAMOND_ORE.defaultBlockState(), 4)));
+    public static final RegistryObject<PlacedFeature> ASTEROID_DEEPSLATE_DIAMOND_ORE = FeatureRegistry.PLACED_FEATURES.register("asteroid_deepslate_diamond_ore", () -> new PlacedFeature(ASTEROID_DEEPSLATE_DIAMOND_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(7, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(384)))));
 
-    // GLACIO_DEEPSLATE_COPPER_ORE
-    public static final RegistryObject<ConfiguredFeature<?,?>> GLACIO_DEEPSLATE_COPPER_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("glacio_deepslate_copper_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, Blocks.DEEPSLATE_COPPER_ORE.defaultBlockState(), 17)));
-    public static final RegistryObject<PlacedFeature> GLACIO_DEEPSLATE_COPPER_ORE = FeatureRegistry.PLACED_FEATURES.register("glacio_deepslate_copper_ore", () -> new PlacedFeature(GLACIO_DEEPSLATE_COPPER_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(16, HeightRangePlacement.triangle(VerticalAnchor.absolute(-80), VerticalAnchor.absolute(112)))));
+            // Emerald
+    public static final RegistryObject<ConfiguredFeature<?,?>> ASTEROID_DEEPSLATE_EMERALD_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("asteroid_deepslate_emerald_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(DEEPSLATE_MATCH, Blocks.DEEPSLATE_EMERALD_ORE.defaultBlockState(), 2)));
+    public static final RegistryObject<PlacedFeature> ASTEROID_DEEPSLATE_EMERALD_ORE = FeatureRegistry.PLACED_FEATURES.register("asteroid_deepslate_emerald_ore", () -> new PlacedFeature(ASTEROID_DEEPSLATE_EMERALD_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(7/2, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(384)))));
 
-    // GLACIO_DEEPSLATE_IRON_ORE
-    public static final RegistryObject<ConfiguredFeature<?,?>> GLACIO_DEEPSLATE_IRON_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("glacio_deepslate_iron_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, Blocks.DEEPSLATE_IRON_ORE.defaultBlockState(), 12)));
-    public static final RegistryObject<PlacedFeature> GLACIO_DEEPSLATE_IRON_ORE = FeatureRegistry.PLACED_FEATURES.register("glacio_deepslate_iron_ore", () -> new PlacedFeature(GLACIO_DEEPSLATE_IRON_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(10, HeightRangePlacement.triangle(VerticalAnchor.absolute(-80), VerticalAnchor.absolute(20)))));
+            // Zinc
+    public static final RegistryObject<ConfiguredFeature<?,?>> ASTEROID_DEEPSLATE_ZINC_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("asteroid_deepslate_zinc_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(DEEPSLATE_MATCH, AllBlocks.DEEPSLATE_ZINC_ORE.getDefaultState(), 12)));
+    public static final RegistryObject<PlacedFeature> ASTEROID_DEEPSLATE_ZINC_ORE = FeatureRegistry.PLACED_FEATURES.register("asteroid_deepslate_zinc_ore", () -> new PlacedFeature(ASTEROID_DEEPSLATE_ZINC_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(8, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(384)))));
 
-    // GLACIO_DEEPSLATE_IRON_ORE
-    public static final RegistryObject<ConfiguredFeature<?,?>> GLACIO_DEEPSLATE_LAPIS_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("glacio_deepslate_lapis_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, Blocks.DEEPSLATE_LAPIS_ORE.defaultBlockState(), 9)));
-    public static final RegistryObject<PlacedFeature> GLACIO_DEEPSLATE_LAPIS_ORE = FeatureRegistry.PLACED_FEATURES.register("glacio_deepslate_lapis_ore", () -> new PlacedFeature(GLACIO_DEEPSLATE_LAPIS_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(2, HeightRangePlacement.triangle(VerticalAnchor.absolute(-80), VerticalAnchor.absolute(10)))));
+            // Titanium
+    public static final RegistryObject<ConfiguredFeature<?,?>> ASTEROID_DEEPSLATE_TITANIUM_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("asteroid_deepslate_titanium_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(DEEPSLATE_MATCH, BlocksRegistry.DEEPSLATE_TITANIUM_ORE.get().defaultBlockState(), 9, 0.5F)));
+    public static final RegistryObject<PlacedFeature> ASTEROID_DEEPSLATE_TITANIUM_ORE = FeatureRegistry.PLACED_FEATURES.register("asteroid_deepslate_titanium_ore", () -> new PlacedFeature(ASTEROID_DEEPSLATE_TITANIUM_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(8, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(384)))));
 
-    /** Asteroid Ores */
-    public static final RegistryObject<ConfiguredFeature<?,?>> ASTEROID_DEEPSLATE_COPPER_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("asteroid_deepslate_copper_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, Blocks.DEEPSLATE_COPPER_ORE.defaultBlockState(), 12)));
-    public static final RegistryObject<PlacedFeature> ASTEROID_DEEPSLATE_COPPER_ORE = FeatureRegistry.PLACED_FEATURES.register("asteroid_deepslate_copper_ore", () -> new PlacedFeature(ASTEROID_DEEPSLATE_COPPER_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(14, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(384)))));
-    public static final RegistryObject<ConfiguredFeature<?,?>> ASTEROID_DEEPSLATE_IRON_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("asteroid_deepslate_iron_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, Blocks.DEEPSLATE_IRON_ORE.defaultBlockState(), 9)));
-    public static final RegistryObject<PlacedFeature> ASTEROID_DEEPSLATE_IRON_ORE = FeatureRegistry.PLACED_FEATURES.register("asteroid_deepslate_iron_ore", () -> new PlacedFeature(ASTEROID_DEEPSLATE_IRON_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(14, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(384)))));
-    public static final RegistryObject<ConfiguredFeature<?,?>> ASTEROID_DEEPSLATE_GOLD_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("asteroid_deepslate_gold_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, Blocks.DEEPSLATE_GOLD_ORE.defaultBlockState(), 7)));
-    public static final RegistryObject<PlacedFeature> ASTEROID_DEEPSLATE_GOLD_ORE = FeatureRegistry.PLACED_FEATURES.register("asteroid_deepslate_gold_ore", () -> new PlacedFeature(ASTEROID_DEEPSLATE_GOLD_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(12, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(384)))));
-    public static final RegistryObject<ConfiguredFeature<?,?>> ASTEROID_DEEPSLATE_LAPIS_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("asteroid_deepslate_lapis_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, Blocks.DEEPSLATE_LAPIS_ORE.defaultBlockState(), 5)));
-    public static final RegistryObject<PlacedFeature> ASTEROID_DEEPSLATE_LAPIS_ORE = FeatureRegistry.PLACED_FEATURES.register("asteroid_deepslate_lapis_ore", () -> new PlacedFeature(ASTEROID_DEEPSLATE_LAPIS_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(10, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(384)))));
-    public static final RegistryObject<ConfiguredFeature<?,?>> ASTEROID_DEEPSLATE_REDSTONE_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("asteroid_deepslate_redstone_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, Blocks.DEEPSLATE_REDSTONE_ORE.defaultBlockState(), 5)));
-    public static final RegistryObject<PlacedFeature> ASTEROID_DEEPSLATE_REDSTONE_ORE = FeatureRegistry.PLACED_FEATURES.register("asteroid_deepslate_redstone_ore", () -> new PlacedFeature(ASTEROID_DEEPSLATE_REDSTONE_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(10, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(384)))));
-    public static final RegistryObject<ConfiguredFeature<?,?>> ASTEROID_DEEPSLATE_DIAMOND_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("asteroid_deepslate_diamond_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, Blocks.DEEPSLATE_DIAMOND_ORE.defaultBlockState(), 4)));
-    public static final RegistryObject<PlacedFeature> ASTEROID_DEEPSLATE_DIAMOND_ORE = FeatureRegistry.PLACED_FEATURES.register("asteroid_deepslate_diamond_ore", () -> new PlacedFeature(ASTEROID_DEEPSLATE_DIAMOND_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(8, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(384)))));
-    public static final RegistryObject<ConfiguredFeature<?,?>> ASTEROID_DEEPSLATE_EMERALD_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("asteroid_deepslate_emerald_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, Blocks.DEEPSLATE_EMERALD_ORE.defaultBlockState(), 4)));
-    public static final RegistryObject<PlacedFeature> ASTEROID_DEEPSLATE_EMERALD_ORE = FeatureRegistry.PLACED_FEATURES.register("asteroid_deepslate_emerald_ore", () -> new PlacedFeature(ASTEROID_DEEPSLATE_EMERALD_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(8, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(384)))));
-    public static final RegistryObject<ConfiguredFeature<?,?>> ASTEROID_DEEPSLATE_ZINC_ORE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("asteroid_deepslate_zinc_ore", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, AllBlocks.DEEPSLATE_ZINC_ORE.getDefaultState(), 12)));
-    public static final RegistryObject<PlacedFeature> ASTEROID_DEEPSLATE_ZINC_ORE = FeatureRegistry.PLACED_FEATURES.register("asteroid_deepslate_zinc_ore", () -> new PlacedFeature(ASTEROID_DEEPSLATE_ZINC_ORE_CONFIGURED.getHolder().get(), commonOrePlacement(14, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(384)))));
-    public static final RegistryObject<ConfiguredFeature<?,?>> ASTEROID_CARBON_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("carbon", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, BlocksRegistry.CARBON.get().defaultBlockState(), 20)));
-    public static final RegistryObject<PlacedFeature> ASTEROID_CARBON = FeatureRegistry.PLACED_FEATURES.register("carbon", () -> new PlacedFeature(ASTEROID_CARBON_CONFIGURED.getHolder().get(), commonOrePlacement(32, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(384)))));
+    // Other
+            // Carbon
+    public static final RegistryObject<ConfiguredFeature<?,?>> ASTEROID_CARBON_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("carbon", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(DEEPSLATE_MATCH, BlocksRegistry.CARBON.get().defaultBlockState(), 20)));
+    public static final RegistryObject<PlacedFeature> ASTEROID_CARBON = FeatureRegistry.PLACED_FEATURES.register("carbon", () -> new PlacedFeature(ASTEROID_CARBON_CONFIGURED.getHolder().get(), commonOrePlacement(16, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(384)))));
+
+            // Blue Ice
+    public static final RegistryObject<ConfiguredFeature<?,?>> ASTEROID_BLUE_ICE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("asteroid_blue_ice", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(DEEPSLATE_MATCH, Blocks.BLUE_ICE.defaultBlockState(), 30)));
+    public static final RegistryObject<PlacedFeature> ASTEROID_BLUE_ICE = FeatureRegistry.PLACED_FEATURES.register("asteroid_blue_ice", () -> new PlacedFeature(ASTEROID_BLUE_ICE_CONFIGURED.getHolder().get(), commonOrePlacement(16, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(384)))));
+
+            // Sky Stone
+    public static final RegistryObject<ConfiguredFeature<?,?>> ASTEROID_SKY_STONE_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("asteroid_sky_stone", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(DEEPSLATE_MATCH, BlocksRegistry.SKY_STONE.get().defaultBlockState(), 30)));
+    public static final RegistryObject<PlacedFeature> ASTEROID_SKY_STONE = FeatureRegistry.PLACED_FEATURES.register("asteroid_sky_stone", () -> new PlacedFeature(ASTEROID_SKY_STONE_CONFIGURED.getHolder().get(), commonOrePlacement(16, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(384)))));
 
     @SubscribeEvent
     public static void biomesLoading(BiomeLoadingEvent event) {
         ResourceLocation biome = event.getName();
 
         if (biome.equals(BiomesRegistry.MOON_DESERT)) {
-            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(MOON_ICE_SHARD_ORE.getHolder().get());
-            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(MOON_IRON_ORE.getHolder().get());
-            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(MOON_DESH_ORE.getHolder().get());
-            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(MOON_CHEESE_ORE.getHolder().get());
             event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(MOON_SOUL_SOIL.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(COPPER_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(DEEPSLATE_COPPER_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(IRON_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(LOW_IRON_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(LOWEST_IRON_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(LOW_DEEPSLATE_IRON_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(LOWEST_DEEPSLATE_IRON_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(GOLD_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(DEEPSLATE_GOLD_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(REDSTONE_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(DEEPSLATE_REDSTONE_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(LOW_DEEPSLATE_REDSTONE_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(DIAMOND_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(RARE_DIAMOND_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(RAREST_DIAMOND_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(DEEPSLATE_DIAMOND_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(RARE_DEEPSLATE_DIAMOND_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(RAREST_DEEPSLATE_DIAMOND_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(ZINC_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(DEEPSLATE_ZINC_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(CHROMITE_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(DEEPSLATE_CHROMITE_ORE.getHolder().get());
         }
 
         if (biome.equals(BiomesRegistry.MARS_DESERT) || biome.equals(BiomesRegistry.MARS_ROCKY_PLAINS) || biome.equals(BiomesRegistry.MARS_ICE_SPIKES)) {
-            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(MARS_ICE_SHARD_ORE.getHolder().get());
-            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(MARS_IRON_ORE.getHolder().get());
-            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(MARS_DIAMOND_ORE.getHolder().get());
-            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(MARS_OSTRUM_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(COPPER_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(DEEPSLATE_COPPER_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(IRON_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(LOW_IRON_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(LOWEST_IRON_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(LOW_DEEPSLATE_IRON_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(LOWEST_DEEPSLATE_IRON_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(GOLD_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(DEEPSLATE_GOLD_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(REDSTONE_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(DEEPSLATE_REDSTONE_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(LOW_DEEPSLATE_REDSTONE_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(DIAMOND_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(RARE_DIAMOND_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(RAREST_DIAMOND_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(DEEPSLATE_DIAMOND_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(RARE_DEEPSLATE_DIAMOND_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(RAREST_DEEPSLATE_DIAMOND_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(ZINC_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(DEEPSLATE_ZINC_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(BAUXITE_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(DEEPSLATE_BAUXITE_ORE.getHolder().get());
         }
 
         if (biome.equals(BiomesRegistry.MERCURY)) {
-            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(MERCURY_IRON_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(COPPER_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(DEEPSLATE_COPPER_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(IRON_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(LOW_IRON_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(LOWEST_IRON_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(LOW_DEEPSLATE_IRON_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(LOWEST_DEEPSLATE_IRON_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(GOLD_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(DEEPSLATE_GOLD_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(REDSTONE_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(DEEPSLATE_REDSTONE_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(LOW_DEEPSLATE_REDSTONE_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(DIAMOND_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(RARE_DIAMOND_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(RAREST_DIAMOND_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(DEEPSLATE_DIAMOND_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(RARE_DEEPSLATE_DIAMOND_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(RAREST_DEEPSLATE_DIAMOND_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(ZINC_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(DEEPSLATE_ZINC_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(POTASSIUM_ORE.getHolder().get());
         }
 
         if (biome.equals(BiomesRegistry.VENUS_DESERT) || biome.equals(BiomesRegistry.INFERNAL_VENUS_BARRENS)) {
-            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(VENUS_SULPHUR_ORE.getHolder().get());
-            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(VENUS_GOLD_ORE.getHolder().get());
-            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(VENUS_DIAMOND_ORE.getHolder().get());
-            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(VENUS_CALORITE_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(COPPER_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(DEEPSLATE_COPPER_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(IRON_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(LOW_IRON_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(LOWEST_IRON_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(LOW_DEEPSLATE_IRON_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(LOWEST_DEEPSLATE_IRON_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(GOLD_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(DEEPSLATE_GOLD_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(REDSTONE_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(DEEPSLATE_REDSTONE_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(LOW_DEEPSLATE_REDSTONE_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(DIAMOND_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(RARE_DIAMOND_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(RAREST_DIAMOND_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(DEEPSLATE_DIAMOND_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(RARE_DEEPSLATE_DIAMOND_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(RAREST_DEEPSLATE_DIAMOND_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(ZINC_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(DEEPSLATE_ZINC_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(SULPHUR_ORE.getHolder().get());
         }
 
         if (biome.equals(BiomesRegistry.GLACIO) || biome.equals(BiomesRegistry.GLACIO_ICE_SPIKES)) {
-            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(GLACIO_ICE_SHARD_ORE.getHolder().get());
-            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(GLACIO_COAL_ORE.getHolder().get());
-            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(GLACIO_IRON_ORE.getHolder().get());
-            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(GLACIO_COPPER_ORE.getHolder().get());
-            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(GLACIO_LAPIS_ORE.getHolder().get());
-
-            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(GLACIO_DEEPSLATE_COAL_ORE.getHolder().get());
-            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(GLACIO_DEEPSLATE_IRON_ORE.getHolder().get());
-            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(GLACIO_DEEPSLATE_COPPER_ORE.getHolder().get());
-            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(GLACIO_DEEPSLATE_LAPIS_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(COPPER_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(DEEPSLATE_COPPER_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(IRON_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(LOW_IRON_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(LOWEST_IRON_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(LOW_DEEPSLATE_IRON_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(LOWEST_DEEPSLATE_IRON_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(GOLD_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(DEEPSLATE_GOLD_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(REDSTONE_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(DEEPSLATE_REDSTONE_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(LOW_DEEPSLATE_REDSTONE_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(DIAMOND_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(RARE_DIAMOND_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(RAREST_DIAMOND_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(DEEPSLATE_DIAMOND_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(RARE_DEEPSLATE_DIAMOND_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(RAREST_DEEPSLATE_DIAMOND_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(ZINC_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(DEEPSLATE_ZINC_ORE.getHolder().get());
         }
         if (biome.equals(BiomesRegistry.ASTEROID_FIELD)) {
             event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(ASTEROID_DEEPSLATE_COPPER_ORE.getHolder().get());
             event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(ASTEROID_DEEPSLATE_IRON_ORE.getHolder().get());
             event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(ASTEROID_DEEPSLATE_GOLD_ORE.getHolder().get());
-            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(ASTEROID_DEEPSLATE_LAPIS_ORE.getHolder().get());
             event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(ASTEROID_DEEPSLATE_REDSTONE_ORE.getHolder().get());
             event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(ASTEROID_DEEPSLATE_DIAMOND_ORE.getHolder().get());
             event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(ASTEROID_DEEPSLATE_EMERALD_ORE.getHolder().get());
-            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(ASTEROID_CARBON.getHolder().get());
             event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(ASTEROID_DEEPSLATE_ZINC_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(ASTEROID_DEEPSLATE_TITANIUM_ORE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(ASTEROID_CARBON.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(ASTEROID_BLUE_ICE.getHolder().get());
+            event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES).add(ASTEROID_SKY_STONE.getHolder().get());
         }
     }
 

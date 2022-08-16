@@ -1,7 +1,0 @@
-{
-	"type": "beyond_orbita:coal_generator",
-	"input": {
-		"tag": "forge:storage_blocks/coal"
-	},
-	"burnTime": 4000
-}

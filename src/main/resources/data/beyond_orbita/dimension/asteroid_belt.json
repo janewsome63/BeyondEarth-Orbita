@@ -10,7 +10,7 @@
       "ore_veins_enabled": false,
       "legacy_random_source": false,
       "default_block": {
-        "Name": "minecraft:deepslate"
+        "Name": "beyond_orbita:deepslate"
       },
       "default_fluid": {
         "Name": "minecraft:air"
@@ -208,7 +208,7 @@
       "surface_rule": {
         "type": "minecraft:block",
         "result_state": {
-          "Name": "minecraft:deepslate"
+          "Name": "beyond_orbita:deepslate"
         }
       }
     },

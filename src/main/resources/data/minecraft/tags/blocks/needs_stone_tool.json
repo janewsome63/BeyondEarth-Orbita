@@ -2,24 +2,18 @@
   "replace": false,
   "values": [
     "beyond_orbita:moon_stone",
-    "beyond_orbita:moon_iron_ore",
-    "beyond_orbita:moon_cheese_ore",
-    "beyond_orbita:moon_ice_shard_ore",
     "beyond_orbita:moon_stone_bricks",
     "beyond_orbita:moon_stone_brick_slab",
     "beyond_orbita:moon_stone_brick_stairs",
     "beyond_orbita:cracked_moon_stone_bricks",
     
     "beyond_orbita:mars_stone",
-    "beyond_orbita:mars_iron_ore",
-    "beyond_orbita:mars_ice_shard_ore",
     "beyond_orbita:mars_stone_bricks",
     "beyond_orbita:mars_stone_brick_slab",
     "beyond_orbita:mars_stone_brick_stairs",
     "beyond_orbita:cracked_mars_stone_bricks",
     
     "beyond_orbita:mercury_stone",
-    "beyond_orbita:mercury_iron_ore",
     "beyond_orbita:mercury_stone_bricks",
     "beyond_orbita:mercury_stone_brick_slab",
     "beyond_orbita:mercury_stone_brick_stairs",
@@ -27,7 +21,6 @@
     
     "beyond_orbita:venus_stone",
     "beyond_orbita:venus_sandstone",
-    "beyond_orbita:venus_sulphur_ore",
     "beyond_orbita:venus_stone_bricks",
     "beyond_orbita:venus_stone_brick_slab",
     "beyond_orbita:venus_stone_brick_stairs",
@@ -38,11 +31,6 @@
     "beyond_orbita:cracked_venus_sandstone_bricks",
     
     "beyond_orbita:glacio_stone",
-    "beyond_orbita:glacio_coal_ore",
-    "beyond_orbita:glacio_lapis_ore",
-    "beyond_orbita:glacio_iron_ore",
-    "beyond_orbita:glacio_copper_ore",
-    "beyond_orbita:glacio_ice_shard_ore",
     "beyond_orbita:glacio_stone_bricks",
     "beyond_orbita:cracked_glacio_stone_bricks",
     "beyond_orbita:glacio_stone_brick_slab",
@@ -60,6 +48,10 @@
     "beyond_orbita:iron_mark_block",
     "beyond_orbita:sky_stone",
     "beyond_orbita:infernal_spire_block",
-    "beyond_orbita:permafrost"
+    "beyond_orbita:permafrost",
+
+    "beyond_orbita:sulphur_ore",
+    "beyond_orbita:potassium_ore",
+    "beyond_orbita:nitrogen_ice"
   ]
 }
