@@ -1,6 +1,6 @@
 This project has been forked from Beyond Earth (https://github.com/MrScautHD/Beyond-Earth) under the LGPL-3.0 license.
 
-Original Credits (as found on the main repository):
+Pre-Fork Credits (as found on the main repository):
 ===================================================
 Developers: MrScautHD, ExistingEevee
 Texturers: FritzHackenstein, Fizz, jopken
@@ -8,7 +8,8 @@ Modelers: Scarecrow, ShrekRightT*****le1
 Builders: Barracuda, Solar, SpaceStar, Checheño, Retr0
 Sound Artists: Mvbz
 
-Other Credits:
-==============
-Some textures used from this package made by Alvoria for sayblekitten licensed under Creative Commons (https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/resource-packs/resource-pack-discussion/2981321-free-to-use-public-domain-textures-for-mods).
+Post-Fork Credits:
+==================
+All modifications made by rennautogirl63 (janewsome63).
+Some textures used from this package made by Alvoria for sayblekitten licensed under Creative Commons (https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/resource-packs/resource-pack-discussion/2981321-free-to-use-public-domain-textures-for-mods)
 Asteroid belt texture found here, stated to allow use with attribution (https://pngimage.net/%D0%BF%D0%BE%D1%8F%D1%81-%D0%B0%D1%81%D1%82%D0%B5%D1%80%D0%BE%D0%B8%D0%B4%D0%BE%D0%B2-png/)
