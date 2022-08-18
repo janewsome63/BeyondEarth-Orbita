@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "beyond_orbita:chromite_ore",
-    "beyond_orbita:deepslate_chromite_ore"
+    "beyond_orbita:raw_chromite"
   ]
 }

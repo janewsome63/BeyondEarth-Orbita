@@ -89,6 +89,7 @@ public class ClientMethods {
 
         player.displayClientMessage(new TranslatableComponent("message." + BeyondOrbitaMod.MODID + ".hold_key").append(" ").append(mc.options.keyJump.getKey().getDisplayName()), false);
     }
+
     public static void spaceStationObstructed() {
         Minecraft mc = Minecraft.getInstance();
         Player player = mc.player;

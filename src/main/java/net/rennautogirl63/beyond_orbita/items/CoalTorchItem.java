@@ -29,7 +29,7 @@ public class CoalTorchItem extends BlockItem {
         LevelAccessor iworldreader = context.getLevel();
         BlockPos blockpos = context.getClickedPos();
 
-        for(Direction direction : context.getNearestLookingDirections()) {
+        for (Direction direction : context.getNearestLookingDirections()) {
             if (direction != Direction.UP) {
                 BlockState blockstate2 = direction == Direction.DOWN ? this.getBlock().getStateForPlacement(context) : blockstate;
                 if (blockstate2 != null && blockstate2.canSurvive(iworldreader, blockpos)) {

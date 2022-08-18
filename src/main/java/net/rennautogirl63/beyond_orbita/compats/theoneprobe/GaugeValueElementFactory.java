@@ -8,17 +8,17 @@ import net.rennautogirl63.beyond_orbita.BeyondOrbitaMod;
 
 public class GaugeValueElementFactory implements IElementFactory {
 
-	public static final ResourceLocation ELEMENT_ID = new ResourceLocation(BeyondOrbitaMod.MODID, "top_element");
-	public static final GaugeValueElementFactory INSTANCE = new GaugeValueElementFactory();
+    public static final ResourceLocation ELEMENT_ID = new ResourceLocation(BeyondOrbitaMod.MODID, "top_element");
+    public static final GaugeValueElementFactory INSTANCE = new GaugeValueElementFactory();
 
-	@Override
-	public ResourceLocation getId() {
-		return ELEMENT_ID;
-	}
+    @Override
+    public ResourceLocation getId() {
+        return ELEMENT_ID;
+    }
 
-	@Override
-	public IElement createElement(FriendlyByteBuf buffer) {
-		return new GaugeValueElement(buffer);
-	}
+    @Override
+    public IElement createElement(FriendlyByteBuf buffer) {
+        return new GaugeValueElement(buffer);
+    }
 
 }

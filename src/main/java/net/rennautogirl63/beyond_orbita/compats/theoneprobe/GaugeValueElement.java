@@ -8,17 +8,17 @@ import net.rennautogirl63.beyond_orbita.gauge.IGaugeValue;
 
 public class GaugeValueElement extends GaugeValueRenderer implements IElement {
 
-	public GaugeValueElement(IGaugeValue value) {
-		super(value);
-	}
+    public GaugeValueElement(IGaugeValue value) {
+        super(value);
+    }
 
-	public GaugeValueElement(FriendlyByteBuf buffer) {
-		super(buffer);
-	}
+    public GaugeValueElement(FriendlyByteBuf buffer) {
+        super(buffer);
+    }
 
-	@Override
-	public ResourceLocation getID() {
-		return GaugeValueElementFactory.ELEMENT_ID;
-	}
+    @Override
+    public ResourceLocation getID() {
+        return GaugeValueElementFactory.ELEMENT_ID;
+    }
 
 }

@@ -78,7 +78,7 @@ public abstract class IRocketItem extends VehicleItem {
                     IRocketEntity rocket = this.getRocket(context.getLevel());
 
                     /** SET PRE POS */
-                    rocket.setPos(pos.getX() + 0.5D,  pos.getY() + 1, pos.getZ() + 0.5D);
+                    rocket.setPos(pos.getX() + 0.5D, pos.getY() + 1, pos.getZ() + 0.5D);
 
                     double d0 = this.getYOffset(level, pos, true, rocket.getBoundingBox());
                     float f = (float) Mth.floor((Mth.wrapDegrees(context.getRotation() - 180.0F) + 45.0F) / 90.0F) * 90.0F;
@@ -144,6 +144,6 @@ public abstract class IRocketItem extends VehicleItem {
     public abstract IRocketEntity getRocket(Level level);
 
     public void rocketPlaceSound(BlockPos pos, Level world) {
-        world.playSound(null, pos, SoundEvents.STONE_BREAK, SoundSource.BLOCKS, 1,1);
+        world.playSound(null, pos, SoundEvents.STONE_BREAK, SoundSource.BLOCKS, 1, 1);
     }
 }

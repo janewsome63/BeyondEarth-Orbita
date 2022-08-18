@@ -35,6 +35,6 @@ public class PygroBruteRenderer extends HumanoidMobRenderer<Mob, PygroModel<Mob>
     }
 
     protected boolean isShaking(Mob p_115712_) {
-        return super.isShaking(p_115712_) || p_115712_ instanceof AbstractPiglin && ((AbstractPiglin)p_115712_).isConverting();
+        return super.isShaking(p_115712_) || p_115712_ instanceof AbstractPiglin && ((AbstractPiglin) p_115712_).isConverting();
     }
 }

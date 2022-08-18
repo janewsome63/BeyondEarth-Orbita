@@ -1,7 +1,5 @@
 package net.rennautogirl63.beyond_orbita.machines;
 
-import java.util.List;
-
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -15,34 +13,36 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.rennautogirl63.beyond_orbita.BeyondOrbitaMod;
 import net.rennautogirl63.beyond_orbita.machines.tile.OxygenBubbleDistributorBlockEntity;
 
+import java.util.List;
+
 public class OxygenBubbleDistributorBlock extends AbstractMachineBlock<OxygenBubbleDistributorBlockEntity> {
 
-	public OxygenBubbleDistributorBlock(BlockBehaviour.Properties properties) {
-		super(properties);
-	}
+    public OxygenBubbleDistributorBlock(BlockBehaviour.Properties properties) {
+        super(properties);
+    }
 
-	@Override
-	protected boolean useFacing() {
-		return true;
-	}
+    @Override
+    protected boolean useFacing() {
+        return true;
+    }
 
-	@Override
-	protected boolean useLit() {
-		return true;
-	}
+    @Override
+    protected boolean useLit() {
+        return true;
+    }
 
-	@Override
-	public void appendHoverText(ItemStack itemstack, BlockGetter level, List<Component> list, TooltipFlag flag) {
-		super.appendHoverText(itemstack, level, list, flag);
+    @Override
+    public void appendHoverText(ItemStack itemstack, BlockGetter level, List<Component> list, TooltipFlag flag) {
+        super.appendHoverText(itemstack, level, list, flag);
 
-		int min = OxygenBubbleDistributorBlockEntity.RANGE_MIN * 2 + 1;
-		int max = OxygenBubbleDistributorBlockEntity.RANGE_MAX * 2 + 1;
-		list.add(new TranslatableComponent("tooltip." + BeyondOrbitaMod.MODID + ".oxygen_bubble_distributor", min, max).setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
-	}
+        int min = OxygenBubbleDistributorBlockEntity.RANGE_MIN * 2 + 1;
+        int max = OxygenBubbleDistributorBlockEntity.RANGE_MAX * 2 + 1;
+        list.add(new TranslatableComponent("tooltip." + BeyondOrbitaMod.MODID + ".oxygen_bubble_distributor", min, max).setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
+    }
 
-	@Override
-	public OxygenBubbleDistributorBlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-		return new OxygenBubbleDistributorBlockEntity(pos, state);
-	}
+    @Override
+    public OxygenBubbleDistributorBlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        return new OxygenBubbleDistributorBlockEntity(pos, state);
+    }
 
 }

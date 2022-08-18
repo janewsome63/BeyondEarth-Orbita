@@ -23,7 +23,9 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
@@ -54,12 +56,12 @@ public class Methods {
     public static final ResourceKey<Level> mercury = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "mercury"));
     public static final ResourceKey<Level> venus = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "venus"));
     public static final ResourceKey<Level> overworld = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation("overworld"));
-    public static final ResourceKey<Level> orbit = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID,"orbit"));
+    public static final ResourceKey<Level> orbit = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "orbit"));
     public static final ResourceKey<Level> moon = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "moon"));
     public static final ResourceKey<Level> mars = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "mars"));
-    public static final ResourceKey<Level> pluto = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID,"pluto"));
+    public static final ResourceKey<Level> pluto = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "pluto"));
     public static final ResourceKey<Level> glacio = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "glacio"));
-    public static final ResourceKey<Level> asteroid_belt = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID,"asteroid_belt"));
+    public static final ResourceKey<Level> asteroid_belt = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "asteroid_belt"));
 
     public static final ResourceLocation space_station = new ResourceLocation(BeyondOrbitaMod.MODID, "space_station");
 
@@ -130,10 +132,13 @@ public class Methods {
 
                 @Override
                 public PortalInfo getPortalInfo(Entity entity, ServerLevel destWorld, Function<ServerLevel, PortalInfo> defaultPortalInfo) {
-                    double x = entity.getX(); double z = entity.getZ(); boolean surface = false;
+                    double x = entity.getX();
+                    double z = entity.getZ();
+                    boolean surface = false;
                     if (planet == Methods.asteroid_belt) {
                         while (surface == false) {
-                            x -= 1; z -= 1;
+                            x -= 1;
+                            z -= 1;
                             for (int y = 384; y >= -64; y--) {
                                 BlockPos b = new BlockPos(x, y, z);
                                 if (!destWorld.getBlockState(b).isAir()) {
@@ -266,7 +271,9 @@ public class Methods {
         }
     }
 
-    /** If a entity should not get Fire add it to the Tag "venus_fire" */
+    /**
+     * If a entity should not get Fire add it to the Tag "venus_fire"
+     */
     public static void planetFire(LivingEntity entity, ResourceKey<Level> planet) {
         Level level = entity.level;
 
@@ -299,7 +306,9 @@ public class Methods {
         }
     }
 
-    /** If a entity should not get Damage add it to the Tag "venus_rain" */
+    /**
+     * If a entity should not get Damage add it to the Tag "venus_rain"
+     */
     public static void venusRain(LivingEntity entity, ResourceKey<Level> planet) {
         if (!Methods.isWorld(entity.level, planet)) {
             return;
@@ -332,7 +341,9 @@ public class Methods {
         }
     }
 
-    /** If a entity should get oxygen damage add it to the tag "oxygen" */
+    /**
+     * If a entity should get oxygen damage add it to the tag "oxygen"
+     */
     public static void entityOxygen(LivingEntity entity, Level level) {
         if (entity instanceof Player) {
             return;
@@ -370,7 +381,7 @@ public class Methods {
     public static boolean tagCheck(Entity entity, TagKey<EntityType<?>> tag) {
         return entity.getType().is(tag);
     }
-    
+
     public static boolean tagCheck(Fluid fluid, TagKey<Fluid> tag) {
         return fluid.is(tag);
     }
@@ -519,37 +530,39 @@ public class Methods {
         }
     }
 
-    public static void entityExitAtmosphere(Level world, Entity entity) { ResourceKey<Level> world2 = world.dimension();
-        double xv = entity.getDeltaMovement().x; double yv = entity.getDeltaMovement().y; double zv = entity.getDeltaMovement().z;
+    public static void entityExitAtmosphere(Level world, Entity entity) {
+        ResourceKey<Level> world2 = world.dimension();
+        double xv = entity.getDeltaMovement().x;
+        double yv = entity.getDeltaMovement().y;
+        double zv = entity.getDeltaMovement().z;
         if (world2 == Methods.overworld) {
             Methods.entityWorldTeleporter(entity, Methods.orbit, 1);
         } else {
             if (entity instanceof ItemEntity) {
                 entity.setDeltaMovement(xv, 0, zv);
-            }
-            else {
+            } else {
                 entity.setDeltaMovement(xv, -0.5, zv);
             }
         }
     }
 
-	public static void extractArmorOxygenUsingTimer(ItemStack itemstack, Player player) {
-		if (!player.getAbilities().instabuild && !player.isSpectator() && Methods.spaceSuitCheckBoth(player) && !player.hasEffect(EffectsRegistry.OXYGEN_EFFECT.get()) && Config.PLAYER_OXYGEN_SYSTEM.get() && (Methods.isSpaceWorldWithoutOxygen(player.level) || (Methods.isPlanetoidWorld(player.level) && player.blockPosition().getY() >= 590) || player.isEyeInFluid(FluidTags.WATER))) {
-			IOxygenStorage oxygenStorage = OxygenUtil.getItemStackOxygenStorage(itemstack);
+    public static void extractArmorOxygenUsingTimer(ItemStack itemstack, Player player) {
+        if (!player.getAbilities().instabuild && !player.isSpectator() && Methods.spaceSuitCheckBoth(player) && !player.hasEffect(EffectsRegistry.OXYGEN_EFFECT.get()) && Config.PLAYER_OXYGEN_SYSTEM.get() && (Methods.isSpaceWorldWithoutOxygen(player.level) || (Methods.isPlanetoidWorld(player.level) && player.blockPosition().getY() >= 590) || player.isEyeInFluid(FluidTags.WATER))) {
+            IOxygenStorage oxygenStorage = OxygenUtil.getItemStackOxygenStorage(itemstack);
 
             CompoundTag persistentData = player.getPersistentData();
-			String key = BeyondOrbitaMod.MODID + ":oxygen_timer";
-			int oxygenTimer = persistentData.getInt(key);
-			oxygenTimer++;
+            String key = BeyondOrbitaMod.MODID + ":oxygen_timer";
+            int oxygenTimer = persistentData.getInt(key);
+            oxygenTimer++;
 
-			if (oxygenStorage.getOxygenStored() > 0 && oxygenTimer > 3) {
-				oxygenStorage.extractOxygen(1, false);
-				oxygenTimer = 0;
-			}
+            if (oxygenStorage.getOxygenStored() > 0 && oxygenTimer > 3) {
+                oxygenStorage.extractOxygen(1, false);
+                oxygenTimer = 0;
+            }
 
-			persistentData.putInt(key, oxygenTimer);
-		}
-	}
+            persistentData.putInt(key, oxygenTimer);
+        }
+    }
 
     public static void disableFlyAntiCheat(ServerPlayer player, boolean condition) {
         if (condition) {
@@ -573,7 +586,7 @@ public class Methods {
     }
 
     public static void elytraCancel(Player player) {
-        if (player.isFallFlying()){
+        if (player.isFallFlying()) {
             player.stopFallFlying();
             player.setDeltaMovement(player.getDeltaMovement().x, player.getDeltaMovement().y - 0.1, player.getDeltaMovement().z);
         }

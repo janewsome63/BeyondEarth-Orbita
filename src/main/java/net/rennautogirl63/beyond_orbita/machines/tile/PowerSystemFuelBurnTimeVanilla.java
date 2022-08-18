@@ -7,21 +7,21 @@ import net.minecraftforge.common.ForgeHooks;
 
 public abstract class PowerSystemFuelBurnTimeVanilla extends PowerSystemFuelBurnTime {
 
-	public PowerSystemFuelBurnTimeVanilla(AbstractMachineBlockEntity blockEntity, int slot) {
-		super(blockEntity, slot);
-	}
+    public PowerSystemFuelBurnTimeVanilla(AbstractMachineBlockEntity blockEntity, int slot) {
+        super(blockEntity, slot);
+    }
 
-	public abstract RecipeType<?> getRecipeType();
+    public abstract RecipeType<?> getRecipeType();
 
-	@Override
-	protected int getFuelInternal(ItemStack fuel) {
-		return ForgeHooks.getBurnTime(fuel, this.getRecipeType());
-	}
+    @Override
+    protected int getFuelInternal(ItemStack fuel) {
+        return ForgeHooks.getBurnTime(fuel, this.getRecipeType());
+    }
 
-	@Override
-	public ResourceLocation getName() {
-		ResourceLocation name = super.getName();
-		return new ResourceLocation(name.getNamespace(), name.getPath() + "/vanilla");
-	}
+    @Override
+    public ResourceLocation getName() {
+        ResourceLocation name = super.getName();
+        return new ResourceLocation(name.getNamespace(), name.getPath() + "/vanilla");
+    }
 
 }

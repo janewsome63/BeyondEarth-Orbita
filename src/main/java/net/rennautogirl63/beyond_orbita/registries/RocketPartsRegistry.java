@@ -15,7 +15,9 @@ public class RocketPartsRegistry {
     public static final DeferredRegister<RocketPart> ROCKET_PARTS = DeferredRegister.create(new ResourceLocation(BeyondOrbitaMod.MODID, "rocket_part"), BeyondOrbitaMod.MODID);
     public static final Supplier<IForgeRegistry<RocketPart>> ROCKET_PARTS_REGISTRY = ROCKET_PARTS.makeRegistry(RocketPart.class, RegistryBuilder::new);
 
-    /** ROCKET PARTS */
+    /**
+     * ROCKET PARTS
+     */
     public static final RegistryObject<RocketPart> ROCKET_PART_EMPTY = ROCKET_PARTS.register("emtpy", () -> RocketPart.EMPTY);
     public static final RegistryObject<RocketPart> ROCKET_PART_NOSE = ROCKET_PARTS.register("nose", () -> new RocketPart(1));
     public static final RegistryObject<RocketPart> ROCKET_PART_BODY = ROCKET_PARTS.register("body", () -> new RocketPart(6));

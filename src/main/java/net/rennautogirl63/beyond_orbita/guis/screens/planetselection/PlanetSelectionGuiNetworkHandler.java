@@ -83,7 +83,8 @@ public class PlanetSelectionGuiNetworkHandler extends PlanetSelectionGuiNetworkH
                     message.defaultOptions(player);
                     boolean obstructed = false;
                     ServerLevel level = player.getServer().getLevel(orbit);
-                    test: for (int y = 175; y >= 155; y--) {
+                    test:
+                    for (int y = 175; y >= 155; y--) {
                         BlockPos b = new BlockPos(player.getX(), y, player.getZ());
                         if (!level.getBlockState(b).isAir()) {
                             obstructed = true;

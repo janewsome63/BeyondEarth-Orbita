@@ -5,7 +5,9 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiComponent;
+import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
@@ -13,8 +15,6 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.renderer.GameRenderer;
 import net.rennautogirl63.beyond_orbita.crafting.IngredientStack;
 import net.rennautogirl63.beyond_orbita.guis.screens.planetselection.PlanetSelectionGuiWindow;
 
@@ -31,7 +31,9 @@ public class ImageButtonPlacer extends Button {
     private Types type;
     private List<String> list;
 
-    /** USE ROW 0 FOR (NO ROW SYSTEM), USE ROW 1 FOR (CATEGORIES, PLANETS), USE ROW 2 FOR (ORBITS), USE ROW 3 FOR (SPACE STATIONS) */
+    /**
+     * USE ROW 0 FOR (NO ROW SYSTEM), USE ROW 1 FOR (CATEGORIES, PLANETS), USE ROW 2 FOR (ORBITS), USE ROW 3 FOR (SPACE STATIONS)
+     */
     public int row;
 
     private final int xTexStart;
@@ -74,27 +76,37 @@ public class ImageButtonPlacer extends Button {
         this.y = yIn;
     }
 
-    /** IF YOU WANT NO ONE RETURN (NULL) */
+    /**
+     * IF YOU WANT NO ONE RETURN (NULL)
+     */
     public enum Types {
 
-        /** IF YOU USE THIS PUT 1 STRING IN THE LIST (CATEGORY) */
+        /**
+         * IF YOU USE THIS PUT 1 STRING IN THE LIST (CATEGORY)
+         */
         MILKY_WAY_CATEGORY,
 
-        /** IF YOU USE THIS PUT 2 STRINGS IN THE LIST (CATEGORY, PROVIDED) */
+        /**
+         * IF YOU USE THIS PUT 2 STRINGS IN THE LIST (CATEGORY, PROVIDED)
+         */
         SOLAR_SYSTEM_CATEGORY,
 
-        /** IF YOU USE THIS PUT 4 STRINGS IN THE LIST (TYPE, GRAVITY, OXYGEN, TEMPERATURE) */
+        /**
+         * IF YOU USE THIS PUT 4 STRINGS IN THE LIST (TYPE, GRAVITY, OXYGEN, TEMPERATURE)
+         */
         PLANET_CATEGORY,
 
-        /** IF YOU USE THIS PUT 4 STRINGS IN THE LIST (TYPE, GRAVITY, OXYGEN, TEMPERATURE) */
+        /**
+         * IF YOU USE THIS PUT 4 STRINGS IN THE LIST (TYPE, GRAVITY, OXYGEN, TEMPERATURE)
+         */
         PLANET_SPACE_STATION_CATEGORY
     }
 
     public void renderButton(PoseStack poseStack, int mouseX, int mouseY, float partialTicks) {
         Minecraft minecraft = Minecraft.getInstance();
 
-		RenderSystem.setShader(GameRenderer::getPositionTexShader);
-		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.enableDepthTest();
 
         int i = this.yTexStart;
@@ -120,7 +132,7 @@ public class ImageButtonPlacer extends Button {
 
         /** TEXTURE RENDERER */
         RenderSystem.setShaderTexture(0, texture);
-        blit(poseStack, this.x, this.y, (float)this.xTexStart, (float)i, this.width, this.height, this.textureWidth, this.textureHeight);
+        blit(poseStack, this.x, this.y, (float) this.xTexStart, (float) i, this.width, this.height, this.textureWidth, this.textureHeight);
 
         /** FONT RENDERER */
         Font fontRenderer = minecraft.font;
@@ -138,7 +150,9 @@ public class ImageButtonPlacer extends Button {
         RenderSystem.disableDepthTest();
     }
 
-    /** MILKY WAY TYPE MANAGER */
+    /**
+     * MILKY WAY TYPE MANAGER
+     */
     private void milkyWayCategoryManager(Minecraft minecraft, PoseStack poseStack, int mouseX, int mouseY) {
         if (this.isHovered && this.type == Types.MILKY_WAY_CATEGORY) {
             Screen screen = minecraft.screen;
@@ -152,7 +166,9 @@ public class ImageButtonPlacer extends Button {
         }
     }
 
-    /** SOLAR SYSTEM TYPE MANAGER */
+    /**
+     * SOLAR SYSTEM TYPE MANAGER
+     */
     private void solarSystemCategoryManager(Minecraft minecraft, PoseStack poseStack, int mouseX, int mouseY) {
         if (this.isHovered && this.type == Types.SOLAR_SYSTEM_CATEGORY) {
             Screen screen = minecraft.screen;
@@ -167,7 +183,9 @@ public class ImageButtonPlacer extends Button {
         }
     }
 
-    /** PLANET SYSTEM TYPE MANAGER */
+    /**
+     * PLANET SYSTEM TYPE MANAGER
+     */
     private void planetCategoryManager(Minecraft minecraft, PoseStack poseStack, int mouseX, int mouseY) {
         if (this.isHovered && this.type == Types.PLANET_CATEGORY) {
             Screen screen = minecraft.screen;
@@ -184,7 +202,9 @@ public class ImageButtonPlacer extends Button {
         }
     }
 
-    /** PLANET SPACE STATION SYSTEM TYPE MANAGER */
+    /**
+     * PLANET SPACE STATION SYSTEM TYPE MANAGER
+     */
     private void planetSpaceStationCategoryManager(Minecraft minecraft, PoseStack poseStack, int mouseX, int mouseY) {
         if (this.isHovered && this.type == Types.PLANET_SPACE_STATION_CATEGORY) {
             PlanetSelectionGuiWindow screen = (PlanetSelectionGuiWindow) minecraft.screen;
@@ -211,7 +231,9 @@ public class ImageButtonPlacer extends Button {
         }
     }
 
-    /** TYPE TEXTURE MANAGER */
+    /**
+     * TYPE TEXTURE MANAGER
+     */
     private ResourceLocation getTypeTexture(boolean hover, ResourceLocation buttonTexture, ResourceLocation hoverButtonTexture) {
         if (hover) {
             return hoverButtonTexture;

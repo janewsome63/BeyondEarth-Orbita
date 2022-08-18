@@ -1,19 +1,19 @@
 package net.rennautogirl63.beyond_orbita.machines.tile;
 
-import java.util.LinkedHashMap;
-
 import net.minecraft.resources.ResourceLocation;
+
+import java.util.LinkedHashMap;
 
 public class PowerSystemRegistry extends LinkedHashMap<ResourceLocation, PowerSystem> {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public PowerSystemRegistry() {
+    public PowerSystemRegistry() {
 
-	}
+    }
 
-	public void put(PowerSystem powerSystem) {
-		this.put(powerSystem.getName(), powerSystem);
-	}
+    public void put(PowerSystem powerSystem) {
+        this.put(powerSystem.getName(), powerSystem);
+    }
 
 }

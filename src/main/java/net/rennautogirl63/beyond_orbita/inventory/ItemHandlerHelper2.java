@@ -6,28 +6,28 @@ import net.minecraftforge.items.IItemHandler;
 
 public class ItemHandlerHelper2 {
 
-	public static boolean isEmpty(IItemHandler handler) {
-		for (int i = 0; i < handler.getSlots(); i++) {
-			if (!handler.getStackInSlot(i).isEmpty()) {
-				return false;
-			}
-		}
+    public static boolean isEmpty(IItemHandler handler) {
+        for (int i = 0; i < handler.getSlots(); i++) {
+            if (!handler.getStackInSlot(i).isEmpty()) {
+                return false;
+            }
+        }
 
-		return true;
-	}
+        return true;
+    }
 
-	public static NonNullList<ItemStack> getStacks(IItemHandler handler) {
-		NonNullList<ItemStack> list = NonNullList.withSize(handler.getSlots(), ItemStack.EMPTY);
+    public static NonNullList<ItemStack> getStacks(IItemHandler handler) {
+        NonNullList<ItemStack> list = NonNullList.withSize(handler.getSlots(), ItemStack.EMPTY);
 
-		for (int i = 0; i < handler.getSlots(); i++) {
-			ItemStack stack = handler.getStackInSlot(i);
-			list.set(i, stack);
-		}
+        for (int i = 0; i < handler.getSlots(); i++) {
+            ItemStack stack = handler.getStackInSlot(i);
+            list.set(i, stack);
+        }
 
-		return list;
-	}
+        return list;
+    }
 
-	private ItemHandlerHelper2() {
+    private ItemHandlerHelper2() {
 
-	}
+    }
 }

@@ -1,8 +1,5 @@
 package net.rennautogirl63.beyond_orbita.compats.waila;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import mcp.mobius.waila.api.BlockAccessor;
 import mcp.mobius.waila.api.IComponentProvider;
 import mcp.mobius.waila.api.IServerDataProvider;
@@ -15,25 +12,28 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.rennautogirl63.beyond_orbita.gauge.IGaugeValue;
 import net.rennautogirl63.beyond_orbita.gauge.IGaugeValuesProvider;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BlockDataProvider implements IServerDataProvider<BlockEntity>, IComponentProvider {
 
-	public static final BlockDataProvider INSTANCE = new BlockDataProvider();
+    public static final BlockDataProvider INSTANCE = new BlockDataProvider();
 
-	@Override
-	public void appendServerData(CompoundTag data, ServerPlayer player, Level level, BlockEntity blockEntity, boolean b) {
+    @Override
+    public void appendServerData(CompoundTag data, ServerPlayer player, Level level, BlockEntity blockEntity, boolean b) {
 
-		List<IGaugeValue> list = new ArrayList<>();
+        List<IGaugeValue> list = new ArrayList<>();
 
-		if (blockEntity instanceof IGaugeValuesProvider) {
-			((IGaugeValuesProvider) blockEntity).getGaugeValues().forEach(list::add);
-		}
+        if (blockEntity instanceof IGaugeValuesProvider) {
+            ((IGaugeValuesProvider) blockEntity).getGaugeValues().forEach(list::add);
+        }
 
-		WailaPlugin.put(data, WailaPlugin.write(list));
-	}
+        WailaPlugin.put(data, WailaPlugin.write(list));
+    }
 
-	@Override
-	public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
-		WailaPlugin.appendTooltip(tooltip, accessor.getServerData());
-	}
+    @Override
+    public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
+        WailaPlugin.appendTooltip(tooltip, accessor.getServerData());
+    }
 
 }

@@ -1,10 +1,6 @@
 package net.rennautogirl63.beyond_orbita.flag;
 
 import com.mojang.authlib.GameProfile;
-
-import java.util.UUID;
-import javax.annotation.Nullable;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
@@ -17,6 +13,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.rennautogirl63.beyond_orbita.registries.BlockEntitiesRegistry;
+
+import javax.annotation.Nullable;
+import java.util.UUID;
 
 public class FlagTileEntity extends BlockEntity {
 
@@ -46,7 +45,7 @@ public class FlagTileEntity extends BlockEntity {
         } else if (p_155745_.contains("ExtraType", 8)) {
             String s = p_155745_.getString("ExtraType");
             if (!StringUtil.isNullOrEmpty(s)) {
-                this.setOwner(new GameProfile((UUID)null, s));
+                this.setOwner(new GameProfile((UUID) null, s));
             }
         }
     }
@@ -73,7 +72,7 @@ public class FlagTileEntity extends BlockEntity {
     }
 
     public void setOwner(@Nullable GameProfile p_59770_) {
-        synchronized(this) {
+        synchronized (this) {
             this.owner = p_59770_;
         }
 

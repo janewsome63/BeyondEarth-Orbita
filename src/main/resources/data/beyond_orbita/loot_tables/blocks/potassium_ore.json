@@ -47,7 +47,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "beyond_orbita:raw_potassium",
+          "name": "beyond_orbita:potassium",
           "weight": 1,
           "conditions": [
             {

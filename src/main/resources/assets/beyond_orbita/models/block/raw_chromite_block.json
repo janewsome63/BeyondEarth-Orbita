@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "beyond_orbita:blocks/raw_chromite_block",
+    "up": "beyond_orbita:blocks/raw_chromite_block",
+    "north": "beyond_orbita:blocks/raw_chromite_block",
+    "east": "beyond_orbita:blocks/raw_chromite_block",
+    "south": "beyond_orbita:blocks/raw_chromite_block",
+    "west": "beyond_orbita:blocks/raw_chromite_block",
+    "particle": "beyond_orbita:blocks/raw_chromite_block"
+  }
+}

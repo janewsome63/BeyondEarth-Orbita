@@ -22,10 +22,14 @@ import net.rennautogirl63.beyond_orbita.entities.RocketTier2Entity;
 @OnlyIn(Dist.CLIENT)
 public class RocketTier2ItemRenderer<T extends RocketTier2Entity> extends BlockEntityWithoutLevelRenderer {
 
-    /** TEXTURE */
+    /**
+     * TEXTURE
+     */
     public static final ResourceLocation TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/vehicles/rocket_t2.png");
 
-    /** MODEL */
+    /**
+     * MODEL
+     */
     private RocketTier2Model model;
 
     public RocketTier2ItemRenderer(BlockEntityRenderDispatcher p_172550_, EntityModelSet p_172551_) {

@@ -12,7 +12,9 @@ import net.rennautogirl63.beyond_orbita.world.processors.StructureVoidProcessor;
 @Mod.EventBusSubscriber(modid = BeyondOrbitaMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class StructureProcessorsRegistry {
 
-    /** STRUCTURE VOID PROCESSOR */
+    /**
+     * STRUCTURE VOID PROCESSOR
+     */
     public static final StructureProcessorType<StructureVoidProcessor> STRUCTURE_VOID_PROCESSOR = () -> StructureVoidProcessor.CODEC;
 
     @SubscribeEvent

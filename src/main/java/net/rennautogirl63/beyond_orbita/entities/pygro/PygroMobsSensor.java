@@ -3,11 +3,6 @@ package net.rennautogirl63.beyond_orbita.entities.pygro;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
-
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
@@ -24,6 +19,10 @@ import net.minecraft.world.entity.monster.piglin.Piglin;
 import net.minecraft.world.entity.monster.piglin.PiglinAi;
 import net.minecraft.world.entity.monster.piglin.PiglinBrute;
 import net.minecraft.world.entity.player.Player;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 public class PygroMobsSensor extends Sensor<LivingEntity> {
     @Override
@@ -47,11 +46,11 @@ public class PygroMobsSensor extends Sensor<LivingEntity> {
         List<AbstractPiglin> list1 = Lists.newArrayList();
         NearestVisibleLivingEntities nearestvisiblelivingentities = brain.getMemory(MemoryModuleType.NEAREST_VISIBLE_LIVING_ENTITIES).orElse(NearestVisibleLivingEntities.empty());
 
-        for(LivingEntity livingentity : nearestvisiblelivingentities.findAll((p_186157_) -> {
+        for (LivingEntity livingentity : nearestvisiblelivingentities.findAll((p_186157_) -> {
             return true;
         })) {
             if (livingentity instanceof Hoglin) {
-                Hoglin hoglinentity = (Hoglin)livingentity;
+                Hoglin hoglinentity = (Hoglin) livingentity;
                 if (hoglinentity.isBaby() && !optional2.isPresent()) {
                     optional2 = Optional.of(hoglinentity);
                 } else if (hoglinentity.isAdult()) {
@@ -61,16 +60,16 @@ public class PygroMobsSensor extends Sensor<LivingEntity> {
                     }
                 }
             } else if (livingentity instanceof PiglinBrute) {
-                list.add((PiglinBrute)livingentity);
+                list.add((PiglinBrute) livingentity);
             } else if (livingentity instanceof Piglin) {
-                Piglin piglinentity = (Piglin)livingentity;
+                Piglin piglinentity = (Piglin) livingentity;
                 if (piglinentity.isBaby() && !optional3.isPresent()) {
                     optional3 = Optional.of(piglinentity);
                 } else if (piglinentity.isAdult()) {
                     list.add(piglinentity);
                 }
             } else if (livingentity instanceof Player) {
-                Player playerentity = (Player)livingentity;
+                Player playerentity = (Player) livingentity;
 
                 if (!optional5.isPresent() && false && !PiglinAi.isWearingGold(playerentity)) {
                     optional5 = Optional.of(playerentity);
@@ -84,13 +83,13 @@ public class PygroMobsSensor extends Sensor<LivingEntity> {
                     optional4 = Optional.of(livingentity);
                 }
             } else {
-                optional = Optional.of((Mob)livingentity);
+                optional = Optional.of((Mob) livingentity);
             }
         }
 
-        for(LivingEntity livingentity1 : brain.getMemory(MemoryModuleType.NEAREST_LIVING_ENTITIES).orElse(ImmutableList.of())) {
-            if (livingentity1 instanceof AbstractPiglin && ((AbstractPiglin)livingentity1).isAdult()) {
-                list1.add((AbstractPiglin)livingentity1);
+        for (LivingEntity livingentity1 : brain.getMemory(MemoryModuleType.NEAREST_LIVING_ENTITIES).orElse(ImmutableList.of())) {
+            if (livingentity1 instanceof AbstractPiglin && ((AbstractPiglin) livingentity1).isAdult()) {
+                list1.add((AbstractPiglin) livingentity1);
             }
         }
 

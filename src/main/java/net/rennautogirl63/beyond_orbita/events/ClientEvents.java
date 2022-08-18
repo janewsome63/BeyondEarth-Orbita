@@ -5,17 +5,12 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.player.AbstractClientPlayer;
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.client.resources.sounds.TickableSoundInstance;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.alchemy.Potion;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.client.event.RenderArmEvent;
@@ -23,16 +18,13 @@ import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.rennautogirl63.beyond_orbita.BeyondOrbitaMod;
-import net.rennautogirl63.beyond_orbita.effects.OxygenEffect;
 import net.rennautogirl63.beyond_orbita.entities.IRocketEntity;
 import net.rennautogirl63.beyond_orbita.entities.LanderEntity;
 import net.rennautogirl63.beyond_orbita.events.forge.RenderHandItemEvent;
 import net.rennautogirl63.beyond_orbita.events.forge.RenderViewEvent;
 import net.rennautogirl63.beyond_orbita.events.forge.SetupLivingBipedAnimEvent;
 import net.rennautogirl63.beyond_orbita.items.VehicleItem;
-import net.rennautogirl63.beyond_orbita.registries.BlocksRegistry;
 import net.rennautogirl63.beyond_orbita.registries.EffectsRegistry;
 
 @Mod.EventBusSubscriber(modid = BeyondOrbitaMod.MODID, value = Dist.CLIENT)
@@ -162,8 +154,7 @@ public class ClientEvents {
             // Arms
             model.rightArm.xRot = -0.07f;
             model.leftArm.xRot = -0.07f;
-        }
-        else if (!Methods.isRocket(player.getVehicle())) {
+        } else if (!Methods.isRocket(player.getVehicle())) {
             Item item1 = player.getMainHandItem().getItem();
             Item item2 = player.getOffhandItem().getItem();
 

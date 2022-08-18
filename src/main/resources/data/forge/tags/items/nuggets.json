@@ -1,10 +1,10 @@
 {
   "replace": false,
   "values": [
-    "#forge:ingots/steel",
-    "#forge:ingots/chromium",
-    "#forge:ingots/aluminum",
-    "#forge:ingots/titanium",
-    "#forge:ingots/stainless_steel"
+    "#forge:nuggets/aluminum",
+    "#forge:nuggets/chromium",
+    "#forge:nuggets/stainless_steel",
+    "#forge:nuggets/steel",
+    "#forge:nuggets/titanium"
   ]
 }

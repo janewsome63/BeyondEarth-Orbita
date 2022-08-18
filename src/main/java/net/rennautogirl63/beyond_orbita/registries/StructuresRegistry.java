@@ -11,7 +11,9 @@ public class StructuresRegistry {
 
     public static final DeferredRegister<StructureFeature<?>> STRUCTURES = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, BeyondOrbitaMod.MODID);
 
-    /** STRUCTURES */
+    /**
+     * STRUCTURES
+     */
     public static final RegistryObject<StructureFeature<?>> ALIEN_VILLAGE = STRUCTURES.register("alien_village", AlienVillage::new);
     public static final RegistryObject<StructureFeature<?>> METEOR = STRUCTURES.register("meteor", Meteor::new);
     public static final RegistryObject<StructureFeature<?>> OIL_WELL = STRUCTURES.register("oil_well", OilWell::new);

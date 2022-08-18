@@ -11,6 +11,8 @@ public class SensorsRegistry {
 
     public static final DeferredRegister<SensorType<?>> SENSOR = DeferredRegister.create(ForgeRegistries.SENSOR_TYPES, BeyondOrbitaMod.MODID);
 
-    /** SENSORS */
-    public static final RegistryObject<SensorType<PygroMobsSensor>> PYGRO_SENSOR = SENSOR.register("pygro_sensor", ()-> new SensorType<>(PygroMobsSensor::new));
+    /**
+     * SENSORS
+     */
+    public static final RegistryObject<SensorType<PygroMobsSensor>> PYGRO_SENSOR = SENSOR.register("pygro_sensor", () -> new SensorType<>(PygroMobsSensor::new));
 }

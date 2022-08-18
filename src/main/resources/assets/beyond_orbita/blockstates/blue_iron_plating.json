@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "beyond_orbita:block/blue_iron_plating",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "beyond_orbita:block/blue_iron_plating"
+    },
+    "axis=z": {
+      "model": "beyond_orbita:block/blue_iron_plating",
+      "x": 90
+    }
+  }
+}

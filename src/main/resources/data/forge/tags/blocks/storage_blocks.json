@@ -1,10 +1,12 @@
 {
   "replace": false,
   "values": [
-    "#forge:storage_blocks/desh",
-    "#forge:storage_blocks/ostrum",
-    "#forge:storage_blocks/calorite",
+    "#forge:storage_blocks/aluminum",
+    "#forge:storage_blocks/chromium",
+    "#forge:storage_blocks/potassium",
+    "#forge:storage_blocks/stainless_steel",
     "#forge:storage_blocks/steel",
-    "#forge:storage_blocks/sulphur"
+    "#forge:storage_blocks/sulphur",
+    "#forge:storage_blocks/titanium"
   ]
 }

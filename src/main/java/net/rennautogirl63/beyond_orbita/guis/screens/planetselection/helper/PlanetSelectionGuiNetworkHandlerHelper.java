@@ -7,7 +7,9 @@ import net.rennautogirl63.beyond_orbita.crafting.SpaceStationRecipe;
 
 public abstract class PlanetSelectionGuiNetworkHandlerHelper {
 
-    /** SET EVERYTHING BACK AS BEFORE THE SCREEN OPEN */
+    /**
+     * SET EVERYTHING BACK AS BEFORE THE SCREEN OPEN
+     */
     public void defaultOptions(Player player) {
         if (!player.level.isClientSide) {
             player.setNoGravity(false);
@@ -16,7 +18,9 @@ public abstract class PlanetSelectionGuiNetworkHandlerHelper {
         player.closeContainer();
     }
 
-    /** DELETE ITEMS FOR THE SPACE STATION */
+    /**
+     * DELETE ITEMS FOR THE SPACE STATION
+     */
     public void deleteItems(Player player) {
         if (player.getAbilities().instabuild || player.isSpectator()) {
             return;

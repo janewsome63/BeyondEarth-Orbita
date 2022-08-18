@@ -21,10 +21,14 @@ import net.rennautogirl63.beyond_orbita.entities.RoverEntity;
 @OnlyIn(Dist.CLIENT)
 public class RoverItemRenderer<T extends RoverEntity> extends BlockEntityWithoutLevelRenderer {
 
-    /** TEXTURE */
+    /**
+     * TEXTURE
+     */
     public static final ResourceLocation TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/vehicles/rover.png");
 
-    /** MODEL */
+    /**
+     * MODEL
+     */
     private RoverModel model;
 
     public RoverItemRenderer(BlockEntityRenderDispatcher p_172550_, EntityModelSet p_172551_) {

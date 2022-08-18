@@ -8,11 +8,10 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.rennautogirl63.beyond_orbita.BeyondOrbitaMod;
 import net.rennautogirl63.beyond_orbita.entities.RoverEntity;
-
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.api.distmarker.Dist;
 
 @OnlyIn(Dist.CLIENT)
 public class RoverModel<T extends RoverEntity> extends EntityModel<T> {

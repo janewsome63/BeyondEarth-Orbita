@@ -62,39 +62,40 @@ public class SimplePlanesGravity {
             gravitySystem(entity, SPACE_GRAVITY, SPACE_DRAG);
         }
     }
+
     public static void gravitySystem(Entity entity, float gravity, float drag) {
         if (MinecraftForge.EVENT_BUS.post(new EntityGravityEvent(entity, gravity))) {
             return;
         }
 
-        double x = entity.getX(); double y = entity.getY(); double z = entity.getZ(); double xv = entity.getDeltaMovement().x; double yv = entity.getDeltaMovement().y; double zv = entity.getDeltaMovement().z;
+        double x = entity.getX();
+        double y = entity.getY();
+        double z = entity.getZ();
+        double xv = entity.getDeltaMovement().x;
+        double yv = entity.getDeltaMovement().y;
+        double zv = entity.getDeltaMovement().z;
         if (Methods.noGravWorlds.contains(entity.level.dimension())) {
             Level level = entity.getLevel();
             Block[] blocks = {Blocks.AIR, Blocks.VOID_AIR, Blocks.CAVE_AIR};
             if (!entity.isOnGround() && Arrays.asList(blocks).contains((level.getBlockState(new BlockPos(x, y - 0.5, z))).getBlock())
                     && Arrays.asList(blocks).contains((level.getBlockState(new BlockPos(x, y - 1.5, z))).getBlock())
                     && Arrays.asList(blocks).contains((level.getBlockState(new BlockPos(x, y - 2.5, z))).getBlock())) {
-                 if (!entity.isNoGravity()) {
-                     entity.setNoGravity(true);
-                 }
-            }
-            else {
+                if (!entity.isNoGravity()) {
+                    entity.setNoGravity(true);
+                }
+            } else {
                 if (entity.isNoGravity()) {
                     entity.setNoGravity(false);
                 }
             }
             entity.setDeltaMovement(xv / 5, (yv / 0.98) * drag, zv / 5);
-        }
-        else if (y >= 590 && Methods.planetoidWorlds.contains(entity.level.dimension())) {
+        } else if (y >= 590 && Methods.planetoidWorlds.contains(entity.level.dimension())) {
             entity.setDeltaMovement(((xv / 0.98) * drag) * 0.9, abs(((yv / 0.98) + 0.024 - (gravity * 4) * drag)) * -1, ((zv / 0.98) * drag) * 0.9);
-        }
-        else if (y > 320 && y < 590 && Methods.planetoidWorlds.contains(entity.level.dimension())) {
+        } else if (y > 320 && y < 590 && Methods.planetoidWorlds.contains(entity.level.dimension())) {
             entity.setDeltaMovement(((xv / 0.98) * drag) * 0.95, ((yv / 0.98) + 0.024 - gravity) * drag * 0.95, ((zv / 0.98) * drag) * 0.95);
-        }
-        else if (Methods.noAtmoWorlds.contains(entity.level.dimension())) {
+        } else if (Methods.noAtmoWorlds.contains(entity.level.dimension())) {
             entity.setDeltaMovement(xv / 5, abs(((yv / 0.98) + 0.024 - gravity) * drag) * -1, zv / 5);
-        }
-        else {
+        } else {
             entity.setDeltaMovement((xv / 0.98) * drag, ((yv / 0.98) + 0.024 - gravity) * drag, (zv / 0.98) * drag);
         }
     }

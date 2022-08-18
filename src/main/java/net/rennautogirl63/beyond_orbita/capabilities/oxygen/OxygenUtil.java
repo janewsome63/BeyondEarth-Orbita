@@ -7,116 +7,116 @@ import net.rennautogirl63.beyond_orbita.compats.mekanism.MekanismHelper;
 
 public class OxygenUtil {
 
-	public static IOxygenStorage getItemStackOxygenStorage(ItemStack itemStack) {
-		IOxygenStorage oxygenStorage = itemStack.getCapability(CapabilityOxygen.OXYGEN).orElse(null);
+    public static IOxygenStorage getItemStackOxygenStorage(ItemStack itemStack) {
+        IOxygenStorage oxygenStorage = itemStack.getCapability(CapabilityOxygen.OXYGEN).orElse(null);
 
-		if (oxygenStorage != null) {
-			return oxygenStorage;
-		}
+        if (oxygenStorage != null) {
+            return oxygenStorage;
+        }
 
-		
-		if (CompatibleManager.MEKANISM.isLoaded()) {
-			IOxygenStorage adapter = MekanismHelper.getItemStackOxygenAdapter(itemStack);
 
-			if (adapter != null) {
-				return adapter;
-			}
-		}
+        if (CompatibleManager.MEKANISM.isLoaded()) {
+            IOxygenStorage adapter = MekanismHelper.getItemStackOxygenAdapter(itemStack);
 
-		return null;
-	}
+            if (adapter != null) {
+                return adapter;
+            }
+        }
 
-	/**
-	 * test receive oxygen to itemstack
-	 * 
-	 * @param itemStack
-	 * @param fluid
-	 * @return
-	 */
-	public static boolean canReceive(ItemStack itemStack) {
-		if (itemStack.isEmpty()) {
-			return false;
-		}
+        return null;
+    }
 
-		IOxygenStorage storageInItemStack = getItemStackOxygenStorage(itemStack);
-		return storageInItemStack != null && storageInItemStack.receiveOxygen(1, true) > 0;
-	}
+    /**
+     * test receive oxygen to itemstack
+     *
+     * @param itemStack
+     * @param fluid
+     * @return
+     */
+    public static boolean canReceive(ItemStack itemStack) {
+        if (itemStack.isEmpty()) {
+            return false;
+        }
 
-	/**
-	 * test extract oxygen from itemstack
-	 * 
-	 * @param itemStack
-	 * @param fluid
-	 * @return
-	 */
-	public static boolean canExtract(ItemStack itemStack) {
-		if (itemStack.isEmpty()) {
-			return false;
-		}
+        IOxygenStorage storageInItemStack = getItemStackOxygenStorage(itemStack);
+        return storageInItemStack != null && storageInItemStack.receiveOxygen(1, true) > 0;
+    }
 
-		IOxygenStorage storageInItemStack = getItemStackOxygenStorage(itemStack);
-		return storageInItemStack != null && storageInItemStack.extractOxygen(1, true) > 0;
-	}
+    /**
+     * test extract oxygen from itemstack
+     *
+     * @param itemStack
+     * @param fluid
+     * @return
+     */
+    public static boolean canExtract(ItemStack itemStack) {
+        if (itemStack.isEmpty()) {
+            return false;
+        }
 
-	public static ItemStack makeFull(ItemStack itemStack) {
-		if (itemStack.isEmpty()) {
-			return itemStack;
-		}
+        IOxygenStorage storageInItemStack = getItemStackOxygenStorage(itemStack);
+        return storageInItemStack != null && storageInItemStack.extractOxygen(1, true) > 0;
+    }
 
-		IOxygenStorage storageInItemStack = getItemStackOxygenStorage(itemStack);
+    public static ItemStack makeFull(ItemStack itemStack) {
+        if (itemStack.isEmpty()) {
+            return itemStack;
+        }
 
-		if (storageInItemStack != null) {
-			storageInItemStack.receiveOxygen(storageInItemStack.getMaxOxygenStored(), false);
-		}
+        IOxygenStorage storageInItemStack = getItemStackOxygenStorage(itemStack);
 
-		return itemStack;
-	}
+        if (storageInItemStack != null) {
+            storageInItemStack.receiveOxygen(storageInItemStack.getMaxOxygenStored(), false);
+        }
 
-	public static boolean fillSink(IItemHandlerModifiable itemHandler, int sinkItemSlot, IOxygenStorage source, int transfer) {
-		ItemStack sinkItemStack = itemHandler.getStackInSlot(sinkItemSlot);
+        return itemStack;
+    }
 
-		return fillSinkCapability(source, sinkItemStack, transfer) > 0;
-	}
+    public static boolean fillSink(IItemHandlerModifiable itemHandler, int sinkItemSlot, IOxygenStorage source, int transfer) {
+        ItemStack sinkItemStack = itemHandler.getStackInSlot(sinkItemSlot);
 
-	public static int fillSinkCapability(IOxygenStorage source, ItemStack sinkItemStack, int transfer) {
-		IOxygenStorage sink = getItemStackOxygenStorage(sinkItemStack);
-		return tryTransfer(sink, source, transfer);
-	}
+        return fillSinkCapability(source, sinkItemStack, transfer) > 0;
+    }
 
-	public static boolean drainSource(IItemHandlerModifiable itemHandler, int sourceItemSlot, IOxygenStorage sink, int transfer) {
-		ItemStack sourceItemStack = itemHandler.getStackInSlot(sourceItemSlot);
+    public static int fillSinkCapability(IOxygenStorage source, ItemStack sinkItemStack, int transfer) {
+        IOxygenStorage sink = getItemStackOxygenStorage(sinkItemStack);
+        return tryTransfer(sink, source, transfer);
+    }
 
-		return drainSourceCapability(sink, sourceItemStack, transfer) > 0;
-	}
+    public static boolean drainSource(IItemHandlerModifiable itemHandler, int sourceItemSlot, IOxygenStorage sink, int transfer) {
+        ItemStack sourceItemStack = itemHandler.getStackInSlot(sourceItemSlot);
 
-	public static int drainSourceCapability(IOxygenStorage sink, ItemStack sourceItemStack, int transfer) {
-		IOxygenStorage source = getItemStackOxygenStorage(sourceItemStack);
-		return tryTransfer(sink, source, transfer);
-	}
+        return drainSourceCapability(sink, sourceItemStack, transfer) > 0;
+    }
 
-	public static int tryTransfer(IOxygenStorage sink, IOxygenStorage source, int transfer) {
-		int received = 0;
+    public static int drainSourceCapability(IOxygenStorage sink, ItemStack sourceItemStack, int transfer) {
+        IOxygenStorage source = getItemStackOxygenStorage(sourceItemStack);
+        return tryTransfer(sink, source, transfer);
+    }
 
-		if (sink != null && source != null && transfer > 0) {
-			int extractableAmount = source.extractOxygen(transfer, true);
+    public static int tryTransfer(IOxygenStorage sink, IOxygenStorage source, int transfer) {
+        int received = 0;
 
-			if (extractableAmount > 0) {
-				int receivableAmount = sink.receiveOxygen(extractableAmount, true);
+        if (sink != null && source != null && transfer > 0) {
+            int extractableAmount = source.extractOxygen(transfer, true);
 
-				if (receivableAmount > 0) {
-					int extracted = source.extractOxygen(receivableAmount, false);
+            if (extractableAmount > 0) {
+                int receivableAmount = sink.receiveOxygen(extractableAmount, true);
 
-					if (extracted > 0) {
-						received = sink.receiveOxygen(extracted, false);
-					}
-				}
-			}
-		}
+                if (receivableAmount > 0) {
+                    int extracted = source.extractOxygen(receivableAmount, false);
 
-		return received;
-	}
+                    if (extracted > 0) {
+                        received = sink.receiveOxygen(extracted, false);
+                    }
+                }
+            }
+        }
 
-	private OxygenUtil() {
+        return received;
+    }
 
-	}
+    private OxygenUtil() {
+
+    }
 }

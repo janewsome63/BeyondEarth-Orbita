@@ -38,11 +38,11 @@ public class AsteroidBeltSky {
 
     @Nullable
     public static VertexBuffer starBuffer;
-	private static final ResourceLocation MARS_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/mars.png");
-	private static final ResourceLocation SUN_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/no_a_sun.png");
+    private static final ResourceLocation MARS_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/mars.png");
+    private static final ResourceLocation SUN_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/no_a_sun.png");
 
-	@SubscribeEvent(priority = EventPriority.HIGHEST)
-	public static void clientSetup(FMLClientSetupEvent event) {
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void clientSetup(FMLClientSetupEvent event) {
         DimensionSpecialEffects.EFFECTS.put(DIM_RENDER_INFO, new DimensionSpecialEffects(192, false, DimensionSpecialEffects.SkyType.NORMAL, false, false) {
             @Override
             public Vec3 getBrightnessDependentFogColor(Vec3 p_108878_, float p_108879_) {
@@ -163,6 +163,6 @@ public class AsteroidBeltSky {
                     }
                 };
             }
-		});
-	}
+        });
+    }
 }

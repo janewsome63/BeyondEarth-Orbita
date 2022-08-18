@@ -7,12 +7,14 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.RegistryOps;
 import net.minecraft.server.level.WorldGenRegion;
-import net.minecraft.world.level.*;
-import net.minecraft.world.level.biome.*;
+import net.minecraft.world.level.StructureFeatureManager;
+import net.minecraft.world.level.biome.BiomeSource;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.chunk.*;
-import net.minecraft.world.level.levelgen.*;
+import net.minecraft.world.level.chunk.ChunkAccess;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator;
+import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
 import net.minecraft.world.level.levelgen.structure.StructureSet;
 import net.minecraft.world.level.levelgen.synth.NormalNoise;
 

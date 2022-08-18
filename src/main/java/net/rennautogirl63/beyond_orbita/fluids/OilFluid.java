@@ -52,10 +52,10 @@ public class OilFluid extends FlowingFluid {
     public void animateTick(Level worldIn, BlockPos pos, FluidState state, Random random) {
         if (!state.isSource() && !state.getValue(FALLING)) {
             if (random.nextInt(64) == 0) {
-                worldIn.playLocalSound((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, SoundEvents.WATER_AMBIENT, SoundSource.BLOCKS, random.nextFloat() * 0.25F + 0.75F, random.nextFloat() + 0.5F, false);
+                worldIn.playLocalSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.WATER_AMBIENT, SoundSource.BLOCKS, random.nextFloat() * 0.25F + 0.75F, random.nextFloat() + 0.5F, false);
             }
         } else if (random.nextInt(10) == 0) {
-            worldIn.addParticle(ParticleTypes.UNDERWATER, (double)pos.getX() + random.nextDouble(), (double)pos.getY() + random.nextDouble(), (double)pos.getZ() + random.nextDouble(), 0.0D, 0.0D, 0.0D);
+            worldIn.addParticle(ParticleTypes.UNDERWATER, (double) pos.getX() + random.nextDouble(), (double) pos.getY() + random.nextDouble(), (double) pos.getZ() + random.nextDouble(), 0.0D, 0.0D, 0.0D);
         }
     }
 
@@ -105,6 +105,7 @@ public class OilFluid extends FlowingFluid {
     protected int getDropOff(LevelReader p_76087_) {
         return 2;
     }
+
     @Override
     public int getTickDelay(LevelReader p_76120_) {
         return 8;
@@ -123,9 +124,9 @@ public class OilFluid extends FlowingFluid {
     @Override
     protected FluidAttributes createAttributes() {
         return net.minecraftforge.fluids.FluidAttributes.builder(
-                 new ResourceLocation(BeyondOrbitaMod.MODID,"blocks/fluid_oil_still"),
-                 new ResourceLocation(BeyondOrbitaMod.MODID,"blocks/fluid_oil_flow"))
-                .overlay(new ResourceLocation(BeyondOrbitaMod.MODID,"blocks/oil_overlay"))
+                        new ResourceLocation(BeyondOrbitaMod.MODID, "blocks/fluid_oil_still"),
+                        new ResourceLocation(BeyondOrbitaMod.MODID, "blocks/fluid_oil_flow"))
+                .overlay(new ResourceLocation(BeyondOrbitaMod.MODID, "blocks/oil_overlay"))
                 .translationKey("block." + BeyondOrbitaMod.MODID + ".oil")
                 .sound(SoundEvents.BUCKET_FILL, SoundEvents.BUCKET_EMPTY)
                 .build(this);

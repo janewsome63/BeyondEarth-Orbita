@@ -7,7 +7,9 @@ import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
@@ -54,13 +56,17 @@ public class VehicleEntity extends Entity {
 
     }
 
-    /** Enable Interact with the Entity */
+    /**
+     * Enable Interact with the Entity
+     */
     @Override
     public boolean isPickable() {
         return true;
     }
 
-    /** Interact with the Entity Gui,Spawn Egg... */
+    /**
+     * Interact with the Entity Gui,Spawn Egg...
+     */
     @Override
     public InteractionResult interact(Player p_19978_, InteractionHand p_19979_) {
         return InteractionResult.PASS;
@@ -95,15 +101,15 @@ public class VehicleEntity extends Entity {
 
         this.xxa *= 0.98F;
         this.zza *= 0.98F;
-        this.travel(new Vec3((double)this.xxa, (double)this.yya, (double)this.zza));
+        this.travel(new Vec3((double) this.xxa, (double) this.yya, (double) this.zza));
     }
 
     public void rotAnim() {
-        while(this.getYRot() - this.yRotO < -180.0F) {
+        while (this.getYRot() - this.yRotO < -180.0F) {
             this.yRotO -= 360.0F;
         }
 
-        while(this.getYRot() - this.yRotO >= 180.0F) {
+        while (this.getYRot() - this.yRotO >= 180.0F) {
             this.yRotO += 360.0F;
         }
     }
@@ -113,8 +119,8 @@ public class VehicleEntity extends Entity {
         this.lerpX = p_20977_;
         this.lerpY = p_20978_;
         this.lerpZ = p_20979_;
-        this.lerpYRot = (double)p_20980_;
-        this.lerpXRot = (double)p_20981_;
+        this.lerpYRot = (double) p_20980_;
+        this.lerpXRot = (double) p_20981_;
         this.lerpSteps = p_20982_;
     }
 
@@ -125,19 +131,21 @@ public class VehicleEntity extends Entity {
         }
 
         if (this.lerpSteps > 0) {
-            double d0 = this.getX() + (this.lerpX - this.getX()) / (double)this.lerpSteps;
-            double d2 = this.getY() + (this.lerpY - this.getY()) / (double)this.lerpSteps;
-            double d4 = this.getZ() + (this.lerpZ - this.getZ()) / (double)this.lerpSteps;
-            double d6 = Mth.wrapDegrees(this.lerpYRot - (double)this.getYRot());
-            this.setYRot(this.getYRot() + (float)d6 / (float)this.lerpSteps);
-            this.setXRot(this.getXRot() + (float)(this.lerpXRot - (double)this.getXRot()) / (float)this.lerpSteps);
+            double d0 = this.getX() + (this.lerpX - this.getX()) / (double) this.lerpSteps;
+            double d2 = this.getY() + (this.lerpY - this.getY()) / (double) this.lerpSteps;
+            double d4 = this.getZ() + (this.lerpZ - this.getZ()) / (double) this.lerpSteps;
+            double d6 = Mth.wrapDegrees(this.lerpYRot - (double) this.getYRot());
+            this.setYRot(this.getYRot() + (float) d6 / (float) this.lerpSteps);
+            this.setXRot(this.getXRot() + (float) (this.lerpXRot - (double) this.getXRot()) / (float) this.lerpSteps);
             --this.lerpSteps;
             this.setPos(d0, d2, d4);
             this.setRot(this.getYRot(), this.getXRot());
         }
     }
 
-    /** Movement Physic */
+    /**
+     * Movement Physic
+     */
     public void travel(Vec3 p_21280_) {
         if (this.isControlledByLocalInstance()) {
             double d0 = 0.08D;
@@ -156,18 +164,18 @@ public class VehicleEntity extends Entity {
                     vec36 = new Vec3(vec36.x, 0.2D, vec36.z);
                 }
 
-                this.setDeltaMovement(vec36.multiply((double)f5, (double)0.8F, (double)f5));
+                this.setDeltaMovement(vec36.multiply((double) f5, (double) 0.8F, (double) f5));
                 Vec3 vec32 = this.getFluidFallingAdjustedMovement(d0, flag, this.getDeltaMovement());
                 this.setDeltaMovement(vec32);
-                if (this.horizontalCollision && this.isFree(vec32.x, vec32.y + (double)0.6F - this.getY() + d8, vec32.z)) {
-                    this.setDeltaMovement(vec32.x, (double)0.3F, vec32.z);
+                if (this.horizontalCollision && this.isFree(vec32.x, vec32.y + (double) 0.6F - this.getY() + d8, vec32.z)) {
+                    this.setDeltaMovement(vec32.x, (double) 0.3F, vec32.z);
                 }
             } else if (this.isInLava()) {
                 double d7 = this.getY();
                 this.moveRelative(0.02F, p_21280_);
                 this.move(MoverType.SELF, this.getDeltaMovement());
                 if (this.getFluidHeight(FluidTags.LAVA) <= this.getFluidJumpThreshold()) {
-                    this.setDeltaMovement(this.getDeltaMovement().multiply(0.5D, (double)0.8F, 0.5D));
+                    this.setDeltaMovement(this.getDeltaMovement().multiply(0.5D, (double) 0.8F, 0.5D));
                     Vec3 vec33 = this.getFluidFallingAdjustedMovement(d0, flag, this.getDeltaMovement());
                     this.setDeltaMovement(vec33);
                 } else {
@@ -179,8 +187,8 @@ public class VehicleEntity extends Entity {
                 }
 
                 Vec3 vec34 = this.getDeltaMovement();
-                if (this.horizontalCollision && this.isFree(vec34.x, vec34.y + (double)0.6F - this.getY() + d7, vec34.z)) {
-                    this.setDeltaMovement(vec34.x, (double)0.3F, vec34.z);
+                if (this.horizontalCollision && this.isFree(vec34.x, vec34.y + (double) 0.6F - this.getY() + d7, vec34.z)) {
+                    this.setDeltaMovement(vec34.x, (double) 0.3F, vec34.z);
                 }
             } else {
                 BlockPos blockpos = this.getBlockPosBelowThatAffectsMyMovement();
@@ -189,7 +197,7 @@ public class VehicleEntity extends Entity {
                 Vec3 vec35 = this.handleRelativeFrictionAndCalculateMovement(p_21280_, f3);
                 double d2 = vec35.y;
                 if (this.level.isClientSide && !this.level.hasChunkAt(blockpos)) {
-                    if (this.getY() > (double)this.level.getMinBuildHeight()) {
+                    if (this.getY() > (double) this.level.getMinBuildHeight()) {
                         d2 = -0.1D;
                     } else {
                         d2 = 0.0D;
@@ -201,7 +209,7 @@ public class VehicleEntity extends Entity {
                 if (this.shouldDiscardFriction()) {
                     this.setDeltaMovement(vec35.x, d2, vec35.z);
                 } else {
-                    this.setDeltaMovement(vec35.x * (double)f4, d2 * (double)0.98F, vec35.z * (double)f4);
+                    this.setDeltaMovement(vec35.x * (double) f4, d2 * (double) 0.98F, vec35.z * (double) f4);
                 }
             }
         }

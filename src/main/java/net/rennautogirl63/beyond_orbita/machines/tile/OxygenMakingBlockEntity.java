@@ -1,9 +1,5 @@
 package net.rennautogirl63.beyond_orbita.machines.tile;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -31,256 +27,259 @@ import net.rennautogirl63.beyond_orbita.gauge.GaugeValueHelper;
 import net.rennautogirl63.beyond_orbita.gauge.IGaugeValue;
 import net.rennautogirl63.beyond_orbita.inventory.StackCacher;
 
+import javax.annotation.Nullable;
+import java.util.List;
+
 public abstract class OxygenMakingBlockEntity extends AbstractMachineBlockEntity {
-	public static final int TANK_CAPACITY = 3000;
-	public static final int TRANSFER_PER_TICK = 256;
-	public static final ResourceLocation TANK_INPUT = new ResourceLocation(BeyondOrbitaMod.MODID, "input");
-	public static final ResourceLocation TANK_OUTPUT = new ResourceLocation(BeyondOrbitaMod.MODID, "output");
-	public static final int SLOT_INPUT_SOURCE = 0;
-	public static final int SLOT_INPUT_SINK = 1;
+    public static final int TANK_CAPACITY = 3000;
+    public static final int TRANSFER_PER_TICK = 256;
+    public static final ResourceLocation TANK_INPUT = new ResourceLocation(BeyondOrbitaMod.MODID, "input");
+    public static final ResourceLocation TANK_OUTPUT = new ResourceLocation(BeyondOrbitaMod.MODID, "output");
+    public static final int SLOT_INPUT_SOURCE = 0;
+    public static final int SLOT_INPUT_SINK = 1;
 
-	private FluidTank inputTank;
-	private OxygenStorage outputTank;
+    private FluidTank inputTank;
+    private OxygenStorage outputTank;
 
-	private StackCacher recipeCacher;
-	private OxygenMakingRecipeAbstract cachedRecipe;
+    private StackCacher recipeCacher;
+    private OxygenMakingRecipeAbstract cachedRecipe;
 
-	public OxygenMakingBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
-		super(type, pos, state);
+    public OxygenMakingBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
+        super(type, pos, state);
 
-		this.recipeCacher = new StackCacher();
-		this.cachedRecipe = null;
-	}
+        this.recipeCacher = new StackCacher();
+        this.cachedRecipe = null;
+    }
 
-	@Override
-	public void load(CompoundTag compound) {
-		super.load(compound);
-		
-		this.getOutputTank().deserializeNBT(compound.getCompound("outputTank"));
-	}
-	
-	@Override
-	protected void saveAdditional(CompoundTag compound) {
-		super.saveAdditional(compound);
+    @Override
+    public void load(CompoundTag compound) {
+        super.load(compound);
 
-		compound.put("outputTank", this.getOutputTank().serializeNBT());
-	}
+        this.getOutputTank().deserializeNBT(compound.getCompound("outputTank"));
+    }
 
-	@Override
-	public List<IGaugeValue> getGaugeValues() {
-		List<IGaugeValue> list = super.getGaugeValues();
+    @Override
+    protected void saveAdditional(CompoundTag compound) {
+        super.saveAdditional(compound);
 
-		if (!CompatibleManager.MEKANISM.isLoaded()) {
-			list.add(GaugeValueHelper.getOxygen(this.getOutputTank()));
-		}
+        compound.put("outputTank", this.getOutputTank().serializeNBT());
+    }
 
-		return list;
-	}
+    @Override
+    public List<IGaugeValue> getGaugeValues() {
+        List<IGaugeValue> list = super.getGaugeValues();
 
-	@Override
-	protected void createFluidHandlers(NamedComponentRegistry<IFluidHandler> registry) {
-		super.createFluidHandlers(registry);
-		this.inputTank = (FluidTank) registry.computeIfAbsent(this.getInputTankName(), k -> this.creatFluidTank(k));
-		this.outputTank = this.createOxygenTank(this.getOutputTankName());
-	}
+        if (!CompatibleManager.MEKANISM.isLoaded()) {
+            list.add(GaugeValueHelper.getOxygen(this.getOutputTank()));
+        }
 
-	protected int getInitialTankCapacity(ResourceLocation name) {
-		return TANK_CAPACITY;
-	}
+        return list;
+    }
 
-	protected FluidTank creatFluidTank(ResourceLocation name) {
-		return new FluidTank(this.getInitialTankCapacity(name)) {
-			@Override
-			protected void onContentsChanged() {
-				super.onContentsChanged();
-				OxygenMakingBlockEntity.this.setChanged();
-			}
-		};
-	}
+    @Override
+    protected void createFluidHandlers(NamedComponentRegistry<IFluidHandler> registry) {
+        super.createFluidHandlers(registry);
+        this.inputTank = (FluidTank) registry.computeIfAbsent(this.getInputTankName(), k -> this.creatFluidTank(k));
+        this.outputTank = this.createOxygenTank(this.getOutputTankName());
+    }
 
-	protected OxygenStorage createOxygenTank(ResourceLocation name) {
-		return new OxygenStorage(new IOxygenStorageHolder() {
-			@Override
-			public void onOxygenChanged(IOxygenStorage oxygenStorage, int oxygenDelta) {
-				OxygenMakingBlockEntity.this.setChanged();
-			}
-		}, this.getInitialTankCapacity(name));
-	}
+    protected int getInitialTankCapacity(ResourceLocation name) {
+        return TANK_CAPACITY;
+    }
 
-	@Override
-	protected void tickProcessing() {
-		this.drainSources();
-		this.consumeIngredients();
-		this.fillSinks();
-	}
+    protected FluidTank creatFluidTank(ResourceLocation name) {
+        return new FluidTank(this.getInitialTankCapacity(name)) {
+            @Override
+            protected void onContentsChanged() {
+                super.onContentsChanged();
+                OxygenMakingBlockEntity.this.setChanged();
+            }
+        };
+    }
 
-	public boolean consumeIngredients() {
-		OxygenMakingRecipeAbstract recipe = this.cacheRecipe();
+    protected OxygenStorage createOxygenTank(ResourceLocation name) {
+        return new OxygenStorage(new IOxygenStorageHolder() {
+            @Override
+            public void onOxygenChanged(IOxygenStorage oxygenStorage, int oxygenDelta) {
+                OxygenMakingBlockEntity.this.setChanged();
+            }
+        }, this.getInitialTankCapacity(name));
+    }
 
-		if (recipe != null) {
-			int oxygen = recipe.getOxygen();
+    @Override
+    protected void tickProcessing() {
+        this.drainSources();
+        this.consumeIngredients();
+        this.fillSinks();
+    }
 
-			if (this.hasSpaceInOutput(oxygen)) {
-				if (this.consumePowerForOperation() != null) {
-					this.getInputTank().drain(recipe.getInput().getAmount(), FluidAction.EXECUTE);
-					this.getOutputTank().receiveOxygen(oxygen, false);
-					this.setProcessedInThisTick();
-					return true;
-				}
-			}
-		}
+    public boolean consumeIngredients() {
+        OxygenMakingRecipeAbstract recipe = this.cacheRecipe();
 
-		return false;
-	}
+        if (recipe != null) {
+            int oxygen = recipe.getOxygen();
 
-	protected void drainSources() {
-		FluidUtil2.drainSource(this.getItemHandler(), this.getInputSourceSlot(), this.getInputTank(), this.getTransferPerTick());
-	}
+            if (this.hasSpaceInOutput(oxygen)) {
+                if (this.consumePowerForOperation() != null) {
+                    this.getInputTank().drain(recipe.getInput().getAmount(), FluidAction.EXECUTE);
+                    this.getOutputTank().receiveOxygen(oxygen, false);
+                    this.setProcessedInThisTick();
+                    return true;
+                }
+            }
+        }
 
-	protected void fillSinks() {
-		FluidUtil2.fillSink(this.getItemHandler(), this.getInputSinkSlot(), this.getInputTank(), this.getTransferPerTick());
-	}
+        return false;
+    }
 
-	@Override
-	public <T> LazyOptional<T> getCapabilityFluidHandler(Capability<T> capability, @Nullable Direction facing) {
-		return LazyOptional.of(this::getInputTank).cast();
-	}
+    protected void drainSources() {
+        FluidUtil2.drainSource(this.getItemHandler(), this.getInputSourceSlot(), this.getInputTank(), this.getTransferPerTick());
+    }
 
-	@Override
-	public <T> LazyOptional<T> getCapability(Capability<T> capability, Direction facing) {
-		if (CompatibleManager.MEKANISM.isLoaded()) {
-			if (capability == MekanismHelper.getGasHandlerCapability()) {
-				return LazyOptional.of(() -> new OxygenStorageGasAdapter(this.getOutputTank(), true, true)).cast();
-			}
-		}
+    protected void fillSinks() {
+        FluidUtil2.fillSink(this.getItemHandler(), this.getInputSinkSlot(), this.getInputTank(), this.getTransferPerTick());
+    }
 
-		return super.getCapability(capability, facing);
-	}
+    @Override
+    public <T> LazyOptional<T> getCapabilityFluidHandler(Capability<T> capability, @Nullable Direction facing) {
+        return LazyOptional.of(this::getInputTank).cast();
+    }
 
-	@Override
-	protected void getSlotsForFace(Direction direction, List<Integer> slots) {
-		super.getSlotsForFace(direction, slots);
-		slots.add(this.getInputSourceSlot());
-	}
+    @Override
+    public <T> LazyOptional<T> getCapability(Capability<T> capability, Direction facing) {
+        if (CompatibleManager.MEKANISM.isLoaded()) {
+            if (capability == MekanismHelper.getGasHandlerCapability()) {
+                return LazyOptional.of(() -> new OxygenStorageGasAdapter(this.getOutputTank(), true, true)).cast();
+            }
+        }
 
-	@Override
-	protected boolean onCanPlaceItemThroughFace(int index, ItemStack stack, Direction direction) {
-		if (index == this.getInputSourceSlot()) {
-			return FluidUtil2.canDrain(stack);
-		} else if (index == this.getInputSinkSlot()) {
-			FluidTank tank = this.slotToFluidTank(index);
-			return FluidUtil2.canFill(stack, tank.getFluid().getFluid());
-		}
+        return super.getCapability(capability, facing);
+    }
 
-		return super.onCanPlaceItemThroughFace(index, stack, direction);
-	}
+    @Override
+    protected void getSlotsForFace(Direction direction, List<Integer> slots) {
+        super.getSlotsForFace(direction, slots);
+        slots.add(this.getInputSourceSlot());
+    }
 
-	@Override
-	public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
-		if (index == this.getInputSourceSlot()) {
-			return !FluidUtil2.canDrain(stack);
-		} else if (index == this.getInputSinkSlot()) {
-			FluidTank tank = this.slotToFluidTank(index);
-			return !FluidUtil2.canFill(stack, tank.getFluid().getFluid());
-		}
+    @Override
+    protected boolean onCanPlaceItemThroughFace(int index, ItemStack stack, Direction direction) {
+        if (index == this.getInputSourceSlot()) {
+            return FluidUtil2.canDrain(stack);
+        } else if (index == this.getInputSinkSlot()) {
+            FluidTank tank = this.slotToFluidTank(index);
+            return FluidUtil2.canFill(stack, tank.getFluid().getFluid());
+        }
 
-		return super.canTakeItemThroughFace(index, stack, direction);
-	}
+        return super.onCanPlaceItemThroughFace(index, stack, direction);
+    }
 
-	@Override
-	public boolean hasSpaceInOutput() {
-		OxygenMakingRecipeAbstract recipe = this.cacheRecipe();
-		return recipe != null && this.hasSpaceInOutput(recipe.getOxygen());
-	}
+    @Override
+    public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
+        if (index == this.getInputSourceSlot()) {
+            return !FluidUtil2.canDrain(stack);
+        } else if (index == this.getInputSinkSlot()) {
+            FluidTank tank = this.slotToFluidTank(index);
+            return !FluidUtil2.canFill(stack, tank.getFluid().getFluid());
+        }
 
-	public boolean hasSpaceInOutput(int oxygen) {
-		return hasSpaceInOutput(oxygen, this.getOutputTank());
-	}
+        return super.canTakeItemThroughFace(index, stack, direction);
+    }
 
-	public boolean hasSpaceInOutput(int oxygen, IOxygenStorage storage) {
-		return (oxygen + storage.getOxygenStored()) <= storage.getMaxOxygenStored();
-	}
+    @Override
+    public boolean hasSpaceInOutput() {
+        OxygenMakingRecipeAbstract recipe = this.cacheRecipe();
+        return recipe != null && this.hasSpaceInOutput(recipe.getOxygen());
+    }
 
-	public OxygenMakingRecipeAbstract cacheRecipe() {
-		FluidStack fluidStack = this.getInputTank().getFluid();
+    public boolean hasSpaceInOutput(int oxygen) {
+        return hasSpaceInOutput(oxygen, this.getOutputTank());
+    }
 
-		if (fluidStack.isEmpty()) {
-			this.recipeCacher.set(fluidStack);
-			this.cachedRecipe = null;
-		} else if (!this.recipeCacher.test(fluidStack)) {
-			this.recipeCacher.set(fluidStack);
-			this.cachedRecipe = this.getRecipeType().findFirst(this.getLevel(), r -> r.test(fluidStack));
-		}
+    public boolean hasSpaceInOutput(int oxygen, IOxygenStorage storage) {
+        return (oxygen + storage.getOxygenStored()) <= storage.getMaxOxygenStored();
+    }
 
-		return this.cachedRecipe;
-	}
+    public OxygenMakingRecipeAbstract cacheRecipe() {
+        FluidStack fluidStack = this.getInputTank().getFluid();
 
-	public abstract BeyondEarthRecipeType<? extends OxygenMakingRecipeAbstract> getRecipeType();
+        if (fluidStack.isEmpty()) {
+            this.recipeCacher.set(fluidStack);
+            this.cachedRecipe = null;
+        } else if (!this.recipeCacher.test(fluidStack)) {
+            this.recipeCacher.set(fluidStack);
+            this.cachedRecipe = this.getRecipeType().findFirst(this.getLevel(), r -> r.test(fluidStack));
+        }
 
-	@Override
-	protected int getInitialInventorySize() {
-		return super.getInitialInventorySize() + 2;
-	}
+        return this.cachedRecipe;
+    }
 
-	@Override
-	public int getMaxStackSize() {
-		return 1;
-	}
+    public abstract BeyondEarthRecipeType<? extends OxygenMakingRecipeAbstract> getRecipeType();
 
-	public int getInputSourceSlot() {
-		return SLOT_INPUT_SOURCE;
-	}
+    @Override
+    protected int getInitialInventorySize() {
+        return super.getInitialInventorySize() + 2;
+    }
 
-	public int getInputSinkSlot() {
-		return SLOT_INPUT_SINK;
-	}
+    @Override
+    public int getMaxStackSize() {
+        return 1;
+    }
 
-	public boolean isSourceSlot(int slot) {
-		return slot == this.getInputSourceSlot();
-	}
+    public int getInputSourceSlot() {
+        return SLOT_INPUT_SOURCE;
+    }
 
-	public boolean isSinkSlot(int slot) {
-		return slot == this.getInputSinkSlot();
-	}
+    public int getInputSinkSlot() {
+        return SLOT_INPUT_SINK;
+    }
 
-	public FluidTank slotToFluidTank(int slot) {
-		if (slot == this.getInputSourceSlot() || slot == this.getInputSinkSlot()) {
-			return this.getInputTank();
-		} else {
-			return null;
-		}
-	}
+    public boolean isSourceSlot(int slot) {
+        return slot == this.getInputSourceSlot();
+    }
 
-	public IOxygenStorage slotToOxygenTank(int slot) {
-		return null;
-	}
+    public boolean isSinkSlot(int slot) {
+        return slot == this.getInputSinkSlot();
+    }
 
-	public ResourceLocation slotToTankName(int slot) {
-		if (slot == this.getInputSourceSlot() || slot == this.getInputSinkSlot()) {
-			return this.getInputTankName();
-		} else {
-			return null;
-		}
-	}
+    public FluidTank slotToFluidTank(int slot) {
+        if (slot == this.getInputSourceSlot() || slot == this.getInputSinkSlot()) {
+            return this.getInputTank();
+        } else {
+            return null;
+        }
+    }
 
-	public ResourceLocation getInputTankName() {
-		return TANK_INPUT;
-	}
+    public IOxygenStorage slotToOxygenTank(int slot) {
+        return null;
+    }
 
-	public FluidTank getInputTank() {
-		return this.inputTank;
-	}
+    public ResourceLocation slotToTankName(int slot) {
+        if (slot == this.getInputSourceSlot() || slot == this.getInputSinkSlot()) {
+            return this.getInputTankName();
+        } else {
+            return null;
+        }
+    }
 
-	public ResourceLocation getOutputTankName() {
-		return TANK_OUTPUT;
-	}
+    public ResourceLocation getInputTankName() {
+        return TANK_INPUT;
+    }
 
-	public IOxygenStorage getOutputTank() {
-		return this.outputTank;
-	}
+    public FluidTank getInputTank() {
+        return this.inputTank;
+    }
 
-	public int getTransferPerTick() {
-		return TRANSFER_PER_TICK;
-	}
+    public ResourceLocation getOutputTankName() {
+        return TANK_OUTPUT;
+    }
+
+    public IOxygenStorage getOutputTank() {
+        return this.outputTank;
+    }
+
+    public int getTransferPerTick() {
+        return TRANSFER_PER_TICK;
+    }
 
 }

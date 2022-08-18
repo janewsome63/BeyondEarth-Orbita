@@ -39,14 +39,20 @@ import net.rennautogirl63.beyond_orbita.registries.ItemsRegistry;
 @Mod.EventBusSubscriber(modid = BeyondOrbitaMod.MODID, value = Dist.CLIENT)
 public class Overlays {
 
-    /** WARNING OVERLAY VARIABLES */
+    /**
+     * WARNING OVERLAY VARIABLES
+     */
     private static boolean check = false;
     private static float counter = 0;
 
-    /** WARNING TEXTURE */
+    /**
+     * WARNING TEXTURE
+     */
     public static final ResourceLocation WARNING_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/overlay/warning.png");
 
-    /** TIMER TEXTURES */
+    /**
+     * TIMER TEXTURES
+     */
     public static final ResourceLocation TIMER_1_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/timer/timer1.png");
     public static final ResourceLocation TIMER_2_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/timer/timer2.png");
     public static final ResourceLocation TIMER_3_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/timer/timer3.png");
@@ -58,11 +64,15 @@ public class Overlays {
     public static final ResourceLocation TIMER_9_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/timer/timer9.png");
     public static final ResourceLocation TIMER_10_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/timer/timer10.png");
 
-    /** OXYGEN TANK TEXTURES */
+    /**
+     * OXYGEN TANK TEXTURES
+     */
     public static final ResourceLocation OXYGEN_TANK_EMPTY_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/overlay/oxygen_tank_empty.png");
     public static final ResourceLocation OXYGEN_TANK_FULL_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/overlay/oxygen_tank_full.png");
 
-    /** PLANET BAR TEXTURES */
+    /**
+     * PLANET BAR TEXTURES
+     */
     public static final ResourceLocation MOON_PLANET_BAR_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/planet_bar/moon_planet_bar.png");
     public static final ResourceLocation MARS_PLANET_BAR_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/planet_bar/mars_planet_bar.png");
     public static final ResourceLocation MERCURY_PLANET_BAR_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/planet_bar/mercury_planet_bar.png");
@@ -71,10 +81,14 @@ public class Overlays {
     public static final ResourceLocation EARTH_PLANET_BAR_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/planet_bar/earth_planet_bar.png");
     public static final ResourceLocation ORBIT_PLANET_BAR_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/planet_bar/orbit_planet_bar.png");
 
-    /** ROCKET TEXTURE */
+    /**
+     * ROCKET TEXTURE
+     */
     public static final ResourceLocation ROCKET_PLANET_BAR_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/planet_bar/rocket.png");
 
-    /** OVERLAY ENABLE OR DISABLE EVENT */
+    /**
+     * OVERLAY ENABLE OR DISABLE EVENT
+     */
     @SubscribeEvent
     public static void overlayEnableOrDisable(RenderGameOverlayEvent.PostLayer event) {
         Player player = Minecraft.getInstance().player;
@@ -82,7 +96,7 @@ public class Overlays {
 
         /** WARNING OVERLAY */
         if (player.getVehicle() instanceof LanderEntity && !player.getVehicle().isOnGround() && !player.isEyeInFluid(FluidTags.WATER)) {
-                OverlayRegistry.enableOverlay(Overlays.WARNING, true);
+            OverlayRegistry.enableOverlay(Overlays.WARNING, true);
         } else {
             OverlayRegistry.enableOverlay(Overlays.WARNING, false);
         }
@@ -109,7 +123,9 @@ public class Overlays {
         }
     }
 
-    /** FLASHING TICK */
+    /**
+     * FLASHING TICK
+     */
     @SubscribeEvent
     public static void clientTick(TickEvent.ClientTickEvent event) {
         if (event.phase == TickEvent.Phase.END) {
@@ -127,7 +143,9 @@ public class Overlays {
         }
     }
 
-    /** WARNING OVERLAY */
+    /**
+     * WARNING OVERLAY
+     */
     public static IIngameOverlay WARNING = new IIngameOverlay() {
         @Override
         public void render(ForgeIngameGui gui, PoseStack mStack, float partialTicks, int width, int height) {
@@ -146,11 +164,13 @@ public class Overlays {
             double speed = Math.round(100.0 * (vehicle).getDeltaMovement().y()) / 100.0;
 
             Component message = new TranslatableComponent("message." + BeyondOrbitaMod.MODID + ".speed", speed);
-            Minecraft.getInstance().font.draw(mStack, message, width / 2 - 29, 80 , -3407872);
+            Minecraft.getInstance().font.draw(mStack, message, width / 2 - 29, 80, -3407872);
         }
     };
 
-    /** ROCKET TIMER OVERLAY */
+    /**
+     * ROCKET TIMER OVERLAY
+     */
     public static IIngameOverlay ROCKET_TIMER = new IIngameOverlay() {
         @Override
         public void render(ForgeIngameGui gui, PoseStack mStack, float partialTicks, int width, int height) {
@@ -169,47 +189,40 @@ public class Overlays {
             if (timer > -1 && timer < 20) {
                 RenderSystem.setShaderTexture(0, TIMER_10_TEXTURE);
                 gui.blit(mStack, timerWidth, timerHeight, 0, 0, 60, 38, 60, 38);
-            }
-            else if (timer > 20 && timer < 40) {
+            } else if (timer > 20 && timer < 40) {
                 RenderSystem.setShaderTexture(0, TIMER_9_TEXTURE);
                 gui.blit(mStack, timerWidth, timerHeight, 0, 0, 60, 38, 60, 38);
-            }
-            else if (timer > 40 && timer < 60) {
+            } else if (timer > 40 && timer < 60) {
                 RenderSystem.setShaderTexture(0, TIMER_8_TEXTURE);
                 gui.blit(mStack, timerWidth, timerHeight, 0, 0, 60, 38, 60, 38);
-            }
-            else if (timer > 60 && timer < 80) {
+            } else if (timer > 60 && timer < 80) {
                 RenderSystem.setShaderTexture(0, TIMER_7_TEXTURE);
                 gui.blit(mStack, timerWidth, timerHeight, 0, 0, 60, 38, 60, 38);
-            }
-            else if (timer > 80 && timer < 100) {
+            } else if (timer > 80 && timer < 100) {
                 RenderSystem.setShaderTexture(0, TIMER_6_TEXTURE);
                 gui.blit(mStack, timerWidth, timerHeight, 0, 0, 60, 38, 60, 38);
-            }
-            else if (timer > 100 && timer < 120) {
+            } else if (timer > 100 && timer < 120) {
                 RenderSystem.setShaderTexture(0, TIMER_5_TEXTURE);
                 gui.blit(mStack, timerWidth, timerHeight, 0, 0, 60, 38, 60, 38);
-            }
-            else if (timer > 120 && timer < 140) {
+            } else if (timer > 120 && timer < 140) {
                 RenderSystem.setShaderTexture(0, TIMER_4_TEXTURE);
                 gui.blit(mStack, timerWidth, timerHeight, 0, 0, 60, 38, 60, 38);
-            }
-            else if (timer > 140 && timer < 160) {
+            } else if (timer > 140 && timer < 160) {
                 RenderSystem.setShaderTexture(0, TIMER_3_TEXTURE);
                 gui.blit(mStack, timerWidth, timerHeight, 0, 0, 60, 38, 60, 38);
-            }
-            else if (timer > 160 && timer < 180) {
+            } else if (timer > 160 && timer < 180) {
                 RenderSystem.setShaderTexture(0, TIMER_2_TEXTURE);
                 gui.blit(mStack, timerWidth, timerHeight, 0, 0, 60, 38, 60, 38);
-            }
-            else if (timer > 180 && timer < 200) {
+            } else if (timer > 180 && timer < 200) {
                 RenderSystem.setShaderTexture(0, TIMER_1_TEXTURE);
                 gui.blit(mStack, timerWidth, timerHeight, 0, 0, 60, 38, 60, 38);
             }
         }
     };
 
-    /** OXYGEN TANK OVERLAY */
+    /**
+     * OXYGEN TANK OVERLAY
+     */
     public static IIngameOverlay OXYGEN_TANK = new IIngameOverlay() {
         @Override
         public void render(ForgeIngameGui gui, PoseStack mStack, float partialTicks, int width, int height) {
@@ -238,7 +251,9 @@ public class Overlays {
         }
     };
 
-    /** ROCKET HEIGHT OVERLAY */
+    /**
+     * ROCKET HEIGHT OVERLAY
+     */
     public static IIngameOverlay ROCKET_HEIGHT = new IIngameOverlay() {
         @Override
         public void render(ForgeIngameGui gui, PoseStack mStack, float partialTicks, int width, int height) {
@@ -249,8 +264,7 @@ public class Overlays {
 
             if (yHeight < 0) {
                 yHeight = 0;
-            }
-            else if (yHeight > 113) {
+            } else if (yHeight > 113) {
                 yHeight = 113;
             }
 
@@ -258,23 +272,17 @@ public class Overlays {
 
             if (Methods.isWorld(level, Methods.moon)) {
                 planet = MOON_PLANET_BAR_TEXTURE;
-            }
-            else if (Methods.isWorld(level, Methods.mars)) {
+            } else if (Methods.isWorld(level, Methods.mars)) {
                 planet = MARS_PLANET_BAR_TEXTURE;
-            }
-            else if (Methods.isWorld(level, Methods.mercury)) {
+            } else if (Methods.isWorld(level, Methods.mercury)) {
                 planet = MERCURY_PLANET_BAR_TEXTURE;
-            }
-            else if (Methods.isWorld(level, Methods.venus)) {
+            } else if (Methods.isWorld(level, Methods.venus)) {
                 planet = VENUS_PLANET_BAR_TEXTURE;
-            }
-            else if (Methods.isWorld(level, Methods.glacio)) {
+            } else if (Methods.isWorld(level, Methods.glacio)) {
                 planet = GLACIO_PLANET_BAR_TEXTURE;
-            }
-            else if (Methods.isNoGravWorld(level)) {
+            } else if (Methods.isNoGravWorld(level)) {
                 planet = ORBIT_PLANET_BAR_TEXTURE;
-            }
-            else {
+            } else {
                 planet = EARTH_PLANET_BAR_TEXTURE;
             }
 

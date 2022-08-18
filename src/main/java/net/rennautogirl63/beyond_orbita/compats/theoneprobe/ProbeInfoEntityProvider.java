@@ -13,24 +13,24 @@ import net.rennautogirl63.beyond_orbita.gauge.IGaugeValuesProvider;
 
 public class ProbeInfoEntityProvider implements IProbeInfoEntityProvider {
 
-	public static final ProbeInfoEntityProvider INSTANCE = new ProbeInfoEntityProvider();
+    public static final ProbeInfoEntityProvider INSTANCE = new ProbeInfoEntityProvider();
 
-	public ProbeInfoEntityProvider() {
+    public ProbeInfoEntityProvider() {
 
-	}
+    }
 
-	@Override
-	public void addProbeEntityInfo(ProbeMode probeMode, IProbeInfo probeInfo, Player player, Level level, Entity entity, IProbeHitEntityData hitData) {
+    @Override
+    public void addProbeEntityInfo(ProbeMode probeMode, IProbeInfo probeInfo, Player player, Level level, Entity entity, IProbeHitEntityData hitData) {
 
-		if (entity instanceof IGaugeValuesProvider) {
-			((IGaugeValuesProvider) entity).getGaugeValues().forEach(g -> probeInfo.element(new GaugeValueElement(g)));
-		}
+        if (entity instanceof IGaugeValuesProvider) {
+            ((IGaugeValuesProvider) entity).getGaugeValues().forEach(g -> probeInfo.element(new GaugeValueElement(g)));
+        }
 
-	}
+    }
 
-	@Override
-	public String getID() {
-		return new ResourceLocation(BeyondOrbitaMod.MODID, "top_entity").toString();
-	}
+    @Override
+    public String getID() {
+        return new ResourceLocation(BeyondOrbitaMod.MODID, "top_entity").toString();
+    }
 
 }

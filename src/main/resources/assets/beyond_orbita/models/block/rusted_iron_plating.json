@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "beyond_orbita:blocks/rusted_iron_plating",
+    "up": "beyond_orbita:blocks/rusted_iron_plating",
+    "north": "beyond_orbita:blocks/rusted_iron_plating",
+    "east": "beyond_orbita:blocks/rusted_iron_plating",
+    "south": "beyond_orbita:blocks/rusted_iron_plating",
+    "west": "beyond_orbita:blocks/rusted_iron_plating",
+    "particle": "beyond_orbita:blocks/rusted_iron_plating"
+  }
+}

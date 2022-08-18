@@ -7,23 +7,23 @@ import net.rennautogirl63.beyond_orbita.machines.tile.FuelRefineryBlockEntity;
 
 public class FuelRefineryBlock extends AbstractMachineBlock<FuelRefineryBlockEntity> {
 
-	public FuelRefineryBlock(BlockBehaviour.Properties properties) {
-		super(properties);
-	}
+    public FuelRefineryBlock(BlockBehaviour.Properties properties) {
+        super(properties);
+    }
 
-	@Override
-	protected boolean useLit() {
-		return true;
-	}
+    @Override
+    protected boolean useLit() {
+        return true;
+    }
 
-	@Override
-	protected boolean useFacing() {
-		return true;
-	}
+    @Override
+    protected boolean useFacing() {
+        return true;
+    }
 
-	@Override
-	public FuelRefineryBlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-		return new FuelRefineryBlockEntity(pos, state);
-	}
+    @Override
+    public FuelRefineryBlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        return new FuelRefineryBlockEntity(pos, state);
+    }
 
 }

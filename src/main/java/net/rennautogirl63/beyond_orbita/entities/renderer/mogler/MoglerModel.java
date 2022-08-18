@@ -1,7 +1,6 @@
 package net.rennautogirl63.beyond_orbita.entities.renderer.mogler;
 
 import com.google.common.collect.ImmutableList;
-
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.AgeableListModel;
@@ -13,8 +12,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.monster.hoglin.HoglinBase;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.rennautogirl63.beyond_orbita.BeyondOrbitaMod;
 
 @OnlyIn(Dist.CLIENT)
@@ -79,13 +78,13 @@ public class MoglerModel<T extends Mob & HoglinBase> extends AgeableListModel<T>
 
     @Override
     public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.head.yRot = netHeadYaw * ((float)Math.PI / 180F);
+        this.head.yRot = netHeadYaw * ((float) Math.PI / 180F);
         int i = entity.getAttackAnimationRemainingTicks();
         float f = 1.0F - (float) Mth.abs(10 - 2 * i) / 10.0F;
         this.head.xRot = Mth.lerp(f, 0.0F, -1.14906584F);
 
         this.leg1.xRot = Mth.cos(limbSwing) * 1.2F * limbSwingAmount;
-        this.leg2.xRot = Mth.cos(limbSwing + (float)Math.PI) * 1.2F * limbSwingAmount;
+        this.leg2.xRot = Mth.cos(limbSwing + (float) Math.PI) * 1.2F * limbSwingAmount;
         this.leg3.xRot = this.leg1.xRot;
         this.leg4.xRot = this.leg2.xRot;
     }

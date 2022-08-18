@@ -323,28 +323,28 @@ public abstract class IRocketEntity extends VehicleEntity {
 
     @Override
     public Vec3 getDismountLocationForPassenger(LivingEntity livingEntity) {
-        Vec3[] avector3d = new Vec3[]{getCollisionHorizontalEscapeVector((double)this.getBbWidth(), (double)livingEntity.getBbWidth(), livingEntity.getYRot()), getCollisionHorizontalEscapeVector((double)this.getBbWidth(), (double)livingEntity.getBbWidth(), livingEntity.getYRot() - 22.5F), getCollisionHorizontalEscapeVector((double)this.getBbWidth(), (double)livingEntity.getBbWidth(), livingEntity.getYRot() + 22.5F), getCollisionHorizontalEscapeVector((double)this.getBbWidth(), (double)livingEntity.getBbWidth(), livingEntity.getYRot() - 45.0F), getCollisionHorizontalEscapeVector((double)this.getBbWidth(), (double)livingEntity.getBbWidth(), livingEntity.getYRot() + 45.0F)};
+        Vec3[] avector3d = new Vec3[]{getCollisionHorizontalEscapeVector((double) this.getBbWidth(), (double) livingEntity.getBbWidth(), livingEntity.getYRot()), getCollisionHorizontalEscapeVector((double) this.getBbWidth(), (double) livingEntity.getBbWidth(), livingEntity.getYRot() - 22.5F), getCollisionHorizontalEscapeVector((double) this.getBbWidth(), (double) livingEntity.getBbWidth(), livingEntity.getYRot() + 22.5F), getCollisionHorizontalEscapeVector((double) this.getBbWidth(), (double) livingEntity.getBbWidth(), livingEntity.getYRot() - 45.0F), getCollisionHorizontalEscapeVector((double) this.getBbWidth(), (double) livingEntity.getBbWidth(), livingEntity.getYRot() + 45.0F)};
         Set<BlockPos> set = Sets.newLinkedHashSet();
         double d0 = this.getBoundingBox().maxY;
         double d1 = this.getBoundingBox().minY - 0.5D;
         BlockPos.MutableBlockPos blockpos$mutable = new BlockPos.MutableBlockPos();
 
-        for(Vec3 vector3d : avector3d) {
+        for (Vec3 vector3d : avector3d) {
             blockpos$mutable.set(this.getX() + vector3d.x, d0, this.getZ() + vector3d.z);
 
-            for(double d2 = d0; d2 > d1; --d2) {
+            for (double d2 = d0; d2 > d1; --d2) {
                 set.add(blockpos$mutable.immutable());
                 blockpos$mutable.move(Direction.DOWN);
             }
         }
 
-        for(BlockPos blockpos : set) {
+        for (BlockPos blockpos : set) {
             if (!this.level.getFluidState(blockpos).is(FluidTags.LAVA)) {
                 double d3 = this.level.getBlockFloorHeight(blockpos);
                 if (DismountHelper.isBlockFloorValid(d3)) {
                     Vec3 vector3d1 = Vec3.upFromBottomCenterOf(blockpos, d3);
 
-                    for(Pose pose : livingEntity.getDismountPoses()) {
+                    for (Pose pose : livingEntity.getDismountPoses()) {
                         if (DismountHelper.isBlockFloorValid(this.level.getBlockFloorHeight(blockpos))) {
                             livingEntity.setPose(pose);
                             return vector3d1;

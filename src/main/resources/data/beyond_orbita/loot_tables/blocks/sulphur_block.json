@@ -8,6 +8,11 @@
           "type": "minecraft:item",
           "name": "beyond_orbita:sulphur_block"
         }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
       ]
     }
   ]

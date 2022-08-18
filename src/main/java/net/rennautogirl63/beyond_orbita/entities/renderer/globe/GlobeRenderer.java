@@ -29,15 +29,18 @@ import net.rennautogirl63.beyond_orbita.registries.ItemsRegistry;
 @OnlyIn(Dist.CLIENT)
 public class GlobeRenderer<T extends GlobeTileEntity> extends BlockEntityWithoutLevelRenderer implements BlockEntityRenderer<GlobeTileEntity>, BlockEntityRendererProvider<T> {
 
-    /** TEXTURES */
-    public static final ResourceLocation EARTH_GLOBE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/blocks/globes/earth_globe.png");
+    /**
+     * TEXTURES
+     */
     public static final ResourceLocation MOON_GLOBE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/blocks/globes/moon_globe.png");
     public static final ResourceLocation MARS_GLOBE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/blocks/globes/mars_globe.png");
     public static final ResourceLocation MERCURY_GLOBE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/blocks/globes/mercury_globe.png");
     public static final ResourceLocation VENUS_GLOBE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/blocks/globes/venus_globe.png");
     public static final ResourceLocation GLACIO_GLOBE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/blocks/globes/glacio_globe.png");
 
-    /** MODELS */
+    /**
+     * MODELS
+     */
     private GlobeModel model;
     private GlobeModel itemModel;
 
@@ -71,9 +74,7 @@ public class GlobeRenderer<T extends GlobeTileEntity> extends BlockEntityWithout
         this.model.setupAnim(p_112307_, particleTicks);
 
         /** TEXTURE BINDING */
-        if (blockstate.is(BlocksRegistry.EARTH_GLOBE_BLOCK.get())) {
-            vertexBuilder = buffer.getBuffer(RenderType.entityCutoutNoCullZOffset(EARTH_GLOBE));
-        } else if (blockstate.is(BlocksRegistry.MOON_GLOBE_BLOCK.get())) {
+        if (blockstate.is(BlocksRegistry.MOON_GLOBE_BLOCK.get())) {
             vertexBuilder = buffer.getBuffer(RenderType.entityCutoutNoCullZOffset(MOON_GLOBE));
         } else if (blockstate.is(BlocksRegistry.MARS_GLOBE_BLOCK.get())) {
             vertexBuilder = buffer.getBuffer(RenderType.entityCutoutNoCullZOffset(MARS_GLOBE));
@@ -103,9 +104,7 @@ public class GlobeRenderer<T extends GlobeTileEntity> extends BlockEntityWithout
         VertexConsumer vertexBuilder;
 
         /** TEXTURE BINDING */
-        if (p_108830_.is(ItemsRegistry.EARTH_GLOBE_ITEM.get())) {
-            vertexBuilder = buffer.getBuffer(RenderType.entityCutoutNoCullZOffset(EARTH_GLOBE));
-        } else if (p_108830_.is(ItemsRegistry.MOON_GLOBE_ITEM.get())) {
+        if (p_108830_.is(ItemsRegistry.MOON_GLOBE_ITEM.get())) {
             vertexBuilder = buffer.getBuffer(RenderType.entityCutoutNoCullZOffset(MOON_GLOBE));
         } else if (p_108830_.is(ItemsRegistry.MARS_GLOBE_ITEM.get())) {
             vertexBuilder = buffer.getBuffer(RenderType.entityCutoutNoCullZOffset(MARS_GLOBE));

@@ -96,7 +96,9 @@ public class Events {
 
     @SubscribeEvent
     public static void entityTick(EntityTickEvent event) {
-        Entity entity = event.getEntity(); Level level = entity.level; double y = entity.getY();
+        Entity entity = event.getEntity();
+        Level level = entity.level;
+        double y = entity.getY();
 
         /** ORBITTELEPORT SYSTEM */
         if (y < 0 && entity.level.dimension() == Methods.orbit && !(entity.getVehicle() instanceof LanderEntity)) {
@@ -104,8 +106,7 @@ public class Events {
                 return;
             }
             Methods.entityFallToPlanet(level, entity);
-        }
-        else if (y > 700 && Methods.planetoidWorlds.contains(entity.level.dimension())) {
+        } else if (y > 700 && Methods.planetoidWorlds.contains(entity.level.dimension())) {
             Methods.entityExitAtmosphere(level, entity);
         }
 

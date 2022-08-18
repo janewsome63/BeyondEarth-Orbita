@@ -2,26 +2,22 @@
   "replace": false,
   "values": [
     "beyond_orbita:fuel_refinery",
-    "beyond_orbita:compressor",
     "beyond_orbita:coal_generator",
     "beyond_orbita:oxygen_loader",
     "beyond_orbita:solar_panel",
-    "beyond_orbita:nasa_workbench",
     "beyond_orbita:oxygen_bubble_distributor",
-    "beyond_orbita:water_pump",
-    "beyond_orbita:raw_desh_block",
-    "beyond_orbita:raw_ostrum_block",
-    "beyond_orbita:raw_calorite_block",
+    "beyond_orbita:raw_chromite_block",
+    "beyond_orbita:raw_bauxite_block",
+    "beyond_orbita:raw_titanium_block",
 
     "beyond_orbita:rocket_launch_pad",
 
-    "beyond_orbita:moon_desh_ore",
-    "beyond_orbita:mars_ostrum_ore",
-    "beyond_orbita:venus_calorite_ore",
     "beyond_orbita:chromite_ore",
     "beyond_orbita:deepslate_chromite_ore",
     "beyond_orbita:bauxite_ore",
     "beyond_orbita:deepslate_bauxite_ore",
-    "beyond_orbita:deepslate_titanium_ore"
+    "beyond_orbita:deepslate_titanium_ore",
+    "beyond_orbita:nitrogen_ice",
+    "beyond_orbita:infernal_spire"
   ]
 }

@@ -1,7 +1,0 @@
-{
-  "parent": "beyond_orbita:custom/water_pump",
-  "textures": {
-    "0": "beyond_orbita:blocks/water_pump",
-    "particle": "beyond_orbita:blocks/water_pump"
-  }
-}

@@ -37,21 +37,22 @@
     "beyond_orbita:glacio_stone_brick_stairs",
 	
     "beyond_orbita:steel_block",
-    "beyond_orbita:desh_block",
-    "beyond_orbita:ostrum_block",
-    "beyond_orbita:calorite_block",
-    
-    "beyond_orbita:iron_plating_block",
-    "beyond_orbita:rusted_iron_pillar_block",
-    "beyond_orbita:rusted_iron_plating_block",
-    "beyond_orbita:blue_iron_plating_block",
-    "beyond_orbita:iron_mark_block",
+    "beyond_orbita:chromium_block",
+    "beyond_orbita:stainless_steel_block",
+    "beyond_orbita:aluminum_block",
+    "beyond_orbita:titanium_block",
+    "beyond_orbita:sulphur_block",
+    "beyond_orbita:potassium_block",
+
+    "beyond_orbita:iron_plating",
+    "beyond_orbita:rusted_iron_pillar",
+    "beyond_orbita:rusted_iron_plating",
+    "beyond_orbita:blue_iron_plating",
+    "beyond_orbita:iron_mark",
     "beyond_orbita:sky_stone",
-    "beyond_orbita:infernal_spire_block",
     "beyond_orbita:permafrost",
 
     "beyond_orbita:sulphur_ore",
-    "beyond_orbita:potassium_ore",
-    "beyond_orbita:nitrogen_ice"
+    "beyond_orbita:potassium_ore"
   ]
 }

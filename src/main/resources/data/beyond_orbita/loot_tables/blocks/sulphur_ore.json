@@ -47,7 +47,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "beyond_orbita:sulphur_dust",
+          "name": "beyond_orbita:sulphur",
           "weight": 1,
           "conditions": [
             {

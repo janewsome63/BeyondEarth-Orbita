@@ -2,8 +2,8 @@
   "replace": false,
   "values": [
     "#beyond_orbita:tanks/steel",
-    "#beyond_orbita:tanks/desh",
-    "#beyond_orbita:tanks/ostrum",
-    "#beyond_orbita:tanks/calorite"
+    "#beyond_orbita:tanks/stainless_steel",
+    "#beyond_orbita:tanks/aluminum",
+    "#beyond_orbita:tanks/titanium"
   ]
 }

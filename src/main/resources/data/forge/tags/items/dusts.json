@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:dusts/aluminum",
+    "#forge:dusts/chromium",
+    "#forge:dusts/stainless_steel",
+    "#forge:dusts/steel",
+    "#forge:dusts/titanium"
+  ]
+}

@@ -81,6 +81,9 @@ repositories {
 		content {
 			includeGroup "curse.maven"
 		}
+	flatDir {
+	   dirs 'libs'
+	   }
 	}
 }
 
@@ -128,6 +131,10 @@ dependencies {
 	// Cold Sweat
 	
 	implementation fg.deobf('curse.maven:cold-sweat-506194:3894501')
+	
+	// Wolrd Stripper
+	
+	implementation fg.deobf('curse.maven:world-stripper-250603:3670854')
 	
 	
 }

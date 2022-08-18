@@ -63,7 +63,7 @@ public class CoalLanternBlock extends LanternBlock {
         }
 
         if (itemstack.getItem() == Items.FIRE_CHARGE) {
-            world.playSound(null, pos, SoundEvents.FIRECHARGE_USE, SoundSource.BLOCKS, 1,1);
+            world.playSound(null, pos, SoundEvents.FIRECHARGE_USE, SoundSource.BLOCKS, 1, 1);
 
             if (!playerEntity.getAbilities().instabuild && !playerEntity.isSpectator()) {
                 itemstack.setCount(itemstack.getCount() - 1);

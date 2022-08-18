@@ -25,7 +25,9 @@ import java.util.List;
 @OnlyIn(Dist.CLIENT)
 public class PlanetSelectionGuiHelper {
 
-    /** USE IT FOR CATEGORY BUTTONS */
+    /**
+     * USE IT FOR CATEGORY BUTTONS
+     */
     public static ImageButtonPlacer addCategoryButton(PlanetSelectionGuiWindow screen, CategoryHelper categoryHelper, int x, int row, int width, int height, int newCategory, boolean condition, ImageButtonPlacer.Types type, List<String> list, ResourceLocation buttonTexture, ResourceLocation hoverButtonTexture, Component title) {
         ImageButtonPlacer button = screen.addButton(x, 0, row, width, height, condition, type, list, buttonTexture, hoverButtonTexture, title, (onPress) -> {
             if (condition) {
@@ -38,7 +40,9 @@ public class PlanetSelectionGuiHelper {
         return button;
     }
 
-    /** USE IT FOR TELEPORT BUTTONS */
+    /**
+     * USE IT FOR TELEPORT BUTTONS
+     */
     public static ImageButtonPlacer addHandlerButton(PlanetSelectionGuiWindow screen, int x, int row, int width, int height, boolean condition, boolean holdKeyMessage, boolean tier, SimpleChannel simpleChannel, PlanetSelectionGuiNetworkHandlerHelper handler, ImageButtonPlacer.Types type, List<String> list, ResourceLocation buttonTexture, ResourceLocation hoverButtonTexture, Component title) {
         ImageButtonPlacer button = screen.addButton(x, 0, row, width, height, condition, type, list, buttonTexture, hoverButtonTexture, title, (onPress) -> {
             if (condition && tier) {
@@ -56,14 +60,18 @@ public class PlanetSelectionGuiHelper {
         return button;
     }
 
-    /** USE IT FOR BACK BUTTONS */
+    /**
+     * USE IT FOR BACK BUTTONS
+     */
     public static ImageButtonPlacer addBackButton(PlanetSelectionGuiWindow screen, int x, int row, int width, int height, ResourceLocation buttonTexture, ResourceLocation hoverButtonTexture, Component title, Button.OnPress onPress) {
-        ImageButtonPlacer button = screen.addButton(x, 0, row, width, height, false,null, null, buttonTexture, hoverButtonTexture, title, onPress);
+        ImageButtonPlacer button = screen.addButton(x, 0, row, width, height, false, null, null, buttonTexture, hoverButtonTexture, title, onPress);
 
         return button;
     }
 
-    /** USE IT TO RENDER A CIRCLE */
+    /**
+     * USE IT TO RENDER A CIRCLE
+     */
     public static void addCircle(double x, double y, double radius, int sides) {
         BufferBuilder bufferBuilder = Tesselator.getInstance().getBuilder();
 
@@ -88,7 +96,9 @@ public class PlanetSelectionGuiHelper {
         RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
     }
 
-    /** USE THIS TO ROTATE TEXTURES (LIKE PLANETS) */
+    /**
+     * USE THIS TO ROTATE TEXTURES (LIKE PLANETS)
+     */
     public static void addRotatedObject(PlanetSelectionGuiWindow screen, PoseStack ms, ResourceLocation texture, float x, float y, int width, int height, float rotation) {
         ms.pushPose();
 
@@ -102,13 +112,17 @@ public class PlanetSelectionGuiHelper {
         ms.popPose();
     }
 
-    /** USE THIS TO ADD TEXTURES */
+    /**
+     * USE THIS TO ADD TEXTURES
+     */
     public static void addTexture(PoseStack poseStack, int x, int y, int width, int height, ResourceLocation texture) {
         RenderSystem.setShaderTexture(0, texture);
         GuiComponent.blit(poseStack, x, y, 0, 0, width, height, width, height);
     }
 
-    /** USE THIS TO ENABLE THE BLEND SYSTEM */
+    /**
+     * USE THIS TO ENABLE THE BLEND SYSTEM
+     */
     public static void enableRenderSystem() {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
@@ -116,47 +130,56 @@ public class PlanetSelectionGuiHelper {
         RenderSystem.defaultBlendFunc();
     }
 
-    /** USE THIS TO DISABLE THE BLEND SYSTEM */
+    /**
+     * USE THIS TO DISABLE THE BLEND SYSTEM
+     */
     public static void disableRenderSystem() {
         RenderSystem.disableBlend();
     }
 
-    /** USE THIS TO CHECK THE CATEGORY RANGE */
+    /**
+     * USE THIS TO CHECK THE CATEGORY RANGE
+     */
     public static boolean categoryRange(int category, int start, int end) {
         return category >= start && category <= end;
     }
 
-    /** USE THIS TO CHECK ROCKET TIERS (IF YOU ADDED A OWN ROCKET DO A NEW METHOD) */
+    /**
+     * USE THIS TO CHECK ROCKET TIERS (IF YOU ADDED A OWN ROCKET DO A NEW METHOD)
+     */
     public static boolean checkTier(String rocketType, int stage) {
         int tier = 0;
 
         if (rocketType.equals("entity." + BeyondOrbitaMod.MODID + ".rocket_t1")) {
             tier = 1;
-        }
-        else if (rocketType.equals("entity." + BeyondOrbitaMod.MODID + ".rocket_t2")) {
+        } else if (rocketType.equals("entity." + BeyondOrbitaMod.MODID + ".rocket_t2")) {
             tier = 2;
-        }
-        else if (rocketType.equals("entity." + BeyondOrbitaMod.MODID + ".rocket_t3")) {
+        } else if (rocketType.equals("entity." + BeyondOrbitaMod.MODID + ".rocket_t3")) {
             tier = 3;
-        }
-        else if (rocketType.equals("entity." + BeyondOrbitaMod.MODID + ".rocket_t4")) {
+        } else if (rocketType.equals("entity." + BeyondOrbitaMod.MODID + ".rocket_t4")) {
             tier = 4;
         }
 
         return tier >= stage;
     }
 
-    /** ADDON MODS SHOULD USE A OWN TL METHOD */
+    /**
+     * ADDON MODS SHOULD USE A OWN TL METHOD
+     */
     public static Component tl(String text) {
         return new TranslatableComponent("gui." + BeyondOrbitaMod.MODID + ".planet_selection." + text);
     }
 
-    /** ADDON MODS SHOULD DO A OWN HANDLER EXTENDED OF "AbstractNetworkHandler" */
+    /**
+     * ADDON MODS SHOULD DO A OWN HANDLER EXTENDED OF "AbstractNetworkHandler"
+     */
     public static void callPacketHandler(SimpleChannel simpleChannel, PlanetSelectionGuiNetworkHandlerHelper handler) {
         simpleChannel.sendToServer(handler);
     }
 
-    /** ADDON MODS SHOULD RETURN A OWN NETWORK HANDLER */
+    /**
+     * ADDON MODS SHOULD RETURN A OWN NETWORK HANDLER
+     */
     public static PlanetSelectionGuiNetworkHandler getNetworkHandler(int handler) {
         return new PlanetSelectionGuiNetworkHandler(handler);
     }

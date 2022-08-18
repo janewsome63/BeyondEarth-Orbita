@@ -66,7 +66,7 @@ public class MartianRaptor extends Monster {
     @Override
     public boolean doHurtTarget(Entity p_21372_) {
         this.AttackAnim = 10;
-        this.level.broadcastEntityEvent(this, (byte)4);
+        this.level.broadcastEntityEvent(this, (byte) 4);
         return super.doHurtTarget(p_21372_);
     }
 

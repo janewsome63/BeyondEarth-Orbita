@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "beyond_orbita:titanium_ore",
     "beyond_orbita:deepslate_titanium_ore"
   ]
 }

@@ -49,11 +49,11 @@ public class RoverItem extends VehicleItem {
     public InteractionResult useOn(UseOnContext context) {
         Player player = context.getPlayer();
         Level world = context.getLevel();
-        
+
         if (world.isClientSide()) {
-        	return InteractionResult.PASS;
+            return InteractionResult.PASS;
         }
-        
+
         BlockPos pos = context.getClickedPos();
         InteractionHand hand = context.getHand();
         ItemStack itemStack = context.getItemInHand();
@@ -76,13 +76,13 @@ public class RoverItem extends VehicleItem {
             if (entities.isEmpty()) {
                 RoverEntity rover = new RoverEntity(EntitiesRegistry.ROVER.get(), world);
 
-                rover.setPos((double) pos.getX() + 0.5D,  pos.getY() + 1, (double) pos.getZ() + 0.5D);
+                rover.setPos((double) pos.getX() + 0.5D, pos.getY() + 1, (double) pos.getZ() + 0.5D);
                 double d0 = this.getYOffset(world, pos, true, rover.getBoundingBox());
 
                 /** ROTATION */
                 float f = (float) Mth.floor((Mth.wrapDegrees(context.getRotation() - 180.0F) + 5.626F) / 11.25F) * 11.25F;
 
-                rover.moveTo((double)pos.getX() + 0.5D, (double)pos.getY() + d0, (double)pos.getZ() + 0.5D, f + 180.0F, 0.0F);
+                rover.moveTo((double) pos.getX() + 0.5D, (double) pos.getY() + d0, (double) pos.getZ() + 0.5D, f + 180.0F, 0.0F);
 
                 rover.yRotO = rover.getYRot();
 
@@ -125,6 +125,6 @@ public class RoverItem extends VehicleItem {
     }
 
     public static void roverPlaceSound(BlockPos pos, Level world) {
-        world.playSound(null, pos, SoundEvents.STONE_BREAK, SoundSource.BLOCKS, 1,1);
+        world.playSound(null, pos, SoundEvents.STONE_BREAK, SoundSource.BLOCKS, 1, 1);
     }
 }

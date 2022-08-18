@@ -8,24 +8,24 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.rennautogirl63.beyond_orbita.compats.CompatibleMod;
 
 public class TOPCompat extends CompatibleMod {
-	public static final String MODID = "theoneprobe";
+    public static final String MODID = "theoneprobe";
 
-	public static ResourceLocation rl(String path) {
-		return new ResourceLocation(MODID, path);
-	}
+    public static ResourceLocation rl(String path) {
+        return new ResourceLocation(MODID, path);
+    }
 
-	@Override
-	public String getModID() {
-		return MODID;
-	}
+    @Override
+    public String getModID() {
+        return MODID;
+    }
 
-	@Override
-	protected void onLoad() {
-		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-		bus.addListener(this::imcQueue);
-	}
+    @Override
+    protected void onLoad() {
+        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+        bus.addListener(this::imcQueue);
+    }
 
-	private void imcQueue(InterModEnqueueEvent event) {
-		InterModComms.sendTo(MODID, "getTheOneProbe", TOPPlugin::new);
-	}
+    private void imcQueue(InterModEnqueueEvent event) {
+        InterModComms.sendTo(MODID, "getTheOneProbe", TOPPlugin::new);
+    }
 }

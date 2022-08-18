@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "beyond_orbita:blocks/rusted_iron_pillar_top",
+    "up": "beyond_orbita:blocks/rusted_iron_pillar_top",
+    "north": "beyond_orbita:blocks/rusted_iron_pillar",
+    "east": "beyond_orbita:blocks/rusted_iron_pillar",
+    "south": "beyond_orbita:blocks/rusted_iron_pillar",
+    "west": "beyond_orbita:blocks/rusted_iron_pillar",
+    "particle": "beyond_orbita:blocks/rusted_iron_pillar_top"
+  }
+}

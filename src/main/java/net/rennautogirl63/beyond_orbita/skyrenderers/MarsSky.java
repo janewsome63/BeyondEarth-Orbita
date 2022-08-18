@@ -1,11 +1,15 @@
 package net.rennautogirl63.beyond_orbita.skyrenderers;
 
+import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.Matrix4f;
 import com.mojang.math.Vector3f;
 import net.minecraft.client.Camera;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.DimensionSpecialEffects;
+import net.minecraft.client.renderer.FogRenderer;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.resources.ResourceLocation;
@@ -15,47 +19,41 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.material.FogType;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.client.ISkyRenderHandler;
-import net.minecraftforge.client.ICloudRenderHandler;
 import net.minecraftforge.api.distmarker.Dist;
-
-import net.minecraft.client.renderer.FogRenderer;
-import net.minecraft.client.Minecraft;
-
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.platform.GlStateManager;
+import net.minecraftforge.client.ICloudRenderHandler;
+import net.minecraftforge.client.ISkyRenderHandler;
+import net.minecraftforge.eventbus.api.EventPriority;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.rennautogirl63.beyond_orbita.BeyondOrbitaMod;
 import org.jetbrains.annotations.Nullable;
 
 @Mod.EventBusSubscriber(modid = BeyondOrbitaMod.MODID, bus = Bus.MOD, value = Dist.CLIENT)
 public class MarsSky {
 
-	private static final ResourceLocation DIM_RENDER_INFO = new ResourceLocation(BeyondOrbitaMod.MODID, "mars");
+    private static final ResourceLocation DIM_RENDER_INFO = new ResourceLocation(BeyondOrbitaMod.MODID, "mars");
 
-	private static final ResourceLocation SUN_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/blue_sun.png");
-	private static final ResourceLocation PHOBOS_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/phobos.png");
-	private static final ResourceLocation DEIMOS_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/deimos.png");
-	private static final ResourceLocation EARTH_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/earth.png");
+    private static final ResourceLocation SUN_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/blue_sun.png");
+    private static final ResourceLocation PHOBOS_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/phobos.png");
+    private static final ResourceLocation DEIMOS_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/deimos.png");
+    private static final ResourceLocation EARTH_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/earth.png");
 
     private static final float[] sunriseCol = new float[4];
 
-	@SubscribeEvent(priority = EventPriority.HIGHEST)
-	public static void clientSetup(FMLClientSetupEvent event) {
-		DimensionSpecialEffects.EFFECTS.put(DIM_RENDER_INFO, new DimensionSpecialEffects(192, true, DimensionSpecialEffects.SkyType.NORMAL, false, false) {
-			@Override
-			public Vec3 getBrightnessDependentFogColor(Vec3 p_108878_, float p_108879_) {
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void clientSetup(FMLClientSetupEvent event) {
+        DimensionSpecialEffects.EFFECTS.put(DIM_RENDER_INFO, new DimensionSpecialEffects(192, true, DimensionSpecialEffects.SkyType.NORMAL, false, false) {
+            @Override
+            public Vec3 getBrightnessDependentFogColor(Vec3 p_108878_, float p_108879_) {
                 return p_108878_.multiply(p_108879_ * 0.867058823529 + 0.03, p_108879_ * 0.770980392157 + 0.03, p_108879_ * 0.494901960784 + 0.06);
-			}
+            }
 
             @Override
-			public boolean isFoggyAt(int p_108874_, int p_108875_) {
-				return true;
-			}
+            public boolean isFoggyAt(int p_108874_, int p_108875_) {
+                return true;
+            }
 
             @Override
             public ICloudRenderHandler getCloudRenderHandler() {
@@ -71,11 +69,11 @@ public class MarsSky {
             @Override
             public float[] getSunriseColor(float p_108872_, float p_108873_) {
                 float f = 0.4F;
-                float f1 = Mth.cos(p_108872_ * ((float)Math.PI * 2F)) - 0.0F;
+                float f1 = Mth.cos(p_108872_ * ((float) Math.PI * 2F)) - 0.0F;
                 float f2 = -0.0F;
                 if (f1 >= -0.4F && f1 <= 0.4F) {
                     float f3 = (f1 - -0.0F) / 0.4F * 0.5F + 0.5F;
-                    float f4 = 1.0F - (1.0F - Mth.sin(f3 * (float)Math.PI)) * 0.99F;
+                    float f4 = 1.0F - (1.0F - Mth.sin(f3 * (float) Math.PI)) * 0.99F;
                     f4 *= f4;
                     sunriseCol[0] = f3 * 0.3F + 0.7F;
                     sunriseCol[1] = f3 * f3 * 0.6F + 0.4F;
@@ -259,6 +257,6 @@ public class MarsSky {
                     }
                 };
             }
-		});
-	}
+        });
+    }
 }

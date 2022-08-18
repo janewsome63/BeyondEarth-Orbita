@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "beyond_orbita:blocks/celestial_fragment",
+    "up": "beyond_orbita:blocks/celestial_fragment",
+    "north": "beyond_orbita:blocks/celestial_fragment",
+    "east": "beyond_orbita:blocks/celestial_fragment",
+    "south": "beyond_orbita:blocks/celestial_fragment",
+    "west": "beyond_orbita:blocks/celestial_fragment",
+    "particle": "beyond_orbita:blocks/celestial_fragment"
+  }
+}

@@ -1,13 +1,12 @@
 package net.rennautogirl63.beyond_orbita.world.cavers;
 
+import com.google.common.collect.ImmutableSet;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.carver.WorldCarver;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.rennautogirl63.beyond_orbita.BeyondOrbitaMod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-
-import com.google.common.collect.ImmutableSet;
+import net.rennautogirl63.beyond_orbita.BeyondOrbitaMod;
 import net.rennautogirl63.beyond_orbita.registries.BlocksRegistry;
 
 import java.util.Set;

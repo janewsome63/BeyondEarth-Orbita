@@ -4,9 +4,6 @@ import com.google.common.collect.Lists;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Vector3f;
-import java.util.List;
-import javax.annotation.Nullable;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -25,6 +22,9 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.rennautogirl63.beyond_orbita.entities.RoverEntity;
 import net.rennautogirl63.beyond_orbita.entities.VehicleEntity;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
 public abstract class VehicleRenderer<T extends VehicleEntity, M extends EntityModel<T>> extends EntityRenderer<T> implements RenderLayerParent<T, M> {
@@ -54,7 +54,7 @@ public abstract class VehicleRenderer<T extends VehicleEntity, M extends EntityM
         float f1 = Mth.rotLerp(p_115310_, p_115308_.yRotO, p_115308_.getYRot());
         float f2 = f1 - f;
         if (shouldSit && p_115308_.getVehicle() instanceof LivingEntity) {
-            LivingEntity livingentity = (LivingEntity)p_115308_.getVehicle();
+            LivingEntity livingentity = (LivingEntity) p_115308_.getVehicle();
             f = Mth.rotLerp(p_115310_, livingentity.yBodyRotO, livingentity.yBodyRot);
             f2 = f1 - f;
             float f3 = Mth.wrapDegrees(f2);
@@ -80,7 +80,7 @@ public abstract class VehicleRenderer<T extends VehicleEntity, M extends EntityM
         this.setupRotations(p_115308_, p_115311_, f7, f, p_115310_);
         p_115311_.scale(-1.0F, -1.0F, 1.0F);
         this.scale(p_115308_, p_115311_, p_115310_);
-        p_115311_.translate(0.0D, (double)-1.501F, 0.0D);
+        p_115311_.translate(0.0D, (double) -1.501F, 0.0D);
         float f8 = 0.0F;
         float f5 = 0.0F;
         if (p_115308_ instanceof RoverEntity) {
@@ -106,7 +106,7 @@ public abstract class VehicleRenderer<T extends VehicleEntity, M extends EntityM
         }
 
         if (!p_115308_.isSpectator()) {
-            for(RenderLayer<T, M> renderlayer : this.layers) {
+            for (RenderLayer<T, M> renderlayer : this.layers) {
                 renderlayer.render(p_115311_, p_115312_, p_115313_, p_115308_, f5, f8, p_115310_, f7, f2, f6);
             }
         }
@@ -145,7 +145,7 @@ public abstract class VehicleRenderer<T extends VehicleEntity, M extends EntityM
 
     protected void setupRotations(T p_115317_, PoseStack p_115318_, float p_115319_, float p_115320_, float p_115321_) {
         if (this.isShaking(p_115317_)) {
-            p_115320_ += (float)(Math.cos((double)p_115317_.tickCount * 3.25D) * Math.PI * (double)0.4F);
+            p_115320_ += (float) (Math.cos((double) p_115317_.tickCount * 3.25D) * Math.PI * (double) 0.4F);
         }
 
         Pose pose = p_115317_.getPose();
@@ -155,7 +155,7 @@ public abstract class VehicleRenderer<T extends VehicleEntity, M extends EntityM
     }
 
     protected float getBob(T p_115305_, float p_115306_) {
-        return (float)p_115305_.tickCount + p_115306_;
+        return (float) p_115305_.tickCount + p_115306_;
     }
 
     protected void scale(T p_115314_, PoseStack p_115315_, float p_115316_) {

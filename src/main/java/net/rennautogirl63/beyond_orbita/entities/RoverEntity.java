@@ -18,7 +18,10 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.animal.FlyingAnimal;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
@@ -67,7 +70,7 @@ public class RoverEntity extends VehicleEntity {
 
     public static final EntityDataAccessor<Boolean> FORWARD = SynchedEntityData.defineId(RoverEntity.class, EntityDataSerializers.BOOLEAN);
 
-	public static final int FUEL_BUCKETS = 3;
+    public static final int FUEL_BUCKETS = 3;
 
     public RoverEntity(EntityType type, Level worldIn) {
         super(type, worldIn);
@@ -112,28 +115,28 @@ public class RoverEntity extends VehicleEntity {
 
     @Override
     public Vec3 getDismountLocationForPassenger(LivingEntity livingEntity) {
-        Vec3[] avector3d = new Vec3[]{getCollisionHorizontalEscapeVector((double)this.getBbWidth(), (double)livingEntity.getBbWidth(), livingEntity.getYRot()), getCollisionHorizontalEscapeVector((double)this.getBbWidth(), (double)livingEntity.getBbWidth(), livingEntity.getYRot() - 22.5F), getCollisionHorizontalEscapeVector((double)this.getBbWidth(), (double)livingEntity.getBbWidth(), livingEntity.getYRot() + 22.5F), getCollisionHorizontalEscapeVector((double)this.getBbWidth(), (double)livingEntity.getBbWidth(), livingEntity.getYRot() - 45.0F), getCollisionHorizontalEscapeVector((double)this.getBbWidth(), (double)livingEntity.getBbWidth(), livingEntity.getYRot() + 45.0F)};
+        Vec3[] avector3d = new Vec3[]{getCollisionHorizontalEscapeVector((double) this.getBbWidth(), (double) livingEntity.getBbWidth(), livingEntity.getYRot()), getCollisionHorizontalEscapeVector((double) this.getBbWidth(), (double) livingEntity.getBbWidth(), livingEntity.getYRot() - 22.5F), getCollisionHorizontalEscapeVector((double) this.getBbWidth(), (double) livingEntity.getBbWidth(), livingEntity.getYRot() + 22.5F), getCollisionHorizontalEscapeVector((double) this.getBbWidth(), (double) livingEntity.getBbWidth(), livingEntity.getYRot() - 45.0F), getCollisionHorizontalEscapeVector((double) this.getBbWidth(), (double) livingEntity.getBbWidth(), livingEntity.getYRot() + 45.0F)};
         Set<BlockPos> set = Sets.newLinkedHashSet();
         double d0 = this.getBoundingBox().maxY;
         double d1 = this.getBoundingBox().minY - 0.5D;
         BlockPos.MutableBlockPos blockpos$mutable = new BlockPos.MutableBlockPos();
 
-        for(Vec3 vector3d : avector3d) {
+        for (Vec3 vector3d : avector3d) {
             blockpos$mutable.set(this.getX() + vector3d.x, d0, this.getZ() + vector3d.z);
 
-            for(double d2 = d0; d2 > d1; --d2) {
+            for (double d2 = d0; d2 > d1; --d2) {
                 set.add(blockpos$mutable.immutable());
                 blockpos$mutable.move(Direction.DOWN);
             }
         }
 
-        for(BlockPos blockpos : set) {
+        for (BlockPos blockpos : set) {
             if (!this.level.getFluidState(blockpos).is(FluidTags.LAVA)) {
                 double d3 = this.level.getBlockFloorHeight(blockpos);
                 if (DismountHelper.isBlockFloorValid(d3)) {
                     Vec3 vector3d1 = Vec3.upFromBottomCenterOf(blockpos, d3);
 
-                    for(Pose pose : livingEntity.getDismountPoses()) {
+                    for (Pose pose : livingEntity.getDismountPoses()) {
                         AABB axisalignedbb = livingEntity.getLocalBoundsForPose(pose);
                         if (DismountHelper.isBlockFloorValid(this.level.getBlockFloorHeight(blockpos))) {
                             livingEntity.setPose(pose);
@@ -186,7 +189,7 @@ public class RoverEntity extends VehicleEntity {
 
     @Override
     public AABB getBoundingBoxForCulling() {
-        return new AABB(this.getX(), this.getY(), this.getZ(), this.getX(), this.getY(), this.getZ()).inflate(4.5,4.5,4.5);
+        return new AABB(this.getX(), this.getY(), this.getZ(), this.getX(), this.getY(), this.getZ()).inflate(4.5, 4.5, 4.5);
     }
 
     @Override
@@ -444,7 +447,7 @@ public class RoverEntity extends VehicleEntity {
         double d0 = p_21044_.getX() - p_21044_.xo;
         double d1 = p_21045_ ? p_21044_.getY() - p_21044_.yo : 0.0D;
         double d2 = p_21044_.getZ() - p_21044_.zo;
-        float f = (float)Math.sqrt(d0 * d0 + d1 * d1 + d2 * d2) * 4.0F;
+        float f = (float) Math.sqrt(d0 * d0 + d1 * d1 + d2 * d2) * 4.0F;
         if (f > 1.0F) {
             f = 1.0F;
         }

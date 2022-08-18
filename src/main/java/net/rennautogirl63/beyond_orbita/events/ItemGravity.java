@@ -6,7 +6,8 @@ import net.minecraftforge.common.MinecraftForge;
 import net.rennautogirl63.beyond_orbita.events.forge.ItemGravityEvent;
 
 public class ItemGravity {
-    /** Ref ratios:
+    /**
+     * Ref ratios:
      * Mercury = 0.377
      * Venus = 0.904
      * Earth = 1
@@ -36,29 +37,21 @@ public class ItemGravity {
     public static void gravity(ItemEntity itemEntity, Level level) {
         if (Methods.isWorld(level, Methods.mercury)) {
             gravitySystem(itemEntity, MERCURY_GRAVITY, MERCURY_DRAG);
-        }
-        else if (Methods.isWorld(level, Methods.venus)) {
+        } else if (Methods.isWorld(level, Methods.venus)) {
             gravitySystem(itemEntity, VENUS_GRAVITY, VENUS_DRAG);
-        }
-        else if (Methods.isWorld(level, Methods.overworld)) {
+        } else if (Methods.isWorld(level, Methods.overworld)) {
             gravitySystem(itemEntity, EARTH_GRAVITY, EARTH_DRAG);
-        }
-        else if (Methods.isNoGravWorld(level)) {
+        } else if (Methods.isNoGravWorld(level)) {
             gravitySystem(itemEntity, SPACE_GRAVITY, SPACE_DRAG);
-        }
-        else if (Methods.isWorld(level, Methods.moon)) {
+        } else if (Methods.isWorld(level, Methods.moon)) {
             gravitySystem(itemEntity, MOON_GRAVITY, MOON_DRAG);
-        }
-        else if (Methods.isWorld(level, Methods.mars)) {
+        } else if (Methods.isWorld(level, Methods.mars)) {
             gravitySystem(itemEntity, MARS_GRAVITY, MARS_DRAG);
-        }
-        else if (Methods.isWorld(level, Methods.pluto)) {
+        } else if (Methods.isWorld(level, Methods.pluto)) {
             gravitySystem(itemEntity, PLUTO_GRAVITY, PLUTO_DRAG);
-        }
-        else if (Methods.isWorld(level, Methods.glacio)) {
+        } else if (Methods.isWorld(level, Methods.glacio)) {
             gravitySystem(itemEntity, GLACIO_GRAVITY, GLACIO_DRAG);
-        }
-        else if (Methods.isNoGravWorld(level)) {
+        } else if (Methods.isNoGravWorld(level)) {
             gravitySystem(itemEntity, SPACE_GRAVITY, SPACE_DRAG);
         }
     }
@@ -72,14 +65,18 @@ public class ItemGravity {
             return;
         }
 
-        double x = entity.getX(); double y = entity.getY(); double z = entity.getZ(); double xv = entity.getDeltaMovement().x; double yv = entity.getDeltaMovement().y; double zv = entity.getDeltaMovement().z;
+        double x = entity.getX();
+        double y = entity.getY();
+        double z = entity.getZ();
+        double xv = entity.getDeltaMovement().x;
+        double yv = entity.getDeltaMovement().y;
+        double zv = entity.getDeltaMovement().z;
         if (Methods.noGravWorlds.contains(entity.level.dimension()) || y >= 590 && Methods.planetoidWorlds.contains(entity.level.dimension())) {
             if (!entity.isNoGravity()) {
                 entity.setNoGravity(true);
             }
             entity.setDeltaMovement((xv / 0.98) * drag, (yv / 0.98) * drag, (zv / 0.98) * drag);
-        }
-        else {
+        } else {
             if (y > 320 && y < 590) {
                 gravity = gravity / 4;
             }
@@ -90,7 +87,9 @@ public class ItemGravity {
         }
     }
 
-    /** MAIN GRAVITY CHECK */
+    /**
+     * MAIN GRAVITY CHECK
+     */
     private static boolean getCondition(ItemEntity entity) {
         return !entity.isInWater() && !entity.isInLava();
     }

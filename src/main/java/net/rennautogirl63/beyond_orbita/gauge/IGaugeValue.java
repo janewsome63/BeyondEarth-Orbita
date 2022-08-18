@@ -6,30 +6,29 @@ import net.minecraftforge.common.util.INBTSerializable;
 
 public interface IGaugeValue extends INBTSerializable<CompoundTag> {
 
-	Component getDisplayName();
+    Component getDisplayName();
 
-	String getUnit();
+    String getUnit();
 
-	int getAmount();
+    int getAmount();
 
-	int getCapacity();
-	
-	public default int getColor()
-	{
-		return 0x00000000;
-	}
+    int getCapacity();
 
-	boolean isReverse();
+    public default int getColor() {
+        return 0x00000000;
+    }
 
-	public default double getDisplayRatio() {
-		int capacity = this.getCapacity();
+    boolean isReverse();
 
-		if (capacity == 0) {
-			return 0.0D;
-		}
+    public default double getDisplayRatio() {
+        int capacity = this.getCapacity();
 
-		int amount = this.getAmount();
-		return (this.isReverse() ? (capacity - amount) : amount) / (double) capacity;
-	}
+        if (capacity == 0) {
+            return 0.0D;
+        }
+
+        int amount = this.getAmount();
+        return (this.isReverse() ? (capacity - amount) : amount) / (double) capacity;
+    }
 
 }

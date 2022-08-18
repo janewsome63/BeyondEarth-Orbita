@@ -11,7 +11,9 @@ public class ParticlesRegistry {
 
     public static final DeferredRegister<ParticleType<?>> PARTICLES = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, BeyondOrbitaMod.MODID);
 
-    /** PARTICLES */
+    /**
+     * PARTICLES
+     */
     public static final RegistryObject<ParticleType<SimpleParticleType>> VENUS_RAIN_PARTICLE = PARTICLES.register("venus_rain", () -> new SimpleParticleType(true));
     public static final RegistryObject<ParticleType<SimpleParticleType>> LARGE_FLAME_PARTICLE = PARTICLES.register("large_flame", () -> new SimpleParticleType(true));
     public static final RegistryObject<ParticleType<SimpleParticleType>> LARGE_SMOKE_PARTICLE = PARTICLES.register("large_smoke", () -> new SimpleParticleType(true));

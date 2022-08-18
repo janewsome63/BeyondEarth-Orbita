@@ -4,7 +4,10 @@ import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.rennautogirl63.beyond_orbita.BeyondOrbitaMod;
-import net.rennautogirl63.beyond_orbita.entities.*;
+import net.rennautogirl63.beyond_orbita.entities.MartianRaptor;
+import net.rennautogirl63.beyond_orbita.entities.MoglerEntity;
+import net.rennautogirl63.beyond_orbita.entities.PygroBruteEntity;
+import net.rennautogirl63.beyond_orbita.entities.StarCrawlerEntity;
 import net.rennautogirl63.beyond_orbita.entities.alien.AlienEntity;
 import net.rennautogirl63.beyond_orbita.entities.pygro.PygroEntity;
 
@@ -18,7 +21,6 @@ public class EntityAttributeRegistry {
         event.put(EntitiesRegistry.PYGRO_BRUTE.get(), PygroBruteEntity.setCustomAttributes().build());
         event.put(EntitiesRegistry.MOGLER.get(), MoglerEntity.setCustomAttributes().build());
         event.put(EntitiesRegistry.MARTIAN_RAPTOR.get(), MartianRaptor.setCustomAttributes().build());
-        event.put(EntitiesRegistry.ALIEN_ZOMBIE.get(), AlienZombieEntity.setCustomAttributes().build());
         event.put(EntitiesRegistry.STAR_CRAWLER.get(), StarCrawlerEntity.setCustomAttributes().build());
     }
 }

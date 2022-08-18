@@ -1,22 +1,13 @@
 package net.rennautogirl63.beyond_orbita.events;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.MinecraftForge;
 import net.rennautogirl63.beyond_orbita.events.forge.EntityGravityEvent;
 
-import java.util.Arrays;
-
 public class OtherGravity {
-    /** Ref ratios:
+    /**
+     * Ref ratios:
      * Mercury = 0.377
      * Venus = 0.904
      * Earth = 1
@@ -45,29 +36,21 @@ public class OtherGravity {
     public static void gravity(Entity entity, Level level) {
         if (Methods.isWorld(level, Methods.mercury)) {
             gravitySystem(entity, MERCURY_GRAVITY, MERCURY_DRAG);
-        }
-        else if (Methods.isWorld(level, Methods.venus)) {
+        } else if (Methods.isWorld(level, Methods.venus)) {
             gravitySystem(entity, VENUS_GRAVITY, VENUS_DRAG);
-        }
-        else if (Methods.isWorld(level, Methods.overworld)) {
+        } else if (Methods.isWorld(level, Methods.overworld)) {
             gravitySystem(entity, EARTH_GRAVITY, EARTH_DRAG);
-        }
-        else if (Methods.isNoGravWorld(level)) {
+        } else if (Methods.isNoGravWorld(level)) {
             gravitySystem(entity, SPACE_GRAVITY, SPACE_DRAG);
-        }
-        else if (Methods.isWorld(level, Methods.moon)) {
+        } else if (Methods.isWorld(level, Methods.moon)) {
             gravitySystem(entity, MOON_GRAVITY, MOON_DRAG);
-        }
-        else if (Methods.isWorld(level, Methods.mars)) {
+        } else if (Methods.isWorld(level, Methods.mars)) {
             gravitySystem(entity, MARS_GRAVITY, MARS_DRAG);
-        }
-        else if (Methods.isWorld(level, Methods.pluto)) {
+        } else if (Methods.isWorld(level, Methods.pluto)) {
             gravitySystem(entity, PLUTO_GRAVITY, PLUTO_DRAG);
-        }
-        else if (Methods.isWorld(level, Methods.glacio)) {
+        } else if (Methods.isWorld(level, Methods.glacio)) {
             gravitySystem(entity, GLACIO_GRAVITY, GLACIO_DRAG);
-        }
-        else if (Methods.isNoGravWorld(level)) {
+        } else if (Methods.isNoGravWorld(level)) {
             gravitySystem(entity, SPACE_GRAVITY, SPACE_DRAG);
         }
     }
@@ -77,29 +60,31 @@ public class OtherGravity {
             return;
         }
 
-        double x = entity.getX(); double y = entity.getY(); double z = entity.getZ(); double xv = entity.getDeltaMovement().x; double yv = entity.getDeltaMovement().y; double zv = entity.getDeltaMovement().z;
+        double x = entity.getX();
+        double y = entity.getY();
+        double z = entity.getZ();
+        double xv = entity.getDeltaMovement().x;
+        double yv = entity.getDeltaMovement().y;
+        double zv = entity.getDeltaMovement().z;
         if (Methods.noGravWorlds.contains(entity.level.dimension()) || y >= 590 && Methods.planetoidWorlds.contains(entity.level.dimension())) {
             if (!entity.isNoGravity()) {
-                    entity.setNoGravity(true);
-                }
+                entity.setNoGravity(true);
+            }
             if (("" + entity.getType().getRegistryName()).contains("boat")) {
                 entity.setDeltaMovement(0, (yv / 0.98) * drag, 0);
-            }
-            else {
+            } else {
                 entity.setDeltaMovement((xv / 0.98) * drag, (yv / 0.98) * drag, (zv / 0.98) * drag);
             }
-        }
-        else {
+        } else {
             if (entity.isNoGravity()) {
                 entity.setNoGravity(false);
             }
             if (("" + entity.getType().getRegistryName()).contains("ender_pearl")) {
-                gravity = gravity /2;
+                gravity = gravity / 2;
                 entity.setDeltaMovement((xv / 0.98) * drag, ((yv / 0.98) + 0.02 - gravity) * drag, (zv / 0.98) * drag);
-            }
-            else {
+            } else {
                 entity.setDeltaMovement((xv / 0.98) * drag, ((yv / 0.98) + 0.04 - gravity) * drag, (zv / 0.98) * drag);
             }
         }
-	}
+    }
 }

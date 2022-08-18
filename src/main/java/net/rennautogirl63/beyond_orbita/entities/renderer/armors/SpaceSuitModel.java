@@ -108,11 +108,9 @@ public class SpaceSuitModel {
             /** Translucent Armor Parts */
             if (stack.getItem() == ItemsRegistry.OXYGEN_MASK.get()) {
                 head.render(poseStack, this.getVertex(TranslucentArmorRenderType.armorCutoutNoCull(spaceSuit), false, stack.isEnchanted()), packedLight, packedOverlay);
-            }
-            else if (stack.getItem() == ItemsRegistry.NETHERITE_OXYGEN_MASK.get()) {
+            } else if (stack.getItem() == ItemsRegistry.NETHERITE_OXYGEN_MASK.get()) {
                 head.render(poseStack, this.getVertex(TranslucentArmorRenderType.armorCutoutNoCull(netheriteSpaceSuit), false, stack.isEnchanted()), packedLight, packedOverlay);
-            }
-            else {
+            } else {
                 head.render(poseStack, buffer, packedLight, packedOverlay);
             }
         }

@@ -19,7 +19,7 @@ public class SmallFlameParticle extends ExplodeParticle {
 
     public void tick() {
         super.tick();
-        this.yd -= 0.004D + 0.04D * (double)this.gravity;
+        this.yd -= 0.004D + 0.04D * (double) this.gravity;
     }
 
     @OnlyIn(Dist.CLIENT)

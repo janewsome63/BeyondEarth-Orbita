@@ -1,11 +1,15 @@
 package net.rennautogirl63.beyond_orbita.skyrenderers;
 
+import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.Matrix4f;
 import com.mojang.math.Vector3f;
 import net.minecraft.client.Camera;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.DimensionSpecialEffects;
+import net.minecraft.client.renderer.FogRenderer;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.resources.ResourceLocation;
@@ -15,23 +19,17 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.material.FogType;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.client.ISkyRenderHandler;
 import net.minecraftforge.client.ICloudRenderHandler;
+import net.minecraftforge.client.ISkyRenderHandler;
+import net.minecraftforge.eventbus.api.EventPriority;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
-
-import net.minecraft.client.renderer.FogRenderer;
-import net.minecraft.client.Minecraft;
-
-import javax.annotation.Nullable;
-
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.platform.GlStateManager;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.rennautogirl63.beyond_orbita.BeyondOrbitaMod;
 import net.rennautogirl63.beyond_orbita.skyrenderers.helper.StarHelper;
+
+import javax.annotation.Nullable;
 
 @Mod.EventBusSubscriber(modid = BeyondOrbitaMod.MODID, bus = Bus.MOD, value = Dist.CLIENT)
 public class OrbitSky {
