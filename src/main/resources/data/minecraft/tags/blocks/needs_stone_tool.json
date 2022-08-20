@@ -35,13 +35,18 @@
     "beyond_orbita:cracked_glacio_stone_bricks",
     "beyond_orbita:glacio_stone_brick_slab",
     "beyond_orbita:glacio_stone_brick_stairs",
+
+    "beyond_orbita:pluto_stone",
+    "beyond_orbita:pluto_stone_bricks",
+    "beyond_orbita:cracked_pluto_stone_bricks",
+    "beyond_orbita:pluto_stone_brick_slab",
+    "beyond_orbita:pluto_stone_brick_stairs",
 	
     "beyond_orbita:steel_block",
-    "beyond_orbita:chromium_block",
     "beyond_orbita:stainless_steel_block",
     "beyond_orbita:aluminum_block",
     "beyond_orbita:titanium_block",
-    "beyond_orbita:sulphur_block",
+    "beyond_orbita:sulfur_block",
     "beyond_orbita:potassium_block",
 
     "beyond_orbita:iron_plating",
@@ -52,7 +57,9 @@
     "beyond_orbita:sky_stone",
     "beyond_orbita:permafrost",
 
-    "beyond_orbita:sulphur_ore",
-    "beyond_orbita:potassium_ore"
+    "beyond_orbita:sulfur_ore",
+    "beyond_orbita:deepslate_sulfur_ore",
+    "beyond_orbita:potassium_ore",
+    "beyond_orbita:deepslate_potassium_ore"
   ]
 }

@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "beyond_orbita:blocks/sulfur_block",
+    "up": "beyond_orbita:blocks/sulfur_block",
+    "north": "beyond_orbita:blocks/sulfur_block",
+    "east": "beyond_orbita:blocks/sulfur_block",
+    "south": "beyond_orbita:blocks/sulfur_block",
+    "west": "beyond_orbita:blocks/sulfur_block",
+    "particle": "beyond_orbita:blocks/sulfur_block"
+  }
+}

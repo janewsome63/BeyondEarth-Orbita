@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "beyond_orbita:oxygen_mask"
+  },
+  "addition": {
+    "item": "minecraft:netherite_ingot"
+  },
+  "result": {
+    "item": "beyond_orbita:netherite_oxygen_mask"
+  }
+}

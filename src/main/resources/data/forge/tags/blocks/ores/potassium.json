@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "beyond_orbita:potassium_ore"
+    "beyond_orbita:potassium_ore",
+    "beyond_orbita:deepslate_potassium_ore"
   ]
 }

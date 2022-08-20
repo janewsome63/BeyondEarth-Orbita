@@ -1,0 +1,22 @@
+{
+  "group": "beyond_orbita",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012"
+  ],
+  "key": {
+    "0": {
+      "item": "beyond_orbita:mercury_stone_bricks"
+    },
+    "1": {
+      "item": "beyond_orbita:mercury_stone_bricks"
+    },
+    "2": {
+      "item": "beyond_orbita:mercury_stone_bricks"
+    }
+  },
+  "result": {
+    "item": "beyond_orbita:mercury_stone_brick_slab",
+    "count": 6
+  }
+}

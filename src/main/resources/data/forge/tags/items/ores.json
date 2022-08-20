@@ -2,9 +2,10 @@
   "replace": false,
   "values": [
     "#forge:ores/aluminum",
-    "#forge:ores/chromium",
     "#forge:ores/potassium",
-    "#forge:ores/sulphur",
+    "#forge:ores/sulfur",
+    "#forge:ores/silicon",
+    "#forge:ores/quartz",
     "#forge:ores/titanium"
   ]
 }

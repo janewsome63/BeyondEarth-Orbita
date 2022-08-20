@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#"
+    ],
+    "key": {
+        "#": {
+            "item": "beyond_orbita:raw_titanium_block"
+        }
+    },
+    "result": {
+        "item": "beyond_orbita:raw_titanium",
+        "count": 9
+    }
+}

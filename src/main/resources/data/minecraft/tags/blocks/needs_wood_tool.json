@@ -2,6 +2,10 @@
   "replace": false,
   "values": [
     "beyond_orbita:stone",
-    "beyond_orbita:deepslate"
+    "beyond_orbita:deepslate",
+    "beyond_orbita:silicon_ore",
+    "beyond_orbita:deepslate_silicon_ore",
+    "beyond_orbita:quartz_ore",
+    "beyond_orbita:deepslate_quartz_ore"
   ]
 }

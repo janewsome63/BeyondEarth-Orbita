@@ -1,0 +1,16 @@
+{
+  "group": "beyond_orbita",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "0"
+  ],
+  "key": {
+    "0": {
+      "item": "beyond_orbita:aluminum_block"
+    }
+  },
+  "result": {
+    "item": "beyond_orbita:aluminum_ingot",
+    "count": 9
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "beyond_orbita:titanium_ingot",
+  "result": {
+    "item": "beyond_orbita:titanium_ingot"
+  },
+  "key": {
+    "*": {
+      "item": "beyond_orbita:titanium_nugget"
+    },
+    "#": {
+      "tag": "forge:nuggets/titanium"
+    }
+  },
+  "pattern": [
+    "###",
+    "#*#",
+    "###"
+  ]
+}

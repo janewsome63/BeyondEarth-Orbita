@@ -1,0 +1,9 @@
+{
+	"type": "beyond_orbita:oxygen_loader",
+	"input": {
+		"name": "minecraft:water",
+		"nbt": {},
+		"amount": 5
+	},
+	"oxygen": 5
+}

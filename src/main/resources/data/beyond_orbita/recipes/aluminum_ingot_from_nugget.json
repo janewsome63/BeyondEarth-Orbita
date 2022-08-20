@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "beyond_orbita:aluminum_ingot",
+  "result": {
+    "item": "beyond_orbita:aluminum_ingot"
+  },
+  "pattern": [
+    "###",
+    "#*#",
+    "###"
+  ],
+  "key": {
+    "*": {
+      "item": "beyond_orbita:aluminum_nugget"
+    },
+    "#": {
+      "tag": "forge:nuggets/aluminum"
+    }
+  }
+}

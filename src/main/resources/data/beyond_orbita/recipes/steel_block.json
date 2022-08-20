@@ -1,0 +1,21 @@
+{
+  "group": "beyond_orbita",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#*#",
+    "###"
+  ],
+  "key": {
+    "*": {
+      "item": "beyond_orbita:steel_ingot"
+    },
+    "#": {
+      "tag": "forge:ingots/steel"
+    }
+  },
+  "result": {
+    "item": "beyond_orbita:steel_block",
+    "count": 1
+  }
+}

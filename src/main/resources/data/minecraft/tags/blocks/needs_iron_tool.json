@@ -6,7 +6,6 @@
     "beyond_orbita:oxygen_loader",
     "beyond_orbita:solar_panel",
     "beyond_orbita:oxygen_bubble_distributor",
-    "beyond_orbita:raw_chromite_block",
     "beyond_orbita:raw_bauxite_block",
     "beyond_orbita:raw_titanium_block",
 
@@ -16,8 +15,8 @@
     "beyond_orbita:deepslate_chromite_ore",
     "beyond_orbita:bauxite_ore",
     "beyond_orbita:deepslate_bauxite_ore",
+    "beyond_orbita:titanium_ore",
     "beyond_orbita:deepslate_titanium_ore",
-    "beyond_orbita:nitrogen_ice",
     "beyond_orbita:infernal_spire"
   ]
 }

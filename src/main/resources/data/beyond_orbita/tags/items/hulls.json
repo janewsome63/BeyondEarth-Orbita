@@ -2,7 +2,6 @@
   "replace": false,
   "values": [
     "#beyond_orbita:hulls/steel",
-    "#beyond_orbita:hulls/stainless_steel",
     "#beyond_orbita:hulls/aluminum",
     "#beyond_orbita:hulls/titanium"
   ]

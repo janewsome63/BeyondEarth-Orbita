@@ -43,4 +43,10 @@ public class BiomesRegistry {
      * ASTEROID BELT
      */
     public static final ResourceLocation ASTEROID_FIELD = new ResourceLocation(BeyondOrbitaMod.MODID, "asteroid_field");
+
+    /**
+     * PLUTO
+     */
+    public static final ResourceLocation PLUTO_DESERT = new ResourceLocation(BeyondOrbitaMod.MODID, "pluto_desert");
+    public static final ResourceLocation PLUTO_TUNDRA = new ResourceLocation(BeyondOrbitaMod.MODID, "pluto_tundra");
 }

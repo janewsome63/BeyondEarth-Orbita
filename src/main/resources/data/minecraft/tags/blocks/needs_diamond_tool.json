@@ -2,9 +2,7 @@
   "replace": false,
   "values": [
     "beyond_orbita:carbon",
-    "beyond_orbita:primordial_remnant",
-    "beyond_orbita:primordial_block",
-    "beyond_orbita:celestial_fragment",
+    "beyond_orbita:celestial_remnant",
     "beyond_orbita:celestial_block",
     "beyond_orbita:celestial_brick"
   ]

@@ -1,0 +1,20 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"###",
+		"#*#",
+		"###"
+	],
+	"key": {
+		"*": {
+			"item": "beyond_orbita:raw_bauxite"
+		},
+		"#": {
+			"tag": "forge:raw_materials/aluminum"
+		}
+	},
+	"result": {
+		"item": "beyond_orbita:raw_bauxite_block",
+		"count": 1
+	}
+}

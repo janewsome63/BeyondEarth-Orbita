@@ -2,8 +2,6 @@
   "replace": false,
   "values": [
     "#forge:ingots/aluminum",
-    "#forge:ingots/chromium",
-    "#forge:ingots/stainless_steel",
     "#forge:ingots/steel",
     "#forge:ingots/titanium"
   ]

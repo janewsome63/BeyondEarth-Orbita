@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "beyond_orbita:pluto_stone"
+  },
+  "result": "beyond_orbita:pluto_stone_brick_slab",
+  "count": 2
+}

@@ -1,3 +1,6 @@
 {
-  "parent": "beyond_orbita:block/celestial_fragment"
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "beyond_orbita:items/celestial_fragment"
+  }
 }
