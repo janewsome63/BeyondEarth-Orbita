@@ -69,6 +69,7 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
     public static final ResourceLocation VENUS_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/gui/venus.png");
     public static final ResourceLocation MERCURY_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/gui/mercury.png");
     public static final ResourceLocation ASTEROID_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/gui/asteroid.png");
+    public static final ResourceLocation PLUTO_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/gui/pluto.png");
     public static final ResourceLocation GLACIO_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/gui/glacio.png");
 
     public static final ResourceLocation SMALL_MENU_LIST = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/rocket_menu_list.png");
@@ -96,10 +97,12 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
     public static final Component GLACIO_TEXT = PlanetSelectionGuiHelper.tl("glacio");
 
     public static final Component PLANET_TEXT = PlanetSelectionGuiHelper.tl("planet");
+    public static final Component DWARF_PLANET_TEXT = PlanetSelectionGuiHelper.tl("dwarf_planet");
     public static final Component MOON_TEXT = PlanetSelectionGuiHelper.tl("moon");
 
     public static final Component ORBIT_TEXT = PlanetSelectionGuiHelper.tl("orbit");
     public static final Component ASTEROID_TEXT = PlanetSelectionGuiHelper.tl("asteroid_field");
+    public static final Component PLUTO_TEXT = PlanetSelectionGuiHelper.tl("pluto");
 
     public static final Component NO_GRAVITY_TEXT = PlanetSelectionGuiHelper.tl("no_gravity");
 
@@ -144,6 +147,7 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
     public float rotationVenus;
     public float rotationMercury;
     public float rotationAsteroid;
+    public float rotationPluto;
     public float rotationGlacio;
 
     /**
@@ -172,6 +176,7 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
     public ImageButtonPlacer orbitButton;
     public ImageButtonPlacer marsButton;
     public ImageButtonPlacer asteroidButton;
+    public ImageButtonPlacer plutoButton;
 
     /**
      * PROXIMA CENTAURI TELEPORT BUTTONS
@@ -244,7 +249,7 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
             PlanetSelectionGuiHelper.addCircle(this.width / 2, this.height / 2, 46.0, 180);
             PlanetSelectionGuiHelper.addCircle(this.width / 2, this.height / 2, 69.5, 180);
             PlanetSelectionGuiHelper.addCircle(this.width / 2, this.height / 2, 92.0, 180);
-            /** PlanetSelectionGuiHelper.addCircle(this.width / 2, this.height / 2, 120.0, 180); */
+            PlanetSelectionGuiHelper.addCircle(this.width / 2, this.height / 2, 180.0, 180);
         }
 
         /** PROXIMA CENTAURI SOLAR SYSTEM RENDERER */
@@ -307,6 +312,7 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
         this.rotationVenus = 180;
         this.rotationMercury = 270;
         this.rotationAsteroid = 360;
+        this.rotationPluto = 450;
         this.rotationGlacio = 180;
 
         /** SET SCROLL */
@@ -369,6 +375,9 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
         this.visibleButton(marsButton, false);
 
         asteroidButton = PlanetSelectionGuiHelper.addHandlerButton(this, 10, 1, 70, 20, true, true, this.checkTier(4), NetworksRegistry.PACKET_HANDLER, PlanetSelectionGuiHelper.getNetworkHandler(5), ImageButtonPlacer.Types.PLANET_CATEGORY, List.of(ASTEROID_TEXT.getString(), NO_GRAVITY_TEXT.getString(), "c" + OXYGEN_FALSE_TEXT.getString(), "c" + "0\u00B0C", ROCKET_TIER_4_TEXT.getString()), BLUE_BUTTON_TEXTURE, BLUE_LIGHT_BUTTON_TEXTURE, ASTEROID_BELT_TEXT);
+        this.visibleButton(asteroidButton, false);
+
+        plutoButton = PlanetSelectionGuiHelper.addHandlerButton(this, 10, 1, 70, 20, true, true, this.checkTier(4), NetworksRegistry.PACKET_HANDLER, PlanetSelectionGuiHelper.getNetworkHandler(9), ImageButtonPlacer.Types.PLANET_CATEGORY, List.of(DWARF_PLANET_TEXT.getString(), "0.06G", "c" + OXYGEN_FALSE_TEXT.getString(), "c" + "-220\u00B0C", ROCKET_TIER_4_TEXT.getString()), BLUE_BUTTON_TEXTURE, BLUE_LIGHT_BUTTON_TEXTURE, PLUTO_TEXT);
         this.visibleButton(asteroidButton, false);
 
         /** Proxima Centuri Button */
@@ -438,6 +447,7 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
         this.visibleButton(this.spaceStationButton, this.category.get() == 2);
         this.visibleButton(this.marsButton, this.category.get() == 1);
         this.visibleButton(this.asteroidButton, this.category.get() == 1);
+        this.visibleButton(this.plutoButton, this.category.get() == 1);
 
         /** PROXIMA CENTAURI CATEGORY VISIBLE LOGIC */
         this.visibleButton(this.glacioButton, this.category.get() == 3);
@@ -457,6 +467,7 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
         this.rotationVenus = (this.rotationVenus + partialTicks * 0.7f) % 360;
         this.rotationMercury = (this.rotationMercury + partialTicks * 0.7f) % 360;
         this.rotationAsteroid = (this.rotationAsteroid + partialTicks * 0.1f) % 360;
+        this.rotationPluto = (this.rotationPluto + partialTicks * 0.05f) % 360;
 
         /** PROXIMA CENTAURI CATEGORY */
         this.rotationGlacio = (this.rotationGlacio + partialTicks * 0.7f) % 360;
@@ -476,6 +487,7 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
             PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, VENUS_TEXTURE, -37, -37, 10, 10, this.rotationVenus);
             PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, MERCURY_TEXTURE, -20.5F, -20.5F, 10, 10, this.rotationMercury);
             PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, ASTEROID_TEXTURE, -128F, -128F, 256, 256, this.rotationAsteroid);
+            PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, PLUTO_TEXTURE, -132F, -132F, 10, 10, this.rotationPluto);
         }
 
         /** PROXIMA CENTAURI CATEGORY */

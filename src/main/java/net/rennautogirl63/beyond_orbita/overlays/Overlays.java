@@ -78,7 +78,7 @@ public class Overlays {
     public static final ResourceLocation MERCURY_PLANET_BAR_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/planet_bar/mercury_planet_bar.png");
     public static final ResourceLocation VENUS_PLANET_BAR_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/planet_bar/venus_planet_bar.png");
     public static final ResourceLocation GLACIO_PLANET_BAR_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/planet_bar/glacio_planet_bar.png");
-    public static final ResourceLocation PLUTO_PLANET_BAR_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/planet_bar/glacio_planet_bar.png");
+    public static final ResourceLocation PLUTO_PLANET_BAR_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/planet_bar/pluto_planet_bar.png");
     public static final ResourceLocation EARTH_PLANET_BAR_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/planet_bar/earth_planet_bar.png");
     public static final ResourceLocation ORBIT_PLANET_BAR_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/planet_bar/orbit_planet_bar.png");
 

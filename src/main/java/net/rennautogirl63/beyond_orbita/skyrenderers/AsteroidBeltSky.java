@@ -135,7 +135,7 @@ public class AsteroidBeltSky {
                             p_181410_.popPose();
 
                             /** SUN */
-                            float f12 = 30.0F;
+                            float f12 = 25.0F;
 
                             RenderSystem.setShaderTexture(0, SUN_TEXTURE);
                             bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);

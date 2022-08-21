@@ -72,6 +72,11 @@ public class PlanetSelectionGuiNetworkHandler extends PlanetSelectionGuiNetworkH
                     Methods.teleportButton(player, Methods.asteroid_belt, false);
                     break;
 
+                case 9:
+                    message.defaultOptions(player);
+                    Methods.teleportButton(player, Methods.pluto, false);
+                    break;
+
                 /** (SUN CATEGORY) TELEPORT ORBIT BUTTONS */
                 case 6:
                     message.defaultOptions(player);

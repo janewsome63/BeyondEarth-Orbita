@@ -36,8 +36,8 @@ public class PlutoSky {
     private static final ResourceLocation DIM_RENDER_INFO = new ResourceLocation(BeyondOrbitaMod.MODID, "pluto");
 
     private static final ResourceLocation SUN_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/blue_sun.png");
-    private static final ResourceLocation VICINUS_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/vicinus.png");
-    private static final ResourceLocation VICINUS_LIGHT_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/vicinus_light.png");
+    private static final ResourceLocation CHARON_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/charon.png");
+    private static final ResourceLocation CHARON_LIGHT_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/charon_light.png");
 
     private static final float[] sunriseCol = new float[4];
 
@@ -150,42 +150,34 @@ public class PlutoSky {
                                 p_181410_.popPose();
                             }
 
+                            /** STAR ROT */
+                            p_181410_.pushPose();
+                            p_181410_.mulPose(Vector3f.YP.rotationDegrees(0.0F));
+                            p_181410_.mulPose(Vector3f.ZP.rotationDegrees(level.getTimeOfDay(p_181412_) * 360.0F));
+                            p_181410_.mulPose(Vector3f.XP.rotationDegrees(-30.0F));
+
+                            /** STAR */
+                            RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+                            FogRenderer.setupNoFog();
+                            minecraft.levelRenderer.starBuffer.drawWithShader(p_181410_.last().pose(), starMatrix4f, GameRenderer.getPositionShader());
+                            p_181410_.popPose();
+
                             RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
 
                             p_181410_.pushPose();
                             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
                             RenderSystem.enableTexture();
 
-                            /** DEFAULT ROT */
+                            /** CHARON ROT */
                             p_181410_.mulPose(Vector3f.YP.rotationDegrees(-90.0F));
-                            p_181410_.mulPose(Vector3f.XP.rotationDegrees(level.getTimeOfDay(p_181412_) * 360.0F));
+                            p_181410_.mulPose(Vector3f.XP.rotationDegrees(180.0F));
+                            p_181410_.mulPose(Vector3f.ZP.rotationDegrees(60.0F));
                             Matrix4f matrix4f1 = p_181410_.last().pose();
 
                             RenderSystem.setShader(GameRenderer::getPositionTexShader);
 
-                            /** SUN */
-                            float f12 = 20.0F;
-
-                            RenderSystem.setShaderTexture(0, SUN_TEXTURE);
-                            bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-                            bufferbuilder.vertex(matrix4f1, -f12, 100.0F, -f12).uv(0.0F, 0.0F).endVertex();
-                            bufferbuilder.vertex(matrix4f1, f12, 100.0F, -f12).uv(1.0F, 0.0F).endVertex();
-                            bufferbuilder.vertex(matrix4f1, f12, 100.0F, f12).uv(1.0F, 1.0F).endVertex();
-                            bufferbuilder.vertex(matrix4f1, -f12, 100.0F, f12).uv(0.0F, 1.0F).endVertex();
-                            bufferbuilder.end();
-                            BufferUploader.end(bufferbuilder);
-
-                            RenderSystem.disableTexture();
-
-                            /** VICINUS ROT */
-                            p_181410_.mulPose(Vector3f.YP.rotationDegrees(-90.0F));
-                            p_181410_.mulPose(Vector3f.XP.rotationDegrees(180.0F));
-                            p_181410_.mulPose(Vector3f.ZP.rotationDegrees(30.0F));
-
-                            RenderSystem.setShader(GameRenderer::getPositionTexShader);
-
-                            /** VICINUS LIGHT */
-                            RenderSystem.setShaderTexture(0, VICINUS_LIGHT_TEXTURE);
+                            /** CHARON LIGHT */
+                            RenderSystem.setShaderTexture(0, CHARON_LIGHT_TEXTURE);
                             bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
                             bufferbuilder.vertex(matrix4f1, -48.0F, -100.0F, 48.0F).uv(0.0F, 0.0F).endVertex();
                             bufferbuilder.vertex(matrix4f1, 48.0F, -100.0F, 48.0F).uv(1.0F, 0.0F).endVertex();
@@ -194,10 +186,10 @@ public class PlutoSky {
                             bufferbuilder.end();
                             BufferUploader.end(bufferbuilder);
 
-                            /** VICINUS */
+                            /** CHARON */
                             RenderSystem.disableBlend();
 
-                            RenderSystem.setShaderTexture(0, VICINUS_TEXTURE);
+                            RenderSystem.setShaderTexture(0, CHARON_TEXTURE);
                             bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
                             bufferbuilder.vertex(matrix4f1, -16.0F, -100.0F, 16.0F).uv(0.0F, 0.0F).endVertex();
                             bufferbuilder.vertex(matrix4f1, 16.0F, -100.0F, 16.0F).uv(1.0F, 0.0F).endVertex();
@@ -208,14 +200,25 @@ public class PlutoSky {
 
                             RenderSystem.enableBlend();
 
-                            /** STAR */
-                            float f10 = level.getStarBrightness(p_181412_) * 1;
-                            if (f10 > 0.0F) {
-                                RenderSystem.setShaderColor(f10, f10, f10, f10);
-                                FogRenderer.setupNoFog();
-                                minecraft.levelRenderer.starBuffer.drawWithShader(p_181410_.last().pose(), starMatrix4f, GameRenderer.getPositionShader());
-                            }
+                            /** DEFAULT ROT */
+                            p_181410_.mulPose(Vector3f.YP.rotationDegrees(0.0F));
+                            p_181410_.mulPose(Vector3f.ZP.rotationDegrees(-60.0F));
+                            p_181410_.mulPose(Vector3f.XP.rotationDegrees(level.getTimeOfDay(p_181412_) * 360.0F));
+                            matrix4f1 = p_181410_.last().pose();
 
+                            /** SUN */
+                            float f12 = 5.0F;
+
+                            RenderSystem.setShaderTexture(0, SUN_TEXTURE);
+                            bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
+                            bufferbuilder.vertex(matrix4f1, -f12, -100.0F, f12).uv(0.0F, 0.0F).endVertex();
+                            bufferbuilder.vertex(matrix4f1, f12, -100.0F, f12).uv(1.0F, 0.0F).endVertex();
+                            bufferbuilder.vertex(matrix4f1, f12, -100.0F, -f12).uv(1.0F, 1.0F).endVertex();
+                            bufferbuilder.vertex(matrix4f1, -f12, -100.0F, -f12).uv(0.0F, 1.0F).endVertex();
+                            bufferbuilder.end();
+                            BufferUploader.end(bufferbuilder);
+
+                            RenderSystem.disableTexture();
                             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
                             RenderSystem.disableBlend();
                             p_181410_.popPose();

@@ -82,6 +82,9 @@ public class OtherGravity {
             if (("" + entity.getType().getRegistryName()).contains("ender_pearl")) {
                 gravity = gravity / 2;
                 entity.setDeltaMovement((xv / 0.98) * drag, ((yv / 0.98) + 0.02 - gravity) * drag, (zv / 0.98) * drag);
+            } else if (("" + entity.getType().getRegistryName()).contains("snowball")) {
+                gravity = gravity / 3;
+                entity.setDeltaMovement((xv / 0.98) * drag, ((yv / 0.98) + 0.0133 - gravity) * drag, (zv / 0.98) * drag);
             } else {
                 entity.setDeltaMovement((xv / 0.98) * drag, ((yv / 0.98) + 0.04 - gravity) * drag, (zv / 0.98) * drag);
             }

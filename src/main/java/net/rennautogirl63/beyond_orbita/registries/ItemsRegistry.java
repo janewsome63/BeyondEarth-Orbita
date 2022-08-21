@@ -226,6 +226,7 @@ public class ItemsRegistry {
     public static final RegistryObject<BlockItem> CELESTIAL_BLOCK_ITEM = ITEMS.register("celestial_block", () -> new BlockItem(BlocksRegistry.CELESTIAL_BLOCK.get(), new Item.Properties().tab(ItemGroups.tab_normal)));
     public static final RegistryObject<BlockItem> CELESTIAL_BRICK_ITEM = ITEMS.register("celestial_brick", () -> new BlockItem(BlocksRegistry.CELESTIAL_BRICK.get(), new Item.Properties().tab(ItemGroups.tab_normal)));
     public static final RegistryObject<BlockItem> PERMAFROST_ITEM = ITEMS.register("permafrost", () -> new BlockItem(BlocksRegistry.PERMAFROST.get(), new Item.Properties().tab(ItemGroups.tab_normal)));
+    public static final RegistryObject<BlockItem> PLUTO_SAND_ITEM = ITEMS.register("pluto_sand", () -> new BlockItem(BlocksRegistry.PLUTO_SAND.get(), new Item.Properties().tab(ItemGroups.tab_normal)));
     public static final RegistryObject<BlockItem> PLUTO_STONE_ITEM = ITEMS.register("pluto_stone", () -> new BlockItem(BlocksRegistry.PLUTO_STONE.get(), new Item.Properties().tab(ItemGroups.tab_normal)));
     public static final RegistryObject<BlockItem> PLUTO_STONE_BRICKS_ITEM = ITEMS.register("pluto_stone_bricks", () -> new BlockItem(BlocksRegistry.PLUTO_STONE_BRICKS.get(), new Item.Properties().tab(ItemGroups.tab_normal)));
     public static final RegistryObject<BlockItem> CRACKED_PLUTO_STONE_BRICKS_ITEM = ITEMS.register("cracked_pluto_stone_bricks", () -> new BlockItem(BlocksRegistry.CRACKED_PLUTO_STONE_BRICKS.get(), new Item.Properties().tab(ItemGroups.tab_normal)));

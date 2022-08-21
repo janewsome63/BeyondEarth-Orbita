@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "beyond_orbita:blocks/pluto_sand",
+    "up": "beyond_orbita:blocks/pluto_sand",
+    "north": "beyond_orbita:blocks/pluto_sand",
+    "east": "beyond_orbita:blocks/pluto_sand",
+    "south": "beyond_orbita:blocks/pluto_sand",
+    "west": "beyond_orbita:blocks/pluto_sand",
+    "particle": "beyond_orbita:blocks/pluto_sand"
+  }
+}
