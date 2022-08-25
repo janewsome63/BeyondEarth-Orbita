@@ -1,0 +1,31 @@
+{
+  "replace": true,
+  "values": [
+    {"id":"beyond_earth:mogler","required":false},
+    {"id":"beyond_earth:pygro","required":false},
+    {"id":"minecraft:cow","required":false},
+    {"id":"minecraft:donkey","required":false},
+    {"id":"minecraft:goat","required":false},
+    {"id":"minecraft:hoglin","required":false},
+    {"id":"minecraft:horse","required":false},
+    {"id":"minecraft:llama","required":false},
+    {"id":"minecraft:mooshroom","required":false},
+    {"id":"minecraft:mule","required":false},
+    {"id":"minecraft:panda","required":false},
+    {"id":"minecraft:pig","required":false},
+	{"id":"minecraft:piglin","required":false},
+	{"id":"minecraft:polar_bear","required":false},
+    {"id":"minecraft:sheep","required":false},
+    {"id":"minecraft:skeleton_horse","required":false},
+    {"id":"minecraft:strider","required":false},
+    {"id":"minecraft:trader_llama","required":false},
+    {"id":"minecraft:turtle","required":false},
+    {"id":"minecraft:villager","required":false},
+    {"id":"minecraft:zoglin","required":false},
+    {"id":"minecraft:zombie","required":false},
+    {"id":"minecraft:zombie_horse","required":false},
+    {"id":"minecraft:zombie_villager","required":false},
+    {"id":"minecraft:zombified_piglin","required":false},
+	{"id":"naturalist:bear","required":false}
+  ]
+}

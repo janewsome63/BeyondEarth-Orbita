@@ -69,6 +69,7 @@
 
   "death.attack.oxygen": "%1$s ran out of oxygen",
   "death.attack.venus.acid": "%1$s melted",
+  "death.attack.respawn": "%1$s elected to respawn",
 
   "entity.beyond_orbita.alien.farmer": "Farmer",
   "entity.beyond_orbita.alien.fisherman": "Fisherman",
@@ -271,7 +272,7 @@
   "item.beyond_orbita.titanium_ingot": "Titanium Ingot",
   "item.beyond_orbita.titanium_nugget": "Titanium Nugget",
   "item.beyond_orbita.titanium_plate": "Titanium Plate",
-  "item.beyond_orbita.titanium_ender_engine": "Titanium-Ender Engine",
+  "item.beyond_orbita.titanium_engine": "Titanium Engine",
   "item.beyond_orbita.titanium_tank": "Titanium Tank",
   "item.beyond_orbita.titanium_hull": "Titanium Hull",
   "block.beyond_orbita.titanium_ore": "Titanium Ore",

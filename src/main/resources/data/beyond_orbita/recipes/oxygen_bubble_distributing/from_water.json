@@ -2,7 +2,6 @@
 	"type": "beyond_orbita:oxygen_bubble_distributor",
 	"input": {
 		"name": "minecraft:water",
-		"nbt": {},
 		"amount": 1
 	},
 	"oxygen": 4

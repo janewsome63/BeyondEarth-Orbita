@@ -83,6 +83,8 @@ public class GlobeRenderer<T extends GlobeTileEntity> extends BlockEntityWithout
             vertexBuilder = buffer.getBuffer(RenderType.entityCutoutNoCullZOffset(MERCURY_GLOBE));
         } else if (blockstate.is(BlocksRegistry.VENUS_GLOBE_BLOCK.get())) {
             vertexBuilder = buffer.getBuffer(RenderType.entityCutoutNoCullZOffset(VENUS_GLOBE));
+        } else if (blockstate.is(BlocksRegistry.PLUTO_GLOBE_BLOCK.get())) {
+            vertexBuilder = buffer.getBuffer(RenderType.entityCutoutNoCullZOffset(PLUTO_GLOBE));
         } else {
             vertexBuilder = buffer.getBuffer(RenderType.entityCutoutNoCullZOffset(GLACIO_GLOBE));
         }

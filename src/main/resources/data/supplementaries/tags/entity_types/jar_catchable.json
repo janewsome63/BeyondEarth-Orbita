@@ -1,0 +1,19 @@
+{
+  "replace": true,
+  "values": [
+	{"id":"minecraft:axolotl","required":false},
+	{"id":"minecraft:bat","required":false},
+	{"id":"minecraft:bee","required":false},
+	{"id":"minecraft:cod","required":false},
+	{"id":"minecraft:endermite","required":false},
+    {"id":"minecraft:magma_cube","required":false},
+    {"id":"minecraft:pufferfish","required":false},
+    {"id":"minecraft:salmon","required":false},
+    {"id":"minecraft:slime","required":false},
+    {"id":"minecraft:tropical_fish","required":false},
+    {"id":"naturalist:butterfly","required":false},
+    {"id":"naturalist:firefly","required":false},
+    {"id":"naturalist:snail","required":false},
+	{"id":"naturalist:caterpillar","required":false}
+  ]
+}
