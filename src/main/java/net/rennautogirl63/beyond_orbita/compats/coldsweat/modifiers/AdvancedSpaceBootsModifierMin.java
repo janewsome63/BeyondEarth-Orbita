@@ -6,14 +6,14 @@ import net.minecraft.world.entity.player.Player;
 
 import java.util.function.Function;
 
-public class NetheriteSpaceSuitModifierMax extends TempModifier {
+public class AdvancedSpaceBootsModifierMin extends TempModifier {
     @Override
     public Function<Temperature, Temperature> calculate(Player player) {
-        return temp -> temp.add(7.59);
+        return temp -> temp.add(-1.17875);
     }
 
     @Override
     public String getID() {
-        return "beyond_orbita:netherite_space_suit_modifier_max";
+        return "beyond_orbita:advanced_space_boots_modifier_min";
     }
 }

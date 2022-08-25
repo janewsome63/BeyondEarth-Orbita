@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "beyond_orbita:blocks/machineback",
+    "up": "beyond_orbita:blocks/block_advanced_solar_panel_top",
+    "north": "beyond_orbita:blocks/block_advanced_solar_panel_side",
+    "east": "beyond_orbita:blocks/block_advanced_solar_panel_side",
+    "south": "beyond_orbita:blocks/block_advanced_solar_panel_side",
+    "west": "beyond_orbita:blocks/block_advanced_solar_panel_side",
+    "particle": "beyond_orbita:blocks/machineback"
+  }
+}

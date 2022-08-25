@@ -147,12 +147,12 @@ public class Events {
 
         Player entity = (Player) event.getEntity();
 
-        if (!Methods.netheriteSpaceSuitCheck(entity)) {
+        if (!Methods.advancedSpaceSuitCheck(entity)) {
             return;
         }
 
-        entity.setRemainingFireTicks(0);
-        event.setCanceled(true);
+        /** entity.setRemainingFireTicks(0);
+        event.setCanceled(true); */
     }
 
     @SubscribeEvent

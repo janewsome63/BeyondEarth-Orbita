@@ -29,7 +29,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
-public class NetheriteSpaceSuit {
+public class AdvancedSpaceSuit {
 
     public static class OxygenMask extends ArmorItem {
         public OxygenMask(ArmorMaterial p_40386_, EquipmentSlot p_40387_, Properties p_40388_) {
@@ -64,7 +64,7 @@ public class NetheriteSpaceSuit {
 
         @Override
         public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
-            return BeyondOrbitaMod.MODID + ":textures/armor/netherite_oxygen_mask.png";
+            return BeyondOrbitaMod.MODID + ":textures/armor/advanced_oxygen_mask.png";
         }
     }
 
@@ -126,7 +126,7 @@ public class NetheriteSpaceSuit {
 
         @Override
         public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
-            return BeyondOrbitaMod.MODID + ":textures/armor/netherite_space_suit.png";
+            return BeyondOrbitaMod.MODID + ":textures/armor/advanced_space_suit.png";
         }
 
         @Override
@@ -170,7 +170,7 @@ public class NetheriteSpaceSuit {
 
         @Override
         public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
-            return BeyondOrbitaMod.MODID + ":textures/armor/netherite_space_pants.png";
+            return BeyondOrbitaMod.MODID + ":textures/armor/advanced_space_pants.png";
         }
     }
 
@@ -209,7 +209,7 @@ public class NetheriteSpaceSuit {
 
         @Override
         public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
-            return BeyondOrbitaMod.MODID + ":textures/armor/netherite_space_suit.png";
+            return BeyondOrbitaMod.MODID + ":textures/armor/advanced_space_suit.png";
         }
     }
 }

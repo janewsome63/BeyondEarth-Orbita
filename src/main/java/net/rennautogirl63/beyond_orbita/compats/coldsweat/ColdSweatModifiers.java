@@ -29,13 +29,13 @@ public class ColdSweatModifiers {
 
             }
             if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-                    .getItem() == ItemsRegistry.NETHERITE_OXYGEN_MASK.get()) {
+                    .getItem() == ItemsRegistry.ADVANCED_OXYGEN_MASK.get()) {
 
-                if (TempHelper.getModifier(player, Temperature.Types.MAX, NetheriteOxygenMaskModifierMax.class) == null) {
-                    TempHelper.addModifier(player, new NetheriteOxygenMaskModifierMax().expires(5).tickRate(5), Temperature.Types.MAX, false);
+                if (TempHelper.getModifier(player, Temperature.Types.MAX, AdvancedOxygenMaskModifierMax.class) == null) {
+                    TempHelper.addModifier(player, new AdvancedOxygenMaskModifierMax().expires(5).tickRate(5), Temperature.Types.MAX, false);
                 }
-                if (TempHelper.getModifier(player, Temperature.Types.MIN, NetheriteOxygenMaskModifierMin.class) == null) {
-                    TempHelper.addModifier(player, new NetheriteOxygenMaskModifierMin().expires(5).tickRate(5), Temperature.Types.MIN, false);
+                if (TempHelper.getModifier(player, Temperature.Types.MIN, AdvancedOxygenMaskModifierMin.class) == null) {
+                    TempHelper.addModifier(player, new AdvancedOxygenMaskModifierMin().expires(5).tickRate(5), Temperature.Types.MIN, false);
                 }
 
             }
@@ -51,13 +51,13 @@ public class ColdSweatModifiers {
 
             }
             if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
-                    .getItem() == ItemsRegistry.NETHERITE_SPACE_SUIT.get()) {
+                    .getItem() == ItemsRegistry.ADVANCED_SPACE_SUIT.get()) {
 
-                if (TempHelper.getModifier(player, Temperature.Types.MAX, NetheriteSpaceSuitModifierMax.class) == null) {
-                    TempHelper.addModifier(player, new NetheriteSpaceSuitModifierMax().expires(5).tickRate(5), Temperature.Types.MAX, false);
+                if (TempHelper.getModifier(player, Temperature.Types.MAX, AdvancedSpaceSuitModifierMax.class) == null) {
+                    TempHelper.addModifier(player, new AdvancedSpaceSuitModifierMax().expires(5).tickRate(5), Temperature.Types.MAX, false);
                 }
-                if (TempHelper.getModifier(player, Temperature.Types.MIN, NetheriteSpaceSuitModifierMin.class) == null) {
-                    TempHelper.addModifier(player, new NetheriteSpaceSuitModifierMin().expires(5).tickRate(5), Temperature.Types.MIN, false);
+                if (TempHelper.getModifier(player, Temperature.Types.MIN, AdvancedSpaceSuitModifierMin.class) == null) {
+                    TempHelper.addModifier(player, new AdvancedSpaceSuitModifierMin().expires(5).tickRate(5), Temperature.Types.MIN, false);
                 }
 
             }
@@ -73,13 +73,13 @@ public class ColdSweatModifiers {
 
             }
             if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY)
-                    .getItem() == ItemsRegistry.NETHERITE_SPACE_PANTS.get()) {
+                    .getItem() == ItemsRegistry.ADVANCED_SPACE_PANTS.get()) {
 
-                if (TempHelper.getModifier(player, Temperature.Types.MAX, NetheriteSpacePantsModifierMax.class) == null) {
-                    TempHelper.addModifier(player, new NetheriteSpacePantsModifierMax().expires(5).tickRate(5), Temperature.Types.MAX, false);
+                if (TempHelper.getModifier(player, Temperature.Types.MAX, AdvancedSpacePantsModifierMax.class) == null) {
+                    TempHelper.addModifier(player, new AdvancedSpacePantsModifierMax().expires(5).tickRate(5), Temperature.Types.MAX, false);
                 }
-                if (TempHelper.getModifier(player, Temperature.Types.MIN, NetheriteSpacePantsModifierMin.class) == null) {
-                    TempHelper.addModifier(player, new NetheriteSpacePantsModifierMin().expires(5).tickRate(5), Temperature.Types.MIN, false);
+                if (TempHelper.getModifier(player, Temperature.Types.MIN, AdvancedSpacePantsModifierMin.class) == null) {
+                    TempHelper.addModifier(player, new AdvancedSpacePantsModifierMin().expires(5).tickRate(5), Temperature.Types.MIN, false);
                 }
 
             }
@@ -95,13 +95,13 @@ public class ColdSweatModifiers {
 
             }
             if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.FEET) : ItemStack.EMPTY)
-                    .getItem() == ItemsRegistry.NETHERITE_SPACE_BOOTS.get()) {
+                    .getItem() == ItemsRegistry.ADVANCED_SPACE_BOOTS.get()) {
 
-                if (TempHelper.getModifier(player, Temperature.Types.MAX, NetheriteSpaceBootsModifierMax.class) == null) {
-                    TempHelper.addModifier(player, new NetheriteSpaceBootsModifierMax().expires(5).tickRate(5), Temperature.Types.MAX, false);
+                if (TempHelper.getModifier(player, Temperature.Types.MAX, AdvancedSpaceBootsModifierMax.class) == null) {
+                    TempHelper.addModifier(player, new AdvancedSpaceBootsModifierMax().expires(5).tickRate(5), Temperature.Types.MAX, false);
                 }
-                if (TempHelper.getModifier(player, Temperature.Types.MIN, NetheriteSpaceBootsModifierMin.class) == null) {
-                    TempHelper.addModifier(player, new NetheriteSpaceBootsModifierMin().expires(5).tickRate(5), Temperature.Types.MIN, false);
+                if (TempHelper.getModifier(player, Temperature.Types.MIN, AdvancedSpaceBootsModifierMin.class) == null) {
+                    TempHelper.addModifier(player, new AdvancedSpaceBootsModifierMin().expires(5).tickRate(5), Temperature.Types.MIN, false);
                 }
 
             }

@@ -13,6 +13,7 @@ import net.rennautogirl63.beyond_orbita.guis.screens.oxygenloader.OxygenLoaderGu
 import net.rennautogirl63.beyond_orbita.guis.screens.planetselection.PlanetSelectionGui;
 import net.rennautogirl63.beyond_orbita.guis.screens.rocket.RocketGui;
 import net.rennautogirl63.beyond_orbita.guis.screens.rover.RoverGui;
+import net.rennautogirl63.beyond_orbita.guis.screens.solarpanel.AdvancedSolarPanelGui;
 import net.rennautogirl63.beyond_orbita.guis.screens.solarpanel.SolarPanelGui;
 
 public class ScreensRegistry {
@@ -27,6 +28,7 @@ public class ScreensRegistry {
     public static final RegistryObject<MenuType<CoalGeneratorGui.GuiContainer>> COAL_GENERATOR_GUI = SCREENS.register("coal_generator_gui", () -> new MenuType(new CoalGeneratorGui.GuiContainerFactory()));
     public static final RegistryObject<MenuType<OxygenLoaderGui.GuiContainer>> OXYGEN_LOADER_GUI = SCREENS.register("oxygen_loader_gui", () -> new MenuType(new OxygenLoaderGui.GuiContainerFactory()));
     public static final RegistryObject<MenuType<SolarPanelGui.GuiContainer>> SOLAR_PANEL_GUI = SCREENS.register("solar_panel_gui", () -> new MenuType(new SolarPanelGui.GuiContainerFactory()));
+    public static final RegistryObject<MenuType<AdvancedSolarPanelGui.GuiContainer>> ADVANCED_SOLAR_PANEL_GUI = SCREENS.register("advanced_solar_panel_gui", () -> new MenuType(new AdvancedSolarPanelGui.GuiContainerFactory()));
     public static final RegistryObject<MenuType<OxygenBubbleDistributorGui.GuiContainer>> OXYGEN_BUBBLE_DISTRIBUTOR_GUI = SCREENS.register("oxygen_bubble_distributor_gui", () -> new MenuType(new OxygenBubbleDistributorGui.GuiContainerFactory()));
     public static final RegistryObject<MenuType<LanderGui.GuiContainer>> LANDER_GUI = SCREENS.register("lander_gui", () -> new MenuType(new LanderGui.GuiContainerFactory()));
     public static final RegistryObject<MenuType<RoverGui.GuiContainer>> ROVER_GUI = SCREENS.register("rover_gui", () -> new MenuType(new RoverGui.GuiContainerFactory()));

@@ -165,11 +165,11 @@ public class Methods {
         }
     }
 
-    public static boolean netheriteSpaceSuitCheck(LivingEntity entity) {
-        if (!checkArmor(entity, 3, ItemsRegistry.NETHERITE_OXYGEN_MASK.get())) return false;
-        if (!checkArmor(entity, 2, ItemsRegistry.NETHERITE_SPACE_SUIT.get())) return false;
-        if (!checkArmor(entity, 1, ItemsRegistry.NETHERITE_SPACE_PANTS.get())) return false;
-        if (!checkArmor(entity, 0, ItemsRegistry.NETHERITE_SPACE_BOOTS.get())) return false;
+    public static boolean advancedSpaceSuitCheck(LivingEntity entity) {
+        if (!checkArmor(entity, 3, ItemsRegistry.ADVANCED_OXYGEN_MASK.get())) return false;
+        if (!checkArmor(entity, 2, ItemsRegistry.ADVANCED_SPACE_SUIT.get())) return false;
+        if (!checkArmor(entity, 1, ItemsRegistry.ADVANCED_SPACE_PANTS.get())) return false;
+        if (!checkArmor(entity, 0, ItemsRegistry.ADVANCED_SPACE_BOOTS.get())) return false;
 
         return true;
     }
@@ -185,28 +185,28 @@ public class Methods {
 
     public static boolean spaceSuitCheckBoth(LivingEntity entity) {
         boolean item3 = checkArmor(entity, 3, ItemsRegistry.OXYGEN_MASK.get());
-        boolean item3b = checkArmor(entity, 3, ItemsRegistry.NETHERITE_OXYGEN_MASK.get());
+        boolean item3b = checkArmor(entity, 3, ItemsRegistry.ADVANCED_OXYGEN_MASK.get());
 
         if (!item3 && !item3b) {
             return false;
         }
 
         boolean item2 = checkArmor(entity, 2, ItemsRegistry.SPACE_SUIT.get());
-        boolean item2b = checkArmor(entity, 2, ItemsRegistry.NETHERITE_SPACE_SUIT.get());
+        boolean item2b = checkArmor(entity, 2, ItemsRegistry.ADVANCED_SPACE_SUIT.get());
 
         if (!item2 && !item2b) {
             return false;
         }
 
         boolean item1 = checkArmor(entity, 1, ItemsRegistry.SPACE_PANTS.get());
-        boolean item1b = checkArmor(entity, 1, ItemsRegistry.NETHERITE_SPACE_PANTS.get());
+        boolean item1b = checkArmor(entity, 1, ItemsRegistry.ADVANCED_SPACE_PANTS.get());
 
         if (!item1 && !item1b) {
             return false;
         }
 
         boolean item0 = checkArmor(entity, 0, ItemsRegistry.SPACE_BOOTS.get());
-        boolean item0b = checkArmor(entity, 0, ItemsRegistry.NETHERITE_SPACE_BOOTS.get());
+        boolean item0b = checkArmor(entity, 0, ItemsRegistry.ADVANCED_SPACE_BOOTS.get());
 
         if (!item0 && !item0b) {
             return false;
@@ -272,7 +272,7 @@ public class Methods {
     }
 
     /**
-     * If a entity should not get Fire add it to the Tag "venus_fire"
+     * If an entity should not get Fire add it to the Tag "venus_fire"
      */
     public static void planetFire(LivingEntity entity, ResourceKey<Level> planet) {
         Level level = entity.level;
@@ -281,7 +281,7 @@ public class Methods {
             return;
         }
 
-        if ((entity instanceof Mob || entity instanceof Player) && (Methods.netheriteSpaceSuitCheck(entity) || entity.hasEffect(MobEffects.FIRE_RESISTANCE) || entity.fireImmune())) {
+        if ((entity instanceof Mob || entity instanceof Player) && (Methods.advancedSpaceSuitCheck(entity) || entity.hasEffect(MobEffects.FIRE_RESISTANCE) || entity.fireImmune())) {
             return;
         }
 
@@ -307,7 +307,7 @@ public class Methods {
     }
 
     /**
-     * If a entity should not get Damage add it to the Tag "venus_rain"
+     * If an entity should not get Damage add it to the Tag "venus_rain"
      */
     public static void venusRain(LivingEntity entity, ResourceKey<Level> planet) {
         if (!Methods.isWorld(entity.level, planet)) {
@@ -342,7 +342,7 @@ public class Methods {
     }
 
     /**
-     * If a entity should get oxygen damage add it to the tag "oxygen"
+     * If an entity should get oxygen damage add it to the tag "oxygen"
      */
     public static void entityOxygen(LivingEntity entity, Level level) {
         if (entity instanceof Player) {

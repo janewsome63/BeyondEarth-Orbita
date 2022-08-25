@@ -29,8 +29,7 @@ import net.rennautogirl63.beyond_orbita.registries.ItemsRegistry;
 public class ClientMethods {
 
     public static final ResourceLocation SPACE_SUIT_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/armor/space_suit.png");
-    public static final ResourceLocation NETHERITE_SPACE_SUIT_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/armor/netherite_space_suit.png");
-    public static final ResourceLocation JET_SUIT_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/armor/jet_suit.png");
+    public static final ResourceLocation ADVANCED_SPACE_SUIT_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/armor/advanced_space_suit.png");
 
     public static boolean armRenderer(AbstractClientPlayer player, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, PlayerModel<AbstractClientPlayer> playerModel, PlayerRenderer renderer, boolean armModel) {
         SpaceSuitModel.SPACE_SUIT_P1 spaceSuit = new SpaceSuitModel.SPACE_SUIT_P1(Minecraft.getInstance().getEntityModels().bakeLayer(SpaceSuitModel.SPACE_SUIT_P1.LAYER_LOCATION));
@@ -41,9 +40,9 @@ public class ClientMethods {
             return true;
         }
 
-        if (Methods.checkArmor(player, 2, ItemsRegistry.NETHERITE_SPACE_SUIT.get())) {
+        if (Methods.checkArmor(player, 2, ItemsRegistry.ADVANCED_SPACE_SUIT.get())) {
 
-            ClientMethods.renderArm(poseStack, multiBufferSource, light, NETHERITE_SPACE_SUIT_TEXTURE, player, playerModel, renderer, armModel ? spaceSuit.rightArm : spaceSuit.leftArm);
+            ClientMethods.renderArm(poseStack, multiBufferSource, light, ADVANCED_SPACE_SUIT_TEXTURE, player, playerModel, renderer, armModel ? spaceSuit.rightArm : spaceSuit.leftArm);
             return true;
         }
 

@@ -17,13 +17,13 @@ public class RegisterModifiers {
         event.register(new SpacePantsModifierMin());
         event.register(new SpaceBootsModifierMax());
         event.register(new SpaceBootsModifierMin());
-        event.register(new NetheriteOxygenMaskModifierMax());
-        event.register(new NetheriteOxygenMaskModifierMin());
-        event.register(new NetheriteSpaceSuitModifierMax());
-        event.register(new NetheriteSpaceSuitModifierMin());
-        event.register(new NetheriteSpacePantsModifierMax());
-        event.register(new NetheriteSpacePantsModifierMin());
-        event.register(new NetheriteSpaceBootsModifierMax());
-        event.register(new NetheriteSpaceBootsModifierMin());
+        event.register(new AdvancedOxygenMaskModifierMax());
+        event.register(new AdvancedOxygenMaskModifierMin());
+        event.register(new AdvancedSpaceSuitModifierMax());
+        event.register(new AdvancedSpaceSuitModifierMin());
+        event.register(new AdvancedSpacePantsModifierMax());
+        event.register(new AdvancedSpacePantsModifierMin());
+        event.register(new AdvancedSpaceBootsModifierMax());
+        event.register(new AdvancedSpaceBootsModifierMin());
     }
 }

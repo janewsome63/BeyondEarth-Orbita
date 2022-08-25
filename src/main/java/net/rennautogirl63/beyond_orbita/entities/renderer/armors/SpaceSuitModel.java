@@ -29,7 +29,7 @@ public class SpaceSuitModel {
     public static class SPACE_SUIT_P1<T extends LivingEntity> extends HumanoidModel<T> {
 
         private static final ResourceLocation spaceSuit = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/armor/oxygen_mask.png");
-        private static final ResourceLocation netheriteSpaceSuit = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/armor/netherite_oxygen_mask.png");
+        private static final ResourceLocation advancedSpaceSuit = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/armor/advanced_oxygen_mask.png");
 
         public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(BeyondOrbitaMod.MODID, "space_suit_p1"), "main");
 
@@ -108,8 +108,8 @@ public class SpaceSuitModel {
             /** Translucent Armor Parts */
             if (stack.getItem() == ItemsRegistry.OXYGEN_MASK.get()) {
                 head.render(poseStack, this.getVertex(TranslucentArmorRenderType.armorCutoutNoCull(spaceSuit), false, stack.isEnchanted()), packedLight, packedOverlay);
-            } else if (stack.getItem() == ItemsRegistry.NETHERITE_OXYGEN_MASK.get()) {
-                head.render(poseStack, this.getVertex(TranslucentArmorRenderType.armorCutoutNoCull(netheriteSpaceSuit), false, stack.isEnchanted()), packedLight, packedOverlay);
+            } else if (stack.getItem() == ItemsRegistry.ADVANCED_OXYGEN_MASK.get()) {
+                head.render(poseStack, this.getVertex(TranslucentArmorRenderType.armorCutoutNoCull(advancedSpaceSuit), false, stack.isEnchanted()), packedLight, packedOverlay);
             } else {
                 head.render(poseStack, buffer, packedLight, packedOverlay);
             }

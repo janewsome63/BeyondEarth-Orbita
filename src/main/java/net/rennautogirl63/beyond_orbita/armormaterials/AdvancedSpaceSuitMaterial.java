@@ -5,16 +5,15 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class NetheriteSpaceSuitMaterial {
+public class AdvancedSpaceSuitMaterial {
     public static ArmorMaterial ARMOR_MATERIAL = new ArmorMaterial() {
 
         @Override
         public int getDurabilityForSlot(EquipmentSlot slot) {
-            return new int[]{481, 555, 592, 407}[slot.getIndex()];
+            return new int[]{429, 495, 528, 363}[slot.getIndex()];
         }
 
         @Override
@@ -24,7 +23,7 @@ public class NetheriteSpaceSuitMaterial {
 
         @Override
         public int getEnchantmentValue() {
-            return 15;
+            return 10;
         }
 
         @Override
@@ -34,22 +33,22 @@ public class NetheriteSpaceSuitMaterial {
 
         @Override
         public Ingredient getRepairIngredient() {
-            return Ingredient.of(new ItemStack(Items.NETHERITE_INGOT));
+            return Ingredient.of(new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation("beyond_orbita:titanium_ingot"))));
         }
 
         @Override
         public String getName() {
-            return "netherite_space_suit";
+            return "advanced_space_suit";
         }
 
         @Override
         public float getToughness() {
-            return 3.0f;
+            return 2.0f;
         }
 
         @Override
         public float getKnockbackResistance() {
-            return 0.1f;
+            return 0.0f;
         }
     };
 }

@@ -110,7 +110,7 @@ public class Overlays {
         }
 
         /** OXYGEN TANK */
-        if (chestItem == ItemsRegistry.SPACE_SUIT.get() || chestItem == ItemsRegistry.NETHERITE_SPACE_SUIT.get()) {
+        if (chestItem == ItemsRegistry.SPACE_SUIT.get() || chestItem == ItemsRegistry.ADVANCED_SPACE_SUIT.get()) {
             OverlayRegistry.enableOverlay(Overlays.OXYGEN_TANK, true);
         } else {
             OverlayRegistry.enableOverlay(Overlays.OXYGEN_TANK, false);

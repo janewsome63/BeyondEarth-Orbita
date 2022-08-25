@@ -60,6 +60,7 @@ import net.rennautogirl63.beyond_orbita.guis.screens.oxygenloader.OxygenLoaderGu
 import net.rennautogirl63.beyond_orbita.guis.screens.planetselection.PlanetSelectionGuiWindow;
 import net.rennautogirl63.beyond_orbita.guis.screens.rocket.RocketGuiWindow;
 import net.rennautogirl63.beyond_orbita.guis.screens.rover.RoverGuiWindow;
+import net.rennautogirl63.beyond_orbita.guis.screens.solarpanel.AdvancedSolarPanelGuiWindow;
 import net.rennautogirl63.beyond_orbita.guis.screens.solarpanel.SolarPanelGuiWindow;
 import net.rennautogirl63.beyond_orbita.overlays.Overlays;
 import net.rennautogirl63.beyond_orbita.particles.*;
@@ -133,6 +134,7 @@ public class ClientEventBusSubscriber {
         MenuScreens.register(ScreensRegistry.COAL_GENERATOR_GUI.get(), CoalGeneratorGuiWindow::new);
         MenuScreens.register(ScreensRegistry.OXYGEN_LOADER_GUI.get(), OxygenLoaderGuiWindow::new);
         MenuScreens.register(ScreensRegistry.SOLAR_PANEL_GUI.get(), SolarPanelGuiWindow::new);
+        MenuScreens.register(ScreensRegistry.ADVANCED_SOLAR_PANEL_GUI.get(), AdvancedSolarPanelGuiWindow::new);
         MenuScreens.register(ScreensRegistry.OXYGEN_BUBBLE_DISTRIBUTOR_GUI.get(), OxygenBubbleDistributorGuiWindow::new);
         MenuScreens.register(ScreensRegistry.LANDER_GUI.get(), LanderGuiWindow::new);
         MenuScreens.register(ScreensRegistry.ROVER_GUI.get(), RoverGuiWindow::new);

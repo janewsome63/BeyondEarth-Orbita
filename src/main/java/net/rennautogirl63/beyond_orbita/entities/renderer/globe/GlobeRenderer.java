@@ -37,6 +37,7 @@ public class GlobeRenderer<T extends GlobeTileEntity> extends BlockEntityWithout
     public static final ResourceLocation MERCURY_GLOBE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/blocks/globes/mercury_globe.png");
     public static final ResourceLocation VENUS_GLOBE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/blocks/globes/venus_globe.png");
     public static final ResourceLocation GLACIO_GLOBE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/blocks/globes/glacio_globe.png");
+    public static final ResourceLocation PLUTO_GLOBE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/blocks/globes/pluto_globe.png");
 
     /**
      * MODELS
@@ -112,6 +113,8 @@ public class GlobeRenderer<T extends GlobeTileEntity> extends BlockEntityWithout
             vertexBuilder = buffer.getBuffer(RenderType.entityCutoutNoCullZOffset(MERCURY_GLOBE));
         } else if (p_108830_.is(ItemsRegistry.VENUS_GLOBE_ITEM.get())) {
             vertexBuilder = buffer.getBuffer(RenderType.entityCutoutNoCullZOffset(VENUS_GLOBE));
+        } else if (p_108830_.is(ItemsRegistry.PLUTO_GLOBE_ITEM.get())) {
+            vertexBuilder = buffer.getBuffer(RenderType.entityCutoutNoCullZOffset(PLUTO_GLOBE));
         } else {
             vertexBuilder = buffer.getBuffer(RenderType.entityCutoutNoCullZOffset(GLACIO_GLOBE));
         }

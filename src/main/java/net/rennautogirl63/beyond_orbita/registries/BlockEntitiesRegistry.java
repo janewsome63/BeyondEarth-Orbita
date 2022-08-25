@@ -20,6 +20,7 @@ public class BlockEntitiesRegistry {
     public static final RegistryObject<BlockEntityType<?>> COAL_GENERATOR_BLOCK_ENTITY = BLOCK_ENTITIES.register("coal_generator", () -> BlockEntityType.Builder.of(CoalGeneratorBlockEntity::new, BlocksRegistry.COAL_GENERATOR_BLOCK.get()).build(null));
     public static final RegistryObject<BlockEntityType<?>> OXYGEN_LOADER_BLOCK_ENTITY = BLOCK_ENTITIES.register("oxygen_loader", () -> BlockEntityType.Builder.of(OxygenLoaderBlockEntity::new, BlocksRegistry.OXYGEN_LOADER_BLOCK.get()).build(null));
     public static final RegistryObject<BlockEntityType<?>> SOLAR_PANEL_BLOCK_ENTITY = BLOCK_ENTITIES.register("solar_panel", () -> BlockEntityType.Builder.of(SolarPanelBlockEntity::new, BlocksRegistry.SOLAR_PANEL_BLOCK.get()).build(null));
+    public static final RegistryObject<BlockEntityType<?>> ADVANCED_SOLAR_PANEL_BLOCK_ENTITY = BLOCK_ENTITIES.register("advanced_solar_panel", () -> BlockEntityType.Builder.of(AdvancedSolarPanelBlockEntity::new, BlocksRegistry.ADVANCED_SOLAR_PANEL_BLOCK.get()).build(null));
     public static final RegistryObject<BlockEntityType<OxygenBubbleDistributorBlockEntity>> OXYGEN_BUBBLE_DISTRIBUTOR_BLOCK_ENTITY = BLOCK_ENTITIES.register("oxygen_bubble_distributor", () -> BlockEntityType.Builder.of(OxygenBubbleDistributorBlockEntity::new, BlocksRegistry.OXYGEN_BUBBLE_DISTRIBUTOR_BLOCK.get()).build(null));
 
     /**

@@ -297,7 +297,7 @@ public abstract class IRocketEntity extends VehicleEntity {
             List<LivingEntity> entities = this.getCommandSenderWorld().getEntitiesOfClass(LivingEntity.class, aabb);
 
             for (LivingEntity entity : entities) {
-                if (!Methods.netheriteSpaceSuitCheck(entity)) {
+                if (!Methods.advancedSpaceSuitCheck(entity)) {
                     entity.setSecondsOnFire(15);
                 }
             }

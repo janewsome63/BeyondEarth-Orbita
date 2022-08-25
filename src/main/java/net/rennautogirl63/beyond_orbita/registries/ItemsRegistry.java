@@ -7,9 +7,9 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.rennautogirl63.beyond_orbita.BeyondOrbitaMod;
-import net.rennautogirl63.beyond_orbita.armormaterials.NetheriteSpaceSuitMaterial;
+import net.rennautogirl63.beyond_orbita.armormaterials.AdvancedSpaceSuitMaterial;
 import net.rennautogirl63.beyond_orbita.armormaterials.SpaceSuitMaterial;
-import net.rennautogirl63.beyond_orbita.armors.NetheriteSpaceSuit;
+import net.rennautogirl63.beyond_orbita.armors.AdvancedSpaceSuit;
 import net.rennautogirl63.beyond_orbita.armors.SpaceSuit;
 import net.rennautogirl63.beyond_orbita.globe.GlobeItem;
 import net.rennautogirl63.beyond_orbita.itemgroups.ItemGroups;
@@ -35,10 +35,10 @@ public class ItemsRegistry {
     public static final RegistryObject<Item> SPACE_SUIT = ITEMS.register("space_suit", () -> new SpaceSuit.Suit(SpaceSuitMaterial.ARMOR_MATERIAL, EquipmentSlot.CHEST, new Item.Properties().tab(ItemGroups.tab_normal)));
     public static final RegistryObject<Item> SPACE_PANTS = ITEMS.register("space_pants", () -> new SpaceSuit.Pants(SpaceSuitMaterial.ARMOR_MATERIAL, EquipmentSlot.LEGS, new Item.Properties().tab(ItemGroups.tab_normal)));
     public static final RegistryObject<Item> SPACE_BOOTS = ITEMS.register("space_boots", () -> new SpaceSuit.Boots(SpaceSuitMaterial.ARMOR_MATERIAL, EquipmentSlot.FEET, new Item.Properties().tab(ItemGroups.tab_normal)));
-    public static final RegistryObject<Item> NETHERITE_OXYGEN_MASK = ITEMS.register("netherite_oxygen_mask", () -> new NetheriteSpaceSuit.OxygenMask(NetheriteSpaceSuitMaterial.ARMOR_MATERIAL, EquipmentSlot.HEAD, new Item.Properties().tab(ItemGroups.tab_normal).fireResistant()));
-    public static final RegistryObject<Item> NETHERITE_SPACE_SUIT = ITEMS.register("netherite_space_suit", () -> new NetheriteSpaceSuit.Suit(NetheriteSpaceSuitMaterial.ARMOR_MATERIAL, EquipmentSlot.CHEST, new Item.Properties().tab(ItemGroups.tab_normal).fireResistant()));
-    public static final RegistryObject<Item> NETHERITE_SPACE_PANTS = ITEMS.register("netherite_space_pants", () -> new NetheriteSpaceSuit.Pants(NetheriteSpaceSuitMaterial.ARMOR_MATERIAL, EquipmentSlot.LEGS, new Item.Properties().tab(ItemGroups.tab_normal).fireResistant()));
-    public static final RegistryObject<Item> NETHERITE_SPACE_BOOTS = ITEMS.register("netherite_space_boots", () -> new NetheriteSpaceSuit.Boots(NetheriteSpaceSuitMaterial.ARMOR_MATERIAL, EquipmentSlot.FEET, new Item.Properties().tab(ItemGroups.tab_normal).fireResistant()));
+    public static final RegistryObject<Item> ADVANCED_OXYGEN_MASK = ITEMS.register("advanced_oxygen_mask", () -> new AdvancedSpaceSuit.OxygenMask(AdvancedSpaceSuitMaterial.ARMOR_MATERIAL, EquipmentSlot.HEAD, new Item.Properties().tab(ItemGroups.tab_normal).fireResistant()));
+    public static final RegistryObject<Item> ADVANCED_SPACE_SUIT = ITEMS.register("advanced_space_suit", () -> new AdvancedSpaceSuit.Suit(AdvancedSpaceSuitMaterial.ARMOR_MATERIAL, EquipmentSlot.CHEST, new Item.Properties().tab(ItemGroups.tab_normal).fireResistant()));
+    public static final RegistryObject<Item> ADVANCED_SPACE_PANTS = ITEMS.register("advanced_space_pants", () -> new AdvancedSpaceSuit.Pants(AdvancedSpaceSuitMaterial.ARMOR_MATERIAL, EquipmentSlot.LEGS, new Item.Properties().tab(ItemGroups.tab_normal).fireResistant()));
+    public static final RegistryObject<Item> ADVANCED_SPACE_BOOTS = ITEMS.register("advanced_space_boots", () -> new AdvancedSpaceSuit.Boots(AdvancedSpaceSuitMaterial.ARMOR_MATERIAL, EquipmentSlot.FEET, new Item.Properties().tab(ItemGroups.tab_normal).fireResistant()));
 
     /**
      * Decoration
@@ -71,6 +71,7 @@ public class ItemsRegistry {
     public static final RegistryObject<BlockItem> OXYGEN_LOADER_ITEM = ITEMS.register("oxygen_loader", () -> new BlockItem(BlocksRegistry.OXYGEN_LOADER_BLOCK.get(), new Item.Properties().tab(ItemGroups.tab_normal)));
     public static final RegistryObject<BlockItem> OXYGEN_BUBBLE_DISTRIBUTOR_ITEM = ITEMS.register("oxygen_bubble_distributor", () -> new BlockItem(BlocksRegistry.OXYGEN_BUBBLE_DISTRIBUTOR_BLOCK.get(), new Item.Properties().tab(ItemGroups.tab_normal)));
     public static final RegistryObject<BlockItem> SOLAR_PANEL_ITEM = ITEMS.register("solar_panel", () -> new BlockItem(BlocksRegistry.SOLAR_PANEL_BLOCK.get(), new Item.Properties().tab(ItemGroups.tab_normal)));
+    public static final RegistryObject<BlockItem> ADVANCED_SOLAR_PANEL_ITEM = ITEMS.register("advanced_solar_panel", () -> new BlockItem(BlocksRegistry.ADVANCED_SOLAR_PANEL_BLOCK.get(), new Item.Properties().tab(ItemGroups.tab_normal)));
     public static final RegistryObject<BlockItem> COAL_GENERATOR_ITEM = ITEMS.register("coal_generator", () -> new BlockItem(BlocksRegistry.COAL_GENERATOR_BLOCK.get(), new Item.Properties().tab(ItemGroups.tab_normal)));
     public static final RegistryObject<BlockItem> FUEL_REFINERY_ITEM = ITEMS.register("fuel_refinery", () -> new BlockItem(BlocksRegistry.FUEL_REFINERY_BLOCK.get(), new Item.Properties().tab(ItemGroups.tab_normal)));
     public static final RegistryObject<BlockItem> ROCKET_LAUNCH_PAD_ITEM = ITEMS.register("rocket_launch_pad", () -> new BlockItem(BlocksRegistry.ROCKET_LAUNCH_PAD.get(), new Item.Properties().tab(ItemGroups.tab_normal)));
