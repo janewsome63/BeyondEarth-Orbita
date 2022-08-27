@@ -63,7 +63,7 @@ public class Methods {
     public static final ResourceKey<Level> asteroid_belt = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "asteroid_belt"));
     public static final ResourceKey<Level> pluto = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "pluto"));
 
-    public static final ResourceKey<Level> relictus = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(LostCities.MODID, "lostcity"));
+    public static final ResourceKey<Level> relictus = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "relictus"));
 
     public static final ResourceLocation space_station = new ResourceLocation(BeyondOrbitaMod.MODID, "space_station");
 

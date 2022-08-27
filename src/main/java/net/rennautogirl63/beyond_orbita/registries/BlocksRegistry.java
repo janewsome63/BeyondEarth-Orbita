@@ -61,8 +61,6 @@ public class BlocksRegistry {
     /** Non-Specific */
     public static final RegistryObject<LiquidBlock> OIL_BLOCK = BLOCKS.register("oil", () -> new LiquidBlock(FluidsRegistry.OIL_STILL, Block.Properties.of(Material.WATER).noCollission().strength(100f).noDrops()));
     public static final RegistryObject<LiquidBlock> FUEL_BLOCK = BLOCKS.register("fuel", () -> new LiquidBlock(FluidsRegistry.FUEL_STILL, Block.Properties.of(Material.WATER).noCollission().strength(100f).noDrops()));
-    public static final RegistryObject<Block> STONE = BLOCKS.register("stone", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).sound(SoundType.STONE).strength(1.5f, 6f).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> DEEPSLATE = BLOCKS.register("deepslate", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).sound(SoundType.DEEPSLATE).strength(3f, 6f).requiresCorrectToolForDrops()));
 
     /** Mercury Blocks */
     public static final RegistryObject<Block> MERCURY_GLOBE_BLOCK = BLOCKS.register("mercury_globe", () -> new GlobeBlock(BlockBehaviour.Properties.of(Material.STONE).strength(3.5F).sound(SoundType.STONE).noOcclusion().requiresCorrectToolForDrops()));

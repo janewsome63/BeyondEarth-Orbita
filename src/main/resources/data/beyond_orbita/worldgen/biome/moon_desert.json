@@ -2,7 +2,7 @@
   "temperature": -0.65,
   "downfall": 0,
   "precipitation": "none",
-  "category": "desert",
+  "category": "none",
   "effects": {
     "sky_color": 0,
     "fog_color": 0,
@@ -45,5 +45,33 @@
       "minecraft:canyon"
     ]
   },
-  "features": []
+  "features": [
+    [
+      "minecraft:iceberg_blue",
+      "minecraft:spring_lava_frozen"
+    ],
+    [
+      "minecraft:ore_iron_upper",
+      "minecraft:ore_iron_middle",
+      "minecraft:ore_iron_small",
+      "minecraft:ore_gold_extra",
+      "minecraft:ore_gold",
+      "minecraft:ore_gold_lower",
+      "minecraft:ore_diamond",
+      "minecraft:ore_diamond_large",
+      "minecraft:ore_diamond_buried",
+      "minecraft:ore_copper"
+    ],
+    [
+      "beyond_orbita:aluminum_ore",
+      "beyond_orbita:quartz_ore",
+      "beyond_orbita:zinc_ore_low",
+      "beyond_orbita:granite",
+      "beyond_orbita:diorite",
+      "beyond_orbita:andesite",
+      "beyond_orbita:soul_soil",
+      "beyond_orbita:smooth_basalt",
+      "beyond_orbita:asurine"
+    ]
+  ]
 }

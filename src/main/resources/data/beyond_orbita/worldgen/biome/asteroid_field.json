@@ -14,5 +14,20 @@
   "spawners": {},
   "spawn_costs": {},
   "carvers": {},
-  "features": []
+  "features": [
+    [
+      "beyond_orbita:asteroid_aluminum_ore",
+      "beyond_orbita:asteroid_titanium_ore",
+      "beyond_orbita:asteroid_silicon_ore",
+      "beyond_orbita:asteroid_iron_ore",
+      "beyond_orbita:asteroid_gold_ore",
+      "beyond_orbita:asteroid_diamond_ore",
+      "beyond_orbita:asteroid_emerald_ore",
+      "beyond_orbita:asteroid_copper_ore",
+      "beyond_orbita:asteroid_zinc_ore",
+      "beyond_orbita:asteroid_carbon",
+      "beyond_orbita:asteroid_blue_ice",
+      "beyond_orbita:asteroid_sky_stone"
+    ]
+  ]
 }

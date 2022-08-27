@@ -2,7 +2,7 @@
   "temperature": -9.4,
   "downfall": 0,
   "precipitation": "none",
-  "category": "desert",
+  "category": "none",
   "effects": {
     "sky_color": 8756735,
     "fog_color": 12638463,
@@ -22,6 +22,16 @@
   },
   "features": [
     [
+      "minecraft:iceberg_blue"
+    ],
+    [
+      "beyond_orbita:celestial_remnant",
+      "beyond_orbita:iron_ore_low",
+      "beyond_orbita:gold_ore_low",
+      "beyond_orbita:diamond_ore_low",
+      "beyond_orbita:copper_ore_low",
+      "beyond_orbita:zinc_ore_low",
+      "beyond_orbita:permafrost"
     ]
   ]
 }

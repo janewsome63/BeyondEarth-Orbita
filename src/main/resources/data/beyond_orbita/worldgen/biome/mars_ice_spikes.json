@@ -2,7 +2,7 @@
   "temperature": -2.68,
   "downfall": 1,
   "precipitation": "snow",
-  "category": "icy",
+  "category": "none",
   "effects": {
     "sky_color": -3044526,
     "fog_color": -3044526,
@@ -38,6 +38,32 @@
       "minecraft:ice_spike",
       "minecraft:ice_patch",
       "minecraft:freeze_top_layer"
+    ],
+    [
+      "minecraft:lake_lava_underground",
+      "minecraft:spring_lava"
+    ],
+    [
+      "minecraft:ore_gravel",
+      "minecraft:ore_iron_upper",
+      "minecraft:ore_iron_middle",
+      "minecraft:ore_iron_small",
+      "minecraft:ore_gold_extra",
+      "minecraft:ore_gold",
+      "minecraft:ore_gold_lower",
+      "minecraft:ore_diamond",
+      "minecraft:ore_diamond_large",
+      "minecraft:ore_diamond_buried"
+    ],
+    [
+      "beyond_orbita:titanium_ore",
+      "beyond_orbita:copper_ore_low",
+      "beyond_orbita:zinc_ore_high",
+      "beyond_orbita:granite",
+      "beyond_orbita:diorite",
+      "beyond_orbita:andesite",
+      "beyond_orbita:smooth_basalt",
+      "beyond_orbita:veridium"
     ]
   ]
 }

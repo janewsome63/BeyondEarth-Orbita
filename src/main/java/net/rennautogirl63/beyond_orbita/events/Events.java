@@ -1,5 +1,11 @@
 package net.rennautogirl63.beyond_orbita.events;
 
+import commoble.infiniverse.api.InfiniverseAPI;
+import mcjty.lostcities.LostCities;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -14,8 +20,10 @@ import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
+import net.minecraftforge.event.server.ServerStartedEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.rennautogirl63.beyond_orbita.BeyondOrbitaMod;
 import net.rennautogirl63.beyond_orbita.compats.coldsweat.ColdSweatModifiers;
 import net.rennautogirl63.beyond_orbita.compats.simpleplanes.SimplePlanesGravity;
@@ -27,6 +35,12 @@ import net.rennautogirl63.beyond_orbita.events.forge.LivingEntityTickEndEvent;
 
 @Mod.EventBusSubscriber(modid = BeyondOrbitaMod.MODID)
 public class Events {
+    @SubscribeEvent
+    public static void serverStart(ServerStartedEvent event) {
+        ResourceKey<Level> level = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(LostCities.MODID, "lostcity"));
+        InfiniverseAPI.get().markDimensionForUnregistration(event.getServer(), level);
+    }
+
     @SubscribeEvent
     public static void playerTick(TickEvent.PlayerTickEvent event) {
         if (event.phase == TickEvent.Phase.END) {

@@ -37,6 +37,33 @@
 	  "minecraft:patch_soul_fire",
       "minecraft:ore_magma",
       "minecraft:spring_closed_double"
+    ],
+    [
+      "minecraft:lake_lava_underground",
+      "minecraft:disk_gravel",
+      "minecraft:spring_lava"
+    ],
+    [
+      "minecraft:ore_gravel",
+      "minecraft:ore_diamond",
+      "minecraft:ore_diamond_large",
+      "minecraft:ore_diamond_buried",
+      "minecraft:ore_copper"
+    ],
+    [
+      "create:zinc_ore"
+    ],
+    [
+      "beyond_orbita:iron_ore_low",
+      "beyond_orbita:gold_ore_high",
+      "beyond_orbita:ancient_debris",
+      "beyond_orbita:granite",
+      "beyond_orbita:diorite",
+      "beyond_orbita:andesite",
+      "beyond_orbita:blackstone",
+      "beyond_orbita:smooth_basalt",
+      "beyond_orbita:crimsite",
+      "beyond_orbita:scoria"
     ]
   ]
 }

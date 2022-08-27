@@ -77,6 +77,9 @@ repositories {
         name = 'tterrag maven'
         url = 'https://maven.tterrag.com/'
     }
+    maven {
+        url "https://cubicinterpolation.net/maven/"
+    }
 	maven {
 		url "https://cursemaven.com"
 		content {
@@ -136,6 +139,9 @@ dependencies {
 	
 	// World Stripper
 	implementation fg.deobf("curse.maven:world-stripper-250603:${worldstripper_version}")
+
+    //Infiniverse
+    implementation fg.deobf("commoble.infiniverse:infiniverse-${mc_version}:${infiniverse_version}")
 
     // The Lost Cities
     implementation fg.deobf("curse.maven:the-lost-cities-269024:${lostcities_version}")

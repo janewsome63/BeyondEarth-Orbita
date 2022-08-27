@@ -317,7 +317,7 @@
             "then_run": {
               "type": "minecraft:block",
               "result_state": {
-                "Name": "beyond_orbita:deepslate",
+                "Name": "minecraft:deepslate",
                 "Properties": {
                   "axis": "y"
                 }
@@ -340,7 +340,7 @@
             "then_run": {
               "type": "minecraft:block",
               "result_state": {
-                "Name": "beyond_orbita:stone",
+                "Name": "minecraft:stone",
                 "Properties": {
                   "axis": "y"
                 }

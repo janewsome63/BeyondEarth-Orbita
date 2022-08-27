@@ -96,8 +96,6 @@ public class ItemsRegistry {
     public static final RegistryObject<Item> STEEL_ENGINE = ITEMS.register("steel_engine", () -> new Item(new Item.Properties().tab(ItemGroups.tab_normal)));
     public static final RegistryObject<Item> STEEL_TANK = ITEMS.register("steel_tank", () -> new Item(new Item.Properties().tab(ItemGroups.tab_normal)));
     public static final RegistryObject<Item> STEEL_HULL = ITEMS.register("steel_hull", () -> new Item(new Item.Properties().tab(ItemGroups.tab_normal)));
-    public static final RegistryObject<BlockItem> STONE_ITEM = ITEMS.register("stone", () -> new BlockItem(BlocksRegistry.STONE.get(), new Item.Properties()));
-    public static final RegistryObject<BlockItem> DEEPSLATE_ITEM = ITEMS.register("deepslate", () -> new BlockItem(BlocksRegistry.DEEPSLATE.get(), new Item.Properties()));
 
     /** Mercury Items */
     public static final RegistryObject<BlockItem> MERCURY_GLOBE_ITEM = ITEMS.register("mercury_globe", () -> new GlobeItem(BlocksRegistry.MERCURY_GLOBE_BLOCK.get(), new Item.Properties().tab(ItemGroups.tab_normal).rarity(Rarity.EPIC).stacksTo(1)));

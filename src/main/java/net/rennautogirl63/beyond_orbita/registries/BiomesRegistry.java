@@ -29,4 +29,7 @@ public class BiomesRegistry {
     /** Pluto */
     public static final ResourceLocation PLUTO_DESERT = new ResourceLocation(BeyondOrbitaMod.MODID, "pluto_desert");
     public static final ResourceLocation PLUTO_TUNDRA = new ResourceLocation(BeyondOrbitaMod.MODID, "pluto_tundra");
+
+    /** Relictus */
+    public static final ResourceLocation RELICTUS = new ResourceLocation(BeyondOrbitaMod.MODID, "relictus");
 }
