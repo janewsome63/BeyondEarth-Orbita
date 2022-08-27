@@ -73,14 +73,13 @@ public class Overlays {
     /**
      * PLANET BAR TEXTURES
      */
-    public static final ResourceLocation MOON_PLANET_BAR_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/planet_bar/moon_planet_bar.png");
-    public static final ResourceLocation MARS_PLANET_BAR_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/planet_bar/mars_planet_bar.png");
     public static final ResourceLocation MERCURY_PLANET_BAR_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/planet_bar/mercury_planet_bar.png");
     public static final ResourceLocation VENUS_PLANET_BAR_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/planet_bar/venus_planet_bar.png");
-    public static final ResourceLocation GLACIO_PLANET_BAR_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/planet_bar/glacio_planet_bar.png");
-    public static final ResourceLocation PLUTO_PLANET_BAR_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/planet_bar/pluto_planet_bar.png");
     public static final ResourceLocation EARTH_PLANET_BAR_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/planet_bar/earth_planet_bar.png");
     public static final ResourceLocation ORBIT_PLANET_BAR_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/planet_bar/orbit_planet_bar.png");
+    public static final ResourceLocation MOON_PLANET_BAR_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/planet_bar/moon_planet_bar.png");
+    public static final ResourceLocation MARS_PLANET_BAR_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/planet_bar/mars_planet_bar.png");
+    public static final ResourceLocation PLUTO_PLANET_BAR_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/planet_bar/pluto_planet_bar.png");
 
     /**
      * ROCKET TEXTURE
@@ -279,8 +278,6 @@ public class Overlays {
                 planet = MERCURY_PLANET_BAR_TEXTURE;
             } else if (Methods.isWorld(level, Methods.venus)) {
                 planet = VENUS_PLANET_BAR_TEXTURE;
-            } else if (Methods.isWorld(level, Methods.glacio)) {
-                planet = GLACIO_PLANET_BAR_TEXTURE;
             } else if (Methods.isWorld(level, Methods.pluto)) {
                 planet = PLUTO_PLANET_BAR_TEXTURE;
             } else if (Methods.isNoGravWorld(level)) {

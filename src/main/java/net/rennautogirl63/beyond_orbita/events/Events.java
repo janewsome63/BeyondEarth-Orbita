@@ -185,11 +185,11 @@ public class Events {
         Level level = entity.level;
 
         if (Methods.isWorld(level, Methods.moon)) {
-            event.setDistance(event.getDistance() - 5.5F);
+            event.setDistance(event.getDistance() - 6.5F);
         } else if (Methods.isWorld(level, Methods.mars)) {
             event.setDistance(event.getDistance() - 5.0F);
-        } else if (Methods.isWorld(level, Methods.glacio)) {
-            event.setDistance(event.getDistance() - 5.0F);
+        } else if (Methods.isWorld(level, Methods.pluto)) {
+            event.setDistance(event.getDistance() - 8.0F);
         } else if (Methods.isWorld(level, Methods.mercury)) {
             event.setDistance(event.getDistance() - 5.5F);
         } else if (Methods.isNoGravWorld(level)) {

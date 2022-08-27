@@ -1,0 +1,8 @@
+{
+  "parent": "block/stairs",
+  "textures": {
+    "bottom": "beyond_orbita:blocks/aluminum_plating",
+    "top": "beyond_orbita:blocks/aluminum_plating",
+    "side": "beyond_orbita:blocks/aluminum_plating"
+  }
+}

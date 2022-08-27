@@ -17,8 +17,8 @@ public class BlockRenderTypes {
         ItemBlockRenderTypes.setRenderLayer(BlocksRegistry.DEEPSLATE_POTASSIUM_ORE.get(), RenderType.cutoutMipped());;
         ItemBlockRenderTypes.setRenderLayer(BlocksRegistry.SULFUR_ORE.get(), RenderType.cutoutMipped());
         ItemBlockRenderTypes.setRenderLayer(BlocksRegistry.DEEPSLATE_SULFUR_ORE.get(), RenderType.cutoutMipped());
-        ItemBlockRenderTypes.setRenderLayer(BlocksRegistry.BAUXITE_ORE.get(), RenderType.cutoutMipped());
-        ItemBlockRenderTypes.setRenderLayer(BlocksRegistry.DEEPSLATE_BAUXITE_ORE.get(), RenderType.cutoutMipped());
+        ItemBlockRenderTypes.setRenderLayer(BlocksRegistry.ALUMINUM_ORE.get(), RenderType.cutoutMipped());
+        ItemBlockRenderTypes.setRenderLayer(BlocksRegistry.DEEPSLATE_ALUMINUM_ORE.get(), RenderType.cutoutMipped());
         ItemBlockRenderTypes.setRenderLayer(BlocksRegistry.QUARTZ_ORE.get(), RenderType.cutoutMipped());
         ItemBlockRenderTypes.setRenderLayer(BlocksRegistry.DEEPSLATE_QUARTZ_ORE.get(), RenderType.cutoutMipped());
         ItemBlockRenderTypes.setRenderLayer(BlocksRegistry.TITANIUM_ORE.get(), RenderType.cutoutMipped());

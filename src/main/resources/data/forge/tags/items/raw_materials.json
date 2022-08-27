@@ -3,6 +3,7 @@
   "values": [
     "#forge:raw_materials/aluminum",
     "#forge:raw_materials/potassium",
+    "#forge:raw_materials/silicon",
     "#forge:raw_materials/sulfur",
     "#forge:raw_materials/titanium"
   ]

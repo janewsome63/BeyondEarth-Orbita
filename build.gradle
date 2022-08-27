@@ -74,7 +74,8 @@ minecraft {
 
 repositories {
     maven {
-        url "https://maven.tterrag.com/"
+        name = 'tterrag maven'
+        url = 'https://maven.tterrag.com/'
     }
 	maven {
 		url "https://cursemaven.com"
@@ -95,22 +96,21 @@ dependencies {
         annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
     }
 
-    //JEI
+    // JEI
     compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api")
     runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
 
-    //The One Probe
+    // The One Probe
     compileOnly fg.deobf("curse.maven:the-one-probe-245211:${the_one_probe_version}")
     
-    //Jade
+    // Jade
     implementation fg.deobf("curse.maven:jade-324717:${jade_version}")
 
-    //TConstruct
+    // TConstruct
     compileOnly fg.deobf("slimeknights.mantle:Mantle:${mc_version}-${mantle_version}")
     compileOnly fg.deobf("slimeknights.tconstruct:TConstruct:${mc_version}-${tconstruct_version}")
 
-
-    //Mekanism
+    // Mekanism
     compileOnly fg.deobf("mekanism:Mekanism:${mc_version}-${mekanism_version}")
     // runtimeOnly fg.deobf("mekanism:Mekanism:${mc_version}-${mekanism_version}")
     compileOnly fg.deobf("mekanism:Mekanism:${mc_version}-${mekanism_version}:additions")
@@ -118,25 +118,28 @@ dependencies {
     compileOnly fg.deobf("mekanism:Mekanism:${mc_version}-${mekanism_version}:tools")
 	
 	// Create
-	
-    implementation fg.deobf("com.simibubi.create:Create:mc${create_version}")
-    implementation fg.deobf("com.jozufozu.flywheel:Flywheel-Forge:${flywheel_version}")
+    implementation fg.deobf("com.simibubi.create:create-${mc_version}:${create_version}:all") { transitive = false }
+    implementation fg.deobf("com.jozufozu.flywheel:flywheel-forge-${mc_version}:${flywheel_version}")
+    compileOnly fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
 
-    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    // Create Crafts and Additions
+    implementation fg.deobf("curse.maven:createaddition-439890:${createaddition_version}")
+
+    // Create Alloyed
+    implementation fg.deobf("curse.maven:create-alloyed-564792:${createalloyed_version}")
 	
 	// Simple Planes
-	
-	implementation fg.deobf('curse.maven:simple-planes-388908:3873334')
+	implementation fg.deobf("curse.maven:simple-planes-388908:${simpleplanes_version}")
 	
 	// Cold Sweat
+	implementation fg.deobf("curse.maven:cold-sweat-506194:${coldsweat_version}")
 	
-	implementation fg.deobf('curse.maven:cold-sweat-506194:3894501')
-	
-	// Wolrd Stripper
-	
-	implementation fg.deobf('curse.maven:world-stripper-250603:3670854')
-	
-	
+	// World Stripper
+	implementation fg.deobf("curse.maven:world-stripper-250603:${worldstripper_version}")
+
+    // The Lost Cities
+    implementation fg.deobf("curse.maven:the-lost-cities-269024:${lostcities_version}")
+
 }
 
 mixin {

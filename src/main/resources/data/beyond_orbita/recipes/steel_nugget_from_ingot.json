@@ -1,13 +1,13 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "beyond_orbita:steel_nugget",
+  "group": "beyond_orbita",
   "result": {
     "item": "beyond_orbita:steel_nugget",
     "count": 9
   },
   "ingredients": [
     {
-      "item": "beyond_orbita:steel_ingot"
+      "item": "alloyed:steel_ingot"
     }
   ]
 }

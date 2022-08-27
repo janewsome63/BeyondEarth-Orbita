@@ -38,7 +38,6 @@ public class BeyondOrbitaMod {
         EntitiesRegistry.ENTITIES.register(bus);
         BlockEntitiesRegistry.BLOCK_ENTITIES.register(bus);
         RocketPartsRegistry.ROCKET_PARTS.register(bus);
-        PaintingsRegistry.PAINTINGS.register(bus);
         SensorsRegistry.SENSOR.register(bus);
         RecipeSerializersRegistry.RECIPE_SERIALIZERS.register(bus);
         SoundsRegistry.SOUNDS.register(bus);

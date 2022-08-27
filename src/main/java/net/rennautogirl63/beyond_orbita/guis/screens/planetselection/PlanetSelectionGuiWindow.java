@@ -70,39 +70,38 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
     public static final ResourceLocation MERCURY_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/gui/mercury.png");
     public static final ResourceLocation ASTEROID_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/gui/asteroid.png");
     public static final ResourceLocation PLUTO_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/gui/pluto.png");
-    public static final ResourceLocation GLACIO_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/gui/glacio.png");
+
+    public static final ResourceLocation RELICTUS_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/gui/relictus.png");
 
     public static final ResourceLocation SMALL_MENU_LIST = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/rocket_menu_list.png");
     public static final ResourceLocation LARGE_MENU_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/rocket_menu_list_2.png");
 
-    /**
-     * TEXT
-     */
+    /** Text */
     public static final Component CATALOG_TEXT = PlanetSelectionGuiHelper.tl("catalog");
     public static final Component BACK_TEXT = PlanetSelectionGuiHelper.tl("back");
 
     public static final Component SUN_TEXT = PlanetSelectionGuiHelper.tl("sun");
-    public static final Component PROXIMA_CENTAURI_TEXT = PlanetSelectionGuiHelper.tl("proxima_centauri");
+    public static final Component TAU_CETI_TEXT = PlanetSelectionGuiHelper.tl("tau_ceti");
 
     public static final Component SOLAR_SYSTEM_TEXT = PlanetSelectionGuiHelper.tl("solar_system");
 
     public static final Component SOLAR_SYSTEM_SUN_TEXT = PlanetSelectionGuiHelper.tl("solar_system_sun");
-    public static final Component SOLAR_SYSTEM_PROXIMA_CENTAURI_TEXT = PlanetSelectionGuiHelper.tl("solar_system_proxima_centauri");
+    public static final Component SOLAR_SYSTEM_TAU_CETI_TEXT = PlanetSelectionGuiHelper.tl("solar_system_tau_ceti");
 
-    public static final Component EARTH_TEXT = PlanetSelectionGuiHelper.tl("earth");
-    public static final Component MARS_TEXT = PlanetSelectionGuiHelper.tl("mars");
     public static final Component MERCURY_TEXT = PlanetSelectionGuiHelper.tl("mercury");
     public static final Component VENUS_TEXT = PlanetSelectionGuiHelper.tl("venus");
+    public static final Component EARTH_TEXT = PlanetSelectionGuiHelper.tl("earth");
+    public static final Component MOON_TEXT = PlanetSelectionGuiHelper.tl("moon");
+    public static final Component MARS_TEXT = PlanetSelectionGuiHelper.tl("mars");
     public static final Component ASTEROID_BELT_TEXT = PlanetSelectionGuiHelper.tl("asteroid_belt");
-    public static final Component GLACIO_TEXT = PlanetSelectionGuiHelper.tl("glacio");
+    public static final Component PLUTO_TEXT = PlanetSelectionGuiHelper.tl("pluto");
+
+    public static final Component RELICTUS_TEXT = PlanetSelectionGuiHelper.tl("relictus");
 
     public static final Component PLANET_TEXT = PlanetSelectionGuiHelper.tl("planet");
     public static final Component DWARF_PLANET_TEXT = PlanetSelectionGuiHelper.tl("dwarf_planet");
-    public static final Component MOON_TEXT = PlanetSelectionGuiHelper.tl("moon");
-
     public static final Component ORBIT_TEXT = PlanetSelectionGuiHelper.tl("orbit");
     public static final Component ASTEROID_TEXT = PlanetSelectionGuiHelper.tl("asteroid_field");
-    public static final Component PLUTO_TEXT = PlanetSelectionGuiHelper.tl("pluto");
 
     public static final Component NO_GRAVITY_TEXT = PlanetSelectionGuiHelper.tl("no_gravity");
 
@@ -138,9 +137,7 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
      */
     public List<ImageButtonPlacer> visibleButtons;
 
-    /**
-     * ROTATIONS
-     */
+    /** Rotations */
     public float rotationMilkyWay;
     public float rotationMars;
     public float rotationEarth;
@@ -148,40 +145,29 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
     public float rotationMercury;
     public float rotationAsteroid;
     public float rotationPluto;
-    public float rotationGlacio;
+    public float rotationRelictus;
 
-    /**
-     * SOLAR SYSTEM BUTTONS
-     */
+    /** System Buttons */
     public ImageButtonPlacer solarSystemButton;
-    public ImageButtonPlacer proximaCentauriButton;
+    public ImageButtonPlacer tauCetiButton;
 
-    /**
-     * Sol System Buttons
-     */
+    /** Sol Buttons */
     public ImageButtonPlacer mercuryButton;
     public ImageButtonPlacer venusButton;
 
-    /**
-     * Earth Category
-     */
-    public ImageButtonPlacer earthCategoryButton;
-    public ImageButtonPlacer earthButton;
-    public ImageButtonPlacer moonButton;
-    public ImageButtonPlacer spaceStationButton;
-    /**
-     * End
-     */
+        /** Earth Category */
+        public ImageButtonPlacer earthCategoryButton;
+        public ImageButtonPlacer earthButton;
+        public ImageButtonPlacer moonButton;
+        public ImageButtonPlacer spaceStationButton;
 
     public ImageButtonPlacer orbitButton;
     public ImageButtonPlacer marsButton;
     public ImageButtonPlacer asteroidButton;
     public ImageButtonPlacer plutoButton;
 
-    /**
-     * PROXIMA CENTAURI TELEPORT BUTTONS
-     */
-    public ImageButtonPlacer glacioButton;
+    /** Tau Ceti Buttons */
+    public ImageButtonPlacer relictusButton;
 
     /**
      * BACK BUTTONS
@@ -252,7 +238,7 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
             PlanetSelectionGuiHelper.addCircle(this.width / 2, this.height / 2, 180.0, 180);
         }
 
-        /** PROXIMA CENTAURI SOLAR SYSTEM RENDERER */
+        /** TAU CETI SOLAR SYSTEM RENDERER */
         if (PlanetSelectionGuiHelper.categoryRange(this.category.get(), 3, 3)) {
             PlanetSelectionGuiHelper.addCircle(this.width / 2, this.height / 2, 23.0, 180);
         }
@@ -313,7 +299,7 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
         this.rotationMercury = 270;
         this.rotationAsteroid = 360;
         this.rotationPluto = 450;
-        this.rotationGlacio = 180;
+        this.rotationRelictus = 180;
 
         /** SET SCROLL */
         this.scrollIndex = 0;
@@ -377,16 +363,16 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
         asteroidButton = PlanetSelectionGuiHelper.addHandlerButton(this, 10, 1, 70, 20, true, true, this.checkTier(3), NetworksRegistry.PACKET_HANDLER, PlanetSelectionGuiHelper.getNetworkHandler(5), ImageButtonPlacer.Types.PLANET_CATEGORY, List.of(ASTEROID_TEXT.getString(), NO_GRAVITY_TEXT.getString(), "c" + OXYGEN_FALSE_TEXT.getString(), "c" + "0\u00B0C", ROCKET_TIER_3_TEXT.getString()), BLUE_BUTTON_TEXTURE, BLUE_LIGHT_BUTTON_TEXTURE, ASTEROID_BELT_TEXT);
         this.visibleButton(asteroidButton, false);
 
-        plutoButton = PlanetSelectionGuiHelper.addHandlerButton(this, 10, 1, 70, 20, true, true, this.checkTier(3), NetworksRegistry.PACKET_HANDLER, PlanetSelectionGuiHelper.getNetworkHandler(9), ImageButtonPlacer.Types.PLANET_CATEGORY, List.of(DWARF_PLANET_TEXT.getString(), "0.06G", "c" + OXYGEN_FALSE_TEXT.getString(), "c" + "-220\u00B0C", ROCKET_TIER_3_TEXT.getString()), BLUE_BUTTON_TEXTURE, BLUE_LIGHT_BUTTON_TEXTURE, PLUTO_TEXT);
+        plutoButton = PlanetSelectionGuiHelper.addHandlerButton(this, 10, 1, 70, 20, true, true, this.checkTier(3), NetworksRegistry.PACKET_HANDLER, PlanetSelectionGuiHelper.getNetworkHandler(8), ImageButtonPlacer.Types.PLANET_CATEGORY, List.of(DWARF_PLANET_TEXT.getString(), "0.06G", "c" + OXYGEN_FALSE_TEXT.getString(), "c" + "-220\u00B0C", ROCKET_TIER_3_TEXT.getString()), BLUE_BUTTON_TEXTURE, BLUE_LIGHT_BUTTON_TEXTURE, PLUTO_TEXT);
         this.visibleButton(asteroidButton, false);
 
-        /** Proxima Centuri Button */
-        proximaCentauriButton = PlanetSelectionGuiHelper.addCategoryButton(this, this.category, 10, 1, 70, 20, 3, true, ImageButtonPlacer.Types.MILKY_WAY_CATEGORY, List.of(PROXIMA_CENTAURI_TEXT.getString()), BLUE_BUTTON_TEXTURE, BLUE_LIGHT_BUTTON_TEXTURE, SOLAR_SYSTEM_PROXIMA_CENTAURI_TEXT);
-        this.visibleButton(proximaCentauriButton, false);
+        /** Tau Ceti Button */
+        tauCetiButton = PlanetSelectionGuiHelper.addCategoryButton(this, this.category, 10, 1, 70, 20, 3, true, ImageButtonPlacer.Types.MILKY_WAY_CATEGORY, List.of(TAU_CETI_TEXT.getString()), BLUE_BUTTON_TEXTURE, BLUE_LIGHT_BUTTON_TEXTURE, SOLAR_SYSTEM_TAU_CETI_TEXT);
+        this.visibleButton(tauCetiButton, false);
 
-        /** Proxima Centuri Planets */
-        glacioButton = PlanetSelectionGuiHelper.addHandlerButton(this, 10, 1, 70, 20, true, true, this.checkTier(4), NetworksRegistry.PACKET_HANDLER, PlanetSelectionGuiHelper.getNetworkHandler(8), ImageButtonPlacer.Types.PLANET_CATEGORY, List.of(PLANET_TEXT.getString(), "0.53G", "a" + OXYGEN_TRUE_TEXT.getString(), "a" + "-234\u00B0C", ROCKET_TIER_4_TEXT.getString()), BLUE_BUTTON_TEXTURE, BLUE_LIGHT_BUTTON_TEXTURE, GLACIO_TEXT);
-        this.visibleButton(glacioButton, false);
+        /** Tau Ceti Planets */
+        relictusButton = PlanetSelectionGuiHelper.addHandlerButton(this, 10, 1, 70, 20, true, true, this.checkTier(4), NetworksRegistry.PACKET_HANDLER, PlanetSelectionGuiHelper.getNetworkHandler(9), ImageButtonPlacer.Types.PLANET_CATEGORY, List.of(PLANET_TEXT.getString(), "1.00G", "a" + OXYGEN_TRUE_TEXT.getString(), "a" + "12\u00B0C", ROCKET_TIER_4_TEXT.getString()), BLUE_BUTTON_TEXTURE, BLUE_LIGHT_BUTTON_TEXTURE, RELICTUS_TEXT);
+        this.visibleButton(relictusButton, false);
 
         /** INIT POST EVENT FOR ADDONS */
         MinecraftForge.EVENT_BUS.post(new PlanetSelectionGuiInitEvent.Post(this));
@@ -430,14 +416,14 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
 
         this.visibleButtons.clear();
 
-        /** SOLAR SYSTEM VISIBLE LOGIC */
+        /** System Visible Logic */
         this.visibleButton(this.solarSystemButton, this.category.get() == 0);
-        this.visibleButton(this.proximaCentauriButton, this.category.get() == 0);
+        this.visibleButton(this.tauCetiButton, this.category.get() == 0);
 
-        /** BACK BUTTON VISIBLE LOGIC */
+        /** Back Button Visible Logic */
         this.visibleButton(this.backButton, PlanetSelectionGuiHelper.categoryRange(this.category.get(), 1, 3));
 
-        /** SUN CATEGORY VISIBLE LOGIC */
+        /** Sol Visible Logic */
         this.visibleButton(this.mercuryButton, this.category.get() == 1);
         this.visibleButton(this.venusButton, this.category.get() == 1);
         this.visibleButton(this.earthCategoryButton, this.category.get() == 1);
@@ -449,8 +435,8 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
         this.visibleButton(this.asteroidButton, this.category.get() == 1);
         this.visibleButton(this.plutoButton, this.category.get() == 1);
 
-        /** PROXIMA CENTAURI CATEGORY VISIBLE LOGIC */
-        this.visibleButton(this.glacioButton, this.category.get() == 3);
+        /** Tau Ceti Visible Logic */
+        this.visibleButton(this.relictusButton, this.category.get() == 3);
 
         /** BUTTON VISIBILITY POST EVENT FOR ADDONS */
         MinecraftForge.EVENT_BUS.post(new PlanetSelectionGuiButtonVisibilityEvent.Post(this));
@@ -458,10 +444,10 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
 
     public void rotateObjects(float partialTicks) {
 
-        /** SOLAR SYSTEM CATEGORY */
+        /** Solar Systems */
         this.rotationMilkyWay = (this.rotationMilkyWay + partialTicks * 0.4f) % 360;
 
-        /** SUN CATEGORY */
+        /** Sol */
         this.rotationMars = (this.rotationMars + partialTicks * 0.4f) % 360;
         this.rotationEarth = (this.rotationEarth + partialTicks * 0.8f) % 360;
         this.rotationVenus = (this.rotationVenus + partialTicks * 0.7f) % 360;
@@ -469,18 +455,18 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
         this.rotationAsteroid = (this.rotationAsteroid + partialTicks * 0.1f) % 360;
         this.rotationPluto = (this.rotationPluto + partialTicks * 0.05f) % 360;
 
-        /** PROXIMA CENTAURI CATEGORY */
-        this.rotationGlacio = (this.rotationGlacio + partialTicks * 0.7f) % 360;
+        /** Tau Ceti */
+        this.rotationRelictus = (this.rotationRelictus + partialTicks * 0.7f) % 360;
     }
 
     public void renderRotatedObjects(PoseStack poseStack) {
 
-        /** SOLAR SYSTEM CATEGORY */
+        /** Solar Systems */
         if (this.category.get() == 0) {
             PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, MILKY_WAY_TEXTURE, -125, -125, 250, 250, this.rotationMilkyWay);
         }
 
-        /** SUN CATEGORY */
+        /** Sol */
         if (PlanetSelectionGuiHelper.categoryRange(this.category.get(), 1, 2)) {
             PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, MARS_TEXTURE, -70, -70, 10, 10, this.rotationMars);
             PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, EARTH_TEXTURE, -54, -54, 10, 10, this.rotationEarth);
@@ -490,9 +476,9 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
             PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, PLUTO_TEXTURE, -132F, -132F, 10, 10, this.rotationPluto);
         }
 
-        /** PROXIMA CENTAURI CATEGORY */
+        /** Tau Ceti */
         if (PlanetSelectionGuiHelper.categoryRange(this.category.get(), 3, 3)) {
-            PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, GLACIO_TEXTURE, -20.5F, -20.5F, 10, 10, this.rotationGlacio);
+            PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, RELICTUS_TEXTURE, -20.5F, -20.5F, 10, 10, this.rotationRelictus);
         }
     }
 

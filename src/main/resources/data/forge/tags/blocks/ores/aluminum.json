@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "beyond_orbita:bauxite_ore",
-    "beyond_orbita:deepslate_bauxite_ore"
+    "beyond_orbita:aluminum_ore",
+    "beyond_orbita:deepslate_aluminum_ore"
   ]
 }

@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "beyond_orbita:blocks/aluminum_lighting_top",
+    "up": "beyond_orbita:blocks/aluminum_lighting_top",
+    "north": "beyond_orbita:blocks/aluminum_lighting",
+    "east": "beyond_orbita:blocks/aluminum_lighting",
+    "south": "beyond_orbita:blocks/aluminum_lighting",
+    "west": "beyond_orbita:blocks/aluminum_lighting",
+    "particle": "beyond_orbita:blocks/aluminum_lighting_top"
+  }
+}

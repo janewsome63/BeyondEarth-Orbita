@@ -14,7 +14,6 @@ public class OtherGravity {
      * Moon = 0.165
      * Mars = 0.379
      * Pluto = 0.063
-     * Glacio = 0.533
      */
     public static final float MERCURY_GRAVITY = 0.01508F;
     public static final float MERCURY_DRAG = 1.00F;
@@ -30,8 +29,6 @@ public class OtherGravity {
     public static final float MARS_DRAG = 0.98F;
     public static final float PLUTO_GRAVITY = 0.00252F;
     public static final float PLUTO_DRAG = 0.98F;
-    public static final float GLACIO_GRAVITY = 0.02132F;
-    public static final float GLACIO_DRAG = 0.98F;
 
     public static void gravity(Entity entity, Level level) {
         if (Methods.isWorld(level, Methods.mercury)) {
@@ -48,8 +45,6 @@ public class OtherGravity {
             gravitySystem(entity, MARS_GRAVITY, MARS_DRAG);
         } else if (Methods.isWorld(level, Methods.pluto)) {
             gravitySystem(entity, PLUTO_GRAVITY, PLUTO_DRAG);
-        } else if (Methods.isWorld(level, Methods.glacio)) {
-            gravitySystem(entity, GLACIO_GRAVITY, GLACIO_DRAG);
         } else if (Methods.isNoGravWorld(level)) {
             gravitySystem(entity, SPACE_GRAVITY, SPACE_DRAG);
         }

@@ -1,0 +1,18 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"group": "beyond_orbita",
+	"pattern": [
+		"###",
+		"###",
+		"###"
+	],
+	"key": {
+		"*": {
+			"item": "beyond_orbita:raw_aluminum"
+		}
+	},
+	"result": {
+		"item": "beyond_orbita:raw_aluminum_block",
+		"count": 1
+	}
+}

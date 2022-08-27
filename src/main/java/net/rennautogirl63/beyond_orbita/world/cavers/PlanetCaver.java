@@ -20,7 +20,6 @@ public class PlanetCaver {
             BlocksRegistry.MARS_STONE.get(),
             BlocksRegistry.MERCURY_STONE.get(),
             BlocksRegistry.VENUS_STONE.get(), BlocksRegistry.VENUS_SANDSTONE.get(),
-            BlocksRegistry.GLACIO_STONE.get(),
             BlocksRegistry.PLUTO_STONE.get(), BlocksRegistry.PERMAFROST.get());
 
     @SubscribeEvent

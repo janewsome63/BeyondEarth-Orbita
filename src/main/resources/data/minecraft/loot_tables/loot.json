@@ -193,7 +193,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "beyond_orbita:steel_ingot",
+          "name": "alloyed:steel_ingot",
           "weight": 20,
           "functions": [
             {

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "beyond_orbita:block/aluminum_lighting",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "beyond_orbita:block/aluminum_lighting"
+    },
+    "axis=z": {
+      "model": "beyond_orbita:block/aluminum_lighting",
+      "x": 90
+    }
+  }
+}

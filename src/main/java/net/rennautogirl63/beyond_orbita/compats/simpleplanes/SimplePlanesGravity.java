@@ -22,7 +22,6 @@ public class SimplePlanesGravity {
      * Moon = 0.165
      * Mars = 0.379
      * Pluto = 0.063
-     * Glacio = 0.533
      */
     public static final float MERCURY_GRAVITY = 0.009048F;
     public static final float MERCURY_DRAG = 1.00F;
@@ -38,8 +37,6 @@ public class SimplePlanesGravity {
     public static final float MARS_DRAG = 0.98F;
     public static final float PLUTO_GRAVITY = 0.001512F;
     public static final float PLUTO_DRAG = 0.98F;
-    public static final float GLACIO_GRAVITY = 0.012792F;
-    public static final float GLACIO_DRAG = 0.98F;
 
     public static void gravity(Entity entity, Level level) {
         if (Methods.isWorld(level, Methods.mercury)) {
@@ -48,16 +45,12 @@ public class SimplePlanesGravity {
             gravitySystem(entity, VENUS_GRAVITY, VENUS_DRAG);
         } else if (Methods.isWorld(level, Methods.overworld)) {
             gravitySystem(entity, EARTH_GRAVITY, EARTH_DRAG);
-        } else if (Methods.isWorld(level, Methods.glacio)) {
-            gravitySystem(entity, GLACIO_GRAVITY, GLACIO_DRAG);
         } else if (Methods.isWorld(level, Methods.moon)) {
             gravitySystem(entity, MOON_GRAVITY, MOON_DRAG);
         } else if (Methods.isWorld(level, Methods.mars)) {
             gravitySystem(entity, MARS_GRAVITY, MARS_DRAG);
         } else if (Methods.isWorld(level, Methods.pluto)) {
             gravitySystem(entity, PLUTO_GRAVITY, PLUTO_DRAG);
-        } else if (Methods.isWorld(level, Methods.glacio)) {
-            gravitySystem(entity, GLACIO_GRAVITY, GLACIO_DRAG);
         } else if (Methods.isNoGravWorld(level)) {
             gravitySystem(entity, SPACE_GRAVITY, SPACE_DRAG);
         }

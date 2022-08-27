@@ -14,7 +14,6 @@ public class ItemGravity {
      * Moon = 0.165
      * Mars = 0.379
      * Pluto = 0.063
-     * Glacio = 0.533
      * Overworld gravity for items is 0.04
      */
     public static final float MERCURY_GRAVITY = 0.01508F;
@@ -31,8 +30,6 @@ public class ItemGravity {
     public static final float MARS_DRAG = 0.98F;
     public static final float PLUTO_GRAVITY = 0.00252F;
     public static final float PLUTO_DRAG = 0.98F;
-    public static final float GLACIO_GRAVITY = 0.02132F;
-    public static final float GLACIO_DRAG = 0.98F;
 
     public static void gravity(ItemEntity itemEntity, Level level) {
         if (Methods.isWorld(level, Methods.mercury)) {
@@ -49,8 +46,6 @@ public class ItemGravity {
             gravitySystem(itemEntity, MARS_GRAVITY, MARS_DRAG);
         } else if (Methods.isWorld(level, Methods.pluto)) {
             gravitySystem(itemEntity, PLUTO_GRAVITY, PLUTO_DRAG);
-        } else if (Methods.isWorld(level, Methods.glacio)) {
-            gravitySystem(itemEntity, GLACIO_GRAVITY, GLACIO_DRAG);
         } else if (Methods.isNoGravWorld(level)) {
             gravitySystem(itemEntity, SPACE_GRAVITY, SPACE_DRAG);
         }

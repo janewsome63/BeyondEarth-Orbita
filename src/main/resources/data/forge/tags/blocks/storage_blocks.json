@@ -3,7 +3,6 @@
   "values": [
     "#forge:storage_blocks/aluminum",
     "#forge:storage_blocks/potassium",
-    "#forge:storage_blocks/steel",
     "#forge:storage_blocks/sulfur",
     "#forge:storage_blocks/silicon",
     "#forge:storage_blocks/titanium"

@@ -1,6 +1,7 @@
 package net.rennautogirl63.beyond_orbita.events;
 
 import io.netty.buffer.Unpooled;
+import mcjty.lostcities.LostCities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
@@ -59,9 +60,10 @@ public class Methods {
     public static final ResourceKey<Level> orbit = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "orbit"));
     public static final ResourceKey<Level> moon = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "moon"));
     public static final ResourceKey<Level> mars = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "mars"));
-    public static final ResourceKey<Level> pluto = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "pluto"));
-    public static final ResourceKey<Level> glacio = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "glacio"));
     public static final ResourceKey<Level> asteroid_belt = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "asteroid_belt"));
+    public static final ResourceKey<Level> pluto = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "pluto"));
+
+    public static final ResourceKey<Level> relictus = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(LostCities.MODID, "lostcity"));
 
     public static final ResourceLocation space_station = new ResourceLocation(BeyondOrbitaMod.MODID, "space_station");
 
@@ -69,8 +71,7 @@ public class Methods {
             moon,
             mercury,
             orbit,
-            asteroid_belt,
-            pluto
+            asteroid_belt
     );
 
     public static Set<ResourceKey<Level>> spaceWorldsWithoutOxygen = Set.of(
@@ -88,10 +89,10 @@ public class Methods {
             mars,
             mercury,
             venus,
-            glacio,
             orbit,
             asteroid_belt,
-            pluto
+            pluto,
+            relictus
     );
 
     public static Set<ResourceKey<Level>> noGravWorlds = Set.of(
@@ -105,8 +106,8 @@ public class Methods {
             overworld,
             moon,
             mars,
-            glacio,
-            pluto
+            pluto,
+            relictus
     );
 
     public static Set<ResourceKey<Level>> hotWorlds = Set.of(

@@ -7,7 +7,7 @@
     "beyond_orbita:solar_panel",
     "beyond_orbita:advanced_solar_panel",
     "beyond_orbita:oxygen_bubble_distributor",
-    "beyond_orbita:raw_bauxite_block",
+    "beyond_orbita:raw_aluminum_block",
     "beyond_orbita:raw_titanium_block",
 
     "beyond_orbita:rocket_launch_pad",
@@ -17,12 +17,10 @@
 	"beyond_orbita:mars_globe",
 	"beyond_orbita:mercury_globe",
 	"beyond_orbita:venus_globe",
-	"beyond_orbita:glacio_globe",
 	"beyond_orbita:pluto_globe",
 
-    "beyond_orbita:steel_block",
-    "beyond_orbita:bauxite_ore",
-    "beyond_orbita:deepslate_bauxite_ore",
+    "beyond_orbita:aluminum_ore",
+    "beyond_orbita:deepslate_aluminum_ore",
     "beyond_orbita:aluminum_block",
     "beyond_orbita:titanium_ore",
     "beyond_orbita:deepslate_titanium_ore",
@@ -43,9 +41,13 @@
     "beyond_orbita:celestial_block",
     "beyond_orbita:celestial_brick",
     "beyond_orbita:iron_plating",
+    "beyond_orbita:aluminum_plating",
+    "beyond_orbita:aluminum_plating_slab",
+    "beyond_orbita:aluminum_plating_stairs",
     "beyond_orbita:rusted_iron_pillar",
     "beyond_orbita:rusted_iron_plating",
     "beyond_orbita:blue_iron_plating",
+    "beyond_orbita:aluminum_lighting",
     "beyond_orbita:iron_mark",
     "beyond_orbita:sky_stone",
     "beyond_orbita:mars_stone",
@@ -97,17 +99,11 @@
     "beyond_orbita:flag_red",
     "beyond_orbita:flag_yellow",
 
-    "beyond_orbita:glacio_stone_bricks",
-    "beyond_orbita:cracked_glacio_stone_bricks",
-    "beyond_orbita:glacio_stone_brick_slab",
-    "beyond_orbita:glacio_stone_brick_stairs",
-    "beyond_orbita:glacio_stone",
-    "beyond_orbita:permafrost",
-
     "beyond_orbita:pluto_stone_bricks",
     "beyond_orbita:cracked_pluto_stone_bricks",
     "beyond_orbita:pluto_stone_brick_slab",
     "beyond_orbita:pluto_stone_brick_stairs",
-    "beyond_orbita:pluto_stone"
+    "beyond_orbita:pluto_stone",
+    "beyond_orbita:permafrost"
   ]
 }

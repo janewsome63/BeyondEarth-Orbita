@@ -1,8 +1,8 @@
 {
   "replace": false,
   "values": [
-    "#forge:ingots/aluminum",
-    "#forge:ingots/steel",
-    "#forge:ingots/titanium"
+    "alloyed:steel_ingot",
+    "beyond_orbita:aluminum_ingot",
+    "beyond_orbita:titanium_ingot"
   ]
 }

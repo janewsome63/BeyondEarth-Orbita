@@ -41,11 +41,43 @@ public class PlanetSelectionGuiNetworkHandler extends PlanetSelectionGuiNetworkH
 
             switch (message.integer) {
 
-                /** (SUN CATEGORY) TELEPORT BUTTONS */
+                /** Sol buttons */
+
+                    /** Earth buttons */
+
                 case 0:
                     message.defaultOptions(player);
                     Methods.teleportButton(player, Methods.overworld, false);
                     break;
+
+                case 6:
+                    message.defaultOptions(player);
+                    Methods.teleportButton(player, orbit, false);
+                    break;
+
+                case 7:
+                    message.defaultOptions(player);
+                    boolean obstructed = false;
+                    ServerLevel level = player.getServer().getLevel(orbit);
+                    test:
+                    for (int y = 175; y >= 155; y--) {
+                        BlockPos b = new BlockPos(player.getX(), y, player.getZ());
+                        if (!level.getBlockState(b).isAir()) {
+                            obstructed = true;
+                            BeyondOrbitaMod.LOGGER.error("Found at: " + b);
+                            break test;
+                        }
+                    }
+                    if (!obstructed) {
+                        message.deleteItems(player);
+                        Methods.teleportButton(player, orbit, true);
+                    } else {
+                        ClientMethods.spaceStationObstructed();
+                        Methods.teleportButton(player, orbit, false);
+                    }
+                    break;
+
+                    /** End Earth buttons */
 
                 case 1:
                     message.defaultOptions(player);
@@ -72,44 +104,16 @@ public class PlanetSelectionGuiNetworkHandler extends PlanetSelectionGuiNetworkH
                     Methods.teleportButton(player, Methods.asteroid_belt, false);
                     break;
 
-                case 9:
+                case 8:
                     message.defaultOptions(player);
                     Methods.teleportButton(player, Methods.pluto, false);
                     break;
 
-                /** (SUN CATEGORY) TELEPORT ORBIT BUTTONS */
-                case 6:
-                    message.defaultOptions(player);
-                    Methods.teleportButton(player, orbit, false);
-                    break;
+                /** Tau Ceti buttons */
 
-                /** (SUN CATEGORY) TELEPORT ORBIT AND CREATE A SPACE STATION BUTTON */
-                case 7:
+                case 9:
                     message.defaultOptions(player);
-                    boolean obstructed = false;
-                    ServerLevel level = player.getServer().getLevel(orbit);
-                    test:
-                    for (int y = 175; y >= 155; y--) {
-                        BlockPos b = new BlockPos(player.getX(), y, player.getZ());
-                        if (!level.getBlockState(b).isAir()) {
-                            obstructed = true;
-                            BeyondOrbitaMod.LOGGER.error("Found at: " + b);
-                            break test;
-                        }
-                    }
-                    if (!obstructed) {
-                        message.deleteItems(player);
-                        Methods.teleportButton(player, orbit, true);
-                    } else {
-                        ClientMethods.spaceStationObstructed();
-                        Methods.teleportButton(player, orbit, false);
-                    }
-                    break;
-
-                /** (PROXIMA CENTAURI) TELEPORT BUTTONS */
-                case 8:
-                    message.defaultOptions(player);
-                    Methods.teleportButton(player, Methods.glacio, false);
+                    Methods.teleportButton(player, Methods.relictus, false);
                     break;
             }
         });
