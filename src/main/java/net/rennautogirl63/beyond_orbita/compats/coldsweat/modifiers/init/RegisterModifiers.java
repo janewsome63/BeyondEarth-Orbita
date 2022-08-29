@@ -1,29 +1,25 @@
 package net.rennautogirl63.beyond_orbita.compats.coldsweat.modifiers.init;
 
-import dev.momostudios.coldsweat.api.event.core.TempModifierRegisterEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import dev.momostudios.coldsweat.api.registry.TempModifierRegistry;
 import net.rennautogirl63.beyond_orbita.compats.coldsweat.modifiers.*;
 
-@Mod.EventBusSubscriber
 public class RegisterModifiers {
-    @SubscribeEvent
-    public static void onModifiersRegister(TempModifierRegisterEvent event) {
-        event.register(new OxygenMaskModifierMax());
-        event.register(new OxygenMaskModifierMin());
-        event.register(new SpaceSuitModifierMax());
-        event.register(new SpaceSuitModifierMin());
-        event.register(new SpacePantsModifierMax());
-        event.register(new SpacePantsModifierMin());
-        event.register(new SpaceBootsModifierMax());
-        event.register(new SpaceBootsModifierMin());
-        event.register(new AdvancedOxygenMaskModifierMax());
-        event.register(new AdvancedOxygenMaskModifierMin());
-        event.register(new AdvancedSpaceSuitModifierMax());
-        event.register(new AdvancedSpaceSuitModifierMin());
-        event.register(new AdvancedSpacePantsModifierMax());
-        event.register(new AdvancedSpacePantsModifierMin());
-        event.register(new AdvancedSpaceBootsModifierMax());
-        event.register(new AdvancedSpaceBootsModifierMin());
+    public static void onModifiersRegister() {
+        TempModifierRegistry.register(new OxygenMaskModifierMax());
+        TempModifierRegistry.register(new OxygenMaskModifierMin());
+        TempModifierRegistry.register(new SpaceSuitModifierMax());
+        TempModifierRegistry.register(new SpaceSuitModifierMin());
+        TempModifierRegistry.register(new SpacePantsModifierMax());
+        TempModifierRegistry.register(new SpacePantsModifierMin());
+        TempModifierRegistry.register(new SpaceBootsModifierMax());
+        TempModifierRegistry.register(new SpaceBootsModifierMin());
+        TempModifierRegistry.register(new AdvancedOxygenMaskModifierMax());
+        TempModifierRegistry.register(new AdvancedOxygenMaskModifierMin());
+        TempModifierRegistry.register(new AdvancedSpaceSuitModifierMax());
+        TempModifierRegistry.register(new AdvancedSpaceSuitModifierMin());
+        TempModifierRegistry.register(new AdvancedSpacePantsModifierMax());
+        TempModifierRegistry.register(new AdvancedSpacePantsModifierMin());
+        TempModifierRegistry.register(new AdvancedSpaceBootsModifierMax());
+        TempModifierRegistry.register(new AdvancedSpaceBootsModifierMin());
     }
 }

@@ -91,6 +91,8 @@ public class ImageButtonPlacer extends Button {
          */
         SOLAR_SYSTEM_CATEGORY,
 
+        SUB_CATEGORY,
+
         /**
          * IF YOU USE THIS PUT 4 STRINGS IN THE LIST (TYPE, GRAVITY, OXYGEN, TEMPERATURE)
          */
@@ -143,6 +145,7 @@ public class ImageButtonPlacer extends Button {
         if (minecraft.screen instanceof PlanetSelectionGuiWindow) {
             this.milkyWayCategoryManager(minecraft, poseStack, mouseX, mouseY);
             this.solarSystemCategoryManager(minecraft, poseStack, mouseX, mouseY);
+            this.subCategoryManager(minecraft, poseStack, mouseX, mouseY);
             this.planetCategoryManager(minecraft, poseStack, mouseX, mouseY);
             this.planetSpaceStationCategoryManager(minecraft, poseStack, mouseX, mouseY);
         }
@@ -178,6 +181,20 @@ public class ImageButtonPlacer extends Button {
             String condition = this.rocketCondition ? "a" : "c";
 
             /** list.add(new TextComponent("\u00A79" + PlanetSelectionGuiWindow.CATEGORY_TEXT.getString() + ": \u00A7" + condition + this.list.get(0)));*/
+
+            screen.renderComponentTooltip(poseStack, list, mouseX, mouseY);
+        }
+    }
+
+    /** Star Type Manager */
+    private void subCategoryManager(Minecraft minecraft, PoseStack poseStack, int mouseX, int mouseY) {
+        if (this.isHovered && this.type == Types.SUB_CATEGORY) {
+            Screen screen = minecraft.screen;
+
+            List<Component> list = new ArrayList<>();
+
+            list.add(new TextComponent("\u00A79" + PlanetSelectionGuiWindow.CATEGORY_TEXT.getString() + ": \u00A7b" + this.list.get(0)));
+            list.add(new TextComponent("\u00A79" + PlanetSelectionGuiWindow.TYPE_TEXT.getString() + ": \u00A73" + this.list.get(1)));
 
             screen.renderComponentTooltip(poseStack, list, mouseX, mouseY);
         }

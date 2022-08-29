@@ -22,10 +22,12 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.server.ServerStartedEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.rennautogirl63.beyond_orbita.BeyondOrbitaMod;
 import net.rennautogirl63.beyond_orbita.compats.coldsweat.ColdSweatModifiers;
+import net.rennautogirl63.beyond_orbita.compats.coldsweat.modifiers.init.RegisterModifiers;
 import net.rennautogirl63.beyond_orbita.compats.simpleplanes.SimplePlanesGravity;
 import net.rennautogirl63.beyond_orbita.entities.LanderEntity;
 import net.rennautogirl63.beyond_orbita.entities.VehicleEntity;
@@ -37,8 +39,23 @@ import net.rennautogirl63.beyond_orbita.events.forge.LivingEntityTickEndEvent;
 public class Events {
     @SubscribeEvent
     public static void serverStart(ServerStartedEvent event) {
-        ResourceKey<Level> level = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(LostCities.MODID, "lostcity"));
-        InfiniverseAPI.get().markDimensionForUnregistration(event.getServer(), level);
+        if (ModList.get().isLoaded("cold_sweat")) {
+            RegisterModifiers.onModifiersRegister();
+        }
+
+        if (ModList.get().isLoaded("lostcities")) {
+            ResourceKey<Level> level = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(LostCities.MODID, "lostcity"));
+            InfiniverseAPI.get().markDimensionForUnregistration(event.getServer(), level);
+        }
+        else {
+            ResourceKey<Level> level = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "relictus"));
+            InfiniverseAPI.get().markDimensionForUnregistration(event.getServer(), level);
+        }
+
+        if (!ModList.get().isLoaded("terraforged")) {
+            ResourceKey<Level> level = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "avium"));
+            InfiniverseAPI.get().markDimensionForUnregistration(event.getServer(), level);
+        }
     }
 
     @SubscribeEvent
@@ -70,7 +87,9 @@ public class Events {
             }
 
             /** Cold Sweat Temperature Modifiers */
-            ColdSweatModifiers.spaceSuits(event, player);
+            if (ModList.get().isLoaded("cold_sweat")) {
+                ColdSweatModifiers.spaceSuits(event, player);
+            }
         }
     }
 

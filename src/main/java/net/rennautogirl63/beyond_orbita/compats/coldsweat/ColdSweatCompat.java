@@ -1,7 +1,12 @@
 package net.rennautogirl63.beyond_orbita.compats.coldsweat;
 
+import dev.momostudios.coldsweat.api.event.core.TempModifierRegisterEvent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.rennautogirl63.beyond_orbita.compats.CompatibleMod;
+import net.rennautogirl63.beyond_orbita.compats.coldsweat.modifiers.init.RegisterModifiers;
 
 public class ColdSweatCompat extends CompatibleMod {
 
@@ -18,7 +23,6 @@ public class ColdSweatCompat extends CompatibleMod {
 
     @Override
     protected void onLoad() {
-
     }
 
 }

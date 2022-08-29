@@ -8,6 +8,7 @@ import com.simibubi.create.content.palettes.AllPaletteStoneTypes;
 import com.simibubi.create.foundation.worldgen.AllFeatures;
 import com.simibubi.create.foundation.worldgen.AllLayerPatterns;
 import com.simibubi.create.foundation.worldgen.AllOreFeatureConfigEntries;
+import com.simibubi.create.foundation.worldgen.AllPlacementModifiers;
 import net.minecraft.core.Registry;
 import net.minecraft.data.worldgen.features.OreFeatures;
 import net.minecraft.data.worldgen.placement.OrePlacements;
@@ -92,9 +93,9 @@ public class OreGeneration {
     public static final RegistryObject<ConfiguredFeature<?, ?>> ANCIENT_DEBRIS_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("ancient_debris", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(DEEPSLATE_MATCH, Blocks.ANCIENT_DEBRIS.defaultBlockState(), 3, 1.0F)));
     public static final RegistryObject<PlacedFeature> ANCIENT_DEBRIS = FeatureRegistry.PLACED_FEATURES.register("ancient_debris", () -> new PlacedFeature(ANCIENT_DEBRIS_CONFIGURED.getHolder().get(), orePlacement(CountPlacement.of(UniformInt.of(0, 1)), HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(-52)))));
     public static final RegistryObject<ConfiguredFeature<?, ?>> ZINC_ORE_HIGH_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("zinc_ore_high", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(List.of(OreConfiguration.target(STONE_MATCH, ForgeRegistries.BLOCKS.getValue(new ResourceLocation("create:zinc_ore")).defaultBlockState()), OreConfiguration.target(DEEPSLATE_MATCH, ForgeRegistries.BLOCKS.getValue(new ResourceLocation("create:deepslate_zinc_ore")).defaultBlockState())), 12, 0.0F)));
-    public static final RegistryObject<PlacedFeature> ZINC_ORE_HIGH = FeatureRegistry.PLACED_FEATURES.register("zinc_ore_high", () -> new PlacedFeature(ZINC_ORE_HIGH_CONFIGURED.getHolder().get(), commonOrePlacement(16, HeightRangePlacement.triangle(VerticalAnchor.absolute(-63), VerticalAnchor.absolute(70)))));
+    public static final RegistryObject<PlacedFeature> ZINC_ORE_HIGH = FeatureRegistry.PLACED_FEATURES.register("zinc_ore_high", () -> new PlacedFeature(ZINC_ORE_HIGH_CONFIGURED.getHolder().get(), commonOrePlacement(16, HeightRangePlacement.uniform(VerticalAnchor.absolute(-63), VerticalAnchor.absolute(70)))));
     public static final RegistryObject<ConfiguredFeature<?, ?>> ZINC_ORE_LOW_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("zinc_ore_low", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(List.of(OreConfiguration.target(STONE_MATCH, ForgeRegistries.BLOCKS.getValue(new ResourceLocation("create:zinc_ore")).defaultBlockState()), OreConfiguration.target(DEEPSLATE_MATCH, ForgeRegistries.BLOCKS.getValue(new ResourceLocation("create:deepslate_zinc_ore")).defaultBlockState())), 6, 0.5F)));
-    public static final RegistryObject<PlacedFeature> ZINC_ORE_LOW = FeatureRegistry.PLACED_FEATURES.register("zinc_ore_low", () -> new PlacedFeature(ZINC_ORE_LOW_CONFIGURED.getHolder().get(), commonOrePlacement(4, HeightRangePlacement.triangle(VerticalAnchor.absolute(-63), VerticalAnchor.absolute(70)))));
+    public static final RegistryObject<PlacedFeature> ZINC_ORE_LOW = FeatureRegistry.PLACED_FEATURES.register("zinc_ore_low", () -> new PlacedFeature(ZINC_ORE_LOW_CONFIGURED.getHolder().get(), commonOrePlacement(4, HeightRangePlacement.uniform(VerticalAnchor.absolute(-63), VerticalAnchor.absolute(70)))));
 
     /** Other */
     public static final RegistryObject<ConfiguredFeature<?, ?>> PERMAFROST_CONFIGURED = FeatureRegistry.CONFIGURED_FEATURES.register("permafrost", () -> new ConfiguredFeature(Feature.ORE, new OreConfiguration(List.of(OreConfiguration.target(STONE_MATCH, BlocksRegistry.PERMAFROST.get().defaultBlockState()), OreConfiguration.target(DEEPSLATE_MATCH, BlocksRegistry.PERMAFROST.get().defaultBlockState())), 64, 0.0F)));

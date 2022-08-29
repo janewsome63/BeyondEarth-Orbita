@@ -49,6 +49,7 @@ import net.rennautogirl63.beyond_orbita.events.forge.*;
 import net.rennautogirl63.beyond_orbita.guis.screens.planetselection.PlanetSelectionGui;
 import net.rennautogirl63.beyond_orbita.items.VehicleItem;
 import net.rennautogirl63.beyond_orbita.registries.*;
+import twilightforest.TwilightForestMod;
 
 import java.util.Set;
 import java.util.function.Function;
@@ -64,6 +65,9 @@ public class Methods {
     public static final ResourceKey<Level> pluto = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "pluto"));
 
     public static final ResourceKey<Level> relictus = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "relictus"));
+    public static final ResourceKey<Level> avium = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "avium"));
+    public static final ResourceKey<Level> holdplacer = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "holdplacer"));
+    public static final ResourceKey<Level> vespera = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(TwilightForestMod.ID, "twilight_forest"));
 
     public static final ResourceLocation space_station = new ResourceLocation(BeyondOrbitaMod.MODID, "space_station");
 
@@ -92,7 +96,10 @@ public class Methods {
             orbit,
             asteroid_belt,
             pluto,
-            relictus
+            relictus,
+            avium,
+            holdplacer,
+            vespera
     );
 
     public static Set<ResourceKey<Level>> noGravWorlds = Set.of(
@@ -107,7 +114,10 @@ public class Methods {
             moon,
             mars,
             pluto,
-            relictus
+            relictus,
+            avium,
+            holdplacer,
+            vespera
     );
 
     public static Set<ResourceKey<Level>> hotWorlds = Set.of(

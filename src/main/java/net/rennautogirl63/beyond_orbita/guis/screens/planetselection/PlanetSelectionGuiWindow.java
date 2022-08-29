@@ -2,6 +2,8 @@ package net.rennautogirl63.beyond_orbita.guis.screens.planetselection;
 
 import com.google.common.collect.Lists;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.terraforged.mod.worldgen.Generator;
+import com.terraforged.mod.worldgen.GeneratorPreset;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.MenuAccess;
@@ -14,6 +16,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.ModList;
 import net.rennautogirl63.beyond_orbita.BeyondOrbitaMod;
 import net.rennautogirl63.beyond_orbita.crafting.IngredientStack;
 import net.rennautogirl63.beyond_orbita.crafting.SpaceStationRecipe;
@@ -32,9 +35,7 @@ import java.util.List;
 @OnlyIn(Dist.CLIENT)
 public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<PlanetSelectionGui.GuiContainer> {
 
-    /**
-     * TEXTURES
-     */
+    /** Textures */
     public static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/screens/planet_selection.png");
 
     public static final ResourceLocation SCROLLER_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/scroller.png");
@@ -62,16 +63,21 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
 
     public static final ResourceLocation MILKY_WAY_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/gui/milky_way.png");
 
-    public static final ResourceLocation SUN_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/gui/sun.png");
-    public static final ResourceLocation BLUE_SUN_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/gui/blue_sun.png");
+    public static final ResourceLocation YELLOW_SUN_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/gui/yellow_sun.png");
+    public static final ResourceLocation ORANGE_SUN_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/gui/orange_sun.png");
+    public static final ResourceLocation RED_SUN_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/gui/red_sun.png");
     public static final ResourceLocation MARS_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/gui/mars.png");
     public static final ResourceLocation EARTH_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/gui/earth.png");
+    public static final ResourceLocation MOON_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/moon.png");
     public static final ResourceLocation VENUS_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/gui/venus.png");
     public static final ResourceLocation MERCURY_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/gui/mercury.png");
     public static final ResourceLocation ASTEROID_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/gui/asteroid.png");
     public static final ResourceLocation PLUTO_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/gui/pluto.png");
 
     public static final ResourceLocation RELICTUS_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/gui/relictus.png");
+    public static final ResourceLocation AVIUM_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/gui/avium.png");
+    public static final ResourceLocation HOLDPLACER_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/gui/holdplacer.png");
+    public static final ResourceLocation VESPERA_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/gui/vespera.png");
 
     public static final ResourceLocation SMALL_MENU_LIST = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/rocket_menu_list.png");
     public static final ResourceLocation LARGE_MENU_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/rocket_menu_list_2.png");
@@ -81,12 +87,16 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
     public static final Component BACK_TEXT = PlanetSelectionGuiHelper.tl("back");
 
     public static final Component SUN_TEXT = PlanetSelectionGuiHelper.tl("sun");
-    public static final Component TAU_CETI_TEXT = PlanetSelectionGuiHelper.tl("tau_ceti");
+    public static final Component ALPHA_CENTAURI_TEXT = PlanetSelectionGuiHelper.tl("alpha_centauri");
 
     public static final Component SOLAR_SYSTEM_TEXT = PlanetSelectionGuiHelper.tl("solar_system");
 
     public static final Component SOLAR_SYSTEM_SUN_TEXT = PlanetSelectionGuiHelper.tl("solar_system_sun");
-    public static final Component SOLAR_SYSTEM_TAU_CETI_TEXT = PlanetSelectionGuiHelper.tl("solar_system_tau_ceti");
+    public static final Component SOLAR_SYSTEM_ALPHA_CENTAURI_TEXT = PlanetSelectionGuiHelper.tl("solar_system_alpha_centauri");
+
+    public static final Component RIGIL_TEXT = PlanetSelectionGuiHelper.tl("rigil");
+    public static final Component TOLIMAN_TEXT = PlanetSelectionGuiHelper.tl("toliman");
+    public static final Component PROXIMA_TEXT = PlanetSelectionGuiHelper.tl("proxima");
 
     public static final Component MERCURY_TEXT = PlanetSelectionGuiHelper.tl("mercury");
     public static final Component VENUS_TEXT = PlanetSelectionGuiHelper.tl("venus");
@@ -97,7 +107,11 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
     public static final Component PLUTO_TEXT = PlanetSelectionGuiHelper.tl("pluto");
 
     public static final Component RELICTUS_TEXT = PlanetSelectionGuiHelper.tl("relictus");
+    public static final Component AVIUM_TEXT = PlanetSelectionGuiHelper.tl("avium");
+    public static final Component HOLDPLACER_TEXT = PlanetSelectionGuiHelper.tl("holdplacer");
+    public static final Component VESPERA_TEXT = PlanetSelectionGuiHelper.tl("vespera");
 
+    public static final Component STAR_TEXT = PlanetSelectionGuiHelper.tl("star");
     public static final Component PLANET_TEXT = PlanetSelectionGuiHelper.tl("planet");
     public static final Component DWARF_PLANET_TEXT = PlanetSelectionGuiHelper.tl("dwarf_planet");
     public static final Component ORBIT_TEXT = PlanetSelectionGuiHelper.tl("orbit");
@@ -122,40 +136,42 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
     public static final Component ROCKET_TIER_3_TEXT = new TranslatableComponent("entity." + BeyondOrbitaMod.MODID + ".rocket_t" + 3);
     public static final Component ROCKET_TIER_4_TEXT = new TranslatableComponent("entity." + BeyondOrbitaMod.MODID + ".rocket_t" + 4);
 
-    /**
-     * MENU
-     */
+    /** Menu */
     private PlanetSelectionGui.GuiContainer menu;
 
-    /**
-     * CATEGORY
-     */
-    public CategoryHelper category; //IF YOU DO A ADDON MOD SET THIS CATEGORY TO -1 AND CREATE A OWN WITH "AbstractCategoryHelper"
+    /** Category */
+    public CategoryHelper category;
 
-    /**
-     * BUTTON LISTS
-     */
+    /** Button List*/
     public List<ImageButtonPlacer> visibleButtons;
 
     /** Rotations */
     public float rotationMilkyWay;
     public float rotationMars;
     public float rotationEarth;
+    public float rotationMoon;
     public float rotationVenus;
     public float rotationMercury;
     public float rotationAsteroid;
     public float rotationPluto;
+    public float rotationRigil;
     public float rotationRelictus;
+    public float rotationAvium;
+    public float rotationToliman;
+    public float rotationHoldplacer;
+    public float rotationProxima;
+    public float rotationVespera;
+
 
     /** System Buttons */
     public ImageButtonPlacer solarSystemButton;
-    public ImageButtonPlacer tauCetiButton;
+    public ImageButtonPlacer alphaCentauriButton;
 
     /** Sol Buttons */
     public ImageButtonPlacer mercuryButton;
     public ImageButtonPlacer venusButton;
 
-        /** Earth Category */
+        /** Earth Buttons */
         public ImageButtonPlacer earthCategoryButton;
         public ImageButtonPlacer earthButton;
         public ImageButtonPlacer moonButton;
@@ -166,28 +182,31 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
     public ImageButtonPlacer asteroidButton;
     public ImageButtonPlacer plutoButton;
 
-    /** Tau Ceti Buttons */
-    public ImageButtonPlacer relictusButton;
+    /** Alpha Centauri Buttons */
+    public ImageButtonPlacer rigilCategoryButton;
 
-    /**
-     * BACK BUTTONS
-     */
+        /** Rigil Buttons */
+        public ImageButtonPlacer relictusButton;
+        public ImageButtonPlacer aviumButton;
+
+    public ImageButtonPlacer tolimanCategoryButton;
+
+        /** Toliman Buttons */
+        public ImageButtonPlacer holdplacerButton;
+
+    public ImageButtonPlacer proximaCategoryButton;
+
+        /** Proxima Buttons */
+        public ImageButtonPlacer vesperaButton;
+
+    /** Other Buttons */
     public ImageButtonPlacer backButton;
 
-    /**
-     * SPACE STATION RECIPE SYSTEM
-     */
+    /** Space Station Recipe */
     public SpaceStationRecipe recipe;
     public boolean spaceStationItemList;
 
-    /**
-     * SCROLL SYSTEM
-     */
     public int scrollIndex;
-
-    /**
-     * BUTTON ROW END
-     */
     public int rowEnd;
 
     public PlanetSelectionGuiWindow(PlanetSelectionGui.GuiContainer menu, Inventory inventory, Component p_96550_) {
@@ -229,18 +248,40 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
         /** BACKGROUND RENDERER */
         PlanetSelectionGuiHelper.addTexture(poseStack, 0, 0, this.width, this.height, BACKGROUND_TEXTURE);
 
-        /** SUN SOLAR SYSTEM RENDERER */
-        if (PlanetSelectionGuiHelper.categoryRange(this.category.get(), 1, 2)) {
+        /** Sol System Paths */
+        if (PlanetSelectionGuiHelper.categoryRange(this.category.get(), 1, 1)) {
             PlanetSelectionGuiHelper.addCircle(this.width / 2, this.height / 2, 23.0, 180);
             PlanetSelectionGuiHelper.addCircle(this.width / 2, this.height / 2, 46.0, 180);
             PlanetSelectionGuiHelper.addCircle(this.width / 2, this.height / 2, 69.5, 180);
             PlanetSelectionGuiHelper.addCircle(this.width / 2, this.height / 2, 92.0, 180);
-            PlanetSelectionGuiHelper.addCircle(this.width / 2, this.height / 2, 180.0, 180);
+            PlanetSelectionGuiHelper.addCircle(this.width / 2, this.height / 2, 203.0, 180);
         }
 
-        /** TAU CETI SOLAR SYSTEM RENDERER */
+        /** Earth System Paths */
+        if (PlanetSelectionGuiHelper.categoryRange(this.category.get(), 2, 2)) {
+            PlanetSelectionGuiHelper.addCircle(this.width / 2, this.height / 2, 69.5, 180);
+        }
+
+        /** Alpha Centauri System Paths */
         if (PlanetSelectionGuiHelper.categoryRange(this.category.get(), 3, 3)) {
-            PlanetSelectionGuiHelper.addCircle(this.width / 2, this.height / 2, 23.0, 180);
+            PlanetSelectionGuiHelper.addCircle(this.width / 2, this.height / 2, 69.5, 180);
+            PlanetSelectionGuiHelper.addCircle(this.width / 2, this.height / 2, 203.0, 180);
+        }
+
+        /** Rigil System Paths */
+        if (PlanetSelectionGuiHelper.categoryRange(this.category.get(), 4, 4)) {
+            PlanetSelectionGuiHelper.addCircle(this.width / 2, this.height / 2, 46.0, 180);
+            PlanetSelectionGuiHelper.addCircle(this.width / 2, this.height / 2, 92.0, 180);
+        }
+
+        /** Toliman System Paths */
+        if (PlanetSelectionGuiHelper.categoryRange(this.category.get(), 5, 5)) {
+            PlanetSelectionGuiHelper.addCircle(this.width / 2, this.height / 2, 69.5, 180);
+        }
+
+        /** Proxima System Paths */
+        if (PlanetSelectionGuiHelper.categoryRange(this.category.get(), 6, 6)) {
+            PlanetSelectionGuiHelper.addCircle(this.width / 2, this.height / 2, 46.0, 180);
         }
 
         /** OBJECT ROTATIONS */
@@ -249,23 +290,38 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
         /** ROTATED OBJECTS RENDERER */
         this.renderRotatedObjects(poseStack);
 
-        /** SUN RENDERER */
-        if (PlanetSelectionGuiHelper.categoryRange(this.category.get(), 1, 2)) {
-            PlanetSelectionGuiHelper.addTexture(poseStack, (this.width - 15) / 2, (this.height - 15) / 2, 15, 15, SUN_TEXTURE);
+        /** Sol Renderer */
+        if (PlanetSelectionGuiHelper.categoryRange(this.category.get(), 1, 1)) {
+            PlanetSelectionGuiHelper.addTexture(poseStack, (this.width - 15) / 2, (this.height - 15) / 2, 15, 15, YELLOW_SUN_TEXTURE);
         }
 
-        /** BLUE SUN RENDERER */
-        if (PlanetSelectionGuiHelper.categoryRange(this.category.get(), 3, 3)) {
-            PlanetSelectionGuiHelper.addTexture(poseStack, (this.width - 15) / 2, (this.height - 15) / 2, 15, 15, BLUE_SUN_TEXTURE);
+        /** Earth Renderer */
+        if (PlanetSelectionGuiHelper.categoryRange(this.category.get(), 2, 2)) {
+            PlanetSelectionGuiHelper.addTexture(poseStack, (this.width - 15) / 2, (this.height - 15) / 2, 15, 15, EARTH_TEXTURE);
         }
 
-        /** SMALL MENU RENDERER */
-        if (PlanetSelectionGuiHelper.categoryRange(this.category.get(), 0, 1) || PlanetSelectionGuiHelper.categoryRange(this.category.get(), 3, 3)) {
+        /** Rigil Renderer */
+        if (PlanetSelectionGuiHelper.categoryRange(this.category.get(), 4, 4)) {
+            PlanetSelectionGuiHelper.addTexture(poseStack, (this.width - 15) / 2, (this.height - 15) / 2, 15, 15, YELLOW_SUN_TEXTURE);
+        }
+
+        /** Toliman Renderer */
+        if (PlanetSelectionGuiHelper.categoryRange(this.category.get(), 5, 5)) {
+            PlanetSelectionGuiHelper.addTexture(poseStack, (this.width - 15) / 2, (this.height - 15) / 2, 15, 15, ORANGE_SUN_TEXTURE);
+        }
+
+        /** Proxima Renderer */
+        if (PlanetSelectionGuiHelper.categoryRange(this.category.get(), 6, 6)) {
+            PlanetSelectionGuiHelper.addTexture(poseStack, (this.width - 15) / 2, (this.height - 15) / 2, 15, 15, RED_SUN_TEXTURE);
+        }
+
+        /** Small Menu Renderer */
+        if (PlanetSelectionGuiHelper.categoryRange(this.category.get(), 0, 1) || PlanetSelectionGuiHelper.categoryRange(this.category.get(), 3, 6)) {
             PlanetSelectionGuiHelper.addTexture(poseStack, 0, (this.height / 2) - 177 / 2, 105, 177, SMALL_MENU_LIST);
             this.renderScroller(poseStack);
         }
 
-        /** LARGE MENU RENDERER */
+        /** Large Menu Renderer */
         if (PlanetSelectionGuiHelper.categoryRange(this.category.get(), 2, 2)) {
             PlanetSelectionGuiHelper.addTexture(poseStack, 0, (this.height / 2) - 177 / 2, 215, 177, LARGE_MENU_TEXTURE);
         }
@@ -285,26 +341,32 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
             return;
         }
 
-        /** ROW END */
+        /** Row End */
         this.rowEnd = 5;
 
-        /** SET CATEGORY */
+        /** Set Category */
         this.category = new CategoryHelper();
 
-        /** SET PLANET ROTATIONS */
+        /** Set Rotations */
         this.rotationMilkyWay = 0;
-        this.rotationMars = 0;
-        this.rotationEarth = 90;
-        this.rotationVenus = 180;
-        this.rotationMercury = 270;
-        this.rotationAsteroid = 360;
-        this.rotationPluto = 450;
-        this.rotationRelictus = 180;
+        this.rotationMars = 144;
+        this.rotationEarth = 128;
+        this.rotationVenus = 282;
+        this.rotationMercury = 32;
+        this.rotationAsteroid = 145;
+        this.rotationPluto = 154;
+        this.rotationRigil = 264;
+        this.rotationRelictus = 174;
+        this.rotationAvium = 37;
+        this.rotationToliman = 264;
+        this.rotationHoldplacer = 80;
+        this.rotationProxima = 357;
+        this.rotationVespera = 277;
 
-        /** SET SCROLL */
+        /** Set Scroll */
         this.scrollIndex = 0;
 
-        /** SPACE STATION RECIPE SYSTEM */
+        /** Space Station Recipe */
         this.recipe = (SpaceStationRecipe) this.minecraft.level.getRecipeManager().byKey(SpaceStationRecipe.KEY).orElse(null);
         this.spaceStationItemList = this.recipe.getIngredientStacks().stream().allMatch(this::getSpaceStationItemCheck);
 
@@ -321,12 +383,16 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
                 this.category.set(0);
                 this.scrollIndex = 0;
                 this.updateButtonVisibility();
-            } else if (PlanetSelectionGuiHelper.categoryRange(this.category.get(), 2, 2)) {
+            } else if (this.category.get() == 2) {
                 this.category.set(1);
                 this.scrollIndex = 0;
                 this.updateButtonVisibility();
             } else if (this.category.get() == 3) {
                 this.category.set(0);
+                this.scrollIndex = 0;
+                this.updateButtonVisibility();
+            } else if (PlanetSelectionGuiHelper.categoryRange(this.category.get(), 4, 6)) {
+                this.category.set(3);
                 this.scrollIndex = 0;
                 this.updateButtonVisibility();
             }
@@ -340,22 +406,21 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
         venusButton = PlanetSelectionGuiHelper.addHandlerButton(this, 10, 1, 70, 20, true, true, this.checkTier(2), NetworksRegistry.PACKET_HANDLER, PlanetSelectionGuiHelper.getNetworkHandler(4), ImageButtonPlacer.Types.PLANET_CATEGORY, List.of(PLANET_TEXT.getString(), "0.90G", "c" + OXYGEN_FALSE_TEXT.getString(), "c" + "428\u00B0C", ROCKET_TIER_2_TEXT.getString()), BLUE_BUTTON_TEXTURE, BLUE_LIGHT_BUTTON_TEXTURE, VENUS_TEXT);
         this.visibleButton(venusButton, false);
 
-        /** Earth Category */
-        earthCategoryButton = PlanetSelectionGuiHelper.addCategoryButton(this, this.category, 10, 1, 70, 20, 2, this.checkTier(1), ImageButtonPlacer.Types.SOLAR_SYSTEM_CATEGORY, List.of(EARTH_TEXT.getString()), RED_BUTTON_TEXTURE, RED_LIGHT_BUTTON_TEXTURE, EARTH_TEXT);
-        this.visibleButton(earthCategoryButton, false);
+            /** Earth Category */
+            earthCategoryButton = PlanetSelectionGuiHelper.addCategoryButton(this, this.category, 10, 1, 70, 20, 2, this.checkTier(1), ImageButtonPlacer.Types.SUB_CATEGORY, List.of(EARTH_TEXT.getString(), PLANET_TEXT.getString()), GREEN_BUTTON_TEXTURE, GREEN_LIGHT_BUTTON_TEXTURE, EARTH_TEXT);
+            this.visibleButton(earthCategoryButton, false);
 
-        earthButton = PlanetSelectionGuiHelper.addHandlerButton(this, 10, 1, 70, 20, true, true, this.checkTier(1), NetworksRegistry.PACKET_HANDLER, PlanetSelectionGuiHelper.getNetworkHandler(0), ImageButtonPlacer.Types.PLANET_CATEGORY, List.of(PLANET_TEXT.getString(), "1.00G", "a" + OXYGEN_TRUE_TEXT.getString(), "a" + "12\u00B0C", ROCKET_TIER_1_TEXT.getString()), BLUE_BUTTON_TEXTURE, BLUE_LIGHT_BUTTON_TEXTURE, EARTH_TEXT);
-        this.visibleButton(earthButton, false);
+            earthButton = PlanetSelectionGuiHelper.addHandlerButton(this, 10, 1, 70, 20, true, true, this.checkTier(1), NetworksRegistry.PACKET_HANDLER, PlanetSelectionGuiHelper.getNetworkHandler(0), ImageButtonPlacer.Types.PLANET_CATEGORY, List.of(PLANET_TEXT.getString(), "1.00G", "a" + OXYGEN_TRUE_TEXT.getString(), "a" + "12\u00B0C", ROCKET_TIER_1_TEXT.getString()), BLUE_BUTTON_TEXTURE, BLUE_LIGHT_BUTTON_TEXTURE, EARTH_TEXT);
+            this.visibleButton(earthButton, false);
 
-        moonButton = PlanetSelectionGuiHelper.addHandlerButton(this, 10, 1, 70, 20, true, true, this.checkTier(1), NetworksRegistry.PACKET_HANDLER, PlanetSelectionGuiHelper.getNetworkHandler(1), ImageButtonPlacer.Types.PLANET_CATEGORY, List.of(MOON_TEXT.getString(), "0.17G", "c" + OXYGEN_FALSE_TEXT.getString(), "a" + "-15\u00B0C", ROCKET_TIER_1_TEXT.getString()), BLUE_BUTTON_TEXTURE, BLUE_LIGHT_BUTTON_TEXTURE, MOON_TEXT);
-        this.visibleButton(moonButton, false);
+            moonButton = PlanetSelectionGuiHelper.addHandlerButton(this, 10, 1, 70, 20, true, true, this.checkTier(1), NetworksRegistry.PACKET_HANDLER, PlanetSelectionGuiHelper.getNetworkHandler(1), ImageButtonPlacer.Types.PLANET_CATEGORY, List.of(MOON_TEXT.getString(), "0.17G", "c" + OXYGEN_FALSE_TEXT.getString(), "a" + "-15\u00B0C", ROCKET_TIER_1_TEXT.getString()), BLUE_BUTTON_TEXTURE, BLUE_LIGHT_BUTTON_TEXTURE, MOON_TEXT);
+            this.visibleButton(moonButton, false);
 
-        orbitButton = PlanetSelectionGuiHelper.addHandlerButton(this, 84, 2, 37, 20, true, true, this.checkTier(1), NetworksRegistry.PACKET_HANDLER, PlanetSelectionGuiHelper.getNetworkHandler(6), ImageButtonPlacer.Types.PLANET_CATEGORY, List.of(ORBIT_TEXT.getString(), NO_GRAVITY_TEXT.getString(), "c" + OXYGEN_FALSE_TEXT.getString(), "c" + "0\u00B0C", ROCKET_TIER_1_TEXT.getString()), SMALL_BLUE_BUTTON_TEXTURE, SMALL_BLUE_LIGHT_BUTTON_TEXTURE, ORBIT_TEXT);
-        this.visibleButton(orbitButton, false);
+            orbitButton = PlanetSelectionGuiHelper.addHandlerButton(this, 84, 2, 37, 20, true, true, this.checkTier(1), NetworksRegistry.PACKET_HANDLER, PlanetSelectionGuiHelper.getNetworkHandler(6), ImageButtonPlacer.Types.PLANET_CATEGORY, List.of(ORBIT_TEXT.getString(), NO_GRAVITY_TEXT.getString(), "c" + OXYGEN_FALSE_TEXT.getString(), "c" + "0\u00B0C", ROCKET_TIER_1_TEXT.getString()), SMALL_BLUE_BUTTON_TEXTURE, SMALL_BLUE_LIGHT_BUTTON_TEXTURE, ORBIT_TEXT);
+            this.visibleButton(orbitButton, false);
 
-        spaceStationButton = PlanetSelectionGuiHelper.addHandlerButton(this, 125, 3, 75, 20, this.spaceStationItemList, true, this.checkTier(1), NetworksRegistry.PACKET_HANDLER, PlanetSelectionGuiHelper.getNetworkHandler(7), ImageButtonPlacer.Types.PLANET_SPACE_STATION_CATEGORY, List.of(ORBIT_TEXT.getString(), NO_GRAVITY_TEXT.getString(), "c" + OXYGEN_FALSE_TEXT.getString(), "c" + "0\u00B0C", ROCKET_TIER_1_TEXT.getString()), LARGE_RED_BUTTON_TEXTURE, LARGE_RED_LIGHT_BUTTON_TEXTURE, SPACE_STATION_TEXT);
-        this.visibleButton(spaceStationButton, false);
-        /** End Earth Category */
+            spaceStationButton = PlanetSelectionGuiHelper.addHandlerButton(this, 125, 3, 75, 20, this.spaceStationItemList, true, this.checkTier(1), NetworksRegistry.PACKET_HANDLER, PlanetSelectionGuiHelper.getNetworkHandler(7), ImageButtonPlacer.Types.PLANET_SPACE_STATION_CATEGORY, List.of(ORBIT_TEXT.getString(), NO_GRAVITY_TEXT.getString(), "c" + OXYGEN_FALSE_TEXT.getString(), "c" + "0\u00B0C", ROCKET_TIER_1_TEXT.getString()), LARGE_RED_BUTTON_TEXTURE, LARGE_RED_LIGHT_BUTTON_TEXTURE, SPACE_STATION_TEXT);
+            this.visibleButton(spaceStationButton, false);
 
         marsButton = PlanetSelectionGuiHelper.addHandlerButton(this, 10, 1, 70, 20, true, true, this.checkTier(2), NetworksRegistry.PACKET_HANDLER, PlanetSelectionGuiHelper.getNetworkHandler(2), ImageButtonPlacer.Types.PLANET_CATEGORY, List.of(PLANET_TEXT.getString(), "0.38G", "c" + OXYGEN_FALSE_TEXT.getString(), "a" + "-28\u00B0C", ROCKET_TIER_2_TEXT.getString()), BLUE_BUTTON_TEXTURE, BLUE_LIGHT_BUTTON_TEXTURE, MARS_TEXT);
         this.visibleButton(marsButton, false);
@@ -366,18 +431,40 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
         plutoButton = PlanetSelectionGuiHelper.addHandlerButton(this, 10, 1, 70, 20, true, true, this.checkTier(3), NetworksRegistry.PACKET_HANDLER, PlanetSelectionGuiHelper.getNetworkHandler(8), ImageButtonPlacer.Types.PLANET_CATEGORY, List.of(DWARF_PLANET_TEXT.getString(), "0.06G", "c" + OXYGEN_FALSE_TEXT.getString(), "c" + "-220\u00B0C", ROCKET_TIER_3_TEXT.getString()), BLUE_BUTTON_TEXTURE, BLUE_LIGHT_BUTTON_TEXTURE, PLUTO_TEXT);
         this.visibleButton(asteroidButton, false);
 
-        /** Tau Ceti Button */
-        tauCetiButton = PlanetSelectionGuiHelper.addCategoryButton(this, this.category, 10, 1, 70, 20, 3, true, ImageButtonPlacer.Types.MILKY_WAY_CATEGORY, List.of(TAU_CETI_TEXT.getString()), BLUE_BUTTON_TEXTURE, BLUE_LIGHT_BUTTON_TEXTURE, SOLAR_SYSTEM_TAU_CETI_TEXT);
-        this.visibleButton(tauCetiButton, false);
+        /** Alpha Centauri Button */
+        alphaCentauriButton = PlanetSelectionGuiHelper.addCategoryButton(this, this.category, 10, 1, 70, 20, 3, true, ImageButtonPlacer.Types.MILKY_WAY_CATEGORY, List.of(ALPHA_CENTAURI_TEXT.getString()), BLUE_BUTTON_TEXTURE, BLUE_LIGHT_BUTTON_TEXTURE, SOLAR_SYSTEM_ALPHA_CENTAURI_TEXT);
+        this.visibleButton(alphaCentauriButton, false);
 
-        /** Tau Ceti Planets */
-        relictusButton = PlanetSelectionGuiHelper.addHandlerButton(this, 10, 1, 70, 20, true, true, this.checkTier(4), NetworksRegistry.PACKET_HANDLER, PlanetSelectionGuiHelper.getNetworkHandler(9), ImageButtonPlacer.Types.PLANET_CATEGORY, List.of(PLANET_TEXT.getString(), "1.00G", "a" + OXYGEN_TRUE_TEXT.getString(), "a" + "12\u00B0C", ROCKET_TIER_4_TEXT.getString()), BLUE_BUTTON_TEXTURE, BLUE_LIGHT_BUTTON_TEXTURE, RELICTUS_TEXT);
-        this.visibleButton(relictusButton, false);
+            /** Alpha Centauri Stars */
+
+            /** Rigil Category */
+            rigilCategoryButton = PlanetSelectionGuiHelper.addCategoryButton(this, this.category, 10, 1, 70, 20, 4, true, ImageButtonPlacer.Types.SUB_CATEGORY, List.of(RIGIL_TEXT.getString(), STAR_TEXT.getString()), GREEN_BUTTON_TEXTURE, GREEN_LIGHT_BUTTON_TEXTURE, RIGIL_TEXT);
+            this.visibleButton(rigilCategoryButton, false);
+
+            relictusButton = PlanetSelectionGuiHelper.addHandlerButton(this, 10, 1, 70, 20, true, true, this.checkTier(4), NetworksRegistry.PACKET_HANDLER, PlanetSelectionGuiHelper.getNetworkHandler(9), ImageButtonPlacer.Types.PLANET_CATEGORY, List.of(PLANET_TEXT.getString(), "1.00G", "a" + OXYGEN_TRUE_TEXT.getString(), "a" + "12\u00B0C", ROCKET_TIER_4_TEXT.getString()), BLUE_BUTTON_TEXTURE, BLUE_LIGHT_BUTTON_TEXTURE, RELICTUS_TEXT);
+            this.visibleButton(relictusButton, false);
+
+            aviumButton = PlanetSelectionGuiHelper.addHandlerButton(this, 10, 1, 70, 20, true, true, this.checkTier(4), NetworksRegistry.PACKET_HANDLER, PlanetSelectionGuiHelper.getNetworkHandler(10), ImageButtonPlacer.Types.PLANET_CATEGORY, List.of(PLANET_TEXT.getString(), "1.00G", "a" + OXYGEN_TRUE_TEXT.getString(), "a" + "12\u00B0C", ROCKET_TIER_4_TEXT.getString()), BLUE_BUTTON_TEXTURE, BLUE_LIGHT_BUTTON_TEXTURE, AVIUM_TEXT);
+            this.visibleButton(aviumButton, false);
+
+            /** Toliman Category */
+            tolimanCategoryButton = PlanetSelectionGuiHelper.addCategoryButton(this, this.category, 10, 1, 70, 20, 5, true, ImageButtonPlacer.Types.SUB_CATEGORY, List.of(TOLIMAN_TEXT.getString(), STAR_TEXT.getString()), GREEN_BUTTON_TEXTURE, GREEN_LIGHT_BUTTON_TEXTURE, TOLIMAN_TEXT);
+            this.visibleButton(tolimanCategoryButton, false);
+
+            holdplacerButton = PlanetSelectionGuiHelper.addHandlerButton(this, 10, 1, 70, 20, true, true, this.checkTier(4), NetworksRegistry.PACKET_HANDLER, PlanetSelectionGuiHelper.getNetworkHandler(11), ImageButtonPlacer.Types.PLANET_CATEGORY, List.of(PLANET_TEXT.getString(), "1.00G", "a" + OXYGEN_TRUE_TEXT.getString(), "a" + "12\u00B0C", ROCKET_TIER_4_TEXT.getString()), BLUE_BUTTON_TEXTURE, BLUE_LIGHT_BUTTON_TEXTURE, HOLDPLACER_TEXT);
+            this.visibleButton(holdplacerButton, false);
+
+            /** Proxima Category */
+            proximaCategoryButton = PlanetSelectionGuiHelper.addCategoryButton(this, this.category, 10, 1, 70, 20, 6, true, ImageButtonPlacer.Types.SUB_CATEGORY, List.of(PROXIMA_TEXT.getString(), STAR_TEXT.getString()), GREEN_BUTTON_TEXTURE, GREEN_LIGHT_BUTTON_TEXTURE, PROXIMA_TEXT);
+            this.visibleButton(proximaCategoryButton, false);
+
+            vesperaButton = PlanetSelectionGuiHelper.addHandlerButton(this, 10, 1, 70, 20, true, true, this.checkTier(4), NetworksRegistry.PACKET_HANDLER, PlanetSelectionGuiHelper.getNetworkHandler(12), ImageButtonPlacer.Types.PLANET_CATEGORY, List.of(PLANET_TEXT.getString(), "1.00G", "a" + OXYGEN_TRUE_TEXT.getString(), "a" + "12\u00B0C", ROCKET_TIER_4_TEXT.getString()), BLUE_BUTTON_TEXTURE, BLUE_LIGHT_BUTTON_TEXTURE, VESPERA_TEXT);
+            this.visibleButton(vesperaButton, false);
 
         /** INIT POST EVENT FOR ADDONS */
         MinecraftForge.EVENT_BUS.post(new PlanetSelectionGuiInitEvent.Post(this));
 
-        /** UPDATE BUTTON VISIBILITY */
+        /** Update Button Visibility */
         this.updateButtonVisibility();
     }
 
@@ -418,10 +505,10 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
 
         /** System Visible Logic */
         this.visibleButton(this.solarSystemButton, this.category.get() == 0);
-        this.visibleButton(this.tauCetiButton, this.category.get() == 0);
+        this.visibleButton(this.alphaCentauriButton, this.category.get() == 0);
 
         /** Back Button Visible Logic */
-        this.visibleButton(this.backButton, PlanetSelectionGuiHelper.categoryRange(this.category.get(), 1, 3));
+        this.visibleButton(this.backButton, PlanetSelectionGuiHelper.categoryRange(this.category.get(), 1, 6));
 
         /** Sol Visible Logic */
         this.visibleButton(this.mercuryButton, this.category.get() == 1);
@@ -435,8 +522,30 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
         this.visibleButton(this.asteroidButton, this.category.get() == 1);
         this.visibleButton(this.plutoButton, this.category.get() == 1);
 
-        /** Tau Ceti Visible Logic */
-        this.visibleButton(this.relictusButton, this.category.get() == 3);
+        /** Alpha Centauri Visible Logic */
+        if (ModList.get().isLoaded("lostcities") || ModList.get().isLoaded("terraforged") || ModList.get().isLoaded("") || ModList.get().isLoaded("")) {
+            if (ModList.get().isLoaded("lostcities") || ModList.get().isLoaded("terraforged")) {
+                this.visibleButton(this.rigilCategoryButton, this.category.get() == 3);
+                if (ModList.get().isLoaded("lostcities")) {
+                    this.visibleButton(this.relictusButton, this.category.get() == 4);
+                }
+                if (ModList.get().isLoaded("terraforged")) {
+                    this.visibleButton(this.aviumButton, this.category.get() == 4);
+                }
+            }
+            if (ModList.get().isLoaded("holdplacermod")) {
+                this.visibleButton(this.tolimanCategoryButton, this.category.get() == 3);
+                if (ModList.get().isLoaded("holdplacermod")) {
+                    this.visibleButton(this.holdplacerButton, this.category.get() == 5);
+                }
+            }
+            if (ModList.get().isLoaded("twilightforest")) {
+                this.visibleButton(this.proximaCategoryButton, this.category.get() == 3);
+                if (ModList.get().isLoaded("twilightforest")) {
+                    this.visibleButton(this.vesperaButton, this.category.get() == 6);
+                }
+            }
+        }
 
         /** BUTTON VISIBILITY POST EVENT FOR ADDONS */
         MinecraftForge.EVENT_BUS.post(new PlanetSelectionGuiButtonVisibilityEvent.Post(this));
@@ -444,19 +553,28 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
 
     public void rotateObjects(float partialTicks) {
 
+        float speed = 0.7F;
+
         /** Solar Systems */
-        this.rotationMilkyWay = (this.rotationMilkyWay + partialTicks * 0.4f) % 360;
+        this.rotationMilkyWay = (this.rotationMilkyWay + partialTicks * (speed * 0.250F)) % 360;
 
         /** Sol */
-        this.rotationMars = (this.rotationMars + partialTicks * 0.4f) % 360;
-        this.rotationEarth = (this.rotationEarth + partialTicks * 0.8f) % 360;
-        this.rotationVenus = (this.rotationVenus + partialTicks * 0.7f) % 360;
-        this.rotationMercury = (this.rotationMercury + partialTicks * 0.7f) % 360;
-        this.rotationAsteroid = (this.rotationAsteroid + partialTicks * 0.1f) % 360;
-        this.rotationPluto = (this.rotationPluto + partialTicks * 0.05f) % 360;
+        this.rotationMercury = (this.rotationMercury + partialTicks * (speed)) % 360;
+        this.rotationVenus = (this.rotationVenus + partialTicks * (speed * 0.391F)) % 360;
+        this.rotationEarth = (this.rotationEarth + partialTicks * (speed * 0.241F)) % 360;
+        this.rotationMoon = (this.rotationMoon + partialTicks * (speed * 0.482F)) % 360;
+        this.rotationMars = (this.rotationMars + partialTicks * (speed * 0.128F)) % 360;
+        this.rotationAsteroid = (this.rotationAsteroid + partialTicks * (speed * 0.054F)) % 360;
+        this.rotationPluto = (this.rotationPluto + partialTicks * (speed * 0.01F)) % 360;
 
-        /** Tau Ceti */
-        this.rotationRelictus = (this.rotationRelictus + partialTicks * 0.7f) % 360;
+        /** Alpha Centauri */
+        this.rotationRigil = (this.rotationRigil + partialTicks * (speed * 0.250F)) % 360;
+        this.rotationRelictus = (this.rotationRelictus + partialTicks * (speed * 0.391F)) % 360;
+        this.rotationAvium = (this.rotationAvium + partialTicks * (speed * 0.128F)) % 360;
+        this.rotationToliman = (this.rotationToliman + partialTicks * (speed * 0.250F)) % 360;
+        this.rotationHoldplacer = (this.rotationHoldplacer + partialTicks * (speed * 0.241F)) % 360;
+        this.rotationProxima = (this.rotationProxima + partialTicks * (speed * 0.01F)) % 360;
+        this.rotationVespera = (this.rotationVespera + partialTicks * (speed)) % 360;
     }
 
     public void renderRotatedObjects(PoseStack poseStack) {
@@ -467,18 +585,41 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
         }
 
         /** Sol */
-        if (PlanetSelectionGuiHelper.categoryRange(this.category.get(), 1, 2)) {
-            PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, MARS_TEXTURE, -70, -70, 10, 10, this.rotationMars);
-            PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, EARTH_TEXTURE, -54, -54, 10, 10, this.rotationEarth);
-            PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, VENUS_TEXTURE, -37, -37, 10, 10, this.rotationVenus);
+        if (PlanetSelectionGuiHelper.categoryRange(this.category.get(), 1, 1)) {
             PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, MERCURY_TEXTURE, -20.5F, -20.5F, 10, 10, this.rotationMercury);
+            PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, VENUS_TEXTURE, -37, -37, 10, 10, this.rotationVenus);
+            PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, EARTH_TEXTURE, -54, -54, 10, 10, this.rotationEarth);
+            PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, MARS_TEXTURE, -70, -70, 10, 10, this.rotationMars);
             PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, ASTEROID_TEXTURE, -128F, -128F, 256, 256, this.rotationAsteroid);
-            PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, PLUTO_TEXTURE, -132F, -132F, 10, 10, this.rotationPluto);
+            PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, PLUTO_TEXTURE, -149F, -149F, 10, 10, this.rotationPluto);
         }
 
-        /** Tau Ceti */
+        /** Earth */
+        if (PlanetSelectionGuiHelper.categoryRange(this.category.get(), 2, 2)) {
+            PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, MOON_TEXTURE, -54F, -54F, 10, 10, this.rotationMoon);
+        }
+
+        /** Alpha Centauri */
         if (PlanetSelectionGuiHelper.categoryRange(this.category.get(), 3, 3)) {
-            PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, RELICTUS_TEXTURE, -20.5F, -20.5F, 10, 10, this.rotationRelictus);
+            PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, YELLOW_SUN_TEXTURE, -58F, -58F, 20, 20, this.rotationRigil);
+            PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, ORANGE_SUN_TEXTURE, 39F, 39F, 18, 18, this.rotationToliman);
+            PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, RED_SUN_TEXTURE, -149F, -149F, 10, 10, this.rotationProxima);
+        }
+
+        /** Rigil */
+        if (PlanetSelectionGuiHelper.categoryRange(this.category.get(), 4, 4)) {
+            PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, RELICTUS_TEXTURE, -37F, -37F, 10, 10, this.rotationRelictus);
+            PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, AVIUM_TEXTURE, -70F, -70F, 10, 10, this.rotationAvium);
+        }
+
+        /** Toliman */
+        if (PlanetSelectionGuiHelper.categoryRange(this.category.get(), 5, 5)) {
+            PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, HOLDPLACER_TEXTURE, -54, -54, 10, 10, this.rotationHoldplacer);
+        }
+
+        /** Proxima */
+        if (PlanetSelectionGuiHelper.categoryRange(this.category.get(), 6, 6)) {
+            PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, VESPERA_TEXTURE, -37F, -37F, 10, 10, this.rotationVespera);
         }
     }
 

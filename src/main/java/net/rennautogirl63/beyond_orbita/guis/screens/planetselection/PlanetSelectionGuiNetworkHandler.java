@@ -45,39 +45,37 @@ public class PlanetSelectionGuiNetworkHandler extends PlanetSelectionGuiNetworkH
 
                     /** Earth buttons */
 
-                case 0:
-                    message.defaultOptions(player);
-                    Methods.teleportButton(player, Methods.overworld, false);
-                    break;
+                    case 0:
+                        message.defaultOptions(player);
+                        Methods.teleportButton(player, Methods.overworld, false);
+                        break;
 
-                case 6:
-                    message.defaultOptions(player);
-                    Methods.teleportButton(player, orbit, false);
-                    break;
-
-                case 7:
-                    message.defaultOptions(player);
-                    boolean obstructed = false;
-                    ServerLevel level = player.getServer().getLevel(orbit);
-                    test:
-                    for (int y = 175; y >= 155; y--) {
-                        BlockPos b = new BlockPos(player.getX(), y, player.getZ());
-                        if (!level.getBlockState(b).isAir()) {
-                            obstructed = true;
-                            BeyondOrbitaMod.LOGGER.error("Found at: " + b);
-                            break test;
-                        }
-                    }
-                    if (!obstructed) {
-                        message.deleteItems(player);
-                        Methods.teleportButton(player, orbit, true);
-                    } else {
-                        ClientMethods.spaceStationObstructed();
+                    case 6:
+                        message.defaultOptions(player);
                         Methods.teleportButton(player, orbit, false);
-                    }
-                    break;
+                        break;
 
-                    /** End Earth buttons */
+                    case 7:
+                        message.defaultOptions(player);
+                        boolean obstructed = false;
+                        ServerLevel level = player.getServer().getLevel(orbit);
+                        test:
+                        for (int y = 175; y >= 155; y--) {
+                            BlockPos b = new BlockPos(player.getX(), y, player.getZ());
+                            if (!level.getBlockState(b).isAir()) {
+                                obstructed = true;
+                                BeyondOrbitaMod.LOGGER.error("Found at: " + b);
+                                break test;
+                            }
+                        }
+                        if (!obstructed) {
+                            message.deleteItems(player);
+                            Methods.teleportButton(player, orbit, true);
+                        } else {
+                            ClientMethods.spaceStationObstructed();
+                            Methods.teleportButton(player, orbit, false);
+                        }
+                        break;
 
                 case 1:
                     message.defaultOptions(player);
@@ -109,12 +107,31 @@ public class PlanetSelectionGuiNetworkHandler extends PlanetSelectionGuiNetworkH
                     Methods.teleportButton(player, Methods.pluto, false);
                     break;
 
-                /** Tau Ceti buttons */
+                /** Alpha Centauri buttons */
 
-                case 9:
-                    message.defaultOptions(player);
-                    Methods.teleportButton(player, Methods.relictus, false);
-                    break;
+                    /** Rigil Buttons */
+
+                    case 9:
+                        message.defaultOptions(player);
+                        Methods.teleportButton(player, Methods.relictus, false);
+                        break;
+
+                    case 10:
+                        message.defaultOptions(player);
+                        Methods.teleportButton(player, Methods.avium, false);
+                        break;
+
+                    /** Toliman Buttons */
+                    case 11:
+                        message.defaultOptions(player);
+                        Methods.teleportButton(player, Methods.holdplacer, false);
+                        break;
+
+                    /** Proxima Buttons */
+                    case 12:
+                        message.defaultOptions(player);
+                        Methods.teleportButton(player, Methods.vespera, false);
+                        break;
             }
         });
 

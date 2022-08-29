@@ -21,6 +21,62 @@ description='''Fork of Beyond Earth modified for Orbita. Please visit the linked
 [[dependencies.beyond_orbita]]
     modId="forge"
     mandatory=true
-    versionRange="[${forge_version},]"
+    versionRange="[${forge_version},)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.beyond_orbita]]
+    modId="create"
+    mandatory=true
+    versionRange="[0.5.0.d,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.beyond_orbita]]
+    modId="alloyed"
+    mandatory=true
+    versionRange="[1.18.2,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.beyond_orbita]]
+    modId="infiniverse"
+    mandatory=true
+    versionRange="[1.0.0.2,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.beyond_orbita]]
+    modId="simpleplanes"
+    mandatory=false
+    versionRange="[1.18.2-4.15.0,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.beyond_orbita]]
+    modId="cold_sweat"
+    mandatory=false
+    versionRange="[2.1.10.1,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.beyond_orbita]]
+    modId="lostcities"
+    mandatory=false
+    versionRange="[1.18-5.3.8,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.beyond_orbita]]
+    modId="terraforged"
+    mandatory=false
+    versionRange="[0.3.1,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.beyond_orbita]]
+    modId="twilightforest"
+    mandatory=false
+    versionRange="[4.1.1397,)"
     ordering="NONE"
     side="BOTH"

@@ -146,6 +146,12 @@ dependencies {
     // The Lost Cities
     implementation fg.deobf("curse.maven:the-lost-cities-269024:${lostcities_version}")
 
+    // TerraForged
+    implementation fg.deobf("curse.maven:terraforged-363820:${terraforged_version}")
+
+    // Twilight Forest
+    implementation fg.deobf("curse.maven:the-twilight-forest-227639:${twilightforest_version}")
+
 }
 
 mixin {
