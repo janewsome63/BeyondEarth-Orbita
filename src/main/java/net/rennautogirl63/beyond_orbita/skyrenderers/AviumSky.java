@@ -6,6 +6,7 @@ import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.Matrix4f;
 import com.mojang.math.Vector3f;
 import net.minecraft.client.Camera;
+import net.minecraft.client.CloudStatus;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.DimensionSpecialEffects;
@@ -28,63 +29,28 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.rennautogirl63.beyond_orbita.BeyondOrbitaMod;
-import net.rennautogirl63.beyond_orbita.events.Methods;
-import net.rennautogirl63.beyond_orbita.events.TimeSetter;
 import org.jetbrains.annotations.Nullable;
 
 @Mod.EventBusSubscriber(modid = BeyondOrbitaMod.MODID, bus = Bus.MOD, value = Dist.CLIENT)
-public class MarsSky {
+public class AviumSky {
 
-    private static final ResourceLocation DIM_RENDER_INFO = new ResourceLocation(BeyondOrbitaMod.MODID, "mars");
+    private static final ResourceLocation DIM_RENDER_INFO = new ResourceLocation(BeyondOrbitaMod.MODID, "avium");
 
-    private static final ResourceLocation SUN_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/yellow_sun.png");
-    private static final ResourceLocation PHOBOS_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/phobos.png");
-    private static final ResourceLocation DEIMOS_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/deimos.png");
-    private static final ResourceLocation EARTH_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/earth.png");
+    private static final ResourceLocation SUN_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/orange_sun.png");
+    private static final ResourceLocation CAERULEUM_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/caeruleum.png");
+    private static final ResourceLocation CLOUD_TEXTURE = new ResourceLocation("textures/environment/clouds.png");
 
     private static final float[] sunriseCol = new float[4];
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void clientSetup(FMLClientSetupEvent event) {
         DimensionSpecialEffects.EFFECTS.put(DIM_RENDER_INFO, new DimensionSpecialEffects(192, true, DimensionSpecialEffects.SkyType.NORMAL, false, false) {
-            @Override
             public Vec3 getBrightnessDependentFogColor(Vec3 p_108878_, float p_108879_) {
                 return p_108878_.multiply(p_108879_ * 0.867058823529 + 0.03, p_108879_ * 0.770980392157 + 0.03, p_108879_ * 0.494901960784 + 0.06);
             }
 
-            @Override
             public boolean isFoggyAt(int p_108874_, int p_108875_) {
-                return true;
-            }
-
-            @Override
-            public ICloudRenderHandler getCloudRenderHandler() {
-                return new ICloudRenderHandler() {
-                    @Override
-                    public void render(int ticks, float partialTicks, PoseStack matrixStack, ClientLevel world, Minecraft mc, double viewEntityX, double viewEntityY, double viewEntityZ) {
-
-                    }
-                };
-            }
-
-            @Nullable
-            @Override
-            public float[] getSunriseColor(float p_108872_, float p_108873_) {
-                float f = 0.4F;
-                float f1 = Mth.cos(p_108872_ * ((float) Math.PI * 2F)) - 0.0F;
-                float f2 = -0.0F;
-                if (f1 >= -0.4F && f1 <= 0.4F) {
-                    float f3 = (f1 - -0.0F) / 0.4F * 0.5F + 0.5F;
-                    float f4 = 1.0F - (1.0F - Mth.sin(f3 * (float) Math.PI)) * 0.99F;
-                    f4 *= f4;
-                    sunriseCol[0] = f3 * 0.3F + 0.7F;
-                    sunriseCol[1] = f3 * f3 * 0.6F + 0.4F;
-                    sunriseCol[2] = f3 * f3 * 0.0F + 0.4F;
-                    sunriseCol[3] = f4;
-                    return sunriseCol;
-                } else {
-                    return null;
-                }
+                return false;
             }
 
             @Override
@@ -161,68 +127,51 @@ public class MarsSky {
 
                             /** DEFAULT ROT */
                             p_181410_.mulPose(Vector3f.YP.rotationDegrees(-90.0F));
-                            p_181410_.mulPose(Vector3f.XP.rotationDegrees(TimeSetter.timeSystem(level, Methods.MARS_DAY) * 360.0F));
+                            p_181410_.mulPose(Vector3f.XP.rotationDegrees(level.getTimeOfDay(p_181412_) * 360.0F));
                             Matrix4f matrix4f1 = p_181410_.last().pose();
 
                             RenderSystem.setShader(GameRenderer::getPositionTexShader);
 
                             /** SUN */
-                            float f12 = 20.0F;
+                            if (level.rainLevel == 0) {
+                                float f12 = 23.43F;
 
-                            RenderSystem.setShaderTexture(0, SUN_TEXTURE);
+                                RenderSystem.setShaderTexture(0, SUN_TEXTURE);
+                                bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
+                                bufferbuilder.vertex(matrix4f1, -f12, 100.0F, -f12).uv(0.0F, 0.0F).endVertex();
+                                bufferbuilder.vertex(matrix4f1, f12, 100.0F, -f12).uv(1.0F, 0.0F).endVertex();
+                                bufferbuilder.vertex(matrix4f1, f12, 100.0F, f12).uv(1.0F, 1.0F).endVertex();
+                                bufferbuilder.vertex(matrix4f1, -f12, 100.0F, f12).uv(0.0F, 1.0F).endVertex();
+                                bufferbuilder.end();
+                                BufferUploader.end(bufferbuilder);
+                            }
+
+                            /** Caeruleum Position */
+                            p_181410_.mulPose(Vector3f.YP.rotationDegrees(15.0F));
+                            p_181410_.mulPose(Vector3f.ZP.rotationDegrees(-45.0F));
+
+                            /** Caeruleum */
+                            float caeruleum_size = 1.0F;
+
+                            RenderSystem.setShaderTexture(0, CAERULEUM_TEXTURE);
                             bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-                            bufferbuilder.vertex(matrix4f1, -f12, 100.0F, -f12).uv(0.0F, 0.0F).endVertex();
-                            bufferbuilder.vertex(matrix4f1, f12, 100.0F, -f12).uv(1.0F, 0.0F).endVertex();
-                            bufferbuilder.vertex(matrix4f1, f12, 100.0F, f12).uv(1.0F, 1.0F).endVertex();
-                            bufferbuilder.vertex(matrix4f1, -f12, 100.0F, f12).uv(0.0F, 1.0F).endVertex();
-                            bufferbuilder.end();
-                            BufferUploader.end(bufferbuilder);
-
-                            /** PHOBOS ROT */
-                            p_181410_.mulPose(Vector3f.YP.rotationDegrees(-130.0F));
-                            p_181410_.mulPose(Vector3f.ZP.rotationDegrees(100.0F));
-
-                            /** PHOBOS */
-                            RenderSystem.setShaderTexture(0, PHOBOS_TEXTURE);
-                            bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-                            bufferbuilder.vertex(matrix4f1, -3.0F, -100.0F, 3.0F).uv(0.0F, 0.0F).endVertex();
-                            bufferbuilder.vertex(matrix4f1, 3.0F, -100.0F, 3.0F).uv(1.0F, 0.0F).endVertex();
-                            bufferbuilder.vertex(matrix4f1, 3.0F, -100.0F, -3.0F).uv(1.0F, 1.0F).endVertex();
-                            bufferbuilder.vertex(matrix4f1, -3.0F, -100.0F, -3.0F).uv(0.0F, 1.0F).endVertex();
-                            bufferbuilder.end();
-                            BufferUploader.end(bufferbuilder);
-
-                            /** EARTH ROT */
-                            p_181410_.mulPose(Vector3f.YP.rotationDegrees(-130.0F));
-                            p_181410_.mulPose(Vector3f.ZP.rotationDegrees(210.0F));
-
-                            /** EARTH */
-                            float earth_size = 0.5F;
-
-                            RenderSystem.setShaderTexture(0, EARTH_TEXTURE);
-                            bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-                            bufferbuilder.vertex(matrix4f1, -earth_size, -100.0F, earth_size).uv(0.0F, 0.0F).endVertex();
-                            bufferbuilder.vertex(matrix4f1, earth_size, -100.0F, earth_size).uv(1.0F, 0.0F).endVertex();
-                            bufferbuilder.vertex(matrix4f1, earth_size, -100.0F, -earth_size).uv(1.0F, 1.0F).endVertex();
-                            bufferbuilder.vertex(matrix4f1, -earth_size, -100.0F, -earth_size).uv(0.0F, 1.0F).endVertex();
-                            bufferbuilder.end();
-                            BufferUploader.end(bufferbuilder);
-
-                            /** DEIMOS ROT */
-                            p_181410_.mulPose(Vector3f.YP.rotationDegrees(-110.0F));
-                            p_181410_.mulPose(Vector3f.ZP.rotationDegrees(90.0F));
-
-                            /** DEIMOS */
-                            RenderSystem.setShaderTexture(0, DEIMOS_TEXTURE);
-                            bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-                            bufferbuilder.vertex(matrix4f1, -4.0F, -100.0F, 4.0F).uv(0.0F, 0.0F).endVertex();
-                            bufferbuilder.vertex(matrix4f1, 4.0F, -100.0F, 4.0F).uv(1.0F, 0.0F).endVertex();
-                            bufferbuilder.vertex(matrix4f1, 4.0F, -100.0F, -4.0F).uv(1.0F, 1.0F).endVertex();
-                            bufferbuilder.vertex(matrix4f1, -4.0F, -100.0F, -4.0F).uv(0.0F, 1.0F).endVertex();
+                            bufferbuilder.vertex(matrix4f1, -caeruleum_size, -100.0F, caeruleum_size).uv(0.0F, 0.0F).endVertex();
+                            bufferbuilder.vertex(matrix4f1, caeruleum_size, -100.0F, caeruleum_size).uv(1.0F, 0.0F).endVertex();
+                            bufferbuilder.vertex(matrix4f1, caeruleum_size, -100.0F, -caeruleum_size).uv(1.0F, 1.0F).endVertex();
+                            bufferbuilder.vertex(matrix4f1, -caeruleum_size, -100.0F, -caeruleum_size).uv(0.0F, 1.0F).endVertex();
                             bufferbuilder.end();
                             BufferUploader.end(bufferbuilder);
 
                             RenderSystem.disableTexture();
+
+                            /** MOON */
+                            int k = minecraft.level.getMoonPhase();
+                            int l = k % 4;
+                            int i1 = k / 4 % 2;
+                            float f13 = (float) (l + 0) / 4.0F;
+                            float f14 = (float) (i1 + 0) / 2.0F;
+                            float f15 = (float) (l + 1) / 4.0F;
+                            float f16 = (float) (i1 + 1) / 2.0F;
 
                             /** STAR */
                             float f10 = level.getStarBrightness(p_181412_) * 1;
@@ -257,6 +206,85 @@ public class MarsSky {
 
                             RenderSystem.enableTexture();
                             RenderSystem.depthMask(true);
+                        }
+                    }
+                };
+            }
+            @Override
+            public ICloudRenderHandler getCloudRenderHandler() {
+                return new ICloudRenderHandler() {
+                    @Override
+                    public void render(int ticks, float p_172957_, PoseStack p_172955_, ClientLevel level, Minecraft minecraft, double p_172958_, double p_172959_, double p_172960_) {
+                        float f = level.effects().getCloudHeight();
+                        if (!Float.isNaN(f)) {
+                            RenderSystem.disableCull();
+                            RenderSystem.enableBlend();
+                            RenderSystem.enableDepthTest();
+                            RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+                            RenderSystem.depthMask(true);
+                            float f1 = 12.0F;
+                            float f2 = 4.0F;
+                            double d0 = 2.0E-4D;
+                            double d1 = (double) (((float) ticks + p_172957_) * 0.03F);
+                            double d2 = (p_172958_ + d1) / 12.0D;
+                            double d3 = (double) (f - (float) p_172959_ + 0.33F);
+                            double d4 = p_172960_ / 12.0D + (double) 0.33F;
+                            d2 -= (double) (Mth.floor(d2 / 2048.0D) * 2048);
+                            d4 -= (double) (Mth.floor(d4 / 2048.0D) * 2048);
+                            float f3 = (float) (d2 - (double) Mth.floor(d2));
+                            float f4 = (float) (d3 / 4.0D - (double) Mth.floor(d3 / 4.0D)) * 4.0F;
+                            float f5 = (float) (d4 - (double) Mth.floor(d4));
+                            Vec3 vec3 = level.getCloudColor(p_172957_);
+                            int i = (int) Math.floor(d2);
+                            int j = (int) Math.floor(d3 / 4.0D);
+                            int k = (int) Math.floor(d4);
+                            if (i != minecraft.levelRenderer.prevCloudX || j != minecraft.levelRenderer.prevCloudY || k != minecraft.levelRenderer.prevCloudZ || minecraft.options.getCloudsType() != minecraft.levelRenderer.prevCloudsType || minecraft.levelRenderer.prevCloudColor.distanceToSqr(vec3) > 2.0E-4D) {
+                                minecraft.levelRenderer.prevCloudX = i;
+                                minecraft.levelRenderer.prevCloudY = j;
+                                minecraft.levelRenderer.prevCloudZ = k;
+                                minecraft.levelRenderer.prevCloudColor = vec3;
+                                minecraft.levelRenderer.prevCloudsType = minecraft.options.getCloudsType();
+                                minecraft.levelRenderer.generateClouds = true;
+                            }
+
+                            if (minecraft.levelRenderer.generateClouds) {
+                                minecraft.levelRenderer.generateClouds = false;
+                                BufferBuilder bufferbuilder = Tesselator.getInstance().getBuilder();
+                                if (minecraft.levelRenderer.cloudBuffer != null) {
+                                    minecraft.levelRenderer.cloudBuffer.close();
+                                }
+
+                                minecraft.levelRenderer.cloudBuffer = new VertexBuffer();
+                                minecraft.levelRenderer.buildClouds(bufferbuilder, d2, d3, d4, vec3);
+                                bufferbuilder.end();
+                                minecraft.levelRenderer.cloudBuffer.upload(bufferbuilder);
+                            }
+
+                            RenderSystem.setShader(GameRenderer::getPositionTexColorNormalShader);
+                            RenderSystem.setShaderTexture(0, CLOUD_TEXTURE);
+                            FogRenderer.levelFogColor();
+                            p_172955_.pushPose();
+                            p_172955_.scale(12.0F, 1.0F, 12.0F);
+                            p_172955_.translate((double) (-f3), (double) f4, (double) (-f5));
+                            if (minecraft.levelRenderer.cloudBuffer != null) {
+                                int i1 = minecraft.levelRenderer.prevCloudsType == CloudStatus.FANCY ? 0 : 1;
+
+                                for (int l = i1; l < 2; ++l) {
+                                    if (l == 0) {
+                                        RenderSystem.colorMask(false, false, false, false);
+                                    } else {
+                                        RenderSystem.colorMask(true, true, true, true);
+                                    }
+
+                                    ShaderInstance shaderinstance = RenderSystem.getShader();
+                                    minecraft.levelRenderer.cloudBuffer.drawWithShader(p_172955_.last().pose(), RenderSystem.getProjectionMatrix(), shaderinstance);
+                                }
+                            }
+
+                            p_172955_.popPose();
+                            RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+                            RenderSystem.enableCull();
+                            RenderSystem.disableBlend();
                         }
                     }
                 };

@@ -35,7 +35,7 @@ public class RelictusSky {
 
     private static final ResourceLocation DIM_RENDER_INFO = new ResourceLocation(BeyondOrbitaMod.MODID, "relictus");
 
-    private static final ResourceLocation SUN_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/no_a_sun.png");
+    private static final ResourceLocation SUN_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/yellow_sun.png");
 
     private static final float[] sunriseCol = new float[4];
 
@@ -162,7 +162,7 @@ public class RelictusSky {
                             RenderSystem.setShader(GameRenderer::getPositionTexShader);
 
                             /** SUN */
-                            float f12 = 20.0F;
+                            float f12 = 25.0F;
 
                             RenderSystem.setShaderTexture(0, SUN_TEXTURE);
                             bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);

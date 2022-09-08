@@ -77,7 +77,7 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
     public static final ResourceLocation RELICTUS_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/gui/relictus.png");
     public static final ResourceLocation AVIUM_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/gui/avium.png");
     public static final ResourceLocation HOLDPLACER_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/gui/holdplacer.png");
-    public static final ResourceLocation VESPERA_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/gui/vespera.png");
+    public static final ResourceLocation CAERULEUM_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/gui/caeruleum.png");
 
     public static final ResourceLocation SMALL_MENU_LIST = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/rocket_menu_list.png");
     public static final ResourceLocation LARGE_MENU_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/rocket_menu_list_2.png");
@@ -108,8 +108,8 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
 
     public static final Component RELICTUS_TEXT = PlanetSelectionGuiHelper.tl("relictus");
     public static final Component AVIUM_TEXT = PlanetSelectionGuiHelper.tl("avium");
+    public static final Component CAERULEUM_TEXT = PlanetSelectionGuiHelper.tl("caeruleum");
     public static final Component HOLDPLACER_TEXT = PlanetSelectionGuiHelper.tl("holdplacer");
-    public static final Component VESPERA_TEXT = PlanetSelectionGuiHelper.tl("vespera");
 
     public static final Component STAR_TEXT = PlanetSelectionGuiHelper.tl("star");
     public static final Component PLANET_TEXT = PlanetSelectionGuiHelper.tl("planet");
@@ -156,11 +156,11 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
     public float rotationPluto;
     public float rotationRigil;
     public float rotationRelictus;
-    public float rotationAvium;
     public float rotationToliman;
-    public float rotationHoldplacer;
+    public float rotationCaeruleum;
+    public float rotationAvium;
     public float rotationProxima;
-    public float rotationVespera;
+    public float rotationHoldplacer;
 
 
     /** System Buttons */
@@ -187,17 +187,17 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
 
         /** Rigil Buttons */
         public ImageButtonPlacer relictusButton;
-        public ImageButtonPlacer aviumButton;
 
     public ImageButtonPlacer tolimanCategoryButton;
 
         /** Toliman Buttons */
-        public ImageButtonPlacer holdplacerButton;
+        public ImageButtonPlacer caeruleumButton;
+        public ImageButtonPlacer aviumButton;
 
     public ImageButtonPlacer proximaCategoryButton;
 
         /** Proxima Buttons */
-        public ImageButtonPlacer vesperaButton;
+        public ImageButtonPlacer holdplacerButton;
 
     /** Other Buttons */
     public ImageButtonPlacer backButton;
@@ -271,7 +271,6 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
         /** Rigil System Paths */
         if (PlanetSelectionGuiHelper.categoryRange(this.category.get(), 4, 4)) {
             PlanetSelectionGuiHelper.addCircle(this.width / 2, this.height / 2, 46.0, 180);
-            PlanetSelectionGuiHelper.addCircle(this.width / 2, this.height / 2, 92.0, 180);
         }
 
         /** Toliman System Paths */
@@ -357,11 +356,11 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
         this.rotationPluto = 154;
         this.rotationRigil = 264;
         this.rotationRelictus = 174;
-        this.rotationAvium = 37;
         this.rotationToliman = 264;
-        this.rotationHoldplacer = 80;
+        this.rotationCaeruleum = 217;
+        this.rotationAvium = 37;
         this.rotationProxima = 357;
-        this.rotationVespera = 277;
+        this.rotationHoldplacer = 80;
 
         /** Set Scroll */
         this.scrollIndex = 0;
@@ -444,22 +443,22 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
             relictusButton = PlanetSelectionGuiHelper.addHandlerButton(this, 10, 1, 70, 20, true, true, this.checkTier(4), NetworksRegistry.PACKET_HANDLER, PlanetSelectionGuiHelper.getNetworkHandler(9), ImageButtonPlacer.Types.PLANET_CATEGORY, List.of(PLANET_TEXT.getString(), "1.00G", "a" + OXYGEN_TRUE_TEXT.getString(), "a" + "12\u00B0C", ROCKET_TIER_4_TEXT.getString()), BLUE_BUTTON_TEXTURE, BLUE_LIGHT_BUTTON_TEXTURE, RELICTUS_TEXT);
             this.visibleButton(relictusButton, false);
 
-            aviumButton = PlanetSelectionGuiHelper.addHandlerButton(this, 10, 1, 70, 20, true, true, this.checkTier(4), NetworksRegistry.PACKET_HANDLER, PlanetSelectionGuiHelper.getNetworkHandler(10), ImageButtonPlacer.Types.PLANET_CATEGORY, List.of(PLANET_TEXT.getString(), "1.00G", "a" + OXYGEN_TRUE_TEXT.getString(), "a" + "12\u00B0C", ROCKET_TIER_4_TEXT.getString()), BLUE_BUTTON_TEXTURE, BLUE_LIGHT_BUTTON_TEXTURE, AVIUM_TEXT);
-            this.visibleButton(aviumButton, false);
-
             /** Toliman Category */
             tolimanCategoryButton = PlanetSelectionGuiHelper.addCategoryButton(this, this.category, 10, 1, 70, 20, 5, true, ImageButtonPlacer.Types.SUB_CATEGORY, List.of(TOLIMAN_TEXT.getString(), STAR_TEXT.getString()), GREEN_BUTTON_TEXTURE, GREEN_LIGHT_BUTTON_TEXTURE, TOLIMAN_TEXT);
             this.visibleButton(tolimanCategoryButton, false);
 
-            holdplacerButton = PlanetSelectionGuiHelper.addHandlerButton(this, 10, 1, 70, 20, true, true, this.checkTier(4), NetworksRegistry.PACKET_HANDLER, PlanetSelectionGuiHelper.getNetworkHandler(11), ImageButtonPlacer.Types.PLANET_CATEGORY, List.of(PLANET_TEXT.getString(), "1.00G", "a" + OXYGEN_TRUE_TEXT.getString(), "a" + "12\u00B0C", ROCKET_TIER_4_TEXT.getString()), BLUE_BUTTON_TEXTURE, BLUE_LIGHT_BUTTON_TEXTURE, HOLDPLACER_TEXT);
-            this.visibleButton(holdplacerButton, false);
+            caeruleumButton = PlanetSelectionGuiHelper.addHandlerButton(this, 10, 1, 70, 20, true, true, this.checkTier(4), NetworksRegistry.PACKET_HANDLER, PlanetSelectionGuiHelper.getNetworkHandler(11), ImageButtonPlacer.Types.PLANET_CATEGORY, List.of(PLANET_TEXT.getString(), "1.00G", "a" + OXYGEN_TRUE_TEXT.getString(), "a" + "12\u00B0C", ROCKET_TIER_4_TEXT.getString()), BLUE_BUTTON_TEXTURE, BLUE_LIGHT_BUTTON_TEXTURE, CAERULEUM_TEXT);
+            this.visibleButton(caeruleumButton, false);
+
+            aviumButton = PlanetSelectionGuiHelper.addHandlerButton(this, 10, 1, 70, 20, true, true, this.checkTier(4), NetworksRegistry.PACKET_HANDLER, PlanetSelectionGuiHelper.getNetworkHandler(12), ImageButtonPlacer.Types.PLANET_CATEGORY, List.of(PLANET_TEXT.getString(), "1.00G", "a" + OXYGEN_TRUE_TEXT.getString(), "a" + "12\u00B0C", ROCKET_TIER_4_TEXT.getString()), BLUE_BUTTON_TEXTURE, BLUE_LIGHT_BUTTON_TEXTURE, AVIUM_TEXT);
+            this.visibleButton(aviumButton, false);
 
             /** Proxima Category */
             proximaCategoryButton = PlanetSelectionGuiHelper.addCategoryButton(this, this.category, 10, 1, 70, 20, 6, true, ImageButtonPlacer.Types.SUB_CATEGORY, List.of(PROXIMA_TEXT.getString(), STAR_TEXT.getString()), GREEN_BUTTON_TEXTURE, GREEN_LIGHT_BUTTON_TEXTURE, PROXIMA_TEXT);
             this.visibleButton(proximaCategoryButton, false);
 
-            vesperaButton = PlanetSelectionGuiHelper.addHandlerButton(this, 10, 1, 70, 20, true, true, this.checkTier(4), NetworksRegistry.PACKET_HANDLER, PlanetSelectionGuiHelper.getNetworkHandler(12), ImageButtonPlacer.Types.PLANET_CATEGORY, List.of(PLANET_TEXT.getString(), "1.00G", "a" + OXYGEN_TRUE_TEXT.getString(), "a" + "12\u00B0C", ROCKET_TIER_4_TEXT.getString()), BLUE_BUTTON_TEXTURE, BLUE_LIGHT_BUTTON_TEXTURE, VESPERA_TEXT);
-            this.visibleButton(vesperaButton, false);
+            holdplacerButton = PlanetSelectionGuiHelper.addHandlerButton(this, 10, 1, 70, 20, true, true, this.checkTier(4), NetworksRegistry.PACKET_HANDLER, PlanetSelectionGuiHelper.getNetworkHandler(13), ImageButtonPlacer.Types.PLANET_CATEGORY, List.of(PLANET_TEXT.getString(), "1.00G", "a" + OXYGEN_TRUE_TEXT.getString(), "a" + "12\u00B0C", ROCKET_TIER_4_TEXT.getString()), BLUE_BUTTON_TEXTURE, BLUE_LIGHT_BUTTON_TEXTURE, HOLDPLACER_TEXT);
+            this.visibleButton(holdplacerButton, false);
 
         /** INIT POST EVENT FOR ADDONS */
         MinecraftForge.EVENT_BUS.post(new PlanetSelectionGuiInitEvent.Post(this));
@@ -523,29 +522,22 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
         this.visibleButton(this.plutoButton, this.category.get() == 1);
 
         /** Alpha Centauri Visible Logic */
-        if (ModList.get().isLoaded("lostcities") || ModList.get().isLoaded("terraforged") || ModList.get().isLoaded("") || ModList.get().isLoaded("")) {
-            if (ModList.get().isLoaded("lostcities") || ModList.get().isLoaded("terraforged")) {
-                this.visibleButton(this.rigilCategoryButton, this.category.get() == 3);
-                if (ModList.get().isLoaded("lostcities")) {
-                    this.visibleButton(this.relictusButton, this.category.get() == 4);
-                }
-                if (ModList.get().isLoaded("terraforged")) {
-                    this.visibleButton(this.aviumButton, this.category.get() == 4);
-                }
+        if (ModList.get().isLoaded("lostcities") || ModList.get().isLoaded("byg")) {
+            this.visibleButton(this.rigilCategoryButton, this.category.get() == 3);
+            if (ModList.get().isLoaded("lostcities")) {
+                this.visibleButton(this.relictusButton, this.category.get() == 4);
             }
-            if (ModList.get().isLoaded("holdplacermod")) {
-                this.visibleButton(this.tolimanCategoryButton, this.category.get() == 3);
-                if (ModList.get().isLoaded("holdplacermod")) {
-                    this.visibleButton(this.holdplacerButton, this.category.get() == 5);
-                }
-            }
-            if (ModList.get().isLoaded("twilightforest")) {
-                this.visibleButton(this.proximaCategoryButton, this.category.get() == 3);
-                if (ModList.get().isLoaded("twilightforest")) {
-                    this.visibleButton(this.vesperaButton, this.category.get() == 6);
-                }
+            if (ModList.get().isLoaded("byg")) {
+
             }
         }
+        this.visibleButton(this.tolimanCategoryButton, this.category.get() == 3);
+        this.visibleButton(this.caeruleumButton, this.category.get() == 5);
+        if (ModList.get().isLoaded("terraforged")) {
+            this.visibleButton(this.aviumButton, this.category.get() == 5);
+        }
+        this.visibleButton(this.proximaCategoryButton, this.category.get() == 3);
+        this.visibleButton(this.holdplacerButton, this.category.get() == 6);
 
         /** BUTTON VISIBILITY POST EVENT FOR ADDONS */
         MinecraftForge.EVENT_BUS.post(new PlanetSelectionGuiButtonVisibilityEvent.Post(this));
@@ -570,11 +562,11 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
         /** Alpha Centauri */
         this.rotationRigil = (this.rotationRigil + partialTicks * (speed * 0.250F)) % 360;
         this.rotationRelictus = (this.rotationRelictus + partialTicks * (speed * 0.391F)) % 360;
-        this.rotationAvium = (this.rotationAvium + partialTicks * (speed * 0.128F)) % 360;
         this.rotationToliman = (this.rotationToliman + partialTicks * (speed * 0.250F)) % 360;
-        this.rotationHoldplacer = (this.rotationHoldplacer + partialTicks * (speed * 0.241F)) % 360;
+        this.rotationCaeruleum = (this.rotationCaeruleum + partialTicks * (speed * 0.241F)) % 360;
+        this.rotationAvium = (this.rotationAvium + partialTicks * (speed * 0.241F)) % 360;
         this.rotationProxima = (this.rotationProxima + partialTicks * (speed * 0.01F)) % 360;
-        this.rotationVespera = (this.rotationVespera + partialTicks * (speed)) % 360;
+        this.rotationHoldplacer = (this.rotationHoldplacer + partialTicks * (speed)) % 360;
     }
 
     public void renderRotatedObjects(PoseStack poseStack) {
@@ -601,25 +593,25 @@ public class PlanetSelectionGuiWindow extends Screen implements MenuAccess<Plane
 
         /** Alpha Centauri */
         if (PlanetSelectionGuiHelper.categoryRange(this.category.get(), 3, 3)) {
-            PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, YELLOW_SUN_TEXTURE, -58F, -58F, 20, 20, this.rotationRigil);
-            PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, ORANGE_SUN_TEXTURE, 39F, 39F, 18, 18, this.rotationToliman);
-            PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, RED_SUN_TEXTURE, -149F, -149F, 10, 10, this.rotationProxima);
+            PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, YELLOW_SUN_TEXTURE, -58F, -58F, 30, 30, this.rotationRigil);
+            PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, ORANGE_SUN_TEXTURE, 39F, 39F, 21, 21, this.rotationToliman);
+            PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, RED_SUN_TEXTURE, -149F, -149F, 4, 4, this.rotationProxima);
         }
 
         /** Rigil */
         if (PlanetSelectionGuiHelper.categoryRange(this.category.get(), 4, 4)) {
             PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, RELICTUS_TEXTURE, -37F, -37F, 10, 10, this.rotationRelictus);
-            PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, AVIUM_TEXTURE, -70F, -70F, 10, 10, this.rotationAvium);
         }
 
         /** Toliman */
         if (PlanetSelectionGuiHelper.categoryRange(this.category.get(), 5, 5)) {
-            PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, HOLDPLACER_TEXTURE, -54, -54, 10, 10, this.rotationHoldplacer);
+            PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, CAERULEUM_TEXTURE, -54F, -54F, 10, 10, this.rotationCaeruleum);
+            PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, AVIUM_TEXTURE, -54F, -54F, 10, 10, this.rotationAvium);
         }
 
         /** Proxima */
         if (PlanetSelectionGuiHelper.categoryRange(this.category.get(), 6, 6)) {
-            PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, VESPERA_TEXTURE, -37F, -37F, 10, 10, this.rotationVespera);
+            PlanetSelectionGuiHelper.addRotatedObject(this, poseStack, HOLDPLACER_TEXTURE, -54, -54, 10, 10, this.rotationHoldplacer);
         }
     }
 

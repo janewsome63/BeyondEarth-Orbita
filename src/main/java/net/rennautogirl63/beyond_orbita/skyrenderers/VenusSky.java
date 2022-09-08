@@ -60,7 +60,7 @@ public class VenusSky {
 
     private static final ResourceLocation CLOUD_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/clouds.png");
     private static final ResourceLocation RAIN_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/rain.png");
-    private static final ResourceLocation SUN_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/red_sun.png");
+    private static final ResourceLocation SUN_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/yellow_sun.png");
     private static final ResourceLocation EARTH_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/earth.png");
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
@@ -155,7 +155,7 @@ public class VenusSky {
                             RenderSystem.setShader(GameRenderer::getPositionTexShader);
 
                             /** SUN */
-                            float f12 = 20.0F;
+                            float f12 = 42.87F;
 
                             RenderSystem.setShaderTexture(0, SUN_TEXTURE);
                             bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
@@ -171,12 +171,14 @@ public class VenusSky {
                             p_181410_.mulPose(Vector3f.ZP.rotationDegrees(210.0F));
 
                             /** EARTH */
+                            float earth_size = 1.0F;
+
                             RenderSystem.setShaderTexture(0, EARTH_TEXTURE);
                             bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-                            bufferbuilder.vertex(matrix4f1, -2.0F, -100.0F, 2.0F).uv(0.0F, 0.0F).endVertex();
-                            bufferbuilder.vertex(matrix4f1, 2.0F, -100.0F, 2.0F).uv(1.0F, 0.0F).endVertex();
-                            bufferbuilder.vertex(matrix4f1, 2.0F, -100.0F, -2.0F).uv(1.0F, 1.0F).endVertex();
-                            bufferbuilder.vertex(matrix4f1, -2.0F, -100.0F, -2.0F).uv(0.0F, 1.0F).endVertex();
+                            bufferbuilder.vertex(matrix4f1, -earth_size, -100.0F, earth_size).uv(0.0F, 0.0F).endVertex();
+                            bufferbuilder.vertex(matrix4f1, earth_size, -100.0F, earth_size).uv(1.0F, 0.0F).endVertex();
+                            bufferbuilder.vertex(matrix4f1, earth_size, -100.0F, -earth_size).uv(1.0F, 1.0F).endVertex();
+                            bufferbuilder.vertex(matrix4f1, -earth_size, -100.0F, -earth_size).uv(0.0F, 1.0F).endVertex();
                             bufferbuilder.end();
                             BufferUploader.end(bufferbuilder);
 

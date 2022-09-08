@@ -39,7 +39,7 @@ public class MercurySky {
 
     @Nullable
     public static VertexBuffer starBuffer;
-    private static final ResourceLocation SUN_TEXTURES = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/no_a_sun.png");
+    private static final ResourceLocation SUN_TEXTURES = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/no_atmo_yellow_sun.png");
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void clientSetup(FMLClientSetupEvent event) {
@@ -143,7 +143,7 @@ public class MercurySky {
                             RenderSystem.setShader(GameRenderer::getPositionTexShader);
 
                             /** SUN */
-                            float f12 = 60.0F;
+                            float f12 = 150.0F;
 
                             RenderSystem.setShaderTexture(0, SUN_TEXTURES);
                             bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);

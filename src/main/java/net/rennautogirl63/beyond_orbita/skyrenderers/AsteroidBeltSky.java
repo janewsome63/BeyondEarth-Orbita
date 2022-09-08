@@ -38,8 +38,7 @@ public class AsteroidBeltSky {
 
     @Nullable
     public static VertexBuffer starBuffer;
-    private static final ResourceLocation MARS_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/mars.png");
-    private static final ResourceLocation SUN_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/no_a_sun.png");
+    private static final ResourceLocation SUN_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/no_atmo_yellow_sun.png");
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void clientSetup(FMLClientSetupEvent event) {
@@ -107,8 +106,7 @@ public class AsteroidBeltSky {
                             /** STAR ROT */
                             p_181410_.pushPose();
                             p_181410_.mulPose(Vector3f.YP.rotationDegrees(0.0F));
-                            /** p_181410_.mulPose(Vector3f.ZP.rotationDegrees(level.getTimeOfDay(p_181412_) * 360.0F)); */
-                            p_181410_.mulPose(Vector3f.ZP.rotationDegrees(90.0F));
+                            p_181410_.mulPose(Vector3f.ZP.rotationDegrees(level.getTimeOfDay(p_181412_) * 360.0F));
                             p_181410_.mulPose(Vector3f.XP.rotationDegrees(-30.0F));
 
                             /** STAR */
@@ -129,13 +127,12 @@ public class AsteroidBeltSky {
                             /** DEFAULT ROT */
                             p_181410_.pushPose();
                             p_181410_.mulPose(Vector3f.YP.rotationDegrees(-90.0F));
-                            /** p_181410_.mulPose(Vector3f.XP.rotationDegrees(level.getTimeOfDay(p_181412_) * 360.0F)); */
-                            p_181410_.mulPose(Vector3f.XP.rotationDegrees(90.0F));
+                            p_181410_.mulPose(Vector3f.XP.rotationDegrees(level.getTimeOfDay(p_181412_) * 360.0F));
                             Matrix4f matrix4f1 = p_181410_.last().pose();
                             p_181410_.popPose();
 
                             /** SUN */
-                            float f12 = 25.0F;
+                            float f12 = 22.2F;
 
                             RenderSystem.setShaderTexture(0, SUN_TEXTURE);
                             bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);

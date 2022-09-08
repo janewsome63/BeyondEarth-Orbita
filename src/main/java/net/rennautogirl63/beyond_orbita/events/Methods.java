@@ -2,6 +2,7 @@ package net.rennautogirl63.beyond_orbita.events;
 
 import io.netty.buffer.Unpooled;
 import mcjty.lostcities.LostCities;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
@@ -23,6 +24,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.vehicle.AbstractMinecart;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -34,6 +36,7 @@ import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.portal.PortalInfo;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.extensions.IForgeAbstractMinecart;
 import net.minecraftforge.common.util.ITeleporter;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.network.NetworkHooks;
@@ -49,7 +52,6 @@ import net.rennautogirl63.beyond_orbita.events.forge.*;
 import net.rennautogirl63.beyond_orbita.guis.screens.planetselection.PlanetSelectionGui;
 import net.rennautogirl63.beyond_orbita.items.VehicleItem;
 import net.rennautogirl63.beyond_orbita.registries.*;
-import twilightforest.TwilightForestMod;
 
 import java.util.Set;
 import java.util.function.Function;
@@ -67,9 +69,62 @@ public class Methods {
     public static final ResourceKey<Level> relictus = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "relictus"));
     public static final ResourceKey<Level> avium = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "avium"));
     public static final ResourceKey<Level> holdplacer = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "holdplacer"));
-    public static final ResourceKey<Level> vespera = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(TwilightForestMod.ID, "twilight_forest"));
+    public static final ResourceKey<Level> caeruleum = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "caeruleum"));
+    public static final ResourceKey<Level> discors = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "discors"));
+    public static final ResourceKey<Level> petra = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "petra"));
 
     public static final ResourceLocation space_station = new ResourceLocation(BeyondOrbitaMod.MODID, "space_station");
+
+    /** Gravity and Drag Values */
+
+    // Sol
+        public static final float MERCURY_GRAVITY = 0.377F;
+        public static final float MERCURY_DRAG = 0.0F;
+        public static final float VENUS_GRAVITY = 0.904F;
+        public static final float VENUS_DRAG = 0.04F;
+        public static final float EARTH_GRAVITY = 1.0F;
+        public static final float EARTH_DRAG = 0.02F;
+        public static final float MOON_GRAVITY = 0.165F;
+        public static final float MOON_DRAG = 0.0F;
+        public static final float MARS_GRAVITY = 0.379F;
+        public static final float MARS_DRAG = 0.015F;
+        public static final float PLUTO_GRAVITY = 0.063F;
+        public static final float PLUTO_DRAG = 0.015F;
+
+    // Rigil
+        public static final float RELICTUS_GRAVITY = 1.07F;
+        public static final float RELICTUS_DRAG = 0.03F;
+
+    // Toliman
+        public static final float CAERULEUM_GRAVITY = 0.93F;
+        public static final float CAERULEUM_DRAG = 0.02F;
+        public static final float AVIUM_GRAVITY = 0.98F;
+        public static final float AVIUM_DRAG = 0.02F;
+
+    // Proxima
+        public static final float DISCORS_GRAVITY = 0.632F;
+        public static final float DISCORS_DRAG = 0.02F;
+        public static final float PETRA_GRAVITY = 1.35F;
+        public static final float PETRA_DRAG = 0.0F;
+
+    // Other
+        public static final float SPACE_GRAVITY = 0.0F;
+        public static final float SPACE_DRAG = 0.0F;
+        public static final float MAGBOOT_STRENGTH = 0.333F;
+
+    /** Time Values */
+
+    // Sol
+    public static final double MERCURY_DAY = 176;
+    public static final double VENUS_DAY = 116.8;
+    public static final double EARTH_DAY = 1.0;
+    public static final double MOON_DAY = 29.5;
+    public static final double MARS_DAY = 1.027;
+    public static final double PLUTO_DAY = 6.375;
+    public static final double RELICTUS_DAY = 2.0;
+    public static final double CAERULEUM_DAY = 0.75;
+    public static final double AVIUM_DAY = 1.1;
+    public static final double PETRA_DAY = 15.0;
 
     public static Set<ResourceKey<Level>> noAtmoWorlds = Set.of(
             moon,
@@ -99,7 +154,7 @@ public class Methods {
             relictus,
             avium,
             holdplacer,
-            vespera
+            caeruleum
     );
 
     public static Set<ResourceKey<Level>> noGravWorlds = Set.of(
@@ -117,7 +172,7 @@ public class Methods {
             relictus,
             avium,
             holdplacer,
-            vespera
+            caeruleum
     );
 
     public static Set<ResourceKey<Level>> hotWorlds = Set.of(
@@ -230,22 +285,16 @@ public class Methods {
         return entity.getItemBySlot(EquipmentSlot.byTypeAndIndex(EquipmentSlot.Type.ARMOR, number)).getItem() == item;
     }
 
-    public static boolean isSpaceWorld(Level world) {
-        return spaceWorlds.contains(world.dimension());
-    }
-
-    public static boolean isSpaceWorldWithoutOxygen(Level world) {
-        return spaceWorldsWithoutOxygen.contains(world.dimension());
-    }
-
+    public static boolean isSpaceWorld(Level world) { return spaceWorlds.contains(world.dimension()); }
+    public static boolean isNoAtmoWorld(Level world) { return noAtmoWorlds.contains(world.dimension()); }
+    public static boolean isSpaceWorldWithoutOxygen(Level world) { return spaceWorldsWithoutOxygen.contains(world.dimension()); }
     public static boolean isNoGravWorld(Level world) {
         return noGravWorlds.contains(world.dimension());
     }
-
     public static boolean isPlanetoidWorld(Level world) {
         return planetoidWorlds.contains(world.dimension());
     }
-
+    public static boolean isHotWorld(Level world) { return hotWorlds.contains(world.dimension()); }
     public static boolean isWorld(Level world, ResourceKey<Level> loc) {
         return world.dimension() == loc;
     }

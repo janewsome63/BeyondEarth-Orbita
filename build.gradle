@@ -149,9 +149,6 @@ dependencies {
     // TerraForged
     implementation fg.deobf("curse.maven:terraforged-363820:${terraforged_version}")
 
-    // Twilight Forest
-    implementation fg.deobf("curse.maven:the-twilight-forest-227639:${twilightforest_version}")
-
 }
 
 mixin {

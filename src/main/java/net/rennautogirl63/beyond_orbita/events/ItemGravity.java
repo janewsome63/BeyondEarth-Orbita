@@ -1,53 +1,38 @@
 package net.rennautogirl63.beyond_orbita.events;
 
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.MinecraftForge;
 import net.rennautogirl63.beyond_orbita.events.forge.ItemGravityEvent;
 
 public class ItemGravity {
-    /**
-     * Ref ratios:
-     * Mercury = 0.377
-     * Venus = 0.904
-     * Earth = 1
-     * Moon = 0.165
-     * Mars = 0.379
-     * Pluto = 0.063
-     * Overworld gravity for items is 0.04
-     */
-    public static final float MERCURY_GRAVITY = 0.01508F;
-    public static final float MERCURY_DRAG = 0.98F;
-    public static final float VENUS_GRAVITY = 0.03616F;
-    public static final float VENUS_DRAG = 0.98F;
-    public static final float EARTH_GRAVITY = 0.046F;
-    public static final float EARTH_DRAG = 0.98F;
-    public static final float SPACE_GRAVITY = 0.000F;
-    public static final float SPACE_DRAG = 0.98F;
-    public static final float MOON_GRAVITY = 0.0066F;
-    public static final float MOON_DRAG = 0.98F;
-    public static final float MARS_GRAVITY = 0.01516F;
-    public static final float MARS_DRAG = 0.98F;
-    public static final float PLUTO_GRAVITY = 0.00252F;
-    public static final float PLUTO_DRAG = 0.98F;
 
     public static void gravity(ItemEntity itemEntity, Level level) {
-        if (Methods.isWorld(level, Methods.mercury)) {
-            gravitySystem(itemEntity, MERCURY_GRAVITY, MERCURY_DRAG);
+        if (Methods.isNoGravWorld(level) || itemEntity.getY() >= 590 && Methods.isPlanetoidWorld(level)) {
+            gravitySystem(itemEntity, Methods.SPACE_GRAVITY, Methods.SPACE_DRAG);
+        } else if (Methods.isWorld(level, Methods.mercury)) {
+            gravitySystem(itemEntity, Methods.MERCURY_GRAVITY, Methods.MERCURY_DRAG);
         } else if (Methods.isWorld(level, Methods.venus)) {
-            gravitySystem(itemEntity, VENUS_GRAVITY, VENUS_DRAG);
+            gravitySystem(itemEntity, Methods.VENUS_GRAVITY, Methods.VENUS_DRAG);
         } else if (Methods.isWorld(level, Methods.overworld)) {
-            gravitySystem(itemEntity, EARTH_GRAVITY, EARTH_DRAG);
-        } else if (Methods.isNoGravWorld(level)) {
-            gravitySystem(itemEntity, SPACE_GRAVITY, SPACE_DRAG);
+            gravitySystem(itemEntity, Methods.EARTH_GRAVITY, Methods.EARTH_DRAG);
         } else if (Methods.isWorld(level, Methods.moon)) {
-            gravitySystem(itemEntity, MOON_GRAVITY, MOON_DRAG);
+            gravitySystem(itemEntity, Methods.MOON_GRAVITY, Methods.MOON_DRAG);
         } else if (Methods.isWorld(level, Methods.mars)) {
-            gravitySystem(itemEntity, MARS_GRAVITY, MARS_DRAG);
+            gravitySystem(itemEntity, Methods.MARS_GRAVITY, Methods.MARS_DRAG);
         } else if (Methods.isWorld(level, Methods.pluto)) {
-            gravitySystem(itemEntity, PLUTO_GRAVITY, PLUTO_DRAG);
-        } else if (Methods.isNoGravWorld(level)) {
-            gravitySystem(itemEntity, SPACE_GRAVITY, SPACE_DRAG);
+            gravitySystem(itemEntity, Methods.PLUTO_GRAVITY, Methods.PLUTO_DRAG);
+        } else if (Methods.isWorld(level, Methods.relictus)) {
+            gravitySystem(itemEntity, Methods.RELICTUS_GRAVITY, Methods.RELICTUS_DRAG);
+        } else if (Methods.isWorld(level, Methods.caeruleum)) {
+            gravitySystem(itemEntity, Methods.CAERULEUM_GRAVITY, Methods.CAERULEUM_DRAG);
+        } else if (Methods.isWorld(level, Methods.avium)) {
+            gravitySystem(itemEntity, Methods.AVIUM_GRAVITY, Methods.AVIUM_DRAG);
+        } else if (Methods.isWorld(level, Methods.discors)) {
+            gravitySystem(itemEntity, Methods.DISCORS_GRAVITY, Methods.DISCORS_DRAG);
+        } else if (Methods.isWorld(level, Methods.petra)) {
+            gravitySystem(itemEntity, Methods.PETRA_GRAVITY, Methods.PETRA_DRAG);
         }
     }
 
@@ -60,21 +45,21 @@ public class ItemGravity {
             return;
         }
 
-        double x = entity.getX();
-        double y = entity.getY();
-        double z = entity.getZ();
+        // Default gravity for item entities is v - 0.04 per tick
+        gravity = gravity * 0.04F;
+        // Default drag per tick is v * 0.98
+        drag = 1.0F - drag;
+
         double xv = entity.getDeltaMovement().x;
         double yv = entity.getDeltaMovement().y;
         double zv = entity.getDeltaMovement().z;
-        if (Methods.noGravWorlds.contains(entity.level.dimension()) || y >= 590 && Methods.planetoidWorlds.contains(entity.level.dimension())) {
+
+        if (gravity == 0.0F) {
             if (!entity.isNoGravity()) {
                 entity.setNoGravity(true);
             }
             entity.setDeltaMovement((xv / 0.98) * drag, (yv / 0.98) * drag, (zv / 0.98) * drag);
         } else {
-            if (y > 320 && y < 590) {
-                gravity = gravity / 4;
-            }
             if (entity.isNoGravity()) {
                 entity.setNoGravity(false);
             }

@@ -39,7 +39,7 @@ public class MoonSky {
 
     @Nullable
     public static VertexBuffer starBuffer;
-    private static final ResourceLocation SUN_TEXTURES = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/no_a_sun.png");
+    private static final ResourceLocation SUN_TEXTURES = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/no_atmo_yellow_sun.png");
     private static final ResourceLocation EARTH = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/earth.png");
     private static final ResourceLocation EARTH_LIGHT_TEXTURES = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/earth_light.png");
 
@@ -189,7 +189,7 @@ public class MoonSky {
                             matrix4f1 = p_181410_.last().pose();
 
                             /** SUN */
-                            float f12 = 30.0F;
+                            float f12 = 60.0F;
 
                             RenderSystem.setShaderTexture(0, SUN_TEXTURES);
                             bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);

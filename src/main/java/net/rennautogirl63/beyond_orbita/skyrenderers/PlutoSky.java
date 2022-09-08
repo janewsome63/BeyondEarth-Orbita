@@ -35,7 +35,7 @@ public class PlutoSky {
 
     private static final ResourceLocation DIM_RENDER_INFO = new ResourceLocation(BeyondOrbitaMod.MODID, "pluto");
 
-    private static final ResourceLocation SUN_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/blue_sun.png");
+    private static final ResourceLocation SUN_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/no_atmo_yellow_sun.png");
     private static final ResourceLocation CHARON_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/charon.png");
     private static final ResourceLocation CHARON_LIGHT_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/charon_light.png");
 
@@ -207,7 +207,7 @@ public class PlutoSky {
                             matrix4f1 = p_181410_.last().pose();
 
                             /** SUN */
-                            float f12 = 5.0F;
+                            float f12 = 1.56F;
 
                             RenderSystem.setShaderTexture(0, SUN_TEXTURE);
                             bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);

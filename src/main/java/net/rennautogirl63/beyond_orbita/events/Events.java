@@ -1,7 +1,11 @@
 package net.rennautogirl63.beyond_orbita.events;
 
+import com.simibubi.create.content.contraptions.components.structureMovement.train.capability.MinecartControllerUpdatePacket;
+import com.terraforged.noise.combiner.Min;
+import com.terraforged.noise.modifier.Abs;
 import commoble.infiniverse.api.InfiniverseAPI;
 import mcjty.lostcities.LostCities;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -9,11 +13,21 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.item.PrimedTnt;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.vehicle.AbstractMinecart;
+import net.minecraft.world.entity.vehicle.Minecart;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.FallingBlock;
+import net.minecraft.world.level.entity.LevelEntityGetter;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.extensions.IForgeAbstractMinecart;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
@@ -24,7 +38,6 @@ import net.minecraftforge.event.server.ServerStartedEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.ForgeRegistries;
 import net.rennautogirl63.beyond_orbita.BeyondOrbitaMod;
 import net.rennautogirl63.beyond_orbita.compats.coldsweat.ColdSweatModifiers;
 import net.rennautogirl63.beyond_orbita.compats.coldsweat.modifiers.init.RegisterModifiers;
@@ -34,6 +47,11 @@ import net.rennautogirl63.beyond_orbita.entities.VehicleEntity;
 import net.rennautogirl63.beyond_orbita.events.forge.EntityTickEvent;
 import net.rennautogirl63.beyond_orbita.events.forge.ItemEntityTickEndEvent;
 import net.rennautogirl63.beyond_orbita.events.forge.LivingEntityTickEndEvent;
+import org.apache.logging.log4j.core.jmx.Server;
+
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 
 @Mod.EventBusSubscriber(modid = BeyondOrbitaMod.MODID)
 public class Events {
@@ -115,7 +133,7 @@ public class Events {
         Level level = entity.level;
 
         /** ENTITY GRAVITY SYSTEM */
-        EntityGravity.gravity(entity, level);
+        LivingEntityGravity.gravity(entity, level);
     }
 
     @SubscribeEvent
@@ -133,7 +151,7 @@ public class Events {
         Level level = entity.level;
         double y = entity.getY();
 
-        /** ORBITTELEPORT SYSTEM */
+        /** ORBIT TELEPORT SYSTEM */
         if (y < 0 && entity.level.dimension() == Methods.orbit && !(entity.getVehicle() instanceof LanderEntity)) {
             if ((entity instanceof LanderEntity) && entity.isVehicle()) {
                 return;
@@ -143,14 +161,11 @@ public class Events {
             Methods.entityExitAtmosphere(level, entity);
         }
 
-        /** Simple Planes Gravity */
+        /** Non-living Entity Gravities */
         if (("" + entity.getType().getRegistryName()).contains("simpleplanes")) {
             SimplePlanesGravity.gravity(entity, level);
-        }
-
-        /** Other Entity Gravity */
-        if (!(entity instanceof LivingEntity) && !(entity instanceof ItemEntity) && !(entity instanceof VehicleEntity)) {
-            OtherGravity.gravity(entity, level);
+        } else if (!(entity instanceof LivingEntity) && !(entity instanceof ItemEntity)) {
+            EntityGravity.gravity(entity, level);
         }
     }
 
@@ -158,12 +173,22 @@ public class Events {
     public static void worldTick(TickEvent.WorldTickEvent event) {
         if (event.phase == TickEvent.Phase.END) {
             Level level = event.world;
+            ServerLevel serverLevel = (ServerLevel) level;
 
             if (Methods.noAtmoWorlds.contains(level.dimension())) {
                 level.thunderLevel = 0;
                 level.rainLevel = 0;
             } else if (Methods.isWorld(level, Methods.venus)) {
                 level.thunderLevel = 0;
+            }
+
+            Iterable<Entity> entities = serverLevel.getAllEntities();
+            for (Entity entity : entities) {
+                if (entity instanceof AbstractMinecart) {
+                    MinecartGravity.gravity(entity, level);
+                } else if (entity instanceof PrimedTnt) {
+                    BlockGravity.gravity(entity, level);
+                }
             }
         }
     }
@@ -217,16 +242,30 @@ public class Events {
         LivingEntity entity = event.getEntityLiving();
         Level level = entity.level;
 
-        if (Methods.isWorld(level, Methods.moon)) {
-            event.setDistance(event.getDistance() - 6.5F);
-        } else if (Methods.isWorld(level, Methods.mars)) {
-            event.setDistance(event.getDistance() - 5.0F);
-        } else if (Methods.isWorld(level, Methods.pluto)) {
-            event.setDistance(event.getDistance() - 8.0F);
+        if (Methods.isNoGravWorld(level) || entity.getY() >= 590 && Methods.isPlanetoidWorld(level)) {
+            event.setDistance(event.getDistance() * Methods.SPACE_GRAVITY);
         } else if (Methods.isWorld(level, Methods.mercury)) {
-            event.setDistance(event.getDistance() - 5.5F);
-        } else if (Methods.isNoGravWorld(level)) {
-            event.setDistance(event.getDistance() - 8.5F);
+            event.setDistance(event.getDistance() * Methods.MERCURY_GRAVITY);
+        } else if (Methods.isWorld(level, Methods.venus)) {
+            event.setDistance(event.getDistance() * Methods.VENUS_GRAVITY);
+        } else if (Methods.isWorld(level, Methods.overworld)) {
+            event.setDistance(event.getDistance() * Methods.EARTH_GRAVITY);
+        } else if (Methods.isWorld(level, Methods.moon)) {
+            event.setDistance(event.getDistance() * Methods.MOON_GRAVITY);
+        } else if (Methods.isWorld(level, Methods.mars)) {
+            event.setDistance(event.getDistance() * Methods.MARS_GRAVITY);
+        } else if (Methods.isWorld(level, Methods.pluto)) {
+            event.setDistance(event.getDistance() * Methods.PLUTO_GRAVITY);
+        } else if (Methods.isWorld(level, Methods.relictus)) {
+            event.setDistance(event.getDistance() * Methods.RELICTUS_GRAVITY);
+        } else if (Methods.isWorld(level, Methods.caeruleum)) {
+            event.setDistance(event.getDistance() * Methods.CAERULEUM_GRAVITY);
+        } else if (Methods.isWorld(level, Methods.avium)) {
+            event.setDistance(event.getDistance() * Methods.AVIUM_GRAVITY);
+        } else if (Methods.isWorld(level, Methods.discors)) {
+            event.setDistance(event.getDistance() * Methods.DISCORS_GRAVITY);
+        } else if (Methods.isWorld(level, Methods.petra)) {
+            event.setDistance(event.getDistance() * Methods.PETRA_GRAVITY);
         }
     }
 }

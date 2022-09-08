@@ -116,21 +116,22 @@ public class PlanetSelectionGuiNetworkHandler extends PlanetSelectionGuiNetworkH
                         Methods.teleportButton(player, Methods.relictus, false);
                         break;
 
-                    case 10:
+                    /** Toliman Buttons */
+
+                    case 11:
+                        message.defaultOptions(player);
+                        Methods.teleportButton(player, Methods.caeruleum, false);
+                        break;
+                    case 12:
                         message.defaultOptions(player);
                         Methods.teleportButton(player, Methods.avium, false);
                         break;
 
-                    /** Toliman Buttons */
-                    case 11:
+                    /** Proxima Buttons */
+
+                    case 13:
                         message.defaultOptions(player);
                         Methods.teleportButton(player, Methods.holdplacer, false);
-                        break;
-
-                    /** Proxima Buttons */
-                    case 12:
-                        message.defaultOptions(player);
-                        Methods.teleportButton(player, Methods.vespera, false);
                         break;
             }
         });

@@ -39,7 +39,7 @@ public class OrbitSky {
     @Nullable
     public static VertexBuffer starBuffer;
     private static final ResourceLocation EARTH_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/earth.png");
-    private static final ResourceLocation SUN_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/no_a_sun.png");
+    private static final ResourceLocation SUN_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/no_atmo_yellow_sun.png");
 
     private static final ResourceLocation MOON_PHASES_1_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/moon_phases_1.png");
     private static final ResourceLocation MOON_PHASES_2_TEXTURE = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/sky/moon_phases_2.png");
@@ -136,7 +136,7 @@ public class OrbitSky {
                             p_181410_.popPose();
 
                             /** SUN */
-                            float f12 = 30.0F;
+                            float f12 = 60.0F;
 
                             RenderSystem.setShaderTexture(0, SUN_TEXTURE);
                             bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
