@@ -30,7 +30,6 @@ import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -41,24 +40,21 @@ import net.rennautogirl63.beyond_orbita.events.Methods;
 import net.rennautogirl63.beyond_orbita.fluids.FluidUtil2;
 import net.rennautogirl63.beyond_orbita.gauge.GaugeTextHelper;
 import net.rennautogirl63.beyond_orbita.gauge.GaugeValueHelper;
-import net.rennautogirl63.beyond_orbita.guis.helper.GridPlacer;
 import net.rennautogirl63.beyond_orbita.guis.helper.GuiHelper;
-import net.rennautogirl63.beyond_orbita.guis.helper.IPlacer;
-import net.rennautogirl63.beyond_orbita.guis.helper.RocketPartGridPlacer;
 import net.rennautogirl63.beyond_orbita.guis.screens.coalgenerator.CoalGeneratorGui;
 import net.rennautogirl63.beyond_orbita.guis.screens.coalgenerator.CoalGeneratorGuiWindow;
-import net.rennautogirl63.beyond_orbita.guis.screens.fuelrefinery.FuelRefineryGui;
-import net.rennautogirl63.beyond_orbita.guis.screens.fuelrefinery.FuelRefineryGuiWindow;
+import net.rennautogirl63.beyond_orbita.guis.screens.fluidoxidizer.FluidOxidizerGui;
+import net.rennautogirl63.beyond_orbita.guis.screens.fluidoxidizer.FluidOxidizerGuiWindow;
 import net.rennautogirl63.beyond_orbita.guis.screens.oxygenbubbledistributor.OxygenBubbleDistributorGui;
 import net.rennautogirl63.beyond_orbita.guis.screens.oxygenbubbledistributor.OxygenBubbleDistributorGuiWindow;
 import net.rennautogirl63.beyond_orbita.guis.screens.oxygenloader.OxygenLoaderGui;
 import net.rennautogirl63.beyond_orbita.guis.screens.oxygenloader.OxygenLoaderGuiWindow;
 import net.rennautogirl63.beyond_orbita.guis.screens.rocket.RocketGui;
 import net.rennautogirl63.beyond_orbita.guis.screens.rocket.RocketGuiWindow;
-import net.rennautogirl63.beyond_orbita.guis.screens.rover.RoverGuiWindow;
+import net.rennautogirl63.beyond_orbita.guis.screens.aatv.AATVGuiWindow;
 import net.rennautogirl63.beyond_orbita.jei.jeiguihandlers.CoalGeneratorGuiContainerHandler;
 import net.rennautogirl63.beyond_orbita.jei.jeiguihandlers.RocketGuiContainerHandler;
-import net.rennautogirl63.beyond_orbita.jei.jeiguihandlers.RoverGuiContainerHandler;
+import net.rennautogirl63.beyond_orbita.jei.jeiguihandlers.AATVGuiContainerHandler;
 import net.rennautogirl63.beyond_orbita.machines.tile.*;
 import net.rennautogirl63.beyond_orbita.registries.*;
 import net.rennautogirl63.beyond_orbita.utils.Rectangle2d;
@@ -73,7 +69,8 @@ public class JeiPlugin implements IModPlugin {
 
     private Map<Fluid, List<ItemStack>> fluidFullItemStacks;
     private List<ItemStack> oxygenFullItemStacks;
-    private List<Fluid> fuelTagFluids;
+    private List<Fluid> vehicleTagFluids;
+    private List<Fluid> rocketTagFluids;
 
     private ClientLevel getLevel() {
         Minecraft mc = Minecraft.getInstance();
@@ -102,8 +99,8 @@ public class JeiPlugin implements IModPlugin {
         registration.addRecipeTransferHandler(OxygenBubbleDistributorGui.GuiContainer.class, OxygenBubbleDistributorJeiCategory.recipeType, OxygenBubbleDistributorBlockEntity.SLOT_INPUT_SOURCE, 1, OxygenBubbleDistributorBlockEntity.SLOT_INPUT_SINK + 1, inventorySlotCount);
         // Coal Generator
         registration.addRecipeTransferHandler(CoalGeneratorGui.GuiContainer.class, CoalGeneratorJeiCategory.recipeType, CoalGeneratorBlockEntity.SLOT_FUEL, 1, CoalGeneratorBlockEntity.SLOT_FUEL + 1, inventorySlotCount);
-        // Fuel Refinery
-        registration.addRecipeTransferHandler(FuelRefineryGui.GuiContainer.class, FuelRefineryJeiCategory.recipeType, FuelRefineryBlockEntity.SLOT_INPUT_SOURCE, 1, FuelRefineryBlockEntity.SLOT_OUTPUT_SOURCE + 1, inventorySlotCount);
+        // Fluid Oxidizer
+        registration.addRecipeTransferHandler(FluidOxidizerGui.GuiContainer.class, FluidOxidizerJeiCategory.recipeType, FluidOxidizerBlockEntity.SLOT_INPUT_SOURCE, 1, FluidOxidizerBlockEntity.SLOT_OUTPUT_SOURCE + 1, inventorySlotCount);
         // Rocket tier 1
         registration.addRecipeTransferHandler(RocketGui.GuiContainer.class, RocketTier1JeiCategory.recipeType, 0, 1, 1, inventorySlotCount);
         // Rocket tier 2
@@ -118,11 +115,11 @@ public class JeiPlugin implements IModPlugin {
     public void registerGuiHandlers(IGuiHandlerRegistration registration) {
         registration.addRecipeClickArea(OxygenLoaderGuiWindow.class, OxygenLoaderGuiWindow.ARROW_LEFT, OxygenLoaderGuiWindow.ARROW_TOP, GuiHelper.ARROW_WIDTH, GuiHelper.ARROW_HEIGHT, OxygenLoaderJeiCategory.recipeType);
         registration.addRecipeClickArea(OxygenBubbleDistributorGuiWindow.class, OxygenBubbleDistributorGuiWindow.ARROW_LEFT, OxygenBubbleDistributorGuiWindow.ARROW_TOP, GuiHelper.ARROW_WIDTH, GuiHelper.ARROW_HEIGHT, OxygenBubbleDistributorJeiCategory.recipeType);
-        registration.addRecipeClickArea(FuelRefineryGuiWindow.class, FuelRefineryGuiWindow.ARROW_LEFT, FuelRefineryGuiWindow.ARROW_TOP, GuiHelper.ARROW_WIDTH, GuiHelper.ARROW_HEIGHT, FuelRefineryJeiCategory.recipeType);
+        registration.addRecipeClickArea(FluidOxidizerGuiWindow.class, FluidOxidizerGuiWindow.ARROW_LEFT, FluidOxidizerGuiWindow.ARROW_TOP, GuiHelper.ARROW_WIDTH, GuiHelper.ARROW_HEIGHT, FluidOxidizerJeiCategory.recipeType);
 
         registration.addGuiContainerHandler(CoalGeneratorGuiWindow.class, new CoalGeneratorGuiContainerHandler());
         registration.addGuiContainerHandler(RocketGuiWindow.class, new RocketGuiContainerHandler());
-        registration.addGuiContainerHandler(RoverGuiWindow.class, new RoverGuiContainerHandler());
+        registration.addGuiContainerHandler(AATVGuiWindow.class, new AATVGuiContainerHandler());
     }
 
     @Override
@@ -132,8 +129,6 @@ public class JeiPlugin implements IModPlugin {
         registration.addRecipeCategories(new OxygenBubbleDistributorJeiCategory(this, jeiHelper.getGuiHelper()));
         // Coal Generator
         registration.addRecipeCategories(new CoalGeneratorJeiCategory(jeiHelper.getGuiHelper()));
-        // NASA Workbench
-        registration.addRecipeCategories(new NasaWorkbenchJeiCategory(jeiHelper.getGuiHelper()));
         // Rocket Tier 1
         registration.addRecipeCategories(new RocketTier1JeiCategory(jeiHelper.getGuiHelper()));
         // Rocket Tier 2
@@ -142,12 +137,10 @@ public class JeiPlugin implements IModPlugin {
         registration.addRecipeCategories(new RocketTier3JeiCategory(jeiHelper.getGuiHelper()));
         // Rocket Tier 4
         registration.addRecipeCategories(new RocketTier4JeiCategory(jeiHelper.getGuiHelper()));
-        // Compressor
-        registration.addRecipeCategories(new CompressorJeiCategory(jeiHelper.getGuiHelper()));
         // Fuel Maker
-        registration.addRecipeCategories(new FuelRefineryJeiCategory(this, jeiHelper.getGuiHelper()));
-        // Rover
-        registration.addRecipeCategories(new RoverJeiCategory(jeiHelper.getGuiHelper()));
+        registration.addRecipeCategories(new FluidOxidizerJeiCategory(this, jeiHelper.getGuiHelper()));
+        // AATV
+        registration.addRecipeCategories(new AATVJeiCategory(jeiHelper.getGuiHelper()));
         // Space Station
         registration.addRecipeCategories(new SpaceStationJeiCategory(jeiHelper.getGuiHelper()));
     }
@@ -156,7 +149,8 @@ public class JeiPlugin implements IModPlugin {
     public void registerRecipes(IRecipeRegistration registration) {
         this.fluidFullItemStacks = new HashMap<>();
         this.oxygenFullItemStacks = this.generateOxygenLoadingItems();
-        this.fuelTagFluids = this.generateFuelTagFluids();
+        this.vehicleTagFluids = this.generateVehicleTagFluids();
+        this.rocketTagFluids = this.generateRocketTagFluids();
 
         // Oxygen Loader
         registration.addRecipes(OxygenLoaderJeiCategory.recipeType, generateOxygenLoaderRecipes());
@@ -164,22 +158,18 @@ public class JeiPlugin implements IModPlugin {
         registration.addRecipes(OxygenBubbleDistributorJeiCategory.recipeType, generateOxygenBubbleDistributorRecipes());
         // Coal Generator
         registration.addRecipes(CoalGeneratorJeiCategory.recipeType, generateGeneratorRecipes());
-        // NASA Workbench
-        registration.addRecipes(NasaWorkbenchJeiCategory.recipeType, generateWorkbenchRecipes());
         // Rocket Tier 1
-        registration.addRecipes(RocketTier1JeiCategory.recipeType, generateFuelLoadingRecipes());
+        registration.addRecipes(RocketTier1JeiCategory.recipeType, generateRocketLoadingRecipes());
         // Rocket Tier 2
-        registration.addRecipes(RocketTier2JeiCategory.recipeType, generateFuelLoadingRecipes());
+        registration.addRecipes(RocketTier2JeiCategory.recipeType, generateRocketLoadingRecipes());
         // Rocket Tier 3
-        registration.addRecipes(RocketTier3JeiCategory.recipeType, generateFuelLoadingRecipes());
+        registration.addRecipes(RocketTier3JeiCategory.recipeType, generateRocketLoadingRecipes());
         // Rocket Tier 4
-        registration.addRecipes(RocketTier4JeiCategory.recipeType, generateFuelLoadingRecipes());
-        // Rover
-        registration.addRecipes(RoverJeiCategory.recipeType, generateFuelLoadingRecipes());
-        // Compressor
-        registration.addRecipes(CompressorJeiCategory.recipeType, generateCompressingRecipes());
+        registration.addRecipes(RocketTier4JeiCategory.recipeType, generateRocketLoadingRecipes());
+        // AATV
+        registration.addRecipes(AATVJeiCategory.recipeType, generateVehicleLoadingRecipes());
         // Fuel Maker
-        registration.addRecipes(FuelRefineryJeiCategory.recipeType, generateFuelMakerRecipes());
+        registration.addRecipes(FluidOxidizerJeiCategory.recipeType, generateFuelMakerRecipes());
         // Space Station
         registration.addRecipes(SpaceStationJeiCategory.recipeType, generateSpaceStationRecipes());
         // Oil
@@ -208,38 +198,45 @@ public class JeiPlugin implements IModPlugin {
         return BeyondEarthRecipeTypes.COAL_GENERATING.getRecipes(this.getLevel());
     }
 
-    // Workbench
-    private List<WorkbenchingRecipe> generateWorkbenchRecipes() {
-        return BeyondEarthRecipeTypes.NASA_WORKBENCHING.getRecipes(this.getLevel());
-    }
-
-    // Compressor
-    private List<CompressingRecipe> generateCompressingRecipes() {
-        return BeyondEarthRecipeTypes.COMPRESSING.getRecipes(this.getLevel());
-    }
-
     // Fuel Maker
     private List<ItemStack> generateFluidFullIngredients(Fluid fluid) {
         return ForgeRegistries.ITEMS.getValues().stream().map(i -> new ItemStack(i)).filter(is -> FluidUtil2.canFill(is, fluid)).map(is -> FluidUtil2.makeFull(is, fluid)).collect(Collectors.toList());
     }
 
-    private List<FuelRefiningRecipe> generateFuelMakerRecipes() {
-        return BeyondEarthRecipeTypes.FUEL_REFINING.getRecipes(this.getLevel());
+    private List<FluidOxidizingRecipe> generateFuelMakerRecipes() {
+        return BeyondEarthRecipeTypes.FLUID_OXIDIZING.getRecipes(this.getLevel());
     }
 
     // Fuel Loading
-    private List<Fluid> generateFuelTagFluids() {
+    private List<Fluid> generateVehicleTagFluids() {
         return ForgeRegistries.FLUIDS.getValues().stream().filter(f -> f.isSource(f.defaultFluidState()) && Methods.tagCheck(f, TagsRegistry.FLUID_VEHICLE_FUEL_TAG)).collect(Collectors.toList());
     }
+    private List<Fluid> generateRocketTagFluids() {
+        return ForgeRegistries.FLUIDS.getValues().stream().filter(f -> f.isSource(f.defaultFluidState()) && Methods.tagCheck(f, TagsRegistry.FLUID_ROCKET_FUEL_TAG)).collect(Collectors.toList());
+    }
 
-    private List<FuelLoadingRecipe> generateFuelLoadingRecipes() {
+    private List<FuelLoadingRecipe> generateVehicleLoadingRecipes() {
         List<ItemStack> fuelTagBuckets = new ArrayList<>();
 
-        for (Fluid fluid : this.fuelTagFluids) {
+        for (Fluid fluid : this.vehicleTagFluids) {
             fuelTagBuckets.add(new ItemStack(fluid.getBucket()));
         }
 
-        FuelLoadingRecipe recipe = new FuelLoadingRecipe(fuelTagBuckets, this.fuelTagFluids);
+        FuelLoadingRecipe recipe = new FuelLoadingRecipe(fuelTagBuckets, this.vehicleTagFluids);
+
+        List<FuelLoadingRecipe> recipes = new ArrayList<>();
+        recipes.add(recipe);
+        return recipes;
+    }
+
+    private List<FuelLoadingRecipe> generateRocketLoadingRecipes() {
+        List<ItemStack> fuelTagBuckets = new ArrayList<>();
+
+        for (Fluid fluid : this.rocketTagFluids) {
+            fuelTagBuckets.add(new ItemStack(fluid.getBucket()));
+        }
+
+        FuelLoadingRecipe recipe = new FuelLoadingRecipe(fuelTagBuckets, this.rocketTagFluids);
 
         List<FuelLoadingRecipe> recipes = new ArrayList<>();
         recipes.add(recipe);
@@ -285,7 +282,7 @@ public class JeiPlugin implements IModPlugin {
         // Coal Generator
         registration.addRecipeCatalyst(new ItemStack(BlocksRegistry.COAL_GENERATOR_BLOCK.get()), CoalGeneratorJeiCategory.recipeType);
         // FuelMaker
-        registration.addRecipeCatalyst(new ItemStack(BlocksRegistry.FUEL_REFINERY_BLOCK.get()), FuelRefineryJeiCategory.recipeType);
+        registration.addRecipeCatalyst(new ItemStack(BlocksRegistry.FLUID_OXIDIZER_BLOCK.get()), FluidOxidizerJeiCategory.recipeType);
         // Rocket Tier 1
         registration.addRecipeCatalyst(new ItemStack(ItemsRegistry.TIER_1_ROCKET_ITEM.get()), RocketTier1JeiCategory.recipeType, SpaceStationJeiCategory.recipeType);
         // Rocket Tier 2
@@ -294,8 +291,8 @@ public class JeiPlugin implements IModPlugin {
         registration.addRecipeCatalyst(new ItemStack(ItemsRegistry.TIER_3_ROCKET_ITEM.get()), RocketTier3JeiCategory.recipeType, SpaceStationJeiCategory.recipeType);
         // Rocket Tier 4
         registration.addRecipeCatalyst(new ItemStack(ItemsRegistry.TIER_4_ROCKET_ITEM.get()), RocketTier4JeiCategory.recipeType, SpaceStationJeiCategory.recipeType);
-        // Rover
-        registration.addRecipeCatalyst(new ItemStack(ItemsRegistry.ROVER_ITEM.get()), RoverJeiCategory.recipeType);
+        // AATV
+        registration.addRecipeCatalyst(new ItemStack(ItemsRegistry.AATV_ITEM.get()), AATVJeiCategory.recipeType);
     }
 
     public static class OxygenLoaderJeiCategory implements IRecipeCategory<OxygenLoaderRecipe> {
@@ -350,7 +347,7 @@ public class JeiPlugin implements IModPlugin {
         @Override
         public List<Component> getTooltipStrings(OxygenLoaderRecipe recipe, IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
             if (GuiHelper.isHover(this.getEnergyBounds(), mouseX, mouseY)) {
-                return Collections.singletonList(GaugeTextHelper.getUsingPerTickText(GaugeValueHelper.getEnergy(FuelRefineryBlockEntity.ENERGY_PER_TICK)).build());
+                return Collections.singletonList(GaugeTextHelper.getUsingPerTickText(GaugeValueHelper.getEnergy(FluidOxidizerBlockEntity.ENERGY_PER_TICK)).build());
             } else if (GuiHelper.isHover(this.getOutputTankBounds(), mouseX, mouseY)) {
                 return Collections.singletonList(GaugeTextHelper.getValueText(GaugeValueHelper.getOxygen(recipe.getOxygen())).build());
             }
@@ -450,7 +447,7 @@ public class JeiPlugin implements IModPlugin {
         @Override
         public List<Component> getTooltipStrings(OxygenBubbleDistributorRecipe recipe, IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
             if (GuiHelper.isHover(this.getEnergyBounds(), mouseX, mouseY)) {
-                return Collections.singletonList(GaugeTextHelper.getUsingPerTickText(GaugeValueHelper.getEnergy(FuelRefineryBlockEntity.ENERGY_PER_TICK)).build());
+                return Collections.singletonList(GaugeTextHelper.getUsingPerTickText(GaugeValueHelper.getEnergy(FluidOxidizerBlockEntity.ENERGY_PER_TICK)).build());
             } else if (GuiHelper.isHover(this.getOutputTankBounds(), mouseX, mouseY)) {
                 return Collections.singletonList(GaugeTextHelper.getValueText(GaugeValueHelper.getOxygen(recipe.getOxygen())).build());
             }
@@ -588,78 +585,6 @@ public class JeiPlugin implements IModPlugin {
         public IDrawable getIcon() {
             return null;
         }
-    }
-
-    public static class NasaWorkbenchJeiCategory implements IRecipeCategory<WorkbenchingRecipe> {
-        public static final ResourceLocation Uid = new ResourceLocation(BeyondOrbitaMod.MODID, "nasa_workbench");
-        public static final RecipeType recipeType = new RecipeType<>(new ResourceLocation(BeyondOrbitaMod.MODID, "nasa_workbench"), WorkbenchingRecipe.class);
-
-        public static final ResourceLocation BACKGROUND = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/jei/nasa_workbench.png");
-        private static final Component title = new TranslatableComponent("container." + BeyondOrbitaMod.MODID + ".nasa_workbench");
-
-        private final IDrawableStatic background;
-
-        public NasaWorkbenchJeiCategory(IGuiHelper guiHelper) {
-            this.background = guiHelper.drawableBuilder(BACKGROUND, 0, 0, 176, 122).setTextureSize(176, 122).build();
-        }
-
-        @Override
-        public void setRecipe(IRecipeLayoutBuilder builder, WorkbenchingRecipe recipe, IFocusGroup focuses) {
-            IRecipeCategory.super.setRecipe(builder, recipe, focuses);
-
-            builder.moveRecipeTransferButton(background.getWidth() - 20, background.getHeight() - 20);
-
-            GridPlacer placer = new GridPlacer();
-            placeRocketParts(39, 8, 1, placer::placeBottom, RocketPartsRegistry.ROCKET_PART_NOSE.get(), builder, recipe);
-            placeRocketParts(30, 26, 2, placer::placeBottom, RocketPartsRegistry.ROCKET_PART_BODY.get(), builder, recipe);
-            placeRocketParts(30, 80, 1, placer::placeRight, RocketPartsRegistry.ROCKET_PART_TANK.get(), builder, recipe);
-            placeRocketParts(12, 80, 1, placer::placeBottom, RocketPartsRegistry.ROCKET_PART_FIN_LEFT.get(), builder, recipe);
-            placeRocketParts(66, 80, 1, placer::placeBottom, RocketPartsRegistry.ROCKET_PART_FIN_RIGHT.get(), builder, recipe);
-            placeRocketParts(39, 98, 1, placer::placeBottom, RocketPartsRegistry.ROCKET_PART_ENGINE.get(), builder, recipe);
-
-            IRecipeSlotBuilder output = builder.addSlot(RecipeIngredientRole.OUTPUT, 127, 73);
-            output.addItemStack(recipe.getOutput());
-        }
-
-        @Override
-        public RecipeType<WorkbenchingRecipe> getRecipeType() {
-            return recipeType;
-        }
-
-        @Override
-        public ResourceLocation getUid() {
-            return Uid;
-        }
-
-        @Override
-        public Class<? extends WorkbenchingRecipe> getRecipeClass() {
-            return WorkbenchingRecipe.class;
-        }
-
-        @Override
-        public Component getTitle() {
-            return title;
-        }
-
-        @Override
-        public IDrawable getBackground() {
-            return background;
-        }
-
-        @Override
-        public IDrawable getIcon() {
-            return null;
-        }
-    }
-
-    public static void placeRocketParts(int left, int top, int mod, IPlacer placer, RocketPart part, IRecipeLayoutBuilder builder, WorkbenchingRecipe recipe) {
-        List<Ingredient> ingredients = recipe.getParts().get(part);
-
-        RocketPartGridPlacer.place(left, top, mod, placer, part, (i, bounds) -> {
-            Ingredient ingredient = (ingredients != null && i < ingredients.size()) ? ingredients.get(i) : Ingredient.EMPTY;
-            IRecipeSlotBuilder slot = builder.addSlot(RecipeIngredientRole.INPUT, bounds.getX(), bounds.getY());
-            slot.addIngredients(ingredient);
-        });
     }
 
     public static IDrawableStatic createFireStatic(IGuiHelper guiHelper) {
@@ -972,90 +897,14 @@ public class JeiPlugin implements IModPlugin {
         }
     }
 
-    public static class CompressorJeiCategory implements IRecipeCategory<CompressingRecipe> {
-        public static final ResourceLocation Uid = new ResourceLocation(BeyondOrbitaMod.MODID, "compressor");
-        public static final RecipeType recipeType = new RecipeType<>(new ResourceLocation(BeyondOrbitaMod.MODID, "compressor"), CompressingRecipe.class);
 
-        public static final ResourceLocation BACKGROUND = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/jei/compressor.png");
-        private static final Component title = new TranslatableComponent("container." + BeyondOrbitaMod.MODID + ".compressor");
 
-        public static final int ARROW_LEFT = 36;
-        public static final int ARROW_TOP = 29;
-        public static final int ENERGY_LEFT = 103;
-        public static final int ENERGY_TOP = 15;
+    public static class FluidOxidizerJeiCategory implements IRecipeCategory<FluidOxidizingRecipe> {
+        public static final ResourceLocation Uid = new ResourceLocation(BeyondOrbitaMod.MODID, "fluid_oxidizer");
+        public static final RecipeType recipeType = new RecipeType<>(new ResourceLocation(BeyondOrbitaMod.MODID, "fluid_oxidizer"), FluidOxidizingRecipe.class);
 
-        private final IDrawableStatic background;
-        private final LoadingCache<Integer, IDrawableAnimated> cachedArrows;
-        private final LoadingCache<Integer, IDrawableAnimated> cachedEnergies;
-
-        public CompressorJeiCategory(IGuiHelper guiHelper) {
-            this.background = guiHelper.drawableBuilder(BACKGROUND, 0, 0, 144, 84).setTextureSize(144, 84).build();
-            this.cachedArrows = createArrows(guiHelper);
-            this.cachedEnergies = createUsingEnergies(guiHelper);
-        }
-
-        @Override
-        public void setRecipe(IRecipeLayoutBuilder builder, CompressingRecipe recipe, IFocusGroup focuses) {
-            IRecipeCategory.super.setRecipe(builder, recipe, focuses);
-
-            IRecipeSlotBuilder input = builder.addSlot(RecipeIngredientRole.INPUT, 15, 30);
-            input.addIngredients(recipe.getInput());
-
-            IRecipeSlotBuilder output = builder.addSlot(RecipeIngredientRole.OUTPUT, 70, 29);
-            output.addItemStack(recipe.getOutput());
-        }
-
-        @Override
-        public void draw(CompressingRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack stack, double mouseX, double mouseY) {
-            IRecipeCategory.super.draw(recipe, recipeSlotsView, stack, mouseX, mouseY);
-
-            int cookTime = recipe.getCookTime();
-            this.cachedArrows.getUnchecked(cookTime).draw(stack, ARROW_LEFT, ARROW_TOP);
-            this.cachedEnergies.getUnchecked(cookTime).draw(stack, ENERGY_LEFT, ENERGY_TOP);
-            drawTextTime(stack, this.getBackground(), cookTime);
-        }
-
-        private Rectangle2d getEnergyBounds() {
-            return GuiHelper.getEnergyBounds(ENERGY_LEFT, ENERGY_TOP);
-        }
-
-        @Override
-        public RecipeType<CompressingRecipe> getRecipeType() {
-            return recipeType;
-        }
-
-        @Override
-        public ResourceLocation getUid() {
-            return Uid;
-        }
-
-        @Override
-        public Class<? extends CompressingRecipe> getRecipeClass() {
-            return CompressingRecipe.class;
-        }
-
-        @Override
-        public Component getTitle() {
-            return this.title;
-        }
-
-        @Override
-        public IDrawable getBackground() {
-            return this.background;
-        }
-
-        @Override
-        public IDrawable getIcon() {
-            return null;
-        }
-    }
-
-    public static class FuelRefineryJeiCategory implements IRecipeCategory<FuelRefiningRecipe> {
-        public static final ResourceLocation Uid = new ResourceLocation(BeyondOrbitaMod.MODID, "fuel_refinery");
-        public static final RecipeType recipeType = new RecipeType<>(new ResourceLocation(BeyondOrbitaMod.MODID, "fuel_refinery"), FuelRefiningRecipe.class);
-
-        public static final ResourceLocation BACKGROUND = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/jei/fuel_refinery.png");
-        private static final Component title = new TranslatableComponent("container." + BeyondOrbitaMod.MODID + ".fuel_refinery");
+        public static final ResourceLocation BACKGROUND = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/jei/fluid_oxidizer.png");
+        private static final Component title = new TranslatableComponent("container." + BeyondOrbitaMod.MODID + ".fluid_oxidizer");
 
         public static final int INPUT_TANK_LEFT = 8;
         public static final int INPUT_TANK_TOP = 8;
@@ -1069,7 +918,7 @@ public class JeiPlugin implements IModPlugin {
         private final IDrawable fluidOverlay;
         private final LoadingCache<Integer, IDrawableAnimated> cachedEnergies;
 
-        public FuelRefineryJeiCategory(JeiPlugin plugin, IGuiHelper guiHelper) {
+        public FluidOxidizerJeiCategory(JeiPlugin plugin, IGuiHelper guiHelper) {
             this.plugin = plugin;
             this.background = guiHelper.drawableBuilder(BACKGROUND, 0, 0, 147, 64).setTextureSize(147, 64).build();
             this.fluidOverlay = guiHelper.drawableBuilder(GuiHelper.FLUID_TANK_PATH, 0, 0, GuiHelper.FLUID_TANK_WIDTH, GuiHelper.FLUID_TANK_HEIGHT).setTextureSize(GuiHelper.FLUID_TANK_WIDTH, GuiHelper.FLUID_TANK_HEIGHT).build();
@@ -1077,7 +926,7 @@ public class JeiPlugin implements IModPlugin {
         }
 
         @Override
-        public void setRecipe(IRecipeLayoutBuilder builder, FuelRefiningRecipe recipe, IFocusGroup focuses) {
+        public void setRecipe(IRecipeLayoutBuilder builder, FluidOxidizingRecipe recipe, IFocusGroup focuses) {
             IRecipeCategory.super.setRecipe(builder, recipe, focuses);
 
             IRecipeSlotBuilder inputItem = builder.addSlot(RecipeIngredientRole.INPUT, 25, 9);
@@ -1096,23 +945,23 @@ public class JeiPlugin implements IModPlugin {
         }
 
         @Override
-        public void draw(FuelRefiningRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack stack, double mouseX, double mouseY) {
+        public void draw(FluidOxidizingRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack stack, double mouseX, double mouseY) {
             IRecipeCategory.super.draw(recipe, recipeSlotsView, stack, mouseX, mouseY);
 
             this.cachedEnergies.getUnchecked(200).draw(stack, ENERGY_LEFT, ENERGY_TOP);
         }
 
         @Override
-        public List<Component> getTooltipStrings(FuelRefiningRecipe recipe, IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
+        public List<Component> getTooltipStrings(FluidOxidizingRecipe recipe, IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
             if (GuiHelper.isHover(this.getEnergyBounds(), mouseX, mouseY)) {
-                return Collections.singletonList(GaugeTextHelper.getUsingPerTickText(GaugeValueHelper.getEnergy(FuelRefineryBlockEntity.ENERGY_PER_TICK)).build());
+                return Collections.singletonList(GaugeTextHelper.getUsingPerTickText(GaugeValueHelper.getEnergy(FluidOxidizerBlockEntity.ENERGY_PER_TICK)).build());
             } else {
                 return Collections.emptyList();
             }
         }
 
         @Override
-        public RecipeType<FuelRefiningRecipe> getRecipeType() {
+        public RecipeType<FluidOxidizingRecipe> getRecipeType() {
             return recipeType;
         }
 
@@ -1122,8 +971,8 @@ public class JeiPlugin implements IModPlugin {
         }
 
         @Override
-        public Class<? extends FuelRefiningRecipe> getRecipeClass() {
-            return FuelRefiningRecipe.class;
+        public Class<? extends FluidOxidizingRecipe> getRecipeClass() {
+            return FluidOxidizingRecipe.class;
         }
 
         @Override
@@ -1154,17 +1003,17 @@ public class JeiPlugin implements IModPlugin {
         }
     }
 
-    public static class RoverJeiCategory implements IRecipeCategory<FuelLoadingRecipe> {
-        public static final ResourceLocation Uid = new ResourceLocation(BeyondOrbitaMod.MODID, "rover");
-        public static final RecipeType recipeType = new RecipeType<>(new ResourceLocation(BeyondOrbitaMod.MODID, "rover"), FuelLoadingRecipe.class);
+    public static class AATVJeiCategory implements IRecipeCategory<FuelLoadingRecipe> {
+        public static final ResourceLocation Uid = new ResourceLocation(BeyondOrbitaMod.MODID, "aatv");
+        public static final RecipeType recipeType = new RecipeType<>(new ResourceLocation(BeyondOrbitaMod.MODID, "aatv"), FuelLoadingRecipe.class);
 
-        public static final ResourceLocation BACKGROUND = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/jei/rover.png");
-        private static final Component title = EntitiesRegistry.ROVER.get().getDescription();
+        public static final ResourceLocation BACKGROUND = new ResourceLocation(BeyondOrbitaMod.MODID, "textures/jei/aatv.png");
+        private static final Component title = EntitiesRegistry.AATV.get().getDescription();
 
         private final IDrawableStatic background;
         private final IDrawable fluidOverlay;
 
-        public RoverJeiCategory(IGuiHelper guiHelper) {
+        public AATVJeiCategory(IGuiHelper guiHelper) {
             this.background = guiHelper.drawableBuilder(BACKGROUND, 0, 0, 144, 84).setTextureSize(144, 84).build();
             this.fluidOverlay = guiHelper.drawableBuilder(GuiHelper.FLUID_TANK_PATH, 0, 0, GuiHelper.FLUID_TANK_WIDTH, GuiHelper.FLUID_TANK_HEIGHT).setTextureSize(GuiHelper.FLUID_TANK_WIDTH, GuiHelper.FLUID_TANK_HEIGHT).build();
         }

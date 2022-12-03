@@ -14,12 +14,10 @@ public class RecipeSerializersRegistry {
     /**
      * RECIPES
      */
-    public static final RegistryObject<RecipeSerializer<?>> RECIPE_SERIALIZER_COMPRESSOR = RECIPE_SERIALIZERS.register("compressor", () -> new CompressingRecipeSerializer());
     public static final RegistryObject<RecipeSerializer<?>> RECIPE_SERIALIZER_COAL_GENERATOR = RECIPE_SERIALIZERS.register("coal_generator", () -> new GeneratingRecipeSerializer());
     public static final RegistryObject<RecipeSerializer<?>> RECIPE_SERIALIZER_OXYGEN_LOADER = RECIPE_SERIALIZERS.register("oxygen_loader", () -> new OxygenLoaderRecipeSerializer());
     public static final RegistryObject<RecipeSerializer<?>> RECIPE_SERIALIZER_OXYGEN_BUBBLE_DISTRIBUTOR = RECIPE_SERIALIZERS.register("oxygen_bubble_distributor", () -> new OxygenBubbleDistributorRecipeSerializer());
-    public static final RegistryObject<RecipeSerializer<?>> RECIPE_SERIALIZER_NASA_WORKBENCH = RECIPE_SERIALIZERS.register("nasa_workbench", () -> new WorkbenchingRecipeSerializer());
-    public static final RegistryObject<RecipeSerializer<?>> RECIPE_SERIALIZER_FUEL_REFINERY = RECIPE_SERIALIZERS.register("fuel_refinery", () -> new FuelRefiningRecipeSerializer());
+    public static final RegistryObject<RecipeSerializer<?>> RECIPE_SERIALIZER_FLUID_OXIDIZER = RECIPE_SERIALIZERS.register("fluid_oxidizer", () -> new FluidOxidizingRecipeSerializer());
     public static final RegistryObject<RecipeSerializer<?>> RECIPE_SERIALIZER_ALIEN_TRADING_ITEMSTACK = RECIPE_SERIALIZERS.register("alien_trading_itemstack", () -> new AlienTradingRecipeItemStack.Serializer());
     public static final RegistryObject<RecipeSerializer<?>> RECIPE_SERIALIZER_ALIEN_TRADING_ENCHANTED_BOOK = RECIPE_SERIALIZERS.register("alien_trading_enchanted_book", () -> new AlienTradingRecipeEnchantedBook.Serializer());
     public static final RegistryObject<RecipeSerializer<?>> RECIPE_SERIALIZER_ALIEN_TRADING_ENCHANTED_ITEM = RECIPE_SERIALIZERS.register("alien_trading_enchanted_item", () -> new AlienTradingRecipeEnchantedItem.Serializer());

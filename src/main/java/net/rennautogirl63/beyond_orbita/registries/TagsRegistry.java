@@ -20,5 +20,6 @@ public class TagsRegistry {
      * FLUIDS
      */
     public static final TagKey<Fluid> FLUID_VEHICLE_FUEL_TAG = TagKey.create(Registry.FLUID_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "vehicle_fuel"));
+    public static final TagKey<Fluid> FLUID_ROCKET_FUEL_TAG = TagKey.create(Registry.FLUID_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "rocket_fuel"));
     public static final TagKey<Fluid> OIL_FLUID_TAG = TagKey.create(Registry.FLUID_REGISTRY, new ResourceLocation(BeyondOrbitaMod.MODID, "oil"));
 }

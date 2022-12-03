@@ -1,8 +1,6 @@
 package net.rennautogirl63.beyond_orbita.events;
 
 import io.netty.buffer.Unpooled;
-import mcjty.lostcities.LostCities;
-import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
@@ -24,7 +22,6 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.vehicle.AbstractMinecart;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -36,7 +33,6 @@ import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.portal.PortalInfo;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.extensions.IForgeAbstractMinecart;
 import net.minecraftforge.common.util.ITeleporter;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.network.NetworkHooks;
@@ -130,7 +126,13 @@ public class Methods {
             moon,
             mercury,
             orbit,
-            asteroid_belt
+            asteroid_belt,
+            petra
+    );
+
+    public static Set<ResourceKey<Level>> darkWorlds = Set.of(
+            pluto,
+            petra
     );
 
     public static Set<ResourceKey<Level>> spaceWorldsWithoutOxygen = Set.of(
@@ -140,21 +142,19 @@ public class Methods {
             venus,
             orbit,
             asteroid_belt,
-            pluto
+            pluto,
+            petra
     );
 
-    public static Set<ResourceKey<Level>> spaceWorlds = Set.of(
+    public static Set<ResourceKey<Level>> noRainWorlds = Set.of(
+            mercury,
+            orbit,
             moon,
             mars,
-            mercury,
-            venus,
-            orbit,
             asteroid_belt,
             pluto,
             relictus,
-            avium,
-            holdplacer,
-            caeruleum
+            petra
     );
 
     public static Set<ResourceKey<Level>> noGravWorlds = Set.of(
@@ -170,14 +170,19 @@ public class Methods {
             mars,
             pluto,
             relictus,
+            caeruleum,
             avium,
-            holdplacer,
-            caeruleum
+            discors,
+            petra
     );
 
     public static Set<ResourceKey<Level>> hotWorlds = Set.of(
             mercury,
             venus
+    );
+
+    public static Set<ResourceKey<Level>> toxicWorlds = Set.of(
+            discors
     );
 
     public static void entityWorldTeleporter(Entity entity, ResourceKey<Level> planet, double high) {
@@ -285,8 +290,9 @@ public class Methods {
         return entity.getItemBySlot(EquipmentSlot.byTypeAndIndex(EquipmentSlot.Type.ARMOR, number)).getItem() == item;
     }
 
-    public static boolean isSpaceWorld(Level world) { return spaceWorlds.contains(world.dimension()); }
+    public static boolean isRainWorld(Level world) { return noRainWorlds.contains(world.dimension()); }
     public static boolean isNoAtmoWorld(Level world) { return noAtmoWorlds.contains(world.dimension()); }
+    public static boolean isDarkWorld(Level world) { return darkWorlds.contains(world.dimension()); }
     public static boolean isSpaceWorldWithoutOxygen(Level world) { return spaceWorldsWithoutOxygen.contains(world.dimension()); }
     public static boolean isNoGravWorld(Level world) {
         return noGravWorlds.contains(world.dimension());
@@ -295,6 +301,7 @@ public class Methods {
         return planetoidWorlds.contains(world.dimension());
     }
     public static boolean isHotWorld(Level world) { return hotWorlds.contains(world.dimension()); }
+    public static boolean isToxicWorld(Level world) { return toxicWorlds.contains(world.dimension()); }
     public static boolean isWorld(Level world, ResourceKey<Level> loc) {
         return world.dimension() == loc;
     }

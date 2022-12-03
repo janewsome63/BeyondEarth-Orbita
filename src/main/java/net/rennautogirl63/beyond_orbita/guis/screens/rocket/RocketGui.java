@@ -43,7 +43,7 @@ public class RocketGui {
             this.addSlot(new SlotItemHandler(itemHandler, 0, 46, 22) {
                 @Override
                 public boolean mayPlace(@NotNull ItemStack stack) {
-                    return Methods.tagCheck(FluidUtil2.findBucketFluid(stack.getItem()), TagsRegistry.FLUID_VEHICLE_FUEL_TAG);
+                    return Methods.tagCheck(FluidUtil2.findBucketFluid(stack.getItem()), TagsRegistry.FLUID_ROCKET_FUEL_TAG);
                 }
             });
 

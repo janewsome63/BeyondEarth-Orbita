@@ -17,7 +17,7 @@ repositories {
   }
   maven {
     name = "ModMaven"
-    url = "https://modmaven.k-4u.nl/"
+    url = "https://modmaven.dev/"
   }
 }
 
@@ -50,7 +50,7 @@ minecraft {
             arg "-mixin.config=beyond_orbita.mixin.json"
 
             mods {
-                examplemod {
+                beyond_orbita {
                     source sourceSets.main
                 }
             }
@@ -64,7 +64,26 @@ minecraft {
             arg "-mixin.config=beyond_orbita.mixin.json"
 
             mods {
-                examplemod {
+                beyond_orbita {
+                    source sourceSets.main
+                }
+            }
+        }
+        data {
+            workingDirectory project.file('run')
+
+            // Recommended logging data for a userdev environment
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+
+            // Recommended logging level for the console
+            property 'forge.logging.console.level', 'debug'
+
+            args '--mod', 'beyond_orbita', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+
+            environment 'target', 'fmluserdevdata'
+
+            mods {
+                beyond_orbita {
                     source sourceSets.main
                 }
             }
@@ -100,8 +119,9 @@ dependencies {
     }
 
     // JEI
-    compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api")
-    runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
+    compileOnly fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}")
+    compileOnly fg.deobf("mezz.jei:jei-${mc_version}-forge-api:${jei_version}")
+    runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}")
 
     // The One Probe
     compileOnly fg.deobf("curse.maven:the-one-probe-245211:${the_one_probe_version}")
@@ -148,6 +168,12 @@ dependencies {
 
     // TerraForged
     implementation fg.deobf("curse.maven:terraforged-363820:${terraforged_version}")
+
+    // Multiblocked
+    implementation fg.deobf("curse.maven:multiblocked-604054:${multiblocked_version}")
+
+    // LDLib
+    implementation fg.deobf("curse.maven:ldlib-626676:${ldlib_version}")
 
 }
 

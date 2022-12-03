@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "beyond_orbita:fuel_refinery",
+    "beyond_orbita:fluid_oxidizer",
     "beyond_orbita:coal_generator",
     "beyond_orbita:oxygen_loader",
     "beyond_orbita:solar_panel",

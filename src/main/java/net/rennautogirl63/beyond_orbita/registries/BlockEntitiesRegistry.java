@@ -16,7 +16,7 @@ public class BlockEntitiesRegistry {
     /**
      * BLOCK ENTITIES (Machines)
      */
-    public static final RegistryObject<BlockEntityType<?>> FUEL_REFINERY_BLOCK_ENTITY = BLOCK_ENTITIES.register("fuel_refinery", () -> BlockEntityType.Builder.of(FuelRefineryBlockEntity::new, BlocksRegistry.FUEL_REFINERY_BLOCK.get()).build(null));
+    public static final RegistryObject<BlockEntityType<?>> FLUID_OXIDIZER_BLOCK_ENTITY = BLOCK_ENTITIES.register("fluid_oxidizer", () -> BlockEntityType.Builder.of(FluidOxidizerBlockEntity::new, BlocksRegistry.FLUID_OXIDIZER_BLOCK.get()).build(null));
     public static final RegistryObject<BlockEntityType<?>> COAL_GENERATOR_BLOCK_ENTITY = BLOCK_ENTITIES.register("coal_generator", () -> BlockEntityType.Builder.of(CoalGeneratorBlockEntity::new, BlocksRegistry.COAL_GENERATOR_BLOCK.get()).build(null));
     public static final RegistryObject<BlockEntityType<?>> OXYGEN_LOADER_BLOCK_ENTITY = BLOCK_ENTITIES.register("oxygen_loader", () -> BlockEntityType.Builder.of(OxygenLoaderBlockEntity::new, BlocksRegistry.OXYGEN_LOADER_BLOCK.get()).build(null));
     public static final RegistryObject<BlockEntityType<?>> SOLAR_PANEL_BLOCK_ENTITY = BLOCK_ENTITIES.register("solar_panel", () -> BlockEntityType.Builder.of(SolarPanelBlockEntity::new, BlocksRegistry.SOLAR_PANEL_BLOCK.get()).build(null));

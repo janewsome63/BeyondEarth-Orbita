@@ -175,7 +175,7 @@ public class Events {
             Level level = event.world;
             ServerLevel serverLevel = (ServerLevel) level;
 
-            if (Methods.noAtmoWorlds.contains(level.dimension())) {
+            if (Methods.noRainWorlds.contains(level.dimension())) {
                 level.thunderLevel = 0;
                 level.rainLevel = 0;
             } else if (Methods.isWorld(level, Methods.venus)) {

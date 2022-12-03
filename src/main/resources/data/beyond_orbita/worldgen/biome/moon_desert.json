@@ -15,12 +15,6 @@
   "spawners": {
     "monster": [
 	  {
-        "type": "beyond_orbita:alien_zombie",
-        "weight": 100,
-        "minCount": 1,
-        "maxCount": 3
-      },
-	  {
         "type": "beyond_orbita:star_crawler",
         "weight": 100,
         "minCount": 1,
@@ -29,10 +23,6 @@
     ]
   },
   "spawn_costs": {
-    "beyond_orbita:alien_zombie": {
-      "energy_budget": 0.015,
-      "charge": 0.2
-    },
 	"beyond_orbita:star_crawler": {
       "energy_budget": 0.015,
       "charge": 0.4

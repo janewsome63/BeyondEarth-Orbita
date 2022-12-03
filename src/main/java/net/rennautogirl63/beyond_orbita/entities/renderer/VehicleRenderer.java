@@ -20,7 +20,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Pose;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.rennautogirl63.beyond_orbita.entities.RoverEntity;
+import net.rennautogirl63.beyond_orbita.entities.AATVEntity;
 import net.rennautogirl63.beyond_orbita.entities.VehicleEntity;
 
 import javax.annotation.Nullable;
@@ -83,9 +83,9 @@ public abstract class VehicleRenderer<T extends VehicleEntity, M extends EntityM
         p_115311_.translate(0.0D, (double) -1.501F, 0.0D);
         float f8 = 0.0F;
         float f5 = 0.0F;
-        if (p_115308_ instanceof RoverEntity) {
-            f8 = Mth.lerp(p_115310_, ((RoverEntity) p_115308_).animationSpeedOld, ((RoverEntity) p_115308_).animationSpeed);
-            f5 = ((RoverEntity) p_115308_).animationPosition - ((RoverEntity) p_115308_).animationSpeed * (1.0F - p_115310_);
+        if (p_115308_ instanceof AATVEntity) {
+            f8 = Mth.lerp(p_115310_, ((AATVEntity) p_115308_).animationSpeedOld, ((AATVEntity) p_115308_).animationSpeed);
+            f5 = ((AATVEntity) p_115308_).animationPosition - ((AATVEntity) p_115308_).animationSpeed * (1.0F - p_115310_);
 
             if (f8 > 1.0F) {
                 f8 = 1.0F;

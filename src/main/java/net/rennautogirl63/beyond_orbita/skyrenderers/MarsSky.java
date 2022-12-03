@@ -28,8 +28,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.rennautogirl63.beyond_orbita.BeyondOrbitaMod;
-import net.rennautogirl63.beyond_orbita.events.Methods;
-import net.rennautogirl63.beyond_orbita.events.TimeSetter;
 import org.jetbrains.annotations.Nullable;
 
 @Mod.EventBusSubscriber(modid = BeyondOrbitaMod.MODID, bus = Bus.MOD, value = Dist.CLIENT)
@@ -161,7 +159,7 @@ public class MarsSky {
 
                             /** DEFAULT ROT */
                             p_181410_.mulPose(Vector3f.YP.rotationDegrees(-90.0F));
-                            p_181410_.mulPose(Vector3f.XP.rotationDegrees(TimeSetter.timeSystem(level, Methods.MARS_DAY) * 360.0F));
+                            p_181410_.mulPose(Vector3f.XP.rotationDegrees(level.getTimeOfDay(p_181412_) * 360.0F));
                             Matrix4f matrix4f1 = p_181410_.last().pose();
 
                             RenderSystem.setShader(GameRenderer::getPositionTexShader);

@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "beyond_orbita:fuel",
-    "beyond_orbita:flowing_fuel"
+    "beyond_orbita:kerosene",
+    "beyond_orbita:kerosene_flowing"
   ]
 }

@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.world.NoteBlockEvent;
 import net.rennautogirl63.beyond_orbita.events.forge.EntityGravityEvent;
 
 import java.util.Arrays;
@@ -106,7 +107,9 @@ public class LivingEntityGravity {
                 entity.setNoGravity(false);
             }
             if (entity instanceof Player player) {
-                if (player.getAbilities().flying && !player.isCreative()) {
+                if (player.getAbilities().flying && player.isCreative()) {
+                    return;
+                }else if (player.getAbilities().flying) {
                     player.getAbilities().flying = (false);
                     player.onUpdateAbilities();
                 }

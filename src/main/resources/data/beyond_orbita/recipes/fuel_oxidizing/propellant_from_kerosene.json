@@ -1,0 +1,11 @@
+{
+   "type":"beyond_orbita:fluid_oxidizer",
+   "input":{
+      "name":"beyond_orbita:kerosene",
+      "amount":2
+   },
+   "output":{
+      "name":"beyond_orbita:propellant",
+      "amount":2
+   }
+}

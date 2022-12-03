@@ -10,7 +10,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.rennautogirl63.beyond_orbita.entities.IRocketEntity;
 import net.rennautogirl63.beyond_orbita.entities.LanderEntity;
-import net.rennautogirl63.beyond_orbita.entities.RoverEntity;
+import net.rennautogirl63.beyond_orbita.entities.AATVEntity;
 import net.rennautogirl63.beyond_orbita.events.Methods;
 
 public class KeyMethods {
@@ -25,18 +25,18 @@ public class KeyMethods {
         }
     }
 
-    public static void rotateRover(Player player, int rotationForward, int rotationBackward) {
+    public static void rotateAATV(Player player, int rotationForward, int rotationBackward) {
         if (player.isPassenger()) {
-            if (player.getVehicle() instanceof RoverEntity) {
-                RoverEntity rover = (RoverEntity) player.getVehicle();
+            if (player.getVehicle() instanceof AATVEntity) {
+                AATVEntity aatv = (AATVEntity) player.getVehicle();
                 float forward = player.zza;
 
-                if (player.getVehicle().getEntityData().get(RoverEntity.FUEL) != 0 && !player.getVehicle().isEyeInFluid(FluidTags.WATER)) {
+                if (player.getVehicle().getEntityData().get(AATVEntity.FUEL) != 0 && !player.getVehicle().isEyeInFluid(FluidTags.WATER)) {
 
                     if (forward > 0) {
-                        Methods.vehicleRotation(rover, rotationForward);
+                        Methods.vehicleRotation(aatv, rotationForward);
                     } else {
-                        Methods.vehicleRotation(rover, rotationBackward);
+                        Methods.vehicleRotation(aatv, rotationBackward);
                     }
                 }
             }

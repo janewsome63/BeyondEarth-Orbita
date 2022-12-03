@@ -9,12 +9,10 @@ import net.rennautogirl63.beyond_orbita.BeyondOrbitaMod;
 
 @Mod.EventBusSubscriber(modid = BeyondOrbitaMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class BeyondEarthRecipeTypes {
-    public static ItemStackToItemStackRecipeType<CompressingRecipe> COMPRESSING;
     public static BeyondEarthRecipeType<GeneratingRecipe> COAL_GENERATING;
     public static BeyondEarthRecipeType<OxygenLoaderRecipe> OXYGEN_LOADING;
     public static BeyondEarthRecipeType<OxygenBubbleDistributorRecipe> OXYGEN_BUBBLE_DISTRIBUTING;
-    public static BeyondEarthRecipeType<WorkbenchingRecipe> NASA_WORKBENCHING;
-    public static BeyondEarthRecipeType<FuelRefiningRecipe> FUEL_REFINING;
+    public static BeyondEarthRecipeType<FluidOxidizingRecipe> FLUID_OXIDIZING;
     public static AlienTradingRecipeType<AlienTradingRecipeItemStack> ALIEN_TRADING_ITEMSTACK;
     public static AlienTradingRecipeType<AlienTradingRecipeEnchantedBook> ALIEN_TRADING_ENCHANTED_BOOK;
     public static AlienTradingRecipeType<AlienTradingRecipeEnchantedItem> ALIEN_TRADING_ENCHANTED_ITEM;
@@ -26,12 +24,10 @@ public class BeyondEarthRecipeTypes {
     @SubscribeEvent
     public static void init(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            COMPRESSING = create(new ItemStackToItemStackRecipeType<>("compressing"));
             COAL_GENERATING = create(new BeyondEarthRecipeType<>("coal_generating"));
             OXYGEN_LOADING = create(new BeyondEarthRecipeType<>("oxygen_loading"));
             OXYGEN_BUBBLE_DISTRIBUTING = create(new BeyondEarthRecipeType<>("oxygen_bubble_distributing"));
-            NASA_WORKBENCHING = create(new BeyondEarthRecipeType<>("nasa_workbenching"));
-            FUEL_REFINING = create(new BeyondEarthRecipeType<>("fuel_refining"));
+            FLUID_OXIDIZING = create(new BeyondEarthRecipeType<>("fluid_oxidizing"));
             ALIEN_TRADING_ITEMSTACK = create(new AlienTradingRecipeType<>("alien_trading_itemstack"));
             ALIEN_TRADING_ENCHANTED_BOOK = create(new AlienTradingRecipeType<>("alien_trading_enchanted_book"));
             ALIEN_TRADING_ENCHANTED_ITEM = create(new AlienTradingRecipeType<>("alien_trading_enchanted_item"));

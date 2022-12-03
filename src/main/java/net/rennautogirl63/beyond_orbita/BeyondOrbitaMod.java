@@ -1,5 +1,6 @@
 package net.rennautogirl63.beyond_orbita;
 
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;

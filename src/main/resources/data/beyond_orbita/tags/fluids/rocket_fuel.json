@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "beyond_orbita:propellant",
+    "beyond_orbita:propellant_flowing"
+  ]
+}

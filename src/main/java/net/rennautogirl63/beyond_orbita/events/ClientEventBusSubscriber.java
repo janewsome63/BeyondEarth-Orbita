@@ -6,7 +6,6 @@ import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.ClientRegistry;
@@ -47,19 +46,19 @@ import net.rennautogirl63.beyond_orbita.entities.renderer.rockettier3.RocketTier
 import net.rennautogirl63.beyond_orbita.entities.renderer.rockettier4.RocketTier4ItemRenderer;
 import net.rennautogirl63.beyond_orbita.entities.renderer.rockettier4.RocketTier4Model;
 import net.rennautogirl63.beyond_orbita.entities.renderer.rockettier4.RocketTier4Renderer;
-import net.rennautogirl63.beyond_orbita.entities.renderer.rover.RoverItemRenderer;
-import net.rennautogirl63.beyond_orbita.entities.renderer.rover.RoverModel;
-import net.rennautogirl63.beyond_orbita.entities.renderer.rover.RoverRenderer;
+import net.rennautogirl63.beyond_orbita.entities.renderer.aatv.AATVItemRenderer;
+import net.rennautogirl63.beyond_orbita.entities.renderer.aatv.AATVModel;
+import net.rennautogirl63.beyond_orbita.entities.renderer.aatv.AATVRenderer;
 import net.rennautogirl63.beyond_orbita.entities.renderer.starcrawler.StarCrawlerModel;
 import net.rennautogirl63.beyond_orbita.entities.renderer.starcrawler.StarCrawlerRenderer;
 import net.rennautogirl63.beyond_orbita.guis.screens.coalgenerator.CoalGeneratorGuiWindow;
-import net.rennautogirl63.beyond_orbita.guis.screens.fuelrefinery.FuelRefineryGuiWindow;
+import net.rennautogirl63.beyond_orbita.guis.screens.fluidoxidizer.FluidOxidizerGuiWindow;
 import net.rennautogirl63.beyond_orbita.guis.screens.lander.LanderGuiWindow;
 import net.rennautogirl63.beyond_orbita.guis.screens.oxygenbubbledistributor.OxygenBubbleDistributorGuiWindow;
 import net.rennautogirl63.beyond_orbita.guis.screens.oxygenloader.OxygenLoaderGuiWindow;
 import net.rennautogirl63.beyond_orbita.guis.screens.planetselection.PlanetSelectionGuiWindow;
 import net.rennautogirl63.beyond_orbita.guis.screens.rocket.RocketGuiWindow;
-import net.rennautogirl63.beyond_orbita.guis.screens.rover.RoverGuiWindow;
+import net.rennautogirl63.beyond_orbita.guis.screens.aatv.AATVGuiWindow;
 import net.rennautogirl63.beyond_orbita.guis.screens.solarpanel.AdvancedSolarPanelGuiWindow;
 import net.rennautogirl63.beyond_orbita.guis.screens.solarpanel.SolarPanelGuiWindow;
 import net.rennautogirl63.beyond_orbita.overlays.Overlays;
@@ -78,7 +77,7 @@ public class ClientEventBusSubscriber {
     public static final RocketTier2ItemRenderer ROCKET_TIER_2_ITEM_RENDERER = new RocketTier2ItemRenderer(Minecraft.getInstance().getBlockEntityRenderDispatcher(), Minecraft.getInstance().getEntityModels());
     public static final RocketTier3ItemRenderer ROCKET_TIER_3_ITEM_RENDERER = new RocketTier3ItemRenderer(Minecraft.getInstance().getBlockEntityRenderDispatcher(), Minecraft.getInstance().getEntityModels());
     public static final RocketTier4ItemRenderer ROCKET_TIER_4_ITEM_RENDERER = new RocketTier4ItemRenderer(Minecraft.getInstance().getBlockEntityRenderDispatcher(), Minecraft.getInstance().getEntityModels());
-    public static final RoverItemRenderer ROVER_ITEM_RENDERER = new RoverItemRenderer(Minecraft.getInstance().getBlockEntityRenderDispatcher(), Minecraft.getInstance().getEntityModels());
+    public static final AATVItemRenderer AATV_ITEM_RENDERER = new AATVItemRenderer(Minecraft.getInstance().getBlockEntityRenderDispatcher(), Minecraft.getInstance().getEntityModels());
 
     @SubscribeEvent
     public static void registerEntityRenderingHandler(EntityRenderersEvent.RegisterRenderers event) {
@@ -97,7 +96,7 @@ public class ClientEventBusSubscriber {
         event.registerEntityRenderer(EntitiesRegistry.TIER_3_ROCKET.get(), RocketTier3Renderer::new);
         event.registerEntityRenderer(EntitiesRegistry.TIER_4_ROCKET.get(), RocketTier4Renderer::new);
         event.registerEntityRenderer(EntitiesRegistry.LANDER.get(), LanderRenderer::new);
-        event.registerEntityRenderer(EntitiesRegistry.ROVER.get(), RoverRenderer::new);
+        event.registerEntityRenderer(EntitiesRegistry.AATV.get(), AATVRenderer::new);
 
         event.registerBlockEntityRenderer(BlockEntitiesRegistry.OXYGEN_BUBBLE_DISTRIBUTOR_BLOCK_ENTITY.get(), TileEntityBoxRenderer::new);
 
@@ -120,7 +119,7 @@ public class ClientEventBusSubscriber {
         event.registerLayerDefinition(RocketTier3Model.LAYER_LOCATION, RocketTier3Model::createBodyLayer);
         event.registerLayerDefinition(RocketTier4Model.LAYER_LOCATION, RocketTier4Model::createBodyLayer);
         event.registerLayerDefinition(LanderModel.LAYER_LOCATION, LanderModel::createBodyLayer);
-        event.registerLayerDefinition(RoverModel.LAYER_LOCATION, RoverModel::createBodyLayer);
+        event.registerLayerDefinition(AATVModel.LAYER_LOCATION, AATVModel::createBodyLayer);
 
         event.registerLayerDefinition(SpaceSuitModel.SPACE_SUIT_P1.LAYER_LOCATION, SpaceSuitModel.SPACE_SUIT_P1::createBodyLayer);
         event.registerLayerDefinition(SpaceSuitModel.SPACE_SUIT_P2.LAYER_LOCATION, SpaceSuitModel.SPACE_SUIT_P2::createBodyLayer);
@@ -130,14 +129,14 @@ public class ClientEventBusSubscriber {
     public static void onClientSetup(FMLClientSetupEvent event) {
         //GUIS
         MenuScreens.register(ScreensRegistry.ROCKET_GUI.get(), RocketGuiWindow::new);
-        MenuScreens.register(ScreensRegistry.FUEL_REFINERY_GUI.get(), FuelRefineryGuiWindow::new);
+        MenuScreens.register(ScreensRegistry.FLUID_OXIDIZER_GUI.get(), FluidOxidizerGuiWindow::new);
         MenuScreens.register(ScreensRegistry.COAL_GENERATOR_GUI.get(), CoalGeneratorGuiWindow::new);
         MenuScreens.register(ScreensRegistry.OXYGEN_LOADER_GUI.get(), OxygenLoaderGuiWindow::new);
         MenuScreens.register(ScreensRegistry.SOLAR_PANEL_GUI.get(), SolarPanelGuiWindow::new);
         MenuScreens.register(ScreensRegistry.ADVANCED_SOLAR_PANEL_GUI.get(), AdvancedSolarPanelGuiWindow::new);
         MenuScreens.register(ScreensRegistry.OXYGEN_BUBBLE_DISTRIBUTOR_GUI.get(), OxygenBubbleDistributorGuiWindow::new);
         MenuScreens.register(ScreensRegistry.LANDER_GUI.get(), LanderGuiWindow::new);
-        MenuScreens.register(ScreensRegistry.ROVER_GUI.get(), RoverGuiWindow::new);
+        MenuScreens.register(ScreensRegistry.AATV_GUI.get(), AATVGuiWindow::new);
         MenuScreens.register(ScreensRegistry.PLANET_SELECTION_GUI.get(), PlanetSelectionGuiWindow::new);
 
         //Key Binding Registrys
@@ -145,11 +144,11 @@ public class ClientEventBusSubscriber {
         ClientRegistry.registerKeyBinding(key1);
 
         //Fluid Translucent Renderer
-        ItemBlockRenderTypes.setRenderLayer(FluidsRegistry.FLOWING_FUEL.get(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(FluidsRegistry.FUEL_STILL.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(FluidsRegistry.FLOWING_PROPELLANT.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(FluidsRegistry.PROPELLANT_STILL.get(), RenderType.translucent());
 
-        ItemBlockRenderTypes.setRenderLayer(FluidsRegistry.FLOWING_OIL.get(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(FluidsRegistry.OIL_STILL.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(FluidsRegistry.FLOWING_KEROSENE.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(FluidsRegistry.KEROSENE_STILL.get(), RenderType.translucent());
 
         //Block Translucent Renderer
         ItemBlockRenderTypes.setRenderLayer(BlocksRegistry.COAL_LANTERN_BLOCK.get(), RenderType.translucent());

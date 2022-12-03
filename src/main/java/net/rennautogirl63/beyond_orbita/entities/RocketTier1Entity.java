@@ -118,7 +118,7 @@ public class RocketTier1Entity extends IRocketEntity {
 
     @Override
     public void fillUpRocket() {
-        if (Methods.tagCheck(FluidUtil2.findBucketFluid(this.getInventory().getStackInSlot(0).getItem()), TagsRegistry.FLUID_VEHICLE_FUEL_TAG) && this.entityData.get(BUCKETS) != 1) {
+        if (Methods.tagCheck(FluidUtil2.findBucketFluid(this.getInventory().getStackInSlot(0).getItem()), TagsRegistry.FLUID_ROCKET_FUEL_TAG) && this.entityData.get(BUCKETS) != 1) {
             this.getInventory().setStackInSlot(0, new ItemStack(Items.BUCKET));
             this.getEntityData().set(BUCKETS, 1);
         }

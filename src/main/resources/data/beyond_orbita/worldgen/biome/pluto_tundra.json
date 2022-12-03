@@ -1,11 +1,11 @@
 {
   "temperature": -10.7,
   "downfall": 1,
-  "precipitation": "snow",
+  "precipitation": "none",
   "category": "none",
   "effects": {
-    "sky_color": 8756735,
-    "fog_color": 12638463,
+    "sky_color": 3821668,
+    "fog_color": 7309471,
     "water_color": 4159204,
     "water_fog_color": 329011,
     "grass_color": 9551193,
@@ -21,10 +21,6 @@
     ]
   },
   "features": [
-    [
-      "minecraft:ice_patch",
-      "minecraft:freeze_top_layer"
-    ],
     [
       "beyond_orbita:celestial_remnant",
       "beyond_orbita:iron_ore_low",

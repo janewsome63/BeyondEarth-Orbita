@@ -20,7 +20,7 @@ public class ItemsRegistry {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, BeyondOrbitaMod.MODID);
 
     /** Vehicles */
-    public static final RegistryObject<RoverItem> ROVER_ITEM = ITEMS.register("rover", () -> new RoverItem(new Item.Properties().tab(ItemGroups.tab_normal).stacksTo(1)));
+    public static final RegistryObject<AATVItem> AATV_ITEM = ITEMS.register("aatv", () -> new AATVItem(new Item.Properties().tab(ItemGroups.tab_normal).stacksTo(1)));
     public static final RegistryObject<Tier1RocketItem> TIER_1_ROCKET_ITEM = ITEMS.register("rocket_t1", () -> new Tier1RocketItem(new Item.Properties().tab(ItemGroups.tab_normal).stacksTo(1)));
     public static final RegistryObject<Tier2RocketItem> TIER_2_ROCKET_ITEM = ITEMS.register("rocket_t2", () -> new Tier2RocketItem(new Item.Properties().tab(ItemGroups.tab_normal).stacksTo(1)));
     public static final RegistryObject<Tier3RocketItem> TIER_3_ROCKET_ITEM = ITEMS.register("rocket_t3", () -> new Tier3RocketItem(new Item.Properties().tab(ItemGroups.tab_normal).stacksTo(1)));
@@ -69,7 +69,7 @@ public class ItemsRegistry {
     public static final RegistryObject<BlockItem> SOLAR_PANEL_ITEM = ITEMS.register("solar_panel", () -> new BlockItem(BlocksRegistry.SOLAR_PANEL_BLOCK.get(), new Item.Properties().tab(ItemGroups.tab_normal)));
     public static final RegistryObject<BlockItem> ADVANCED_SOLAR_PANEL_ITEM = ITEMS.register("advanced_solar_panel", () -> new BlockItem(BlocksRegistry.ADVANCED_SOLAR_PANEL_BLOCK.get(), new Item.Properties().tab(ItemGroups.tab_normal)));
     public static final RegistryObject<BlockItem> COAL_GENERATOR_ITEM = ITEMS.register("coal_generator", () -> new BlockItem(BlocksRegistry.COAL_GENERATOR_BLOCK.get(), new Item.Properties().tab(ItemGroups.tab_normal)));
-    public static final RegistryObject<BlockItem> FUEL_REFINERY_ITEM = ITEMS.register("fuel_refinery", () -> new BlockItem(BlocksRegistry.FUEL_REFINERY_BLOCK.get(), new Item.Properties().tab(ItemGroups.tab_normal)));
+    public static final RegistryObject<BlockItem> FLUID_OXIDIZER_ITEM = ITEMS.register("fluid_oxidizer", () -> new BlockItem(BlocksRegistry.FLUID_OXIDIZER_BLOCK.get(), new Item.Properties().tab(ItemGroups.tab_normal)));
     public static final RegistryObject<BlockItem> ROCKET_LAUNCH_PAD_ITEM = ITEMS.register("rocket_launch_pad", () -> new BlockItem(BlocksRegistry.ROCKET_LAUNCH_PAD.get(), new Item.Properties().tab(ItemGroups.tab_normal)));
 
     /** Spawn Eggs */
@@ -88,7 +88,8 @@ public class ItemsRegistry {
     public static final RegistryObject<Item> ROCKET_NOSE_CONE = ITEMS.register("rocket_nose_cone", () -> new Item(new Item.Properties().tab(ItemGroups.tab_normal)));
     public static final RegistryObject<Item> ROCKET_FIN = ITEMS.register("rocket_fin", () -> new Item(new Item.Properties().tab(ItemGroups.tab_normal)));
     public static final RegistryObject<Item> OIL_BUCKET = ITEMS.register("oil_bucket", () -> new BucketItem(FluidsRegistry.OIL_STILL, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1).tab(ItemGroups.tab_normal)));
-    public static final RegistryObject<Item> FUEL_BUCKET = ITEMS.register("fuel_bucket", () -> new BucketItem(FluidsRegistry.FUEL_STILL, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1).tab(ItemGroups.tab_normal)));
+    public static final RegistryObject<Item> KEROSENE_BUCKET = ITEMS.register("kerosene_bucket", () -> new BucketItem(FluidsRegistry.KEROSENE_STILL, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1).tab(ItemGroups.tab_normal)));
+    public static final RegistryObject<Item> PROPELLANT_BUCKET = ITEMS.register("propellant_bucket", () -> new BucketItem(FluidsRegistry.PROPELLANT_STILL, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1).tab(ItemGroups.tab_normal)));
     public static final RegistryObject<Item> OTHERWORLDLY_STAR = ITEMS.register("otherworldly_star", () -> new Item(new Item.Properties().tab(ItemGroups.tab_normal)));
     public static final RegistryObject<Item> WARP_ENGINE = ITEMS.register("warp_engine", () -> new Item(new Item.Properties().tab(ItemGroups.tab_normal)));
     public static final RegistryObject<Item> STEEL_DUST = ITEMS.register("steel_dust", () -> new Item(new Item.Properties().tab(ItemGroups.tab_normal)));
@@ -108,6 +109,7 @@ public class ItemsRegistry {
     public static final RegistryObject<BlockItem> SULFUR_ORE_ITEM = ITEMS.register("sulfur_ore", () -> new BlockItem(BlocksRegistry.SULFUR_ORE.get(), new Item.Properties().tab(ItemGroups.tab_normal)));
     public static final RegistryObject<BlockItem> DEEPSLATE_SULFUR_ORE_ITEM = ITEMS.register("deepslate_sulfur_ore", () -> new BlockItem(BlocksRegistry.DEEPSLATE_SULFUR_ORE.get(), new Item.Properties().tab(ItemGroups.tab_normal)));
     public static final RegistryObject<BlockItem> SULFUR_BLOCK_ITEM = ITEMS.register("sulfur_block", () -> new BlockItem(BlocksRegistry.SULFUR_BLOCK.get(), new Item.Properties().tab(ItemGroups.tab_normal)));
+    public static final RegistryObject<BlockItem> MERCURY_SAND_ITEM = ITEMS.register("mercury_sand", () -> new BlockItem(BlocksRegistry.MERCURY_SAND.get(), new Item.Properties().tab(ItemGroups.tab_normal)));
     public static final RegistryObject<BlockItem> MERCURY_STONE_ITEM = ITEMS.register("mercury_stone", () -> new BlockItem(BlocksRegistry.MERCURY_STONE.get(), new Item.Properties().tab(ItemGroups.tab_normal)));
     public static final RegistryObject<BlockItem> MERCURY_STONE_BRICKS_ITEM = ITEMS.register("mercury_stone_bricks", () -> new BlockItem(BlocksRegistry.MERCURY_STONE_BRICKS.get(), new Item.Properties().tab(ItemGroups.tab_normal)));
     public static final RegistryObject<BlockItem> CRACKED_MERCURY_STONE_BRICKS_ITEM = ITEMS.register("cracked_mercury_stone_bricks", () -> new BlockItem(BlocksRegistry.CRACKED_MERCURY_STONE_BRICKS.get(), new Item.Properties().tab(ItemGroups.tab_normal)));

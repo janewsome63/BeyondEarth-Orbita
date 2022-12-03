@@ -111,7 +111,7 @@ public class PlutoSky {
                             FogRenderer.levelFogColor();
                             BufferBuilder bufferbuilder = Tesselator.getInstance().getBuilder();
                             RenderSystem.depthMask(false);
-                            RenderSystem.setShaderColor(f, f1, f2, 1.0F);
+                            RenderSystem.setShaderColor(f, f1, f2, 0.0F);
                             ShaderInstance shaderinstance = RenderSystem.getShader();
                             minecraft.levelRenderer.skyBuffer.drawWithShader(p_181410_.last().pose(), matrix4f, shaderinstance);
 

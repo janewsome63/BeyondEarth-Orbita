@@ -37,5 +37,5 @@ public class EntitiesRegistry {
      * VEHICLE ENTITIES
      */
     public static final RegistryObject<EntityType<LanderEntity>> LANDER = ENTITIES.register("lander", () -> EntityType.Builder.of(LanderEntity::new, MobCategory.MISC).sized(1.0f, 2.0f).fireImmune().build(new ResourceLocation(BeyondOrbitaMod.MODID, "lander").toString()));
-    public static final RegistryObject<EntityType<RoverEntity>> ROVER = ENTITIES.register("rover", () -> EntityType.Builder.of(RoverEntity::new, MobCategory.MISC).sized(2.5f, 1.0f).fireImmune().build(new ResourceLocation(BeyondOrbitaMod.MODID, "rover").toString()));
+    public static final RegistryObject<EntityType<AATVEntity>> AATV = ENTITIES.register("aatv", () -> EntityType.Builder.of(AATVEntity::new, MobCategory.MISC).sized(2.5f, 1.0f).fireImmune().build(new ResourceLocation(BeyondOrbitaMod.MODID, "aatv").toString()));
 }

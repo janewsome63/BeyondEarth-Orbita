@@ -10,6 +10,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fluids.FluidStack;
@@ -21,6 +22,7 @@ import net.rennautogirl63.beyond_orbita.gauge.GaugeValueHelper;
 import net.rennautogirl63.beyond_orbita.gauge.IGaugeValue;
 import net.rennautogirl63.beyond_orbita.guis.helper.GuiHelper;
 import net.rennautogirl63.beyond_orbita.registries.BlocksRegistry;
+import net.rennautogirl63.beyond_orbita.registries.FluidsRegistry;
 import net.rennautogirl63.beyond_orbita.utils.Rectangle2d;
 
 import java.util.ArrayList;
@@ -62,7 +64,7 @@ public class RocketGuiWindow extends AbstractContainerScreen<RocketGui.GuiContai
 
         IGaugeValue fuelGaugeValue = this.getFuelGaugeValue();
 
-        FluidStack fluidStack = new FluidStack(BlocksRegistry.FUEL_BLOCK.get().getFluid(), fuelGaugeValue.getAmount());
+        FluidStack fluidStack = new FluidStack(FluidsRegistry.PROPELLANT_BLOCK.get().getFluid(), fuelGaugeValue.getAmount());
         GuiHelper.drawRocketFluidTank(ms, this.leftPos + 67, this.topPos + 22, fluidStack, fuelGaugeValue.getCapacity());
     }
 

@@ -34,12 +34,12 @@ public class KeyHandler {
             switch (message.key) {
                 case 2:
                     KeyMethods.rotateRocket(player, 1);
-                    KeyMethods.rotateRover(player, 1, -1);
+                    KeyMethods.rotateAATV(player, 1, -1);
                     break;
 
                 case 3:
                     KeyMethods.rotateRocket(player, -1);
-                    KeyMethods.rotateRover(player, -1, 1);
+                    KeyMethods.rotateAATV(player, -1, 1);
                     break;
 
                 case 4:
